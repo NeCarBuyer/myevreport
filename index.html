@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
   <meta charset="UTF-8" />
   <title>My EV Report – Buy your next EV with confidence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,12 +19,10 @@
       --soft-grey: #BFC5C8;
       --neutral-light: #F5F7F8;
       --highlight-green: #6BBF73;
-      --page-width: 1100px;
+      --page-width: 1200px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -37,9 +37,7 @@
       text-decoration: none;
     }
 
-    a:hover {
-      color: var(--highlight-green);
-    }
+    a:hover { color: var(--highlight-green); }
 
     .container {
       max-width: var(--page-width);
@@ -47,14 +45,10 @@
       padding: 0 1.5rem;
     }
 
-    section {
-      padding: 4rem 0;
-    }
+    section { padding: 4rem 0; }
 
     @media (min-width: 900px) {
-      section {
-        padding: 5rem 0;
-      }
+      section { padding: 5rem 0; }
     }
 
     /* Header */
@@ -81,7 +75,7 @@
     }
 
     .brand img {
-      height: 60px;
+      height: 100px;
       width: auto;
       display: block;
     }
@@ -94,22 +88,13 @@
       font-weight: 500;
     }
 
-    nav a {
-      color: var(--deep-graphite);
-    }
+    nav a { color: var(--deep-graphite); }
+    nav a:hover { color: var(--ev-green); }
 
-    nav a:hover {
-      color: var(--ev-green);
-    }
-
-    .nav-cta {
-      margin-left: 0.5rem;
-    }
+    .nav-cta { margin-left: 0.5rem; }
 
     @media (min-width: 820px) {
-      nav {
-        display: flex;
-      }
+      nav { display: flex; }
     }
 
     /* Buttons */
@@ -123,7 +108,11 @@
       font-weight: 600;
       cursor: pointer;
       border: 1px solid transparent;
-      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
       white-space: nowrap;
     }
 
@@ -192,9 +181,7 @@
     }
 
     @media (min-width: 900px) {
-      h1 {
-        font-size: 3rem;
-      }
+      h1 { font-size: 3rem; }
     }
 
     .hero-sub {
@@ -245,16 +232,13 @@
       font-size: 0.85rem;
     }
 
-    .hero-stat-label {
-      color: #5b6670;
-    }
-
+    .hero-stat-label { color: #5b6670; }
     .hero-stat-value {
       font-weight: 600;
       color: var(--deep-graphite);
     }
 
-    /* Shared section styles */
+    /* Section headings */
     h2 {
       font-size: 1.8rem;
       font-weight: 700;
@@ -262,9 +246,7 @@
       margin: 0 0 2.25rem;
     }
 
-    h2 span {
-      color: var(--ev-green);
-    }
+    h2 span { color: var(--ev-green); }
 
     .section-header {
       text-align: center;
@@ -344,9 +326,7 @@
       padding: 0;
     }
 
-    .why-list li {
-      margin-bottom: 0.45rem;
-    }
+    .why-list li { margin-bottom: 0.45rem; }
 
     /* What's included */
     .included {
@@ -422,13 +402,220 @@
     .audience-strip {
       font-size: 0.9rem;
       color: #66717a;
-      text-align: center;
       padding: 1.4rem 1.5rem;
-      border-radius: 999px;
+      border-radius: 14px;
       border: 1px solid #dde2e5;
       background: #ffffff;
-      max-width: 680px;
+      max-width: 780px;
       margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Coverage intro + checker */
+    .coverage-intro {
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      font-size: 0.95rem;
+      color: #66717a;
+      text-align: center;
+    }
+
+    .coverage-checker {
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+      padding: 1.3rem 1.4rem;
+      border-radius: 16px;
+      border: 1px solid #dde2e5;
+      background: #ffffff;
+      box-shadow: 0 8px 26px rgba(33, 40, 47, 0.06);
+      font-size: 0.9rem;
+    }
+
+    .coverage-checker-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--deep-graphite);
+    }
+
+    .coverage-checker-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .coverage-checker-row input {
+      flex: 1 1 160px;
+      min-width: 0;
+      padding: 0.6rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #c6ced3;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    .coverage-checker-row input:focus {
+      outline: none;
+      border-color: var(--ev-green);
+      box-shadow: 0 0 0 1px rgba(74, 143, 89, 0.2);
+    }
+
+    .coverage-help {
+      font-size: 0.78rem;
+      color: var(--soft-grey);
+      margin: 0.15rem 0 0.45rem;
+    }
+
+    .coverage-result {
+      font-size: 0.86rem;
+      margin-top: 0.4rem;
+    }
+
+    .coverage-result.positive {
+      color: var(--ev-green);
+      font-weight: 600;
+    }
+
+    .coverage-result.maybe {
+      color: #c27f00;
+      font-weight: 600;
+    }
+
+    .coverage-result.negative {
+      color: #b00020;
+      font-weight: 600;
+    }
+
+    .coverage-lead {
+      margin-top: 0.7rem;
+      padding-top: 0.7rem;
+      border-top: 1px dashed #e2e7ea;
+    }
+
+    .coverage-lead-row {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    @media (min-width: 600px) {
+      .coverage-lead-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .coverage-lead label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .coverage-lead input {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #c6ced3;
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+
+    .coverage-lead input:focus {
+      outline: none;
+      border-color: var(--ev-green);
+      box-shadow: 0 0 0 1px rgba(74, 143, 89, 0.2);
+    }
+
+    .coverage-lead button {
+      width: 100%;
+      margin-top: 0.3rem;
+    }
+
+    /* Coverage bubbles */
+    .coverage-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 800px) {
+      .coverage-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .coverage-item {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .coverage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 1rem;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 999px;
+      border: 1px solid #dde2e5;
+      padding: 0.55rem 1rem;
+      text-align: left;
+      box-shadow: 0 4px 14px rgba(33, 40, 47, 0.04);
+    }
+
+    .coverage-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--deep-graphite);
+    }
+
+    .coverage-toggle {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid #dde2e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--deep-graphite);
+      background: #f7f9fa;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .coverage-item.open .coverage-header {
+      border-color: var(--ev-green);
+      box-shadow: 0 6px 20px rgba(74, 143, 89, 0.14);
+    }
+
+    .coverage-item.open .coverage-toggle {
+      background: var(--ev-green);
+      border-color: var(--ev-green);
+      color: #fff;
+      transform: rotate(45deg); /* + becomes x */
+    }
+
+    .coverage-body {
+      font-size: 0.86rem;
+      color: #66717a;
+      margin-top: 0.45rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid #e2e7ea;
+      background: #ffffff;
+      display: none;
+    }
+
+    .coverage-item.open .coverage-body {
+      display: block;
+    }
+
+    .coverage-body strong {
+      color: var(--deep-graphite);
     }
 
     /* Pricing */
@@ -533,9 +720,7 @@
       resize: vertical;
     }
 
-    .form-row {
-      margin-bottom: 0.9rem;
-    }
+    .form-row { margin-bottom: 0.9rem; }
 
     .help-text {
       font-size: 0.78rem;
@@ -571,6 +756,7 @@
       <nav>
         <a href="#how">How it works</a>
         <a href="#why">Why it matters</a>
+        <a href="#coverage">Coverage area</a>
         <a href="#included">What’s included</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -620,6 +806,16 @@
     </div>
   </section>
 
+<section class="py-8 bg-white">
+  <div class="container">
+    <img 
+  src="tesla-state-of-health.png"
+  alt="EV battery State of Health example"
+  class="mx-auto rounded-xl shadow-lg"
+  style="max-width: 1600px; width: 100%; height: auto;"
+    >
+</section>
+
   <!-- How it works -->
   <section id="how">
     <div class="container">
@@ -644,7 +840,6 @@
           <h3>Get your report in 72 hours</h3>
           <p>You receive a clear report you can use to decide whether to buy, renegotiate the price or walk away.</p>
         </div>
-      </div>
     </div>
   </section>
 
@@ -677,6 +872,155 @@
           Instead of guessing from mileage or relying on a dashboard estimate, you get real data, clearly explained.
         </p>
       </div>
+  </section>
+
+  <!-- Coverage Area -->
+  <section id="coverage">
+    <div class="container">
+      <div class="section-header">
+        <h2>Coverage area</h2>
+      </div>
+
+      <p class="coverage-intro">
+        My EV Report is currently focused on the North of England. Check your postcode below and we’ll tell you if
+        we usually cover your area.
+      </p>
+
+      <!-- Postcode checker + lead capture -->
+      <div class="coverage-checker">
+        <div class="coverage-checker-label">Check your postcode</div>
+        <div class="coverage-checker-row">
+          <input id="coverage-postcode" type="text" placeholder="e.g. NE1 4LP" autocomplete="postal-code">
+          <button type="button" id="coverage-check-button" class="btn btn-primary">Check coverage</button>
+        </div>
+        <p class="coverage-help">
+          We typically cover most NE, SR, DH, DL, TS and CA postcodes. Enter the first part or full postcode to check.
+        </p>
+        <div id="coverage-result" class="coverage-result" aria-live="polite"></div>
+
+        <form id="coverage-lead-form" class="coverage-lead" style="display:none;">
+          <p style="font-size:0.86rem; margin:0 0 0.6rem;">
+            Leave your details and we’ll confirm availability and next steps for this postcode by email.
+          </p>
+          <div class="coverage-lead-row">
+            <div>
+              <label for="coverage-name">Name</label>
+              <input id="coverage-name" type="text" placeholder="Your name">
+            </div>
+            <div>
+              <label for="coverage-email">Email</label>
+              <input id="coverage-email" type="email" placeholder="you@example.com">
+            </div>
+          </div>
+          <div class="coverage-lead-row" style="grid-template-columns: 1fr;">
+            <div>
+              <label for="coverage-postcode-confirm">Postcode</label>
+              <input id="coverage-postcode-confirm" type="text" placeholder="Your postcode">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-secondary">Send my details</button>
+          <p class="coverage-help">
+            This will open your email client with the details ready to send. Online booking will be added as the
+            service grows.
+          </p>
+        </form>
+      </div>
+
+      <p class="coverage-intro" style="margin-bottom:1.8rem;">
+        You can also browse by region below to see typical towns and cities we cover.
+      </p>
+
+      <!-- Coverage bubbles -->
+      <div class="coverage-grid" aria-label="Coverage areas">
+        <!-- Tyneside -->
+        <div class="coverage-item">
+          <button class="coverage-header" type="button" aria-expanded="false">
+            <span class="coverage-title">Tyneside</span>
+            <span class="coverage-toggle">+</span>
+          </button>
+          <div class="coverage-body">
+            <p><strong>Typical locations:</strong></p>
+            <p>
+              Newcastle upon Tyne, Gateshead, North Shields, South Shields, Whitley Bay, Wallsend, Tynemouth,
+              Jarrow, Hebburn.
+            </p>
+          </div>
+        </div>
+
+        <!-- Wearside -->
+        <div class="coverage-item">
+          <button class="coverage-header" type="button" aria-expanded="false">
+            <span class="coverage-title">Wearside</span>
+            <span class="coverage-toggle">+</span>
+          </button>
+          <div class="coverage-body">
+            <p><strong>Typical locations:</strong></p>
+            <p>
+              Sunderland, Washington, Seaham, Houghton-le-Spring and surrounding areas along the River Wear.
+            </p>
+          </div>
+        </div>
+
+        <!-- Northumberland -->
+        <div class="coverage-item">
+          <button class="coverage-header" type="button" aria-expanded="false">
+            <span class="coverage-title">Northumberland</span>
+            <span class="coverage-toggle">+</span>
+          </button>
+          <div class="coverage-body">
+            <p><strong>Typical locations:</strong></p>
+            <p>
+              Hexham, Alnwick, Morpeth, Ashington, Cramlington, Blyth, Berwick-upon-Tweed and nearby rural areas.
+            </p>
+          </div>
+        </div>
+
+        <!-- Durham -->
+        <div class="coverage-item">
+          <button class="coverage-header" type="button" aria-expanded="false">
+            <span class="coverage-title">Durham</span>
+            <span class="coverage-toggle">+</span>
+          </button>
+          <div class="coverage-body">
+            <p><strong>Typical locations:</strong></p>
+            <p>
+              Durham City, Chester-le-Street, Consett, Bishop Auckland, Stanley, Peterlee and surrounding County Durham
+              postcodes.
+            </p>
+          </div>
+        </div>
+
+        <!-- Teesside -->
+        <div class="coverage-item">
+          <button class="coverage-header" type="button" aria-expanded="false">
+            <span class="coverage-title">Teesside</span>
+            <span class="coverage-toggle">+</span>
+          </button>
+          <div class="coverage-body">
+            <p><strong>Typical locations:</strong></p>
+            <p>
+              Middlesbrough, Stockton-on-Tees, Hartlepool, Redcar, Billingham, Yarm and nearby towns.
+            </p>
+          </div>
+        </div>
+
+        <!-- Carlisle -->
+        <div class="coverage-item">
+          <button class="coverage-header" type="button" aria-expanded="false">
+            <span class="coverage-title">Carlisle &amp; surrounding</span>
+            <span class="coverage-toggle">+</span>
+          </button>
+          <div class="coverage-body">
+            <p><strong>Typical locations:</strong></p>
+            <p>
+              Carlisle, Brampton and surrounding areas on the edge of Cumbria and the Scottish Borders.
+            </p>
+          </div>
+      </div>
+
+      <p class="coverage-intro" style="margin-top:2rem;">
+        If you’re unsure whether your area is covered, just include your postcode when you get in touch and we’ll confirm.
+      </p>
     </div>
   </section>
 
@@ -787,7 +1131,6 @@
             know in the form that you’re enquiring on behalf of a business.
           </p>
         </div>
-      </div>
     </div>
   </section>
 
@@ -801,7 +1144,7 @@
         </p>
         <p style="margin-top:1rem; font-size:0.95rem;">
           Prefer email? Contact us at
-          <a href="mailto:info@myevreport.com">info@myevreport.com</a>
+          <a href="mailto:hello@myevreport.com">hello@myevreport.com</a>
           and we’ll get back to you.
         </p>
       </div>
@@ -850,7 +1193,95 @@
   </footer>
 
   <script>
+    // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Coverage bubbles toggle logic
+    document.querySelectorAll('.coverage-item').forEach(function(item) {
+      const header = item.querySelector('.coverage-header');
+      const button = header;
+
+      header.addEventListener('click', function () {
+        const isOpen = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.coverage-item').forEach(function(other) {
+          other.classList.remove('open');
+          const btn = other.querySelector('.coverage-header');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+        // open this one if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Simple postcode coverage logic
+    (function() {
+      const input = document.getElementById('coverage-postcode');
+      const button = document.getElementById('coverage-check-button');
+      const result = document.getElementById('coverage-result');
+      const leadForm = document.getElementById('coverage-lead-form');
+      const leadPostcode = document.getElementById('coverage-postcode-confirm');
+
+      function checkPostcode() {
+        const raw = (input.value || '').toUpperCase().trim();
+        if (!raw) {
+          result.textContent = 'Please enter a postcode to check.';
+          result.className = 'coverage-result negative';
+          leadForm.style.display = 'none';
+          return;
+        }
+
+        const match = raw.match(/^[A-Z]{1,2}/);
+        const area = match ? match[0] : '';
+
+        const coveredAreas = ['NE', 'SR', 'DH', 'DL', 'TS', 'CA'];
+
+        result.className = 'coverage-result';
+
+        if (coveredAreas.includes(area)) {
+          result.textContent = 'Great News! – we cover your postcode area. Send us your details and we’ll confirm availability.';
+          result.classList.add('positive');
+        } else {
+          result.textContent = 'Unfortunately - we do not cover your postcode area. Send us your details and we’ll confirm coverage for this postcode.';
+          result.classList.add('maybe');
+        }
+
+        leadForm.style.display = 'block';
+        if (leadPostcode && !leadPostcode.value) {
+          leadPostcode.value = raw;
+        }
+      }
+
+      button.addEventListener('click', checkPostcode);
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          checkPostcode();
+        }
+      });
+
+      // Lead form – open mailto with details
+      leadForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('coverage-name').value.trim();
+        const email = document.getElementById('coverage-email').value.trim();
+        const pc = leadPostcode.value.trim() || input.value.trim();
+
+        let body = 'Name: ' + (name || '(not provided)') +
+                   '%0D%0AEmail: ' + (email || '(not provided)') +
+                   '%0D%0APostcode: ' + (pc || '(not provided)') +
+                   '%0D%0A%0D%0ARequesting confirmation of coverage and availability for an EV battery health report.';
+
+        const mailto = 'mailto:hello@myevreport.com'
+                     + '?subject=' + encodeURIComponent('Postcode coverage enquiry – My EV Report')
+                     + '&body=' + body;
+
+        window.location.href = mailto;
+      });
+    })();
   </script>
 </body>
 </html>
