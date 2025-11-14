@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
   <meta charset="UTF-8" />
   <title>My EV Report – Buy your next EV with confidence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
 
   <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,10 +47,23 @@
       padding: 0 1.5rem;
     }
 
-    section { padding: 4rem 0; }
+    section {
+      padding: 3.5rem 0;
+    }
+
+    .section--tight {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .section--divided {
+      border-top: 1px solid #e2e6ea;
+    }
 
     @media (min-width: 900px) {
-      section { padding: 5rem 0; }
+      section {
+        padding: 4rem 0;
+      }
     }
 
     /* Header */
@@ -65,13 +80,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.55rem 0;
+      padding: 0.4rem 0;
+      gap: 1rem;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
     }
 
     .brand img {
@@ -83,17 +98,25 @@
     nav {
       display: none;
       align-items: center;
-      gap: 1.6rem;
-      font-size: 0.9rem;
+      gap: 1.1rem;
+      font-size: 0.86rem;
       font-weight: 500;
+      white-space: nowrap;
     }
 
-    nav a { color: var(--deep-graphite); }
-    nav a:hover { color: var(--ev-green); }
+    nav a {
+      color: var(--deep-graphite);
+    }
 
-    .nav-cta { margin-left: 0.5rem; }
+    nav a:hover {
+      color: var(--ev-green);
+    }
 
-    @media (min-width: 820px) {
+    .nav-cta {
+      margin-left: 0.5rem;
+    }
+
+    @media (min-width: 860px) {
       nav { display: flex; }
     }
 
@@ -103,8 +126,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      padding: 0.7rem 1.6rem;
-      font-size: 0.95rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.94rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid transparent;
@@ -146,49 +169,49 @@
 
     @media (min-width: 900px) {
       .hero {
-        padding-top: 4rem;
-        padding-bottom: 4.5rem;
+        padding-top: 3.5rem;
+        padding-bottom: 4rem;
       }
     }
 
     .hero-inner {
       display: grid;
-      gap: 2.5rem;
+      gap: 2.3rem;
     }
 
     @media (min-width: 900px) {
       .hero-inner {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
         align-items: center;
       }
     }
 
     .hero-eyebrow {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--ev-green);
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
     }
 
     h1 {
-      font-size: 2.4rem;
-      line-height: 1.1;
+      font-size: 2.35rem;
+      line-height: 1.08;
       font-weight: 800;
-      margin: 0 0 1rem;
+      margin: 0 0 0.9rem;
       color: var(--deep-graphite);
     }
 
     @media (min-width: 900px) {
-      h1 { font-size: 3rem; }
+      h1 { font-size: 2.8rem; }
     }
 
     .hero-sub {
       font-size: 1.02rem;
       max-width: 34rem;
       color: #3a424a;
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.6rem;
     }
 
     .hero-sub span {
@@ -199,9 +222,9 @@
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
+      gap: 0.8rem;
       align-items: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     .hero-note {
@@ -212,9 +235,9 @@
     .hero-card {
       background: #ffffff;
       border-radius: 16px;
-      padding: 1.75rem;
+      padding: 1.6rem 1.7rem;
       border: 1px solid #dde2e5;
-      box-shadow: 0 10px 30px rgba(32, 40, 47, 0.06);
+      box-shadow: 0 10px 26px rgba(32, 40, 47, 0.06);
       font-size: 0.9rem;
     }
 
@@ -222,13 +245,13 @@
       margin-top: 0;
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.7rem;
     }
 
     .hero-stat {
       display: flex;
       justify-content: space-between;
-      margin-top: 0.75rem;
+      margin-top: 0.7rem;
       font-size: 0.85rem;
     }
 
@@ -240,34 +263,54 @@
 
     /* Section headings */
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       font-weight: 700;
       text-align: left;
-      margin: 0 0 2.25rem;
+      margin: 0 0 2rem;
     }
 
     h2 span { color: var(--ev-green); }
 
     .section-header {
       text-align: center;
-      margin-bottom: 2.25rem;
+      margin-bottom: 2rem;
     }
 
     .section-header h2 {
       text-align: center;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.65rem;
     }
 
     .section-header p {
       margin: 0;
-      font-size: 0.98rem;
+      font-size: 0.97rem;
       color: #66717a;
+    }
+
+    /* Social proof */
+    .quote-strip {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1rem 1.4rem;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #dde2e5;
+      box-shadow: 0 6px 20px rgba(33, 40, 47, 0.04);
+      font-size: 0.9rem;
+      color: #4a535c;
+    }
+
+    .quote-strip strong {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      color: #828c96;
     }
 
     /* How it works */
     .steps {
       display: grid;
-      gap: 1.5rem;
+      gap: 1.3rem;
     }
 
     @media (min-width: 800px) {
@@ -279,35 +322,35 @@
     .step {
       background: #ffffff;
       border-radius: 14px;
-      padding: 1.5rem;
+      padding: 1.4rem 1.45rem;
       border: 1px solid #dde2e5;
       font-size: 0.9rem;
     }
 
     .step-number {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--soft-grey);
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
     .step h3 {
-      font-size: 1.05rem;
-      margin: 0 0 0.5rem;
+      font-size: 1.02rem;
+      margin: 0 0 0.45rem;
       font-weight: 600;
     }
 
     /* Why battery health matters */
     .why-grid {
       display: grid;
-      gap: 2rem;
+      gap: 1.8rem;
     }
 
     @media (min-width: 900px) {
       .why-grid {
-        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.35fr);
         align-items: start;
       }
     }
@@ -316,22 +359,60 @@
       background: #ffffff;
       border-radius: 14px;
       border: 1px solid #dde2e5;
-      padding: 1.5rem 1.6rem;
+      padding: 1.5rem 1.55rem;
       font-size: 0.9rem;
     }
 
     .why-list {
       list-style: none;
-      margin: 0.3rem 0 0;
+      margin: 0.4rem 0 0;
       padding: 0;
     }
 
-    .why-list li { margin-bottom: 0.45rem; }
+    .why-list li { margin-bottom: 0.42rem; }
+
+    /* Tesla image section */
+    .visual-section {
+      text-align: center;
+    }
+
+    .visual-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .visual-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(18, 24, 32, 0.18);
+      object-fit: contain;
+    }
+
+    @media (max-width: 640px) {
+      .visual-wrapper img {
+        border-radius: 14px;
+        box-shadow: 0 12px 32px rgba(18, 24, 32, 0.16);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeIn 0.9s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* What's included */
     .included {
       display: grid;
-      gap: 2rem;
+      gap: 1.8rem;
     }
 
     @media (min-width: 900px) {
@@ -346,14 +427,14 @@
       margin: 0;
       padding: 0;
       display: grid;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
 
     .pill-list li {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.4rem 0.75rem;
+      padding: 0.45rem 0.75rem;
       border-radius: 999px;
       border: 1px solid #dde2e5;
       background: #ffffff;
@@ -377,7 +458,7 @@
       background: #ffffff;
       border-radius: 14px;
       border: 1px solid #dde2e5;
-      padding: 1.3rem 1.4rem;
+      padding: 1.25rem 1.4rem;
       font-size: 0.85rem;
     }
 
@@ -402,7 +483,7 @@
     .audience-strip {
       font-size: 0.9rem;
       color: #66717a;
-      padding: 1.4rem 1.5rem;
+      padding: 1rem 1.3rem;
       border-radius: 14px;
       border: 1px solid #dde2e5;
       background: #ffffff;
@@ -414,7 +495,7 @@
     /* Coverage intro + checker */
     .coverage-intro {
       max-width: 640px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1.8rem;
       font-size: 0.95rem;
       color: #66717a;
       text-align: center;
@@ -422,26 +503,26 @@
 
     .coverage-checker {
       max-width: 620px;
-      margin: 0 auto 2.5rem;
-      padding: 1.3rem 1.4rem;
+      margin: 0 auto 2.1rem;
+      padding: 1.25rem 1.4rem;
       border-radius: 16px;
       border: 1px solid #dde2e5;
       background: #ffffff;
-      box-shadow: 0 8px 26px rgba(33, 40, 47, 0.06);
+      box-shadow: 0 8px 24px rgba(33, 40, 47, 0.06);
       font-size: 0.9rem;
     }
 
     .coverage-checker-label {
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.32rem;
       color: var(--deep-graphite);
     }
 
     .coverage-checker-row {
       display: flex;
       gap: 0.6rem;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
       flex-wrap: wrap;
     }
 
@@ -464,12 +545,13 @@
     .coverage-help {
       font-size: 0.78rem;
       color: var(--soft-grey);
-      margin: 0.15rem 0 0.45rem;
+      margin: 0.15rem 0 0.4rem;
     }
 
     .coverage-result {
       font-size: 0.86rem;
-      margin-top: 0.4rem;
+      margin-top: 0.35rem;
+      min-height: 1.1rem;
     }
 
     .coverage-result.positive {
@@ -487,9 +569,14 @@
       font-weight: 600;
     }
 
+    .coverage-result.loading {
+      color: #66717a;
+      font-style: italic;
+    }
+
     .coverage-lead {
-      margin-top: 0.7rem;
-      padding-top: 0.7rem;
+      margin-top: 0.6rem;
+      padding-top: 0.65rem;
       border-top: 1px dashed #e2e7ea;
     }
 
@@ -529,13 +616,13 @@
 
     .coverage-lead button {
       width: 100%;
-      margin-top: 0.3rem;
+      margin-top: 0.25rem;
     }
 
     /* Coverage bubbles */
     .coverage-grid {
       display: grid;
-      gap: 1rem;
+      gap: 0.9rem;
     }
 
     @media (min-width: 800px) {
@@ -560,36 +647,38 @@
       background: #ffffff;
       border-radius: 999px;
       border: 1px solid #dde2e5;
-      padding: 0.55rem 1rem;
+      padding: 0.52rem 1rem;
       text-align: left;
       box-shadow: 0 4px 14px rgba(33, 40, 47, 0.04);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     }
 
     .coverage-title {
       font-weight: 600;
-      font-size: 0.98rem;
+      font-size: 0.97rem;
       color: var(--deep-graphite);
     }
 
     .coverage-toggle {
       flex-shrink: 0;
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 999px;
       border: 1px solid #dde2e5;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1.06rem;
       font-weight: 600;
       color: var(--deep-graphite);
       background: #f7f9fa;
-      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
     }
 
     .coverage-item.open .coverage-header {
       border-color: var(--ev-green);
-      box-shadow: 0 6px 20px rgba(74, 143, 89, 0.14);
+      box-shadow: 0 6px 19px rgba(74, 143, 89, 0.16);
+      background: #ffffff;
     }
 
     .coverage-item.open .coverage-toggle {
@@ -602,16 +691,20 @@
     .coverage-body {
       font-size: 0.86rem;
       color: #66717a;
-      margin-top: 0.45rem;
-      padding: 0.85rem 1rem;
+      margin-top: 0.42rem;
+      padding: 0.8rem 1rem;
       border-radius: 12px;
       border: 1px solid #e2e7ea;
       background: #ffffff;
-      display: none;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.22s ease, opacity 0.22s ease;
     }
 
     .coverage-item.open .coverage-body {
-      display: block;
+      max-height: 200px;
+      opacity: 1;
     }
 
     .coverage-body strong {
@@ -620,26 +713,26 @@
 
     /* Pricing */
     .pricing-card {
-      max-width: 420px;
+      max-width: 400px;
       margin: 0 auto;
       text-align: center;
       background: #ffffff;
       border-radius: 18px;
       border: 1px solid #dde2e5;
-      padding: 2.3rem 2rem;
-      box-shadow: 0 14px 40px rgba(33, 40, 47, 0.06);
+      padding: 2.1rem 1.9rem;
+      box-shadow: 0 13px 36px rgba(33, 40, 47, 0.06);
     }
 
     .price-tag {
-      font-size: 2.6rem;
+      font-size: 2.45rem;
       font-weight: 800;
-      margin: 0.4rem 0;
+      margin: 0.32rem 0;
     }
 
     .price-caption {
       font-size: 0.9rem;
       color: #66717a;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.15rem;
     }
 
     /* FAQ */
@@ -658,25 +751,25 @@
       background: #ffffff;
       border-radius: 14px;
       border: 1px solid #dde2e5;
-      padding: 1.1rem 1.2rem;
+      padding: 1.05rem 1.2rem;
       font-size: 0.9rem;
     }
 
     .faq-item h3 {
       margin: 0 0 0.4rem;
-      font-size: 0.98rem;
+      font-size: 0.97rem;
       font-weight: 600;
     }
 
     /* Contact / Book */
     .contact-grid {
       display: grid;
-      gap: 2rem;
+      gap: 1.9rem;
     }
 
     @media (min-width: 900px) {
       .contact-grid {
-        grid-template-columns: 1.1fr 1fr;
+        grid-template-columns: 1.05fr 1fr;
         align-items: start;
       }
     }
@@ -685,7 +778,7 @@
       background: #ffffff;
       border-radius: 16px;
       border: 1px solid #dde2e5;
-      padding: 1.7rem 1.6rem;
+      padding: 1.6rem 1.55rem;
       font-size: 0.9rem;
     }
 
@@ -693,7 +786,7 @@
       display: block;
       font-size: 0.8rem;
       font-weight: 500;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.24rem;
     }
 
     input,
@@ -725,7 +818,7 @@
     .help-text {
       font-size: 0.78rem;
       color: var(--soft-grey);
-      margin-top: 0.4rem;
+      margin-top: 0.35rem;
     }
 
     /* Footer */
@@ -733,7 +826,7 @@
       border-top: 1px solid #dde2e5;
       font-size: 0.78rem;
       color: var(--soft-grey);
-      padding: 1.2rem 0 1.6rem;
+      padding: 1.1rem 0 1.5rem;
     }
 
     footer .container {
@@ -741,7 +834,19 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.45rem;
+    }
+
+    /* Screen-reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
   </style>
 </head>
@@ -771,6 +876,7 @@
       <div>
         <div class="hero-eyebrow">Independent EV battery health</div>
         <h1>Know the true health of any EV battery before you buy.</h1>
+        <h2 class="sr-only">EV battery health reports for the North East of England and surrounding areas</h2>
         <p class="hero-sub">
           Avoid costly surprises and buy with confidence. My EV Report gives you an independent battery health report
           within <span>72 hours</span> so you know exactly what you’re getting.
@@ -806,18 +912,19 @@
     </div>
   </section>
 
-<section class="py-8 bg-white">
-  <div class="container">
-    <img 
-  src="tesla-state-of-health.png"
-  alt="EV battery State of Health example"
-  class="mx-auto rounded-xl shadow-lg"
-  style="max-width: 1600px; width: 100%; height: auto;"
-    >
-</section>
+  <!-- Social proof -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="quote-strip">
+        “The report gave me confidence the battery was genuinely healthy and helped me justify the price. I
+        wouldn’t buy another EV without it.”
+        <strong>EV buyer, Nissan Leaf (North East England)</strong>
+      </div>
+    </div>
+  </section>
 
   <!-- How it works -->
-  <section id="how">
+  <section id="how" class="section--divided">
     <div class="container">
       <div class="section-header">
         <h2>How <span>My EV Report</span> works</h2>
@@ -840,11 +947,12 @@
           <h3>Get your report in 72 hours</h3>
           <p>You receive a clear report you can use to decide whether to buy, renegotiate the price or walk away.</p>
         </div>
+      </div>
     </div>
   </section>
 
   <!-- Why battery health matters -->
-  <section id="why">
+  <section id="why" class="section--divided">
     <div class="container why-grid">
       <div>
         <h2>Why battery health <span>really matters</span></h2>
@@ -872,18 +980,31 @@
           Instead of guessing from mileage or relying on a dashboard estimate, you get real data, clearly explained.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Tesla visual -->
+  <section class="section--tight visual-section section--divided">
+    <div class="container visual-wrapper">
+      <img
+        src="tesla-state-of-health.png"
+        alt="EV battery State of Health example on a smartphone in front of an electric vehicle"
+        class="fade-in"
+      >
+    </div>
   </section>
 
   <!-- Coverage Area -->
-  <section id="coverage">
+  <section id="coverage" class="section--divided">
     <div class="container">
       <div class="section-header">
         <h2>Coverage area</h2>
+        <p>Currently focused on the North of England, expanding soon.</p>
       </div>
 
       <p class="coverage-intro">
-        My EV Report is currently focused on the North of England. Check your postcode below and we’ll tell you if
-        we usually cover your area.
+        My EV Report is currently focused on the North of England. Check your postcode below and we’ll tell you if we
+        usually cover your area.
       </p>
 
       <!-- Postcode checker + lead capture -->
@@ -926,7 +1047,7 @@
         </form>
       </div>
 
-      <p class="coverage-intro" style="margin-bottom:1.8rem;">
+      <p class="coverage-intro" style="margin-bottom:1.6rem;">
         You can also browse by region below to see typical towns and cities we cover.
       </p>
 
@@ -1016,20 +1137,21 @@
               Carlisle, Brampton and surrounding areas on the edge of Cumbria and the Scottish Borders.
             </p>
           </div>
+        </div>
       </div>
 
-      <p class="coverage-intro" style="margin-top:2rem;">
+      <p class="coverage-intro" style="margin-top:1.8rem;">
         If you’re unsure whether your area is covered, just include your postcode when you get in touch and we’ll confirm.
       </p>
     </div>
   </section>
 
   <!-- What's included -->
-  <section id="included">
+  <section id="included" class="section--divided">
     <div class="container included">
       <div>
         <h2>What’s included in your report</h2>
-        <p style="margin-bottom: 1.3rem; font-size:0.95rem; color:#66717a;">
+        <p style="margin-bottom: 1.2rem; font-size:0.95rem; color:#66717a;">
           Everything is laid out in a simple, two-page PDF you can read on your phone or share with the seller, dealer
           or finance provider.
         </p>
@@ -1060,7 +1182,7 @@
   </section>
 
   <!-- Audience strip -->
-  <section>
+  <section class="section--tight">
     <div class="container">
       <div class="audience-strip">
         Built for <strong>EV buyers</strong> first – also trusted by private sellers, independent dealers, franchised
@@ -1070,7 +1192,7 @@
   </section>
 
   <!-- Pricing -->
-  <section id="pricing">
+  <section id="pricing" class="section--divided">
     <div class="container">
       <div class="section-header">
         <h2>Simple, transparent pricing</h2>
@@ -1095,7 +1217,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq">
+  <section id="faq" class="section--divided">
     <div class="container">
       <div class="section-header">
         <h2>Frequently asked questions</h2>
@@ -1131,11 +1253,12 @@
             know in the form that you’re enquiring on behalf of a business.
           </p>
         </div>
+      </div>
     </div>
   </section>
 
   <!-- Contact / Book -->
-  <section id="contact">
+  <section id="contact" class="section--divided">
     <div class="container contact-grid">
       <div>
         <h2>Book a report or ask a question</h2>
@@ -1144,7 +1267,7 @@
         </p>
         <p style="margin-top:1rem; font-size:0.95rem;">
           Prefer email? Contact us at
-          <a href="mailto:hello@myevreport.com">hello@myevreport.com</a>
+          <a href="mailto:info@myevreport.com">info@myevreport.com</a>
           and we’ll get back to you.
         </p>
       </div>
@@ -1199,25 +1322,26 @@
     // Coverage bubbles toggle logic
     document.querySelectorAll('.coverage-item').forEach(function(item) {
       const header = item.querySelector('.coverage-header');
-      const button = header;
 
       header.addEventListener('click', function () {
         const isOpen = item.classList.contains('open');
-        // close all
+
+        // Close all
         document.querySelectorAll('.coverage-item').forEach(function(other) {
           other.classList.remove('open');
           const btn = other.querySelector('.coverage-header');
           if (btn) btn.setAttribute('aria-expanded', 'false');
         });
-        // open this one if it was closed
+
+        // Open this one if it was closed
         if (!isOpen) {
           item.classList.add('open');
-          button.setAttribute('aria-expanded', 'true');
+          header.setAttribute('aria-expanded', 'true');
         }
       });
     });
 
-    // Simple postcode coverage logic
+    // Simple postcode coverage logic with tiny "checking" delay
     (function() {
       const input = document.getElementById('coverage-postcode');
       const button = document.getElementById('coverage-check-button');
@@ -1225,7 +1349,7 @@
       const leadForm = document.getElementById('coverage-lead-form');
       const leadPostcode = document.getElementById('coverage-postcode-confirm');
 
-      function checkPostcode() {
+      function doCheck() {
         const raw = (input.value || '').toUpperCase().trim();
         if (!raw) {
           result.textContent = 'Please enter a postcode to check.';
@@ -1234,32 +1358,38 @@
           return;
         }
 
-        const match = raw.match(/^[A-Z]{1,2}/);
-        const area = match ? match[0] : '';
+        // Show loading state
+        result.textContent = 'Checking coverage…';
+        result.className = 'coverage-result loading';
+        leadForm.style.display = 'none';
 
-        const coveredAreas = ['NE', 'SR', 'DH', 'DL', 'TS', 'CA'];
+        setTimeout(function () {
+          const match = raw.match(/^[A-Z]{1,2}/);
+          const area = match ? match[0] : '';
+          const coveredAreas = ['NE', 'SR', 'DH', 'DL', 'TS', 'CA'];
 
-        result.className = 'coverage-result';
+          result.className = 'coverage-result';
 
-        if (coveredAreas.includes(area)) {
-          result.textContent = 'Great News! – we cover your postcode area. Send us your details and we’ll confirm availability.';
-          result.classList.add('positive');
-        } else {
-          result.textContent = 'Unfortunately - we do not cover your postcode area. Send us your details and we’ll confirm coverage for this postcode.';
-          result.classList.add('maybe');
-        }
+          if (coveredAreas.includes(area)) {
+            result.textContent = 'Yes – we usually cover this postcode area. Send us your details and we’ll confirm availability.';
+            result.classList.add('positive');
+          } else {
+            result.textContent = 'We may still be able to help. Send us your details and we’ll confirm coverage for this postcode.';
+            result.classList.add('maybe');
+          }
 
-        leadForm.style.display = 'block';
-        if (leadPostcode && !leadPostcode.value) {
-          leadPostcode.value = raw;
-        }
+          leadForm.style.display = 'block';
+          if (leadPostcode && !leadPostcode.value) {
+            leadPostcode.value = raw;
+          }
+        }, 350); // small delay just for UX
       }
 
-      button.addEventListener('click', checkPostcode);
+      button.addEventListener('click', doCheck);
       input.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           e.preventDefault();
-          checkPostcode();
+          doCheck();
         }
       });
 
@@ -1275,7 +1405,7 @@
                    '%0D%0APostcode: ' + (pc || '(not provided)') +
                    '%0D%0A%0D%0ARequesting confirmation of coverage and availability for an EV battery health report.';
 
-        const mailto = 'mailto:hello@myevreport.com'
+        const mailto = 'mailto:info@myevreport.com'
                      + '?subject=' + encodeURIComponent('Postcode coverage enquiry – My EV Report')
                      + '&body=' + body;
 
