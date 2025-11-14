@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My EV Report – Independent EV Battery Health Reports</title>
+  <title>My EV Report – Buy your next EV with confidence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Inter font -->
@@ -41,7 +41,6 @@
       color: var(--highlight-green);
     }
 
-    /* Layout helpers */
     .container {
       max-width: var(--page-width);
       margin: 0 auto;
@@ -72,7 +71,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.85rem 0;
+      padding: 0.55rem 0;
     }
 
     .brand {
@@ -81,16 +80,16 @@
       gap: 0.75rem;
     }
 
-    /* Bigger logo */
     .brand img {
-      height: 100px;
+      height: 60px;
       width: auto;
+      display: block;
     }
 
     nav {
       display: none;
       align-items: center;
-      gap: 1.75rem;
+      gap: 1.6rem;
       font-size: 0.9rem;
       font-weight: 500;
     }
@@ -152,13 +151,13 @@
 
     /* Hero */
     .hero {
-      padding-top: 3.5rem;
+      padding-top: 3rem;
       padding-bottom: 3.5rem;
     }
 
     @media (min-width: 900px) {
       .hero {
-        padding-top: 4.5rem;
+        padding-top: 4rem;
         padding-bottom: 4.5rem;
       }
     }
@@ -194,7 +193,7 @@
 
     @media (min-width: 900px) {
       h1 {
-        font-size: 3.1rem;
+        font-size: 3rem;
       }
     }
 
@@ -215,7 +214,7 @@
       flex-wrap: wrap;
       gap: 0.85rem;
       align-items: center;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.2rem;
     }
 
     .hero-note {
@@ -255,7 +254,7 @@
       color: var(--deep-graphite);
     }
 
-    /* Section headings */
+    /* Shared section styles */
     h2 {
       font-size: 1.8rem;
       font-weight: 700;
@@ -316,6 +315,37 @@
       font-size: 1.05rem;
       margin: 0 0 0.5rem;
       font-weight: 600;
+    }
+
+    /* Why battery health matters */
+    .why-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .why-grid {
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+        align-items: start;
+      }
+    }
+
+    .why-box {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #dde2e5;
+      padding: 1.5rem 1.6rem;
+      font-size: 0.9rem;
+    }
+
+    .why-list {
+      list-style: none;
+      margin: 0.3rem 0 0;
+      padding: 0;
+    }
+
+    .why-list li {
+      margin-bottom: 0.45rem;
     }
 
     /* What's included */
@@ -388,6 +418,19 @@
       margin: 0.7rem 0 0.9rem;
     }
 
+    /* Audience strip */
+    .audience-strip {
+      font-size: 0.9rem;
+      color: #66717a;
+      text-align: center;
+      padding: 1.4rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid #dde2e5;
+      background: #ffffff;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
     /* Pricing */
     .pricing-card {
       max-width: 420px;
@@ -438,7 +481,7 @@
       font-weight: 600;
     }
 
-    /* Contact / book */
+    /* Contact / Book */
     .contact-grid {
       display: grid;
       gap: 2rem;
@@ -467,7 +510,8 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       width: 100%;
       padding: 0.6rem 0.7rem;
       border-radius: 8px;
@@ -477,7 +521,8 @@
     }
 
     input:focus,
-    textarea:focus {
+    textarea:focus,
+    select:focus {
       outline: none;
       border-color: var(--ev-green);
       box-shadow: 0 0 0 1px rgba(74, 143, 89, 0.2);
@@ -521,11 +566,11 @@
   <header>
     <div class="container header-inner">
       <div class="brand">
-        <!-- Only PNG logo, no text logo -->
-        <img src="logo-myevreport.png" alt="My EV Report logo" class="h-10 w-auto">
+        <img src="logo-myevreport.png" alt="My EV Report logo">
       </div>
       <nav>
         <a href="#how">How it works</a>
+        <a href="#why">Why it matters</a>
         <a href="#included">What’s included</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -539,36 +584,36 @@
     <div class="container hero-inner">
       <div>
         <div class="hero-eyebrow">Independent EV battery health</div>
-        <h1>EV battery health reports in 72 hours.</h1>
+        <h1>Know the true health of any EV battery before you buy.</h1>
         <p class="hero-sub">
-          Give EV buyers confidence and protect your margin with clear, independent battery health reports.
-          Delivered in <span>72 hours or less</span>, ready to drop straight into your advert or handover pack.
+          Avoid costly surprises and buy with confidence. My EV Report gives you an independent battery health report
+          within <span>72 hours</span> so you know exactly what you’re getting.
         </p>
 
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Book a report</a>
-          <a href="#included" class="btn btn-secondary">See what you get</a>
+          <a href="#contact" class="btn btn-primary">Get a battery report</a>
+          <a href="#included" class="btn btn-secondary">See what’s included</a>
         </div>
 
         <div class="hero-note">
-          Designed for dealers &amp; fleets · Ideal for retail adverts, warranties and part-exchange decisions.
+          For EV buyers, sellers and dealers · Simple, independent and jargon-free.
         </div>
       </div>
 
       <aside class="hero-card">
         <h3>What you’ll receive</h3>
-        <p>A concise PDF report that clearly explains the vehicle’s current battery health in plain English.</p>
+        <p>A clear PDF report explaining the current battery health in plain English.</p>
 
         <div class="hero-stat">
-          <span class="hero-stat-label">State of health (SoH)</span>
+          <span class="hero-stat-label">Battery state of health (SoH)</span>
           <span class="hero-stat-value">e.g. 92%</span>
         </div>
         <div class="hero-stat">
-          <span class="hero-stat-label">Estimated remaining capacity</span>
-          <span class="hero-stat-value">kWh &amp; range impact</span>
+          <span class="hero-stat-label">Estimated usable capacity</span>
+          <span class="hero-stat-value">kWh &amp; real-world range</span>
         </div>
         <div class="hero-stat">
-          <span class="hero-stat-label">Simple traffic-light indicators</span>
+          <span class="hero-stat-label">Condition rating</span>
           <span class="hero-stat-value">Green / Amber / Red</span>
         </div>
       </aside>
@@ -580,25 +625,57 @@
     <div class="container">
       <div class="section-header">
         <h2>How <span>My EV Report</span> works</h2>
-        <p>Built to be simple for dealers, and easy to understand for customers.</p>
+        <p>Designed to be simple for buyers and easy for sellers and dealers to support.</p>
       </div>
 
       <div class="steps">
         <div class="step">
           <div class="step-number">Step 1</div>
-          <h3>Book your report</h3>
-          <p>Send us the vehicle details and preferred date for testing. We confirm the booking and test location.</p>
+          <h3>Tell us about the EV</h3>
+          <p>Share the registration, model and where the car is located. You can be a private buyer, seller or dealer.</p>
         </div>
         <div class="step">
           <div class="step-number">Step 2</div>
-          <h3>Battery health test</h3>
-          <p>We run an EV battery diagnostic using industry-grade tools to assess capacity, degradation and key metrics.</p>
+          <h3>We carry out a battery test</h3>
+          <p>We use industry-grade tools to measure battery health, capacity and key metrics that affect real-world range.</p>
         </div>
         <div class="step">
           <div class="step-number">Step 3</div>
-          <h3>Report in 72 hours</h3>
-          <p>You receive a clear PDF report you can attach to your advert, share with the buyer or store in your deal file.</p>
+          <h3>Get your report in 72 hours</h3>
+          <p>You receive a clear report you can use to decide whether to buy, renegotiate the price or walk away.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why battery health matters -->
+  <section id="why">
+    <div class="container why-grid">
+      <div>
+        <h2>Why battery health <span>really matters</span></h2>
+        <p>
+          The battery is the most expensive part of an electric vehicle. Two cars with the same age and mileage can have
+          very different battery health – which means very different value for money.
+        </p>
+        <ul class="why-list">
+          <li>• A weaker battery can mean less range than you expect.</li>
+          <li>• Poor health can affect future resale value.</li>
+          <li>• Warranties and guarantees often depend on measured battery health.</li>
+          <li>• A clear, independent report gives you leverage when negotiating price.</li>
+        </ul>
+      </div>
+
+      <div class="why-box">
+        <strong>In short:</strong>
+        <p style="margin-top:0.4rem;">
+          My EV Report helps you answer the question every EV buyer should ask:
+        </p>
+        <p style="font-weight:600; margin:0.4rem 0;">
+          “Is this battery as good as the advert suggests?”
+        </p>
+        <p style="margin:0.4rem 0;">
+          Instead of guessing from mileage or relying on a dashboard estimate, you get real data, clearly explained.
+        </p>
       </div>
     </div>
   </section>
@@ -607,18 +684,19 @@
   <section id="included">
     <div class="container included">
       <div>
-        <h2>What’s included in the report</h2>
+        <h2>What’s included in your report</h2>
         <p style="margin-bottom: 1.3rem; font-size:0.95rem; color:#66717a;">
-          Every report is designed to answer the questions customers actually ask, without overwhelming them with data.
+          Everything is laid out in a simple, two-page PDF you can read on your phone or share with the seller, dealer
+          or finance provider.
         </p>
 
         <ul class="pill-list">
           <li><span class="check">✓</span> Overall battery state of health (SoH)</li>
-          <li><span class="check">✓</span> Estimated remaining capacity (kWh)</li>
-          <li><span class="check">✓</span> Real-world range impact guidance</li>
-          <li><span class="check">✓</span> Clear traffic-light condition grading</li>
-          <li><span class="check">✓</span> Dealer-friendly summary for adverts</li>
-          <li><span class="check">✓</span> Customer-friendly explanation page</li>
+          <li><span class="check">✓</span> Estimated remaining usable capacity (kWh)</li>
+          <li><span class="check">✓</span> Real-world range guidance</li>
+          <li><span class="check">✓</span> Clear Green / Amber / Red condition rating</li>
+          <li><span class="check">✓</span> Simple explanation page for non-technical readers</li>
+          <li><span class="check">✓</span> Summary you can attach to adverts or sales paperwork</li>
         </ul>
       </div>
 
@@ -626,13 +704,23 @@
         <div class="sample-label">Preview</div>
         <strong>Sample report layout</strong>
         <div class="sample-report-box">
-          Clean, dashboard-style layout with your dealership details at the top, followed by the key battery metrics,
-          and a simple explanation panel you can walk the customer through.
+          Clean, dashboard-style layout with the key battery metrics at the top, followed by a clear explanation of what
+          they mean for day-to-day driving and future ownership.
         </div>
         <p style="margin:0 0 0.25rem; color:#66717a;">
-          Downloadable sample report will be available here soon.
+          A downloadable sample report will be available here soon.
         </p>
-        <p class="help-text">In the meantime, request a demo report when you get in touch.</p>
+        <p class="help-text">Ask us for a demo report when you get in touch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audience strip -->
+  <section>
+    <div class="container">
+      <div class="audience-strip">
+        Built for <strong>EV buyers</strong> first – also trusted by private sellers, independent dealers, franchised
+        retailers and fleet operators.
       </div>
     </div>
   </section>
@@ -642,7 +730,7 @@
     <div class="container">
       <div class="section-header">
         <h2>Simple, transparent pricing</h2>
-        <p>No setup fees, no subscriptions – pay per report.</p>
+        <p>One clear price per vehicle, with volume options for dealers and fleets.</p>
       </div>
 
       <div class="pricing-card">
@@ -652,11 +740,11 @@
         <div class="price-tag">£99</div>
         <div class="price-caption">
           Fixed price for a full EV battery health report.<br>
-          Ideal for retail stock, part-exchange and fleet disposals.
+          No subscription, no hidden fees.
         </div>
         <a href="#contact" class="btn btn-primary">Book a report</a>
         <div class="help-text" style="margin-top:0.7rem;">
-          Volume pricing available for dealers and fleets – ask us for details.
+          Buying or selling multiple EVs? Ask us about dealer and fleet pricing.
         </div>
       </div>
     </div>
@@ -667,36 +755,36 @@
     <div class="container">
       <div class="section-header">
         <h2>Frequently asked questions</h2>
-        <p>If you need anything more specific, just drop us an email.</p>
+        <p>If you need anything more specific, just send us a message.</p>
       </div>
 
       <div class="faq-grid">
         <div class="faq-item">
           <h3>Who is My EV Report for?</h3>
           <p>
-            Primarily franchised and independent dealers, car supermarkets and fleet operators who want a clear,
-            independent view of battery health when buying or selling EVs.
+            Anyone involved in buying or selling an EV. Many customers are private buyers who want reassurance before
+            committing, but we also work with sellers, dealers and fleets.
           </p>
         </div>
         <div class="faq-item">
-          <h3>How long does the process take?</h3>
+          <h3>Do you need the car for long?</h3>
           <p>
-            Once the test has been carried out, we aim to deliver the final report within 72 hours. In many cases it will
-            be sooner, depending on volumes.
+            We’ll agree a time with you or the seller to run the test. The vehicle just needs to be available and at a
+            suitable charge level – we’ll explain what’s needed when you book.
           </p>
         </div>
         <div class="faq-item">
-          <h3>Can I use the report in my adverts?</h3>
+          <h3>Can I use the report to negotiate price?</h3>
           <p>
-            Yes. Reports are designed to be used in your online listings, handover packs and aftersales conversations –
-            they’re written in plain language for customers.
+            Yes. The report is independent, so it can support your negotiation if the battery is weaker than expected –
+            or give you confidence to go ahead if it’s in great shape.
           </p>
         </div>
         <div class="faq-item">
-          <h3>Do you offer white-label or bulk terms?</h3>
+          <h3>Do you offer terms for dealers and fleets?</h3>
           <p>
-            We can provide white-label branding and volume pricing for dealer groups, buying services and fleets. Mention
-            this when you contact us and we’ll talk through options.
+            We can provide pricing and processes tailored for dealers, car supermarkets and fleet operators. Just let us
+            know in the form that you’re enquiring on behalf of a business.
           </p>
         </div>
       </div>
@@ -707,19 +795,28 @@
   <section id="contact">
     <div class="container contact-grid">
       <div>
-        <h2>Book a report or request more info</h2>
+        <h2>Book a report or ask a question</h2>
         <p style="font-size:0.95rem; color:#66717a;">
-          Use the form to tell us about the EV you’d like tested, or to start a conversation about dealer or fleet
-          programmes.
+          Use the form to tell us about the EV you’re interested in, or to discuss options for dealers and fleets.
         </p>
         <p style="margin-top:1rem; font-size:0.95rem;">
-          Prefer email? Drop us a line at
-          <a href="mailto:hello@myevreport.com">hello@myevreport.com</a>
+          Prefer email? Contact us at
+          <a href="mailto:info@myevreport.com">info@myevreport.com</a>
           and we’ll get back to you.
         </p>
       </div>
 
       <form>
+        <div class="form-row">
+          <label for="type">I am a…</label>
+          <select id="type">
+            <option>Private EV buyer</option>
+            <option>Private seller</option>
+            <option>Dealer / motor trader</option>
+            <option>Fleet / business</option>
+            <option>Other</option>
+          </select>
+        </div>
         <div class="form-row">
           <label for="name">Name</label>
           <input id="name" type="text" placeholder="Your name">
@@ -729,19 +826,17 @@
           <input id="email" type="email" placeholder="you@example.com">
         </div>
         <div class="form-row">
-          <label for="company">Dealership / company (optional)</label>
-          <input id="company" type="text" placeholder="Your dealership or business name">
-        </div>
-        <div class="form-row">
           <label for="vehicle">Vehicle registration / model</label>
           <input id="vehicle" type="text" placeholder="e.g. AB12 CDE – 2021 Nissan Leaf">
         </div>
         <div class="form-row">
           <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell us if you’re booking a single report or looking for dealer / fleet options."></textarea>
+          <textarea id="message" placeholder="Tell us where the car is, whether you’re buying or selling, and any questions you have."></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;">Send enquiry</button>
-        <p class="help-text">This is a simple enquiry form only – online booking and payments will be added as the platform launches.</p>
+        <p class="help-text">
+          This is a simple enquiry form – we’ll reply by email to confirm details and next steps before any payment is taken.
+        </p>
       </form>
     </div>
   </section>
@@ -750,12 +845,11 @@
   <footer>
     <div class="container">
       <div>© <span id="year"></span> My EV Report. All rights reserved.</div>
-      <div>Independent EV battery health reports for dealers &amp; fleets.</div>
+      <div>Independent EV battery health reports for buyers, sellers, dealers &amp; fleets.</div>
     </div>
   </footer>
 
   <script>
-    // Update year automatically
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
