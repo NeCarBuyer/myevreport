@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My EV Report – Independent EV Battery Health Reports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ev-green: #4A8F59;
+      --deep-graphite: #21282F;
+      --soft-grey: #BFC5C8;
+      --neutral-light: #F5F7F8;
+      --highlight-green: #6BBF73;
+      --page-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: var(--neutral-light);
+      color: var(--deep-graphite);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--ev-green);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--highlight-green);
+    }
+
+    /* Layout helpers */
+    .container {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    @media (min-width: 900px) {
+      section {
+        padding: 5rem 0;
+      }
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(245, 247, 248, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #dde2e5;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand img {
+      height: 36px;
+      width: auto;
+    }
+
+    .brand-text {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+
+    nav {
+      display: none;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    nav a {
+      color: var(--deep-graphite);
+    }
+
+    nav a:hover {
+      color: var(--ev-green);
+    }
+
+    .nav-cta {
+      margin-left: 0.5rem;
+    }
+
+    @media (min-width: 820px) {
+      nav {
+        display: flex;
+      }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.7rem 1.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--deep-graphite);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #1A2126;
+      box-shadow: 0 6px 16px rgba(16, 22, 27, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ev-green);
+      border-color: var(--ev-green);
+    }
+
+    .btn-secondary:hover {
+      background: var(--ev-green);
+      color: #fff;
+      border-color: var(--ev-green);
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        padding-top: 4.5rem;
+        padding-bottom: 4.5rem;
+      }
+    }
+
+    .hero-inner {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+        align-items: center;
+      }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ev-green);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      line-height: 1.1;
+      font-weight: 800;
+      margin: 0 0 1rem;
+      color: var(--deep-graphite);
+    }
+
+    @media (min-width: 900px) {
+      h1 {
+        font-size: 3.1rem;
+      }
+    }
+
+    .hero-sub {
+      font-size: 1.02rem;
+      max-width: 34rem;
+      color: #3a424a;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-sub span {
+      font-weight: 600;
+      color: var(--ev-green);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--soft-grey);
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.75rem;
+      border: 1px solid #dde2e5;
+      box-shadow: 0 10px 30px rgba(32, 40, 47, 0.06);
+      font-size: 0.9rem;
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-stat {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-stat-label {
+      color: #5b6670;
+    }
+
+    .hero-stat-value {
+      font-weight: 600;
+      color: var(--deep-graphite);
+    }
+
+    /* Section headings */
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: left;
+      margin: 0 0 2.25rem;
+    }
+
+    h2 span {
+      color: var(--ev-green);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.25rem;
+    }
+
+    .section-header h2 {
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      margin: 0;
+      font-size: 0.98rem;
+      color: #66717a;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      .steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .step {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      border: 1px solid #dde2e5;
+      font-size: 0.9rem;
+    }
+
+    .step-number {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--soft-grey);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      margin: 0 0 0.5rem;
+      font-weight: 600;
+    }
+
+    /* What's included */
+    .included {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .included {
+        grid-template-columns: 1.3fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .pill-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .pill-list li {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid #dde2e5;
+      background: #ffffff;
+      font-size: 0.85rem;
+    }
+
+    .check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 2px solid var(--ev-green);
+      color: var(--ev-green);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .sample-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #dde2e5;
+      padding: 1.3rem 1.4rem;
+      font-size: 0.85rem;
+    }
+
+    .sample-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--soft-grey);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .sample-report-box {
+      border-radius: 10px;
+      border: 1px dashed #cbd2d6;
+      background: #f9fbfc;
+      padding: 0.85rem 1rem;
+      margin: 0.7rem 0 0.9rem;
+    }
+
+    /* Pricing */
+    .pricing-card {
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #dde2e5;
+      padding: 2.3rem 2rem;
+      box-shadow: 0 14px 40px rgba(33, 40, 47, 0.06);
+    }
+
+    .price-tag {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin: 0.4rem 0;
+    }
+
+    .price-caption {
+      font-size: 0.9rem;
+      color: #66717a;
+      margin-bottom: 1.2rem;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 800px) {
+      .faq-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #dde2e5;
+      padding: 1.1rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    /* Contact / book */
+    .contact-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1.1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    form {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #dde2e5;
+      padding: 1.7rem 1.6rem;
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.6rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #c6ced3;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--ev-green);
+      box-shadow: 0 0 0 1px rgba(74, 143, 89, 0.2);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-row {
+      margin-bottom: 0.9rem;
+    }
+
+    .help-text {
+      font-size: 0.78rem;
+      color: var(--soft-grey);
+      margin-top: 0.4rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #dde2e5;
+      font-size: 0.78rem;
+      color: var(--soft-grey);
+      padding: 1.2rem 0 1.6rem;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="logo-myevreport.png" alt="My EV Report logo">
+        <div class="brand-text">My EV Report</div>
+      </div>
+      <nav>
+        <a href="#how">How it works</a>
+        <a href="#included">What’s included</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn-primary nav-cta">Book a report</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="hero-eyebrow">Independent EV battery health</div>
+        <h1>EV battery health reports in 72 hours.</h1>
+        <p class="hero-sub">
+          Give EV buyers confidence and protect your margin with clear, independent battery health reports.
+          Delivered in <span>72 hours or less</span>, ready to drop straight into your advert or handover pack.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Book a report</a>
+          <a href="#included" class="btn btn-secondary">See what you get</a>
+        </div>
+
+        <div class="hero-note">
+          Designed for dealers &amp; fleets · Ideal for retail adverts, warranties and part-exchange decisions.
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h3>What you’ll receive</h3>
+        <p>A concise PDF report that clearly explains the vehicle’s current battery health in plain English.</p>
+
+        <div class="hero-stat">
+          <span class="hero-stat-label">State of health (SoH)</span>
+          <span class="hero-stat-value">e.g. 92%</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-label">Estimated remaining capacity</span>
+          <span class="hero-stat-value">kWh &amp; range impact</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-label">Simple traffic-light indicators</span>
+          <span class="hero-stat-value">Green / Amber / Red</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-header">
+        <h2>How <span>My EV Report</span> works</h2>
+        <p>Built to be simple for dealers, and easy to understand for customers.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">Step 1</div>
+          <h3>Book your report</h3>
+          <p>Send us the vehicle details and preferred date for testing. We confirm the booking and test location.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">Step 2</div>
+          <h3>Battery health test</h3>
+          <p>We run an EV battery diagnostic using industry-grade tools to assess capacity, degradation and key metrics.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">Step 3</div>
+          <h3>Report in 72 hours</h3>
+          <p>You receive a clear PDF report you can attach to your advert, share with the buyer or store in your deal file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section id="included">
+    <div class="container included">
+      <div>
+        <h2>What’s included in the report</h2>
+        <p style="margin-bottom: 1.3rem; font-size:0.95rem; color:#66717a;">
+          Every report is designed to answer the questions customers actually ask, without overwhelming them with data.
+        </p>
+
+        <ul class="pill-list">
+          <li><span class="check">✓</span> Overall battery state of health (SoH)</li>
+          <li><span class="check">✓</span> Estimated remaining capacity (kWh)</li>
+          <li><span class="check">✓</span> Real-world range impact guidance</li>
+          <li><span class="check">✓</span> Clear traffic-light condition grading</li>
+          <li><span class="check">✓</span> Dealer-friendly summary for adverts</li>
+          <li><span class="check">✓</span> Customer-friendly explanation page</li>
+        </ul>
+      </div>
+
+      <div class="sample-card">
+        <div class="sample-label">Preview</div>
+        <strong>Sample report layout</strong>
+        <div class="sample-report-box">
+          Clean, dashboard-style layout with your dealership details at the top, followed by the key battery metrics,
+          and a simple explanation panel you can walk the customer through.
+        </div>
+        <p style="margin:0 0 0.25rem; color:#66717a;">
+          Downloadable sample report will be available here soon.
+        </p>
+        <p class="help-text">In the meantime, request a demo report when you get in touch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Simple, transparent pricing</h2>
+        <p>No setup fees, no subscriptions – pay per report.</p>
+      </div>
+
+      <div class="pricing-card">
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.16em; color:var(--soft-grey); font-weight:600;">
+          Per vehicle report
+        </div>
+        <div class="price-tag">£99</div>
+        <div class="price-caption">
+          Fixed price for a full EV battery health report.<br>
+          Ideal for retail stock, part-exchange and fleet disposals.
+        </div>
+        <a href="#contact" class="btn btn-primary">Book a report</a>
+        <div class="help-text" style="margin-top:0.7rem;">
+          Volume pricing available for dealers and fleets – ask us for details.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently asked questions</h2>
+        <p>If you need anything more specific, just drop us an email.</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Who is My EV Report for?</h3>
+          <p>
+            Primarily franchised and independent dealers, car supermarkets and fleet operators who want a clear,
+            independent view of battery health when buying or selling EVs.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>How long does the process take?</h3>
+          <p>
+            Once the test has been carried out, we aim to deliver the final report within 72 hours. In many cases it will
+            be sooner, depending on volumes.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I use the report in my adverts?</h3>
+          <p>
+            Yes. Reports are designed to be used in your online listings, handover packs and aftersales conversations –
+            they’re written in plain language for customers.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Do you offer white-label or bulk terms?</h3>
+          <p>
+            We can provide white-label branding and volume pricing for dealer groups, buying services and fleets. Mention
+            this when you contact us and we’ll talk through options.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Book -->
+  <section id="contact">
+    <div class="container contact-grid">
+      <div>
+        <h2>Book a report or request more info</h2>
+        <p style="font-size:0.95rem; color:#66717a;">
+          Use the form to tell us about the EV you’d like tested, or to start a conversation about dealer or fleet
+          programmes.
+        </p>
+        <p style="margin-top:1rem; font-size:0.95rem;">
+          Prefer email? Drop us a line at
+          <a href="mailto:hello@myevreport.com">hello@myevreport.com</a>
+          and we’ll get back to you.
+        </p>
+      </div>
+
+      <form>
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name">
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-row">
+          <label for="company">Dealership / company (optional)</label>
+          <input id="company" type="text" placeholder="Your dealership or business name">
+        </div>
+        <div class="form-row">
+          <label for="vehicle">Vehicle registration / model</label>
+          <input id="vehicle" type="text" placeholder="e.g. AB12 CDE – 2021 Nissan Leaf">
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us if you’re booking a single report or looking for dealer / fleet options."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Send enquiry</button>
+        <p class="help-text">This is a simple enquiry form only – online booking and payments will be added as the platform launches.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> My EV Report. All rights reserved.</div>
+      <div>Independent EV battery health reports for dealers &amp; fleets.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Update year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
