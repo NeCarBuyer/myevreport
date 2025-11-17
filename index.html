@@ -26,6 +26,31 @@
       --transition-fast: 0.2s ease;
       --max-width: 1200px;        /* widened for big screens */
     }
+        /* WhatsApp floating button */
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: #fff;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      font-size: 24px;
+      z-index: 1100; /* above page content & header */
+    }
+
+    .whatsapp-button img {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
 
     * {
       box-sizing: border-box;
@@ -1501,70 +1526,80 @@
 
       <div class="form-card">
         <form method="POST" action="https://submit-form.com/6bLuHmQIB">
-          <!-- Optional: set a subject line in Formspark dashboard or via hidden field
-          <input type="hidden" name="_subject" value="New EV battery report booking – MyEVReport">
-          -->
+  <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
+  <input type="hidden" name="_subject" value="New EV battery report booking – MyEVReport">
 
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="name">Your name *</label>
-              <input type="text" id="name" name="name" required autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email address *</label>
-              <input type="email" id="email" name="email" required autocomplete="email">
-            </div>
-            <div class="form-group">
-              <label for="phone">Mobile number *</label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel">
-            </div>
-            <div class="form-group">
-              <label for="postcode">Postcode where vehicle is located *</label>
-              <input type="text" id="postcode" name="postcode" required>
-              <small>Currently serving the North East of England and surrounding areas.</small>
-            </div>
-            <div class="form-group">
-              <label for="reg">Vehicle registration *</label>
-              <input type="text" id="reg" name="registration" required>
-            </div>
-            <div class="form-group">
-              <label for="make-model">Vehicle make &amp; model *</label>
-              <input type="text" id="make-model" name="make_model" required>
-            </div>
-            <div class="form-group">
-              <label for="date">Preferred date *</label>
-              <input type="date" id="date" name="preferred_date" required>
-            </div>
-            <div class="form-group">
-              <label for="time">Preferred time of day *</label>
-              <select id="time" name="preferred_time" required>
-                <option value="">Select…</option>
-                <option value="morning">Morning (9am–12pm)</option>
-                <option value="afternoon">Afternoon (12pm–4pm)</option>
-                <option value="evening">Evening (4pm–7pm)</option>
-              </select>
-            </div>
-          </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="name">Your name *</label>
+      <input type="text" id="name" name="name" required placeholder="John Smith">
+    </div>
 
-          <div class="form-group" style="margin-top: 1rem;">
-            <label for="notes">Anything else we should know?</label>
-            <textarea id="notes" name="notes" placeholder="For example: access instructions, parking limitations or specific questions about the vehicle."></textarea>
-          </div>
+    <div class="form-group">
+      <label for="email">Email address *</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+    </div>
 
-          <div class="form-footer">
-            <div>
-              <button type="submit" class="btn btn-primary">
-                Request a booking
-              </button>
-            </div>
-            <div>
-              <div class="required-note">* Required fields.</div>
-              <div>We’ll review your request and confirm availability by email before taking payment.</div>
-            </div>
-          </div>
-        </form>
+    <div class="form-group">
+      <label for="phone">Telephone number *</label>
+      <input type="tel" id="phone" name="phone" required placeholder="07123 456789">
+    </div>
+
+    <div class="form-group">
+      <label for="postcode">Postcode where vehicle is located *</label>
+      <input type="text" id="postcode" name="postcode" required placeholder="NE1 4LP">
+      <small>Currently serving the North East of England and surrounding areas.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="reg">Vehicle registration *</label>
+      <input type="text" id="reg" name="registration" required placeholder="AB12 CDE">
+    </div>
+
+    <div class="form-group">
+      <label for="make-model">Vehicle make &amp; model *</label>
+      <input type="text" id="make-model" name="make_model" required placeholder="Tesla Model 3">
+    </div>
+
+    <div class="form-group">
+      <label for="date">Preferred date *</label>
+      <input type="date" id="date" name="preferred_date" required>
+    </div>
+
+    <div class="form-group">
+      <label for="time">Preferred time of day *</label>
+      <select id="time" name="preferred_time" required>
+        <option value="">Select…</option>
+        <option value="morning">Morning (9am–12pm)</option>
+        <option value="afternoon">Afternoon (12pm–4pm)</option>
+        <option value="evening">Evening (4pm–7pm)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group" style="margin-top: 1rem;">
+    <label for="notes">Anything else we should know?</label>
+    <textarea id="notes" name="notes" placeholder="Access notes, parking details or EV-specific questions"></textarea>
+  </div>
+
+  <div class="form-footer">
+    <div>
+      <!-- Cloudflare Turnstile -->
+      <div class="cf-turnstile"
+           data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
       </div>
-    </section>
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 0.75rem;">
+        Request a booking
+      </button>
+    </div>
+
+    <div>
+      <div class="required-note">* Required fields.</div>
+      <div>We’ll review your request and confirm availability by email before taking payment.</div>
+    </div>
+  </div>
+</form>
   </main>
 
   <footer>
@@ -1696,5 +1731,15 @@
     }
   })();
 </script>
+
+  <!-- WhatsApp floating chat button -->
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank"
+     aria-label="Chat with MyEVReport on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="Chat on WhatsApp">
+  </a>
+
 </body>
 </html>
