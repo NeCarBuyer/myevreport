@@ -9,24 +9,22 @@
   <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
-    :root { 
-      :root {
-  --brand-navy: #0f4c81;      /* match My/Report colour in logo */
-  --brand-green: #22b473;    /* match EV colour in logo */
-}
+    :root {
+      --brand-navy: #0f4c81;      /* match My/Report colour in logo */
+      --brand-green: #22b473;     /* match EV colour in logo */
       --bg: #ffffff;
       --bg-alt: #f5f7fa;
       --border: #e0e4ec;
       --text: #1f2933;
       --muted: #6b7380;
-      --primary: #0f4c81;     /* navy */
+      --primary: #0f4c81;         /* navy */
       --primary-dark: #0b355a;
-      --accent: #22b473;      /* green */
+      --accent: #22b473;          /* green */
       --danger: #d9534f;
       --shadow-soft: 0 10px 30px rgba(15, 76, 129, 0.08);
       --radius: 12px;
       --transition-fast: 0.2s ease;
-      --max-width: 1200px; /* widened for big screens */
+      --max-width: 1200px;        /* widened for big screens */
     }
 
     * {
@@ -94,23 +92,6 @@
       width: auto;
       display: block;
     }
-
-    /* Style "MyEVReport" consistently */
-.brand-text {
-  font-weight: 700;
-  font-size: inherit;
-  color: var(--brand-navy);
-}
-
-.brand-text .ev {
-  color: var(--brand-green);
-}
-
-/* Any standalone “EV” anywhere on the site */
-.ev-green {
-  color: var(--brand-green) !important;
-  font-weight: inherit;
-}
 
     .nav-links {
       margin-left: auto; /* push links to the right */
@@ -639,7 +620,7 @@
       font-family: inherit;
       outline: none;
       transition: border var(--transition-fast), box-shadow var(--transition-fast),
-      background var(--transition-fast);
+                  background var(--transition-fast);
     }
 
     .form-group textarea {
@@ -704,7 +685,7 @@
       color: var(--primary-dark);
     }
 
-    /* Coverage section (from original design) */
+    /* Coverage section */
 
     .coverage-intro {
       max-width: 640px;
@@ -1070,7 +1051,7 @@
       </div>
     </section>
 
-     <!-- Visual: State of Health image -->
+    <!-- Visual: State of Health image -->
     <section class="section section--tight" aria-label="EV battery health visual">
       <div style="max-width: 900px; margin: 0 auto; text-align:center;">
         <img
@@ -1519,33 +1500,43 @@
       </p>
 
       <div class="form-card">
-        <!-- TODO: Replace action with your Formspark (or other) endpoint -->
-        <form method="POST" action="YOUR_FORMSPARK_ENDPOINT_HERE">
+        <form method="POST" action="https://submit-form.com/6bLuHmQIB">
+          <!-- Optional Formspark extras:
+          <input type="hidden" name="_subject" value="New EV battery report booking – MyEVReport">
+          <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
+          -->
+
           <div class="form-grid">
             <div class="form-group">
               <label for="name">Your name *</label>
-              <input type="text" id="name" name="name" required autocomplete="name">
+              <input type="text" id="name" name="name" required autocomplete="name"
+                     placeholder="Your full name">
             </div>
             <div class="form-group">
               <label for="email">Email address *</label>
-              <input type="email" id="email" name="email" required autocomplete="email">
+              <input type="email" id="email" name="email" required autocomplete="email"
+                     placeholder="you@example.com">
             </div>
             <div class="form-group">
               <label for="phone">Mobile number *</label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel">
+              <input type="tel" id="phone" name="phone" required autocomplete="tel"
+                     placeholder="e.g. 07123 456 789">
             </div>
             <div class="form-group">
               <label for="postcode">Postcode where vehicle is located *</label>
-              <input type="text" id="postcode" name="postcode" required>
+              <input type="text" id="postcode" name="postcode" required
+                     placeholder="e.g. NE1 4LP">
               <small>Currently serving the North East of England and surrounding areas.</small>
             </div>
             <div class="form-group">
               <label for="reg">Vehicle registration *</label>
-              <input type="text" id="reg" name="registration" required>
+              <input type="text" id="reg" name="registration" required
+                     placeholder="e.g. AB12 CDE">
             </div>
             <div class="form-group">
               <label for="make-model">Vehicle make &amp; model *</label>
-              <input type="text" id="make-model" name="make_model" required>
+              <input type="text" id="make-model" name="make_model" required
+                     placeholder="e.g. Kia e-Niro 64kWh">
             </div>
             <div class="form-group">
               <label for="date">Preferred date *</label>
@@ -1554,7 +1545,7 @@
             <div class="form-group">
               <label for="time">Preferred time of day *</label>
               <select id="time" name="preferred_time" required>
-                <option value="">Select…</option>
+                <option value="">Select a time of day…</option>
                 <option value="morning">Morning (9am–12pm)</option>
                 <option value="afternoon">Afternoon (12pm–4pm)</option>
                 <option value="evening">Evening (4pm–7pm)</option>
@@ -1564,12 +1555,18 @@
 
           <div class="form-group" style="margin-top: 1rem;">
             <label for="notes">Anything else we should know?</label>
-            <textarea id="notes" name="notes" placeholder="For example: access instructions, parking limitations or specific questions about the vehicle."></textarea>
+            <textarea id="notes" name="notes"
+                      placeholder="For example: access instructions, parking limitations or specific questions about the vehicle."></textarea>
           </div>
 
           <div class="form-footer">
             <div>
-              <button type="submit" class="btn btn-primary">
+              <!-- Cloudflare Turnstile widget -->
+              <div class="cf-turnstile"
+                   data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 0.75rem;">
                 Request a booking
               </button>
             </div>
@@ -1712,5 +1709,8 @@
     }
   })();
 </script>
+
+<!-- Cloudflare Turnstile script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
