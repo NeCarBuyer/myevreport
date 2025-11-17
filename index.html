@@ -685,7 +685,7 @@
       color: var(--primary-dark);
     }
 
-    /* Coverage section */
+    /* Coverage section (from original design) */
 
     .coverage-intro {
       max-width: 640px;
@@ -1501,42 +1501,35 @@
 
       <div class="form-card">
         <form method="POST" action="https://submit-form.com/6bLuHmQIB">
-          <!-- Optional Formspark extras:
+          <!-- Optional: set a subject line in Formspark dashboard or via hidden field
           <input type="hidden" name="_subject" value="New EV battery report booking – MyEVReport">
-          <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
           -->
 
           <div class="form-grid">
             <div class="form-group">
               <label for="name">Your name *</label>
-              <input type="text" id="name" name="name" required autocomplete="name"
-                     placeholder="Your full name">
+              <input type="text" id="name" name="name" required autocomplete="name">
             </div>
             <div class="form-group">
               <label for="email">Email address *</label>
-              <input type="email" id="email" name="email" required autocomplete="email"
-                     placeholder="you@example.com">
+              <input type="email" id="email" name="email" required autocomplete="email">
             </div>
             <div class="form-group">
               <label for="phone">Mobile number *</label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel"
-                     placeholder="e.g. 07123 456 789">
+              <input type="tel" id="phone" name="phone" required autocomplete="tel">
             </div>
             <div class="form-group">
               <label for="postcode">Postcode where vehicle is located *</label>
-              <input type="text" id="postcode" name="postcode" required
-                     placeholder="e.g. NE1 4LP">
+              <input type="text" id="postcode" name="postcode" required>
               <small>Currently serving the North East of England and surrounding areas.</small>
             </div>
             <div class="form-group">
               <label for="reg">Vehicle registration *</label>
-              <input type="text" id="reg" name="registration" required
-                     placeholder="e.g. AB12 CDE">
+              <input type="text" id="reg" name="registration" required>
             </div>
             <div class="form-group">
               <label for="make-model">Vehicle make &amp; model *</label>
-              <input type="text" id="make-model" name="make_model" required
-                     placeholder="e.g. Kia e-Niro 64kWh">
+              <input type="text" id="make-model" name="make_model" required>
             </div>
             <div class="form-group">
               <label for="date">Preferred date *</label>
@@ -1545,7 +1538,7 @@
             <div class="form-group">
               <label for="time">Preferred time of day *</label>
               <select id="time" name="preferred_time" required>
-                <option value="">Select a time of day…</option>
+                <option value="">Select…</option>
                 <option value="morning">Morning (9am–12pm)</option>
                 <option value="afternoon">Afternoon (12pm–4pm)</option>
                 <option value="evening">Evening (4pm–7pm)</option>
@@ -1555,18 +1548,12 @@
 
           <div class="form-group" style="margin-top: 1rem;">
             <label for="notes">Anything else we should know?</label>
-            <textarea id="notes" name="notes"
-                      placeholder="For example: access instructions, parking limitations or specific questions about the vehicle."></textarea>
+            <textarea id="notes" name="notes" placeholder="For example: access instructions, parking limitations or specific questions about the vehicle."></textarea>
           </div>
 
           <div class="form-footer">
             <div>
-              <!-- Cloudflare Turnstile widget -->
-              <div class="cf-turnstile"
-                   data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
-              </div>
-
-              <button type="submit" class="btn btn-primary" style="margin-top: 0.75rem;">
+              <button type="submit" class="btn btn-primary">
                 Request a booking
               </button>
             </div>
@@ -1709,8 +1696,5 @@
     }
   })();
 </script>
-
-<!-- Cloudflare Turnstile script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
