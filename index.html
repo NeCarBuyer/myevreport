@@ -26,8 +26,8 @@
       --transition-fast: 0.2s ease;
       --max-width: 1200px;        /* widened for big screens */
     }
-        /* WhatsApp floating button */
 
+    /* WhatsApp floating button */
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -97,13 +97,15 @@
       z-index: 100;
     }
 
-    .nav {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start; /* brand on left */
-      padding: 0.4rem 1.25rem;
+   .nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* spread brand + links */
+  padding: 0.4rem 1.25rem;
+  flex-wrap: nowrap;               /* keep everything on one line */
+}
     }
 
     .brand {
@@ -119,12 +121,14 @@
     }
 
     .nav-links {
-      margin-left: auto; /* push links to the right */
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      font-size: 0.95rem;
-    }
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  white-space: nowrap;  /* stop wrapping onto a second line */
+}
+
 
     .nav-links a {
       color: var(--muted);
@@ -1272,7 +1276,12 @@
               <li>Options for white-label or co-branded reporting</li>
             </ul>
             <p style="margin-top: 0.5rem;">
-              Email <a href="mailto:info@myevreport.com">info@myevreport.com</a> to discuss trade and fleet options.
+              Email
+              <a href="#"
+                 class="js-email"
+                 data-user="hello"
+                 data-domain="myevreport.com">hello [at] myevreport [dot] com</a>
+              to discuss trade and fleet options.
             </p>
           </div>
 
@@ -1442,7 +1451,12 @@
     <section class="section" id="faq">
       <h2 class="section-title">Frequently asked questions</h2>
       <p class="section-subtitle">
-        If you have any other questions, please email <a href="mailto:info@myevreport.com">info@myevreport.com</a> and we’ll be
+        If you have any other questions, please email
+        <a href="#"
+           class="js-email"
+           data-user="hello"
+           data-domain="myevreport.com">hello [at] myevreport [dot] com</a>
+        and we’ll be
         happy to help.
       </p>
 
@@ -1526,87 +1540,92 @@
 
       <div class="form-card">
         <form method="POST" action="https://submit-form.com/6bLuHmQIB">
-  <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
-  <input type="hidden" name="_subject" value="New EV battery report booking – MyEVReport">
+          <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
+          <input type="hidden" name="_subject" value="New EV battery report booking – MyEVReport">
 
-  <div class="form-grid">
-    <div class="form-group">
-      <label for="name">Your name *</label>
-      <input type="text" id="name" name="name" required placeholder="John Smith">
-    </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Your name *</label>
+              <input type="text" id="name" name="name" required placeholder="John Smith">
+            </div>
 
-    <div class="form-group">
-      <label for="email">Email address *</label>
-      <input type="email" id="email" name="email" required placeholder="you@example.com">
-    </div>
+            <div class="form-group">
+              <label for="email">Email address *</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
 
-    <div class="form-group">
-      <label for="phone">Telephone number *</label>
-      <input type="tel" id="phone" name="phone" required placeholder="07123 456789">
-    </div>
+            <div class="form-group">
+              <label for="phone">Telephone number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="07123 456789">
+            </div>
 
-    <div class="form-group">
-      <label for="postcode">Postcode where vehicle is located *</label>
-      <input type="text" id="postcode" name="postcode" required placeholder="NE1 4LP">
-      <small>Currently serving the North East of England and surrounding areas.</small>
-    </div>
+            <div class="form-group">
+              <label for="postcode">Postcode where vehicle is located *</label>
+              <input type="text" id="postcode" name="postcode" required placeholder="NE1 4LP">
+              <small>Currently serving the North East of England and surrounding areas.</small>
+            </div>
 
-    <div class="form-group">
-      <label for="reg">Vehicle registration *</label>
-      <input type="text" id="reg" name="registration" required placeholder="AB12 CDE">
-    </div>
+            <div class="form-group">
+              <label for="reg">Vehicle registration *</label>
+              <input type="text" id="reg" name="registration" required placeholder="AB12 CDE">
+            </div>
 
-    <div class="form-group">
-      <label for="make-model">Vehicle make &amp; model *</label>
-      <input type="text" id="make-model" name="make_model" required placeholder="Tesla Model 3">
-    </div>
+            <div class="form-group">
+              <label for="make-model">Vehicle make &amp; model *</label>
+              <input type="text" id="make-model" name="make_model" required placeholder="Tesla Model 3">
+            </div>
 
-    <div class="form-group">
-      <label for="date">Preferred date *</label>
-      <input type="date" id="date" name="preferred_date" required>
-    </div>
+            <div class="form-group">
+              <label for="date">Preferred date *</label>
+              <input type="date" id="date" name="preferred_date" required>
+            </div>
 
-    <div class="form-group">
-      <label for="time">Preferred time of day *</label>
-      <select id="time" name="preferred_time" required>
-        <option value="">Select…</option>
-        <option value="morning">Morning (9am–12pm)</option>
-        <option value="afternoon">Afternoon (12pm–4pm)</option>
-        <option value="evening">Evening (4pm–7pm)</option>
-      </select>
-    </div>
-  </div>
+            <div class="form-group">
+              <label for="time">Preferred time of day *</label>
+              <select id="time" name="preferred_time" required>
+                <option value="">Select…</option>
+                <option value="morning">Morning (9am–12pm)</option>
+                <option value="afternoon">Afternoon (12pm–4pm)</option>
+                <option value="evening">Evening (4pm–7pm)</option>
+              </select>
+            </div>
+          </div>
 
-  <div class="form-group" style="margin-top: 1rem;">
-    <label for="notes">Anything else we should know?</label>
-    <textarea id="notes" name="notes" placeholder="Access notes, parking details or EV-specific questions"></textarea>
-  </div>
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="notes">Anything else we should know?</label>
+            <textarea id="notes" name="notes" placeholder="Access notes, parking details or EV-specific questions"></textarea>
+          </div>
 
-  <div class="form-footer">
-    <div>
-      <!-- Cloudflare Turnstile -->
-      <div class="cf-turnstile"
-           data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
+          <div class="form-footer">
+            <div>
+              <!-- Cloudflare Turnstile -->
+              <div class="cf-turnstile"
+                   data-sitekey="0x4AAAAAACBbB67KVjLb7sa3AZq8x22ALDo">
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 0.75rem;">
+                Request a booking
+              </button>
+            </div>
+
+            <div>
+              <div class="required-note">* Required fields.</div>
+              <div>We’ll review your request and confirm availability by email before taking payment.</div>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <button type="submit" class="btn btn-primary" style="margin-top: 0.75rem;">
-        Request a booking
-      </button>
-    </div>
-
-    <div>
-      <div class="required-note">* Required fields.</div>
-      <div>We’ll review your request and confirm availability by email before taking payment.</div>
-    </div>
-  </div>
-</form>
+    </section>
   </main>
 
   <footer>
     <div class="footer-inner">
       <div>© MyEVReport <span id="year"></span>. All rights reserved.</div>
       <div class="footer-links">
-        <a href="mailto:info@myevreport.com">info@myevreport.com</a>
+        <a href="#"
+           class="js-email"
+           data-user="hello"
+           data-domain="myevreport.com">hello [at] myevreport [dot] com</a>
         <!-- Add real policy URLs when created -->
         <a href="#">Privacy policy</a>
         <a href="#">Terms &amp; conditions</a>
@@ -1618,6 +1637,19 @@
 <script>
   // Update year
   document.getElementById('year').textContent = new Date().getFullYear().toString();
+
+  // Bot-resistant email links: build mailto + visible text in JS
+  (function () {
+    var links = document.querySelectorAll('.js-email');
+    links.forEach(function (link) {
+      var user = link.getAttribute('data-user');
+      var domain = link.getAttribute('data-domain');
+      if (!user || !domain) return;
+      var email = user + '@' + domain;
+      link.setAttribute('href', 'mailto:' + email);
+      link.textContent = email;
+    });
+  })();
 
   // FAQ accordion
   document.querySelectorAll('.faq-button').forEach(function (btn) {
@@ -1717,12 +1749,16 @@
         const email = document.getElementById('coverage-email').value.trim();
         const pc = leadPostcode.value.trim() || input.value.trim();
 
+        const user = 'hello';
+        const domain = 'myevreport.com';
+        const toAddress = user + '@' + domain;
+
         let body = 'Name: ' + (name || '(not provided)') +
                    '%0D%0AEmail: ' + (email || '(not provided)') +
                    '%0D%0APostcode: ' + (pc || '(not provided)') +
                    '%0D%0A%0D%0ARequesting confirmation of coverage and availability for an EV battery health report.';
 
-        const mailto = 'mailto:info@myevreport.com'
+        const mailto = 'mailto:' + toAddress
                      + '?subject=' + encodeURIComponent('Postcode coverage enquiry – MyEVReport')
                      + '&body=' + body;
 
@@ -1732,14 +1768,14 @@
   })();
 </script>
 
-  <!-- WhatsApp floating chat button -->
-  <a class="whatsapp-button"
-     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
-     target="_blank"
-     aria-label="Chat with MyEVReport on WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-         alt="Chat on WhatsApp">
-  </a>
+<!-- WhatsApp floating chat button -->
+<a class="whatsapp-button"
+   href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+   target="_blank"
+   aria-label="Chat with MyEVReport on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+       alt="Chat on WhatsApp">
+</a>
 
 </body>
 </html>
