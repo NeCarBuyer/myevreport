@@ -58,6 +58,20 @@
       padding: 0;
     }
 
+.launch-banner {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--brand-green, #22b473);
+  color: #ffffff;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  z-index: 9999;
+}
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
@@ -993,6 +1007,9 @@
   </style>
 </head>
 <body>
+  <div class="launch-banner">
+  🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+</div>
 <div class="page">
   <header>
     <nav class="nav">
@@ -1718,10 +1735,10 @@
         result.className = 'coverage-result';
 
         if (coveredAreas.includes(area)) {
-          result.textContent = 'Yes – we usually cover this postcode area. Send us your details and we’ll confirm availability.';
+          result.textContent = 'Great! – We cover this postcode area! Send us your details and we’ll confirm availability.';
           result.classList.add('positive');
         } else {
-          result.textContent = 'We may still be able to help. Send us your details and we’ll confirm coverage for this postcode.';
+          result.textContent = 'Unfortunately, we don’t currently cover this area. However, we may still be able to help. Please send us your details and we’ll confirm whether we can arrange coverage for this postcode.';
           result.classList.add('maybe');
         }
 
