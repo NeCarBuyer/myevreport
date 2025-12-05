@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coverage Area – MyEVReport EV Battery Health Tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Check if MyEVReport covers your area. We currently test electric vehicles across the North East of England including Newcastle, Sunderland, Durham, Teesside and Northumberland.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+   <!-- Launch banner -->
+  <div class="launch-banner">
+     🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="how-it-works.html">How it works</a>
+        <a href="whats-in-the-report.html">What’s in the report</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="coverage.html">Coverage area</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="news.html">EV Blog</a>
+        <a href="book.html" class="btn btn-primary">Book a report</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Coverage area (interactive) -->
+    <section class="section section--tight" id="coverage">
+      <div class="container">
+        <h2 class="section-title">Coverage area</h2>
+        <p class="section-subtitle">
+          Currently focused on the North of England, expanding soon.
+        </p>
+
+        <p class="coverage-intro">
+          MyEVReport is currently focused on the North of England. Check your postcode below and we’ll tell you if we
+          usually cover your area.
+        </p>
+
+        <!-- Postcode checker + lead capture -->
+        <div class="coverage-checker">
+          <div class="coverage-checker-label">Check your postcode</div>
+          <div class="coverage-checker-row">
+            <input id="coverage-postcode" type="text" placeholder="e.g. NE1 4LP" autocomplete="postal-code">
+            <button type="button" id="coverage-check-button" class="btn btn-primary">Check coverage</button>
+          </div>
+          <p class="coverage-help">
+            We typically cover most NE, SR, DH, DL, TS and CA postcodes. Enter the first part or full postcode to check.
+          </p>
+          <div id="coverage-result" class="coverage-result" aria-live="polite"></div>
+
+          <form id="coverage-lead-form" class="coverage-lead" style="display:none;">
+            <p style="font-size:0.86rem; margin:0 0 0.6rem;">
+              Leave your details and we’ll confirm availability and next steps for this postcode by email.
+            </p>
+            <div class="coverage-lead-row">
+              <div>
+                <label for="coverage-name">Name</label>
+                <input id="coverage-name" type="text" placeholder="Your name">
+              </div>
+              <div>
+                <label for="coverage-email">Email</label>
+                <input id="coverage-email" type="email" placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="coverage-lead-row" style="grid-template-columns: 1fr;">
+              <div>
+                <label for="coverage-postcode-confirm">Postcode</label>
+                <input id="coverage-postcode-confirm" type="text" placeholder="Your postcode">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-secondary">Send my details</button>
+            <p class="coverage-help">
+              This will open your email client with the details ready to send. Online booking will be added as the
+              service grows.
+            </p>
+          </form>
+        </div>
+
+        <p class="coverage-intro" style="margin-bottom:1.6rem;">
+          You can also browse by region below to see typical towns and cities we cover.
+        </p>
+
+        <!-- Coverage bubbles -->
+        <div class="coverage-grid" aria-label="Coverage areas">
+          <!-- Tyneside -->
+          <div class="coverage-item">
+            <button class="coverage-header" type="button" aria-expanded="false">
+              <span class="coverage-title">Tyneside</span>
+              <span class="coverage-toggle">+</span>
+            </button>
+            <div class="coverage-body">
+              <p><strong>Typical locations:</strong></p>
+              <p>
+                Newcastle upon Tyne, Gateshead, North Shields, South Shields, Whitley Bay, Wallsend, Tynemouth,
+                Jarrow, Hebburn.
+              </p>
+            </div>
+          </div>
+
+          <!-- Wearside -->
+          <div class="coverage-item">
+            <button class="coverage-header" type="button" aria-expanded="false">
+              <span class="coverage-title">Wearside</span>
+              <span class="coverage-toggle">+</span>
+            </button>
+            <div class="coverage-body">
+              <p><strong>Typical locations:</strong></p>
+              <p>
+                Sunderland, Washington, Seaham, Houghton-le-Spring and surrounding areas along the River Wear.
+              </p>
+            </div>
+          </div>
+
+          <!-- Northumberland -->
+          <div class="coverage-item">
+            <button class="coverage-header" type="button" aria-expanded="false">
+              <span class="coverage-title">Northumberland</span>
+              <span class="coverage-toggle">+</span>
+            </button>
+            <div class="coverage-body">
+              <p><strong>Typical locations:</strong></p>
+              <p>
+                Hexham, Alnwick, Morpeth, Ashington, Cramlington, Blyth, Berwick-upon-Tweed and nearby rural areas.
+              </p>
+            </div>
+          </div>
+
+          <!-- Durham -->
+          <div class="coverage-item">
+            <button class="coverage-header" type="button" aria-expanded="false">
+              <span class="coverage-title">Durham</span>
+              <span class="coverage-toggle">+</span>
+            </button>
+            <div class="coverage-body">
+              <p><strong>Typical locations:</strong></p>
+              <p>
+                Durham City, Chester-le-Street, Consett, Bishop Auckland, Stanley, Peterlee and surrounding County Durham
+                postcodes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Teesside -->
+          <div class="coverage-item">
+            <button class="coverage-header" type="button" aria-expanded="false">
+              <span class="coverage-title">Teesside</span>
+              <span class="coverage-toggle">+</span>
+            </button>
+            <div class="coverage-body">
+              <p><strong>Typical locations:</strong></p>
+              <p>
+                Middlesbrough, Stockton-on-Tees, Hartlepool, Redcar, Billingham, Yarm and nearby towns.
+              </p>
+            </div>
+          </div>
+
+          <!-- Carlisle -->
+          <div class="coverage-item">
+            <button class="coverage-header" type="button" aria-expanded="false">
+              <span class="coverage-title">Carlisle &amp; surrounding</span>
+              <span class="coverage-toggle">+</span>
+            </button>
+            <div class="coverage-body">
+              <p><strong>Typical locations:</strong></p>
+              <p>
+                Carlisle, Brampton and surrounding areas on the edge of Cumbria and the Scottish Borders.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="coverage-intro" style="margin-top:1.8rem;">
+          If you’re unsure whether your area is covered, just include your postcode when you get in touch and we’ll confirm.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <h2>Not sure if you're covered?</h2>
+          <p>
+            If you're on the edge of the usual area or have a special request, just send us your postcode and vehicle
+            details. We’ll confirm availability before you book.
+          </p>
+        </header>
+        <div class="section-cta">
+          <a href="book.html" class="btn btn-primary">Book a battery health check</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+   <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+    </div>
+
+    <div class="footer-centre">
+      <p>
+        Designed &amp; hosted by
+        <a href="https://www.bluestonewebsites.co.uk" target="_blank" rel="noopener">
+          Bluestone Digital
+        </a> 2025
+      </p>
+    </div>
+
+    <div class="footer-right">
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms &amp; conditions</a>
+    </div>
+  </div>
+</footer>
+
+   <!-- WhatsApp Floating Button -->
+<a class="whatsapp-button" 
+   href="https://wa.me/447853434243?text=I%27d%20like%20to%20sell%20my%20car%20to%20NE%20CarBuyer%20today!" 
+   target="_blank" 
+   style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+       alt="WhatsApp" 
+       style="width: 90px; height: 90px;">
+</a>
+
+  <!-- Turnstile (optional on this page) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <!-- Main JS -->
+  <script src="js/main.js" defer></script>
+</body>
+</html>

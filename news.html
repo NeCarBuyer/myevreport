@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EV News & Insights – MyEVReport</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Latest news and insights on EV battery health, used electric car values and real-world range – curated by MyEVReport.">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root {
+      --brand-navy: #0f4c81;
+      --brand-green: #22b473;
+      --bg: #ffffff;
+      --bg-alt: #f5f7fa;
+      --border: #e0e4ec;
+      --text: #1f2933;
+      --muted: #6b7380;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout container */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      white-space: nowrap;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--brand-green), var(--brand-navy));
+    }
+
+    .logo-text-main {
+      color: var(--brand-navy);
+    }
+
+    .logo-text-ev {
+      color: var(--brand-green);
+    }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    nav a.nav-active {
+      border-color: var(--brand-green);
+      color: var(--brand-navy);
+      background: rgba(34, 180, 115, 0.08);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top left, rgba(34,180,115,0.08), transparent),
+                  radial-gradient(circle at bottom right, rgba(15,76,129,0.06), transparent),
+                  var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-green);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--brand-navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-highlight span.badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--brand-green);
+    }
+
+    .hero-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(15,76,129,0.08);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-aside h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--brand-navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-aside ul {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .hero-aside li::before {
+      content: "•";
+      margin-right: 0.3rem;
+      color: var(--brand-green);
+    }
+
+    /* Blog grid */
+    .blog-section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    .blog-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .blog-header h2 {
+      font-size: 1.4rem;
+      color: var(--brand-navy);
+    }
+
+    .blog-header p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 460px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .blog-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-inner {
+        padding-top: 1.75rem;
+      }
+    }
+
+    .blog-card {
+      background: #ffffff;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(15,76,129,0.10);
+      border-color: rgba(34, 180, 115, 0.5);
+    }
+
+    .blog-card-img {
+      position: relative;
+      padding-top: 62%;
+      overflow: hidden;
+    }
+
+    .blog-card-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .blog-card-body {
+      padding: 0.9rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .blog-tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(34, 180, 115, 0.06);
+      color: var(--brand-navy);
+      font-weight: 600;
+      font-size: 0.7rem;
+    }
+
+    .blog-source {
+      opacity: 0.8;
+    }
+
+    .blog-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--brand-navy);
+    }
+
+    .blog-title a {
+      text-decoration: none;
+    }
+
+    .blog-title a:hover {
+      text-decoration: underline;
+    }
+
+    .blog-excerpt {
+      font-size: 0.87rem;
+      color: var(--muted);
+    }
+
+    .blog-link {
+      margin-top: auto;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--brand-navy);
+      font-weight: 500;
+    }
+
+    .blog-link span.arrow {
+      font-size: 0.9rem;
+      transform: translateY(1px);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.25rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      background: var(--bg-alt);
+    }
+
+    footer a {
+      color: var(--brand-navy);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- Launch banner -->
+  <div class="launch-banner">
+     🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="how-it-works.html">How it works</a>
+        <a href="whats-in-the-report.html">What’s in the report</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="coverage.html">Coverage area</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="news.html">EV Blog</a>
+        <a href="book.html" class="btn btn-primary">Book a report</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow">EV Battery Health News</div>
+          <h1 class="hero-title">Independent stories that back up what we do.</h1>
+          <p class="hero-text">
+            We keep an eye on the latest research, dealer insight and policy changes
+            around EV battery health, so you don’t have to. Here are some of the
+            stories shaping how used electric cars are bought and sold.
+          </p>
+          <div class="hero-highlight">
+            <span class="badge-dot"></span>
+            <span>Curated external news &amp; studies – not sponsored content.</span>
+          </div>
+        </div>
+
+        <aside class="hero-aside" aria-label="Why battery health news matters">
+          <h2>Why this matters for you</h2>
+          <ul>
+            <li>Dealers are seeing used EVs sell faster with verified battery reports.</li>
+            <li>Surveys show most buyers now expect independent battery checks.</li>
+            <li>Industry and government are pushing for standardised certificates.</li>
+            <li>Real-world data is reshaping how we think about EV range and lifespan.</li>
+          </ul>
+          <p>
+            MyEVReport exists to bring that level of clarity to individual cars –
+            in the real world, not just in the lab.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Blog cards -->
+    <section class="blog-section" aria-label="Latest EV battery health news">
+      <div class="blog-header">
+        <h2>Latest stories we think are worth a read</h2>
+        <p>
+          These are third-party articles from trusted industry and research sources.
+          We’ve pulled them together to show how quickly battery transparency is
+          becoming the norm in the used EV market.
+        </p>
+      </div>
+
+      <div class="blog-grid">
+
+        <!-- Card 1 -->
+        <article class="blog-card">
+          <div class="blog-card-img">
+            <!-- Replace src with your own image file -->
+            <img src="/images/blog/used-evs-battery-certificates-smmt.jpg"
+                 alt="Dealer handing EV keys to a customer with battery certificate overlay">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Used EV Market</span>
+              <span class="blog-source">SMMT / Generational · Oct 2025</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="https://www.smmt.co.uk/used-evs-sell-a-week-quicker-with-battery-health-certification-says-generational/"
+                 target="_blank" rel="noopener">
+                Used EVs sell a week quicker with battery health certification
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              New data from Generational shows that used EVs with a verified
+              battery health certificate sell around a week faster. Clear SoH,
+              real-world range and warranty information are helping buyers move
+              from “interested” to “committed”.
+            </p>
+            <a class="blog-link"
+               href="https://www.smmt.co.uk/used-evs-sell-a-week-quicker-with-battery-health-certification-says-generational/"
+               target="_blank" rel="noopener">
+              Read full story <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="blog-card">
+          <div class="blog-card-img">
+            <img src="/images/blog/ev-battery-report-am-online.jpg"
+                 alt="Tablet screen showing an EV battery health report next to a used car">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Dealer Insight</span>
+              <span class="blog-source">AM Online · Oct 2025</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="https://www.am-online.com/news/used-evs-sell-faster-with-verified-battery-health-certificates"
+                 target="_blank" rel="noopener">
+                Used EVs sell faster with verified battery health certificates
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              AM Online highlights how dealers are using app-based battery tests
+              and digital certificates to speed up EV stock turn. Buyers respond
+              best when they can see SoH, expected range and remaining warranty
+              on a single clear report.
+            </p>
+            <a class="blog-link"
+               href="https://www.am-online.com/news/used-evs-sell-faster-with-verified-battery-health-certificates"
+               target="_blank" rel="noopener">
+              Read full story <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="blog-card">
+          <div class="blog-card-img">
+            <img src="/images/blog/most-buyers-want-battery-check.jpg"
+                 alt="Couple looking at a used EV with a digital checklist of battery health points">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Buyer Research</span>
+              <span class="blog-source">BusinessCar / Startline · Aug 2025</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="https://www.businesscar.co.uk/news/most-used-car-buyers-want-ev-battery-health-checks-survey-finds/"
+                 target="_blank" rel="noopener">
+                Most used car buyers want EV battery health checks, survey finds
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              Research from Startline shows 88% of used car buyers say an
+              independent EV battery assessment is important when they’re
+              choosing their next car – especially for higher-mileage or
+              out-of-warranty vehicles.
+            </p>
+            <a class="blog-link"
+               href="https://www.businesscar.co.uk/news/most-used-car-buyers-want-ev-battery-health-checks-survey-finds/"
+               target="_blank" rel="noopener">
+              Read full story <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="blog-card">
+          <div class="blog-card-img">
+            <img src="/images/blog/axa-battery-certificates-report.jpg"
+                 alt="Illustration of a standardised EV battery health certificate">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Policy & Regulation</span>
+              <span class="blog-source">FleetNews / AXA · Mar 2025</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="https://www.fleetnews.co.uk/news/government-urged-to-tackle-electric-vehicle-battery-health-concerns"
+                 target="_blank" rel="noopener">
+                Government urged to tackle EV battery health concerns
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              A report from AXA calls for standardised EV battery health
+              certificates across all makes and models. The goal: consistent,
+              trusted data that unlocks demand in the used EV market and gives
+              both drivers and fleets more confidence.
+            </p>
+            <a class="blog-link"
+               href="https://www.fleetnews.co.uk/news/government-urged-to-tackle-electric-vehicle-battery-health-concerns"
+               target="_blank" rel="noopener">
+              Read full story <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="blog-card">
+          <div class="blog-card-img">
+            <img src="/images/blog/battery-health-rules-minister.jpg"
+                 alt="Government building with an EV parked outside representing policy on battery health">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Industry Standards</span>
+              <span class="blog-source">BusinessCar · Jul 2025</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="https://www.businesscar.co.uk/news/battery-health-rules-can-help-bolster-used-ev-market-minister-says/"
+                 target="_blank" rel="noopener">
+                Battery health rules can help bolster the used EV market
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              A UK minister sets out how clearer battery health and durability
+              standards can support used EV residual values. As more standards
+              appear, independent on-car testing will matter even more at
+              individual vehicle level.
+            </p>
+            <a class="blog-link"
+               href="https://www.businesscar.co.uk/news/battery-health-rules-can-help-bolster-used-ev-market-minister-says/"
+               target="_blank" rel="noopener">
+              Read full story <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="blog-card">
+          <div class="blog-card-img">
+            <img src="/images/blog/ev-range-after-three-years.jpg"
+                 alt="Graph showing EV range over three years on a laptop screen next to a charging car">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Range & Degradation</span>
+              <span class="blog-source">InsideEVs / Recurrent · Nov 2025</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="https://insideevs.com/news/779038/ev-range-degradation-study-three-years/"
+                 target="_blank" rel="noopener">
+                Which EVs have the most range left after 3 years?
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              Using real-world data from thousands of cars, this study ranks EV
+              brands on how much range they tend to lose after three years. It’s
+              a reminder that battery health isn’t just theory – it changes how
+              far your car will actually go.
+            </p>
+            <a class="blog-link"
+               href="https://insideevs.com/news/779038/ev-range-degradation-study-three-years/"
+               target="_blank" rel="noopener">
+              Read full story <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    This page links to external sources. MyEVReport is not responsible for the content on third-party sites.
+    If you’d like your story featured here, please <a href="mailto:hello@myevreport.com">get in touch</a>.
+  </footer>
+</div>
+</body>
+</html>
