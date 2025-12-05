@@ -1276,3 +1276,243 @@ main {
 .news-card-body-link:hover .news-card-link {
   text-decoration: underline;
 }
+.testimonials-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+.testimonial-card {
+  height: 100%;
+}
+/* Article two-column layout */
+.article-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.article-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* Mobile behaviour */
+@media (max-width: 840px) {
+  .article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .article-image {
+    margin-bottom: 1.5rem;
+  }
+}
+.article-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.article-sidebar img {
+  width: 100%;
+  border-radius: 12px;
+  position: sticky;
+  top: 120px;
+}
+
+.article-hero img {
+  width: 100%;
+  display: block;
+  border-radius: 0 0 12px 12px;
+}
+
+@media (max-width: 900px) {
+  .article-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .article-sidebar img {
+    position: static;
+    margin-top: 1.5rem;
+  }
+}
+/* Blog grid */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.news-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(15, 76, 129, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.news-card-body {
+  padding: 1.5rem 1.75rem 1.75rem;
+}
+
+.news-card-category {
+  font-size: 0.85rem;
+  color: #6b7380;
+  margin: 0 0 0.5rem;
+}
+
+.news-card-title {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  margin: 0 0 0.6rem;
+}
+
+.news-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.news-card-title a:hover {
+  text-decoration: underline;
+}
+
+.news-card-excerpt {
+  margin: 0 0 0.75rem;
+}
+
+.news-card-meta {
+  font-size: 0.8rem;
+  color: #9aa2b1;
+  margin: 0 0 0.75rem;
+}
+/* News blog grid layout */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Each card styled the same size and height alignment */
+.news-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(15,76,129,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.news-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card-title a {
+  text-decoration: none;
+  color: #1f2933;
+}
+
+.news-card-title a:hover {
+  text-decoration: underline;
+}
+
+/* Ensures the “Read more” link stays at the bottom */
+.news-card-body .link-arrow {
+  margin-top: auto;
+}
+/* Make all news cards equal height in the grid */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;       /* stretch all cards to same row height */
+}
+
+.news-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(15,76,129,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;     /* stack image + body */
+}
+
+/* === KEY PART: force same image height/ratio === */
+.news-card-image {
+  width: 100%;
+}
+
+.news-card-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;       /* or 2 / 1 if you prefer */
+  object-fit: cover;          /* crop to fit, no stretching */
+}
+
+/* Body fills remaining space so "Read more" lines up */
+.news-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card-body .link-arrow {
+  margin-top: auto;           /* pushes Read more to bottom */
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.news-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(15,76,129,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Images: show full artwork, no cropping */
+.news-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background-color: #f5f7fa;     /* subtle backdrop for any letterboxing */
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.news-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep “Read more →” aligned at the bottom */
+.news-card-body .link-arrow,
+.news-card-link {
+  margin-top: auto;
+}
