@@ -11,7 +11,7 @@
 </head>
 <body>
 
-   <!-- Launch banner -->
+  <!-- Launch banner -->
   <div class="launch-banner">
      🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
   </div>
@@ -39,20 +39,16 @@
 
   <main>
 
-    <!-- Coverage area (interactive) -->
+        <!-- Coverage area (interactive) -->
     <section class="section section--tight" id="coverage">
       <div class="container">
         <h2 class="section-title">Coverage area</h2>
         <p class="section-subtitle">
-          Currently focused on the North of England, expanding soon.
-        </p>
-
-        <p class="coverage-intro">
           MyEVReport is currently focused on the North of England. Check your postcode below and we’ll tell you if we
           usually cover your area.
         </p>
 
-        <!-- Postcode checker + lead capture -->
+        <!-- Postcode checker + action -->
         <div class="coverage-checker">
           <div class="coverage-checker-label">Check your postcode</div>
           <div class="coverage-checker-row">
@@ -64,32 +60,18 @@
           </p>
           <div id="coverage-result" class="coverage-result" aria-live="polite"></div>
 
-          <form id="coverage-lead-form" class="coverage-lead" style="display:none;">
-            <p style="font-size:0.86rem; margin:0 0 0.6rem;">
-              Leave your details and we’ll confirm availability and next steps for this postcode by email.
-            </p>
-            <div class="coverage-lead-row">
-              <div>
-                <label for="coverage-name">Name</label>
-                <input id="coverage-name" type="text" placeholder="Your name">
-              </div>
-              <div>
-                <label for="coverage-email">Email</label>
-                <input id="coverage-email" type="email" placeholder="you@example.com">
-              </div>
-            </div>
-            <div class="coverage-lead-row" style="grid-template-columns: 1fr;">
-              <div>
-                <label for="coverage-postcode-confirm">Postcode</label>
-                <input id="coverage-postcode-confirm" type="text" placeholder="Your postcode">
-              </div>
-            </div>
-            <button type="submit" class="btn btn-secondary">Send my details</button>
-            <p class="coverage-help">
-              This will open your email client with the details ready to send. Online booking will be added as the
-              service grows.
-            </p>
-          </form>
+          <!-- Shown ONLY when postcode is covered -->
+          <div id="coverage-success-actions"
+               class="coverage-success-actions"
+               style="display:none; margin-top:0.75rem;">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="document.getElementById('book').scrollIntoView({ behavior: 'smooth' });"
+            >
+              Book a report
+            </button>
+          </div>
         </div>
 
         <p class="coverage-intro" style="margin-bottom:1.6rem;">
@@ -191,56 +173,41 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section">
-      <div class="container">
-        <header class="section-header">
-          <h2>Not sure if you're covered?</h2>
-          <p>
-            If you're on the edge of the usual area or have a special request, just send us your postcode and vehicle
-            details. We’ll confirm availability before you book.
-          </p>
-        </header>
-        <div class="section-cta">
-          <a href="book.html" class="btn btn-primary">Book a battery health check</a>
-        </div>
-      </div>
-    </section>
 
   </main>
 
-   <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
-      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
-    </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+        <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      </div>
 
-    <div class="footer-centre">
-      <p>
-        Designed &amp; hosted by
-        <a href="https://www.bluestonewebsites.co.uk" target="_blank" rel="noopener">
-          Bluestone Digital
-        </a> 2025
-      </p>
-    </div>
+      <div class="footer-centre">
+        <p>
+          Designed &amp; hosted by
+          <a href="https://www.bluestonewebsites.co.uk" target="_blank" rel="noopener">
+            Bluestone Digital
+          </a> 2025
+        </p>
+      </div>
 
-    <div class="footer-right">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="terms.html">Terms &amp; conditions</a>
+      <div class="footer-right">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-   <!-- WhatsApp Floating Button -->
-<a class="whatsapp-button" 
-   href="https://wa.me/447853434243?text=I%27d%20like%20to%20sell%20my%20car%20to%20NE%20CarBuyer%20today!" 
-   target="_blank" 
-   style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-       alt="WhatsApp" 
-       style="width: 90px; height: 90px;">
-</a>
+  <!-- WhatsApp Floating Button -->
+  <a class="whatsapp-button" 
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
+     target="_blank" 
+     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" 
+         style="width: 90px; height: 90px;">
+  </a>
 
   <!-- Turnstile (optional on this page) -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

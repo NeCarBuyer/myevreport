@@ -46,78 +46,91 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('coverage-postcode');
     const button = document.getElementById('coverage-check-button');
     const result = document.getElementById('coverage-result');
-    const leadForm = document.getElementById('coverage-lead-form');
-    const leadPostcode = document.getElementById('coverage-postcode-confirm');
+    const successActions = document.getElementById('coverage-success-actions');
+    const bookingSection = document.getElementById('book'); // present on index.html
 
     // If coverage section not on this page, bail
-    if (!input || !button || !result || !leadForm || !leadPostcode) return;
+    if (!input || !button || !result || !successActions) return;
+
+    function resetResult() {
+      result.textContent = '';
+      result.className = 'coverage-result';
+      successActions.style.display = 'none';
+      successActions.innerHTML = '';
+    }
 
     function doCheck() {
       const raw = (input.value || '').toUpperCase().trim();
+
       if (!raw) {
         result.textContent = 'Please enter a postcode to check.';
         result.className = 'coverage-result negative';
-        leadForm.style.display = 'none';
+        successActions.style.display = 'none';
+        successActions.innerHTML = '';
         return;
       }
 
       result.textContent = 'Checking coverage…';
       result.className = 'coverage-result loading';
-      leadForm.style.display = 'none';
+      successActions.style.display = 'none';
+      successActions.innerHTML = '';
 
       setTimeout(() => {
-        const match = raw.match(/^[A-Z]{1,2}/);
+        // Remove spaces, take first 1–2 letters
+        const cleaned = raw.replace(/\s+/g, '');
+        const match = cleaned.match(/^[A-Z]{1,2}/);
         const area = match ? match[0] : '';
         const coveredAreas = ['NE', 'SR', 'DH', 'DL', 'TS', 'CA'];
 
+        // Reset base class
         result.className = 'coverage-result';
 
         if (coveredAreas.includes(area)) {
-          result.textContent =
-            'Great! – We cover this postcode area! Send us your details and we’ll confirm availability.';
+          // POSITIVE RESULT
+          result.textContent = 'Great! – We cover this postcode area.';
           result.classList.add('positive');
         } else {
+          // NEGATIVE RESULT – your orange message
           result.textContent =
             'Unfortunately, we don’t currently cover this area. However, we may still be able to help. Please send us your details and we’ll confirm whether we can arrange coverage for this postcode.';
-          result.classList.add('maybe');
+          result.classList.add('maybe'); // style this as orange in CSS
         }
 
-        leadForm.style.display = 'block';
-        if (leadPostcode && !leadPostcode.value) {
-          leadPostcode.value = raw;
+        // In both cases, show a Book a report button
+        if (bookingSection) {
+          // On index.html – scroll to booking form
+          successActions.innerHTML = `
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="document.getElementById('book').scrollIntoView({ behavior: 'smooth' });"
+            >
+              Book a report
+            </button>
+          `;
+        } else {
+          // On coverage.html – go to book page
+          successActions.innerHTML = `
+            <a href="book.html" class="btn btn-primary">
+              Book a report
+            </a>
+          `;
         }
-      }, 350);
+
+        successActions.style.display = 'block';
+      }, 300);
     }
 
     button.addEventListener('click', doCheck);
+
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
         doCheck();
+      } else {
+        // Clear message as they change the text
+        resetResult();
       }
-    });
-
-    // Lead form – open mailto with details
-    leadForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = (document.getElementById('coverage-name').value || '').trim();
-      const email = (document.getElementById('coverage-email').value || '').trim();
-      const pc = (leadPostcode.value || input.value || '').trim();
-
-      const toAddress = 'hello@myevreport.com';
-
-      let body =
-        'Name: ' + (name || '(not provided)') +
-        '%0D%0AEmail: ' + (email || '(not provided)') +
-        '%0D%0APostcode: ' + (pc || '(not provided)') +
-        '%0D%0A%0D%0ARequesting confirmation of coverage and availability for an EV battery health report.';
-
-      const mailto =
-        'mailto:' + toAddress +
-        '?subject=' + encodeURIComponent('Postcode coverage enquiry – MyEVReport') +
-        '&body=' + body;
-
-      window.location.href = mailto;
     });
   })();
 

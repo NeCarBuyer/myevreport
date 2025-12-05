@@ -5,13 +5,13 @@
   <title>Book an EV Battery Health Report – MyEVReport</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="Book an EV battery health report with MyEVReport. Mobile on-site testing across the North of England with clear State of Health %, real-world range and condition rating.">
+        content="Book an independent EV battery health report with MyEVReport. Mobile testing across the North East of England with results in 72 hours.">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-    <!-- Launch banner -->
+  <!-- Launch banner -->
   <div class="launch-banner">
      🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
   </div>
@@ -39,32 +39,36 @@
 
   <main>
 
-    <!-- Intro -->
-    <section class="section">
-      <div class="container">
-        <header class="section-header">
-          <h2>Book your EV battery health report</h2>
-          <p>
-            Complete the form below with your vehicle and location details. We’ll confirm availability by email and send
-            you a secure payment link to finalise your booking.
-          </p>
-        </header>
+    <!-- Booking hero -->
+    <section class="section section-alt">
+      <div class="container content-grid">
+        <div>
+          <header class="section-header">
+            <h1>Book your EV battery health report</h1>
+            <p>
+              Tell us a few details about the vehicle and your location. We’ll confirm availability by email
+              and send you a secure payment link to finalise your booking.
+            </p>
+          </header>
+          <ul>
+            <li>Mobile visits across the North East of England and surrounding areas.</li>
+            <li>Typical appointment time: 10–20 minutes on your driveway or forecourt.</li>
+            <li>Report delivered within 72 hours of the test, or your fee is refunded.</li>
+          </ul>
+        </div>
+
+        <div>
+          <figure class="booking-visual">
+            <img src="images/soh-phone-car.png"
+                 alt="Example of an EV battery State of Health result used when booking a report">
+          </figure>
+        </div>
       </div>
     </section>
 
-    <!-- Booking form (same structure as homepage, but standalone) -->
-    <section class="section section-booking" id="book-form">
+    <!-- Booking form -->
+    <section class="section section-booking">
       <div class="container">
-        <header class="section-header">
-          <h2>Tell us about the vehicle</h2>
-          <p>
-            This information helps us confirm coverage, compatibility and the best time to visit.  
-            Fields marked * are required.
-          </p>
-        </header>
-
-        <!-- Formspark + Cloudflare Turnstile -->
-        <!-- Replace the action URL if your Formspark endpoint differs -->
         <form
           class="booking-form"
           method="post"
@@ -169,7 +173,6 @@
               ></textarea>
             </div>
 
-            <!-- Cloudflare Turnstile -->
             <div class="form-group form-group-full">
               <div
                 class="cf-turnstile"
@@ -177,99 +180,53 @@
               ></div>
             </div>
           </div>
+          </p>
 
           <button type="submit" class="btn btn-primary">Request a booking</button>
 
           <p class="form-footnote">* Required fields.</p>
           <p class="form-footnote">
             We’ll review your request and confirm availability by email before taking payment.
-          </p>
         </form>
-      </div>
-    </section>
-
-    <!-- What happens next -->
-    <section class="section">
-      <div class="container">
-        <header class="section-header">
-          <h2>What happens after you submit the form?</h2>
-          <p>
-            We try to keep everything clear and predictable. Here’s what you can expect once you’ve requested a booking.
-          </p>
-        </header>
-
-        <div class="content-grid">
-          <div>
-            <h3>1. Availability check</h3>
-            <p>
-              We confirm that your postcode is within our coverage area and that the vehicle is compatible with our
-              testing equipment.
-            </p>
-          </div>
-          <div>
-            <h3>2. Booking confirmation</h3>
-            <p>
-              We email you to confirm your appointment date and time window, and send a secure payment link for the £99
-              report fee (or agreed trade rate).
-            </p>
-          </div>
-          <div>
-            <h3>3. On-site visit</h3>
-            <p>
-              On the day, an EV-trained technician visits your location, carries out the battery health test and
-              confirms when your report will be ready.
-            </p>
-          </div>
-          <div>
-            <h3>4. Report delivered</h3>
-            <p>
-              You’ll receive your MyEVReport by email within 72 hours of the test, including State of Health %, range
-              estimates and our battery grade.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 
   </main>
 
-    <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
-      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
-    </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+        <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      </div>
 
-    <div class="footer-centre">
-      <p>
-        Designed &amp; hosted by
-        <a href="https://www.bluestonewebsites.co.uk" target="_blank" rel="noopener">
-          Bluestone Websites
-        </a> 2025
-      </p>
-    </div>
+      <div class="footer-centre">
+        <p>
+          Designed &amp; hosted by
+          <a href="https://www.bluestonewebsites.co.uk" target="_blank" rel="noopener">
+            Bluestone Websites
+          </a> 2025
+        </p>
+      </div>
 
-    <div class="footer-right">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="terms.html">Terms &amp; conditions</a>
+      <div class="footer-right">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <!-- WhatsApp Floating Button -->
-<a class="whatsapp-button" 
-   href="https://wa.me/447853434243?text=I%27d%20like%20to%20sell%20my%20car%20to%20NE%20CarBuyer%20today!" 
-   target="_blank" 
-   style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-       alt="WhatsApp" 
-       style="width: 90px; height: 90px;">
-</a>
+  <a class="whatsapp-button" 
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
+     target="_blank" 
+     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" 
+         style="width: 90px; height: 90px;">
+  </a>
 
-  <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-  <!-- Main JS -->
   <script src="js/main.js" defer></script>
 </body>
 </html>

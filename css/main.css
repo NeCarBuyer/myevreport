@@ -1216,3 +1216,37 @@ main {
 .section-booking .form-group select {
   color: #111827 !important;
 }
+/* Keep pricing cards equal height + testimonial row */
+.pricing-grid {
+  align-items: stretch;
+}
+
+.pricing-card-main,
+.pricing-card-alt {
+  height: 100%;
+}
+
+.testimonial-row {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .testimonial-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* Force testimonial cards to align footers */
+.testimonial-compact {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.testimonial-compact p {
+  flex-grow: 1;
+}
+.testimonial-compact footer {
+  margin-top: 1rem;
+}
