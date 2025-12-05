@@ -1250,3 +1250,29 @@ main {
 .testimonial-compact footer {
   margin-top: 1rem;
 }
+.news-card-body-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.news-card-body-link:hover .news-card-title {
+  text-decoration: underline;
+}
+
+.news-card-body-link:hover .news-card-link {
+  text-decoration: underline;
+}
+.news-card-body-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.news-card-body-link:hover .news-card-title {
+  text-decoration: underline;
+}
+
+.news-card-body-link:hover .news-card-link {
+  text-decoration: underline;
+}

@@ -65,33 +65,41 @@
 
         <div class="content-grid">
 
-          <!-- Card 1: 3p per mile tax -->
-          <article class="pricing-card pricing-card-alt news-card">
-            <figure class="news-image">
-              <!-- Add a UK-style EV photo, e.g. EV on motorway with price board -->
-              <img src="images/news-ev-road-tax-3p-mile-hero-1200x600.png"
-                   alt="Electric car driving on a UK road with cost per mile overlay">
-            </figure>
-            <h3>The new 3p-per-mile EV road tax – what it could mean for your running costs</h3>
-            <p class="news-meta">Policy &amp; running costs • From April 2028</p>
-            <p>
-              The 2025 Budget confirmed a new mileage-based road tax for electric cars. From 2028, most
-              battery-electric drivers are expected to pay around 3p per mile, with plug-in hybrids at 1.5p
-              per mile.
-            </p>
-            <p>
-              In our explainer we break down how the charge is expected to work, example costs at different
-              mileages, and how it compares with what petrol and diesel drivers already pay in fuel duty.
-            </p>
-            <p>
-              <a href="news-ev-road-tax-3p-mile.html" class="link-arrow">Read more…</a>
-            </p>
+          <!-- Card 1 -->
+          <article class="news-card">
+
+            <!-- CLICKABLE IMAGE -->
+            <a href="news-ev-road-tax-3p-mile.html" class="news-card-image" aria-label="Read full article">
+              <img
+                src="images/news-ev-road-tax-3p-mile-hero-1200x600.png"
+                alt="News thumbnail showing Chancellor and electric vehicle"
+              >
+            </a>
+
+            <!-- CLICKABLE CONTENT AREA -->
+            <a href="news-ev-road-tax-3p-mile.html" class="news-card-body-link">
+              <div class="news-card-body">
+                <div class="news-card-category">Policy &amp; running costs</div>
+
+                <h2 class="news-card-title">
+                  The new 3p-per-mile EV road tax — what it could mean for your running costs
+                </h2>
+
+                <p class="news-card-excerpt">
+                  A simple breakdown of what a 3p-per-mile charge would mean for real-world journeys and annual EV running costs.
+                </p>
+
+                <p class="news-card-meta">Updated December 2025</p>
+
+                <span class="news-card-link">Read more →</span>
+              </div>
+            </a>
+
           </article>
 
           <!-- Card 2: £3,750 grant -->
           <article class="pricing-card pricing-card-alt news-card">
             <figure class="news-image">
-              <!-- Add a photo of a new EV in a UK dealership -->
               <img src="images/news-ev-grant-3750.jpg"
                    alt="New electric cars in a UK dealership with offer signage">
             </figure>
@@ -111,8 +119,16 @@
             </p>
           </article>
 
-          <footer class="site-footer">
+        </div> <!-- end .content-grid -->
+      </div>   <!-- end .container -->
+    </section> <!-- end .section-alt -->
+
+  </main>
+
+  <!-- Footer now OUTSIDE main and container -->
+  <footer class="site-footer">
     <div class="footer-inner">
+
       <div class="footer-left">
         <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
         <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
@@ -131,21 +147,11 @@
         <a href="privacy.html">Privacy policy</a>
         <a href="terms.html">Terms &amp; conditions</a>
       </div>
+
     </div>
   </footer>
-
-  <!-- WhatsApp Floating Button -->
-  <a class="whatsapp-button" 
-     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
-     target="_blank" 
-     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" 
-         style="width: 90px; height: 90px;">
-  </a>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
-
