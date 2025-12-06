@@ -102,20 +102,6 @@
       </div>
     </section>
 
-    <!-- Service area summary strip -->
-    <section class="service-strip">
-      <div class="container">
-        <p>
-          Covering the North East of England and surrounding areas.
-          <span class="service-points">
-            ✅ Independent, third-party battery health assessment
-            • Mobile service — we come to your home, workplace or dealership
-            • ⏱ Report delivered within 72 hours of test completion
-          </span>
-        </p>
-      </div>
-    </section>
-
     <!-- How it works (overview) -->
     <section class="section" id="how-it-works-overview">
       <div class="container">
@@ -268,41 +254,54 @@
           </div>
         </div>
 
-        <!-- Testimonial row -->
+     <!-- Three testimonial bubbles underneath -->
         <div class="testimonial-row">
-          <article class="testimonial-card">
-            <p>“The report gave me the confidence I needed to go ahead with my first used EV purchase. I knew exactly what the battery health was and how far I could realistically expect to travel on a charge.”</p>
-            <p class="testimonial-name">Alan B</p>
-            <p class="testimonial-meta">Tesla Model Y Owner, North East England</p>
-          </article>
-          <article class="testimonial-card">
-            <p>“Having an independent battery report helped me justify the asking price on my advert. Buyers stopped asking ‘what’s the range really like?’ because it was already in the listing.”</p>
-            <p class="testimonial-name">Sarah L</p>
-            <p class="testimonial-meta">Nissan Leaf Seller, Durham</p>
-          </article>
-          <article class="testimonial-card">
-            <p>“As a small dealer, the report makes stocking decisions much easier. If the battery isn’t where it should be, we know before we retail the car.”</p>
-            <p class="testimonial-name">Mark R</p>
-            <p class="testimonial-meta">Independent Dealer, Tyne &amp; Wear</p>
-          </article>
+          <blockquote class="testimonial testimonial-compact">
+            <p>
+              “The report gave me the confidence I needed to go ahead with my first used EV purchase.
+              I knew exactly what the battery health was and how far I could realistically expect to travel on a charge.”
+            </p>
+            <footer>
+              <span class="testimonial-name">Alan B</span>
+              <span class="testimonial-meta">Tesla Model Y Owner, Allendale</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial testimonial-compact">
+            <p>
+              “Having an independent battery report helped me justify the asking price on my advert.
+              Buyers stopped asking ‘what’s the range really like?’ because it was already in the listing.”
+            </p>
+            <footer>
+              <span class="testimonial-name">Sarah L</span>
+              <span class="testimonial-meta">Nissan Leaf Seller, Coxhoe</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial testimonial-compact">
+            <p>
+              “As a small dealer, the report makes stocking decisions much easier.
+              If the battery isn’t where it should be, we know before we retail the car.”
+            </p>
+            <footer>
+              <span class="testimonial-name">Mark R</span>
+              <span class="testimonial-meta">Independent Dealer, Gateshead</span>
+            </footer>
+          </blockquote>
         </div>
       </div>
     </section>
 
-    <!-- Coverage area (interactive preview) -->
+   <!-- Coverage area (interactive) -->
     <section class="section section--tight" id="coverage">
       <div class="container">
         <h2 class="section-title">Coverage area</h2>
         <p class="section-subtitle">
-          Currently focused on the North of England, expanding soon.
-        </p>
-
-        <p class="coverage-intro">
           MyEVReport is currently focused on the North of England. Check your postcode below and we’ll tell you if we
           usually cover your area.
         </p>
 
-        <!-- Postcode checker + lead capture -->
+        <!-- Postcode checker + action -->
         <div class="coverage-checker">
           <div class="coverage-checker-label">Check your postcode</div>
           <div class="coverage-checker-row">
@@ -314,32 +313,18 @@
           </p>
           <div id="coverage-result" class="coverage-result" aria-live="polite"></div>
 
-          <form id="coverage-lead-form" class="coverage-lead" style="display:none;">
-            <p style="font-size:0.86rem; margin:0 0 0.6rem;">
-              Leave your details and we’ll confirm availability and next steps for this postcode by email.
-            </p>
-            <div class="coverage-lead-row">
-              <div>
-                <label for="coverage-name">Name</label>
-                <input id="coverage-name" type="text" placeholder="Your name">
-              </div>
-              <div>
-                <label for="coverage-email">Email</label>
-                <input id="coverage-email" type="email" placeholder="you@example.com">
-              </div>
-            </div>
-            <div class="coverage-lead-row" style="grid-template-columns: 1fr;">
-              <div>
-                <label for="coverage-postcode-confirm">Postcode</label>
-                <input id="coverage-postcode-confirm" type="text" placeholder="Your postcode">
-              </div>
-            </div>
-            <button type="submit" class="btn btn-secondary">Send my details</button>
-            <p class="coverage-help">
-              This will open your email client with the details ready to send. Online booking will be added as the
-              service grows.
-            </p>
-          </form>
+          <!-- Shown ONLY when postcode is covered -->
+          <div id="coverage-success-actions"
+               class="coverage-success-actions"
+               style="display:none; margin-top:0.75rem;">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="document.getElementById('book').scrollIntoView({ behavior: 'smooth' });"
+            >
+              Book a report
+            </button>
+          </div>
         </div>
 
         <p class="coverage-intro" style="margin-bottom:1.6rem;">
@@ -440,6 +425,8 @@
         </p>
       </div>
     </section>
+
+  </main>
 
     <!-- FAQ teaser -->
     <section class="section" id="faqs-overview">
