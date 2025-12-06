@@ -449,136 +449,141 @@
     </section>
 
     <!-- Booking form -->
-    <section class="section section-booking" id="book">
-      <div class="container">
-        <header class="section-header">
-          <h2>Book your EV battery health report</h2>
-          <p>Complete the form below and we’ll confirm your booking by email. Once confirmed, you’ll receive a secure payment link to finalise your appointment.</p>
-        </header>
+<section class="section section-booking" id="book">
+  <div class="container">
+    <header class="section-header">
+      <h2>Book your EV battery health report</h2>
+      <p>
+        Complete the form below and we’ll confirm your booking by email.
+        Once confirmed, you’ll receive a secure payment link to finalise your appointment.
+      </p>
+    </header>
 
-        <form
-          class="booking-form"
-          method="post"
-          action="https://submit-form.com/6bLuHmQIB"
-        >
-          <!-- Redirect to thank-you page after successful submission -->
-          <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
+    <form
+      class="booking-form"
+      method="post"
+      action="https://submit-form.com/6bLuHmQIB"
+    >
+      <!-- Redirect to thank-you page after successful submission -->
+      <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
 
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="name">Your name *</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder="John Smith"
-              >
-            </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Your name *</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            placeholder="John Smith"
+          >
+        </div>
 
-            <div class="form-group">
-              <label for="email">Email address *</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="you@example.com"
-              >
-            </div>
+        <div class="form-group">
+          <label for="email">Email address *</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            placeholder="you@example.com"
+          >
+        </div>
 
-            <div class="form-group">
-              <label for="phone">Telephone number *</label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                required
-                placeholder="07123 456789"
-              >
-            </div>
+        <div class="form-group">
+          <label for="phone">Telephone number *</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            required
+            placeholder="07123 456789"
+          >
+        </div>
 
-            <div class="form-group">
-              <label for="postcode">Postcode where vehicle is located *</label>
-              <input
-                id="postcode"
-                name="postcode"
-                type="text"
-                required
-                placeholder="NE1 4LP"
-              >
-              <small>Currently serving the North East of England and surrounding areas.</small>
-            </div>
+        <div class="form-group">
+          <label for="postcode">Postcode where vehicle is located *</label>
+          <input
+            id="postcode"
+            name="postcode"
+            type="text"
+            required
+            placeholder="NE1 4LP"
+          >
+          <small>Currently serving the North East of England and surrounding areas.</small>
+        </div>
 
-            <div class="form-group">
-              <label for="reg">Vehicle registration *</label>
-              <input
-                id="reg"
-                name="reg"
-                type="text"
-                required
-                placeholder="AB12 CDE"
-              >
-            </div>
+        <div class="form-group">
+          <label for="reg">Vehicle registration *</label>
+          <input
+            id="reg"
+            name="reg"
+            type="text"
+            required
+            placeholder="AB12 CDE"
+          >
+        </div>
 
-            <div class="form-group">
-              <label for="make-model">Vehicle make &amp; model *</label>
-              <input
-                id="make-model"
-                name="make-model"
-                type="text"
-                required
-                placeholder="Tesla Model 3"
-              >
-            </div>
+        <div class="form-group">
+          <label for="make-model">Vehicle make &amp; model *</label>
+          <input
+            id="make-model"
+            name="make-model"
+            type="text"
+            required
+            placeholder="Tesla Model 3"
+          >
+        </div>
 
-            <div class="form-group">
-              <label for="date">Preferred date *</label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                required
-                placeholder="dd/mm/yyyy"
-              >
-            </div>
+        <div class="form-group">
+          <label for="date">Preferred date *</label>
+          <input
+            id="date"
+            name="date"
+            type="date"
+            required
+            placeholder="dd/mm/yyyy"
+          >
+        </div>
 
-            <div class="form-group">
-              <label for="time">Preferred time of day *</label>
-              <select id="time" name="time" required>
-                <option value="">Select...</option>
-                <option value="morning">Morning (9am–12pm)</option>
-                <option value="afternoon">Afternoon (12pm–4pm)</option>
-                <option value="evening">Evening (4pm–7pm)</option>
-              </select>
-            </div>
+        <div class="form-group">
+          <label for="time">Preferred time of day *</label>
+          <select id="time" name="time" required>
+            <option value="">Select...</option>
+            <option value="morning">Morning (9am–12pm)</option>
+            <option value="afternoon">Afternoon (12pm–4pm)</option>
+            <option value="evening">Evening (4pm–7pm)</option>
+          </select>
+        </div>
 
-            <div class="form-group form-group-full">
-              <label for="notes">Anything else we should know?</label>
-              <textarea
-                id="notes"
-                name="notes"
-                rows="4"
-                placeholder="Access notes, parking details or EV-specific questions"
-              ></textarea>
-            </div>
+        <div class="form-group form-group-full">
+          <label for="notes">Anything else we should know?</label>
+          <textarea
+            id="notes"
+            name="notes"
+            rows="4"
+            placeholder="Access notes, parking details or EV-specific questions"
+          ></textarea>
+        </div>
+      </div> <!-- end .form-grid -->
 
-            <div class="form-group form-group-full">
-              <div class="cf-turnstile"
-     data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
-              </div>
-            </div>
-          </div>
+      <!-- Actions / footnotes / Turnstile all full-width below the grid -->
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Request a booking</button>
+
+        <p class="form-footnote">* Required fields.</p>
+
+        <p class="form-footnote">
+          We’ll review your request and confirm availability by email before taking payment.
         </p>
-          <button type="submit" class="btn btn-primary">Request a booking</button>
 
-          <p class="form-footnote">* Required fields.</p>
-          <p class="form-footnote">
-            We’ll review your request and confirm availability by email before taking payment.
-          </p>
-        </form>
+        <div class="cf-turnstile"
+             data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
+        </div>
       </div>
-    </section>
+    </form>
+  </div>
+</section>
 
   </main>
 
