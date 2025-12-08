@@ -1,38 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <link rel="canonical" href="https://myevreport.com/whats-in-the-report.html">
   <meta charset="UTF-8">
-  <title>What’s in the report – MyEVReport EV Battery Health Check</title>
+  <link rel="canonical" href="https://myevreport.com/whats-in-the-report.html">
+
+  <title>What’s in an EV Battery Health Report – MyEVReport</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="See what’s included in a MyEVReport EV battery health report – State of Health %, real-world range estimates, warranty information and a simple condition grade.">
+        content="See exactly what's included in a MyEVReport battery health report: State of Health %, real-world range estimates, warranty information, advisories and an easy-to-understand battery grade.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myevreport.com/whats-in-the-report.html">
+  <meta property="og:title" content="What’s in an EV Battery Health Report – MyEVReport">
+  <meta property="og:description"
+        content="Explore what’s included in our independent EV battery health reports, including SoH %, range estimates, grades and warranty details.">
+  <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What’s in an EV Battery Health Report – MyEVReport">
+  <meta name="twitter:description"
+        content="Learn what our EV battery report includes: State of Health, technical breakdown, range estimates, warranty info and more.">
+  <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
   <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Performance -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="images/logo-myevreport.png" as="image">
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
   <!-- Launch banner -->
   <div class="launch-banner">
-     🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+        <img src="images/logo-myevreport.png"
+             alt="MyEVReport logo – independent EV battery health reports"
+             width="180" height="42">
       </a>
+
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
-        <a href="whats-in-the-report.html">What’s in the report</a>
+        <a href="whats-in-the-report.html" class="active">What’s in the report</a>
         <a href="pricing.html">Pricing</a>
         <a href="coverage.html">Coverage area</a>
         <a href="faqs.html">FAQs</a>
         <a href="news.html">EV News</a>
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -47,37 +75,35 @@
           <header class="section-header">
             <h1>What’s in your MyEVReport</h1>
             <p>
-              Every report is designed to be easy to read, even if you’re not technical. We turn raw battery
-              data into a clear picture of health, range and suitability for sale.
+              Our reports are designed to be clear and easy to understand. We take technical EV battery data and turn
+              it into a simple summary of health, range and suitability for sale or long-term ownership.
             </p>
           </header>
 
           <h2>At-a-glance overview</h2>
-          <p>
-            The first page of your report gives you a simple summary of the vehicle’s battery condition.
-          </p>
+          <p>The first page of your report includes:</p>
           <ul>
-            <li>Battery health grade (A–E) based on our assessment.</li>
-            <li>Headline State of Health (SoH) percentage.</li>
-            <li>Key observations and any immediate advisories.</li>
+            <li>Battery health grade (A–E)</li>
+            <li>Headline State of Health (SoH %)</li>
+            <li>Key observations and advisories</li>
           </ul>
 
           <h2>Real-world range estimates</h2>
           <p>
-            Manufacturer WLTP figures can be optimistic. We provide our own range estimates based on the
-            data we see and typical UK usage:
+            We provide realistic range figures based on real-world UK usage rather than optimistic WLTP estimates.
           </p>
           <ul>
-            <li>Indicative mixed-driving range on a full charge.</li>
-            <li>Comments on how range may vary with season and driving style.</li>
-            <li>Notes on any anomalies or range-limiting issues we detect.</li>
+            <li>Estimated mixed-driving range</li>
+            <li>Seasonal range expectations</li>
+            <li>Notes on range-impacting issues</li>
           </ul>
         </div>
 
         <div>
           <figure class="report-hero-image">
             <img src="images/soh-phone-car.png"
-                 alt="Example of State of Health battery result shown on a smartphone with an EV behind">
+                 alt="Example of a MyEVReport State of Health and range summary displayed on a smartphone"
+                 width="500" height="500">
           </figure>
         </div>
       </div>
@@ -87,36 +113,29 @@
     <section class="section">
       <div class="container content-grid">
         <div>
-          <h2>Technical detail (without jargon)</h2>
+          <h2>Technical detail (without the jargon)</h2>
           <p>
-            Behind the simple grade and SoH figure, we include a breakdown of the key technical values our
-            test has captured from the vehicle.
+            For those who want more depth, we provide a breakdown of the technical data captured from the vehicle.
           </p>
           <ul>
-            <li>Reported energy capacity and State of Health.</li>
-            <li>Charge cycle and usage information where available.</li>
-            <li>Battery temperature and balance indicators where the car supports them.</li>
+            <li>Measured battery capacity and SoH</li>
+            <li>Charge cycles and usage (when available)</li>
+            <li>Battery temperature and balance indicators</li>
           </ul>
-          <p>
-            We translate this into plain English comments so you don’t have to be an engineer to understand
-            what it all means.
-          </p>
+          <p>We also include easy-to-read explanations for every technical value.</p>
         </div>
 
         <div>
-          <h2>Warranty &amp; advisory information</h2>
+          <h2>Warranty & advisory information</h2>
           <p>
-            Many EVs come with separate battery warranties that run longer than the basic vehicle cover.
-            Your MyEVReport includes:
+            Many EVs have extended battery warranties. We help you understand how protected you are.
           </p>
           <ul>
-            <li>A summary of the manufacturer’s battery warranty terms where known.</li>
-            <li>An estimate of how much warranty period remains based on age and mileage.</li>
-            <li>Any relevant advisories we believe you should be aware of.</li>
+            <li>Summary of manufacturer battery warranty terms</li>
+            <li>Estimated warranty remaining</li>
+            <li>Relevant advisories or concerns</li>
           </ul>
-          <p>
-            This helps you judge not just how the battery looks today, but how protected you may be in future.
-          </p>
+          <p>This gives you a sense of both current health and long-term confidence.</p>
         </div>
       </div>
     </section>
@@ -126,24 +145,21 @@
       <div class="container content-grid">
         <div>
           <h2>For buyers</h2>
-          <p>
-            If you’re buying a used EV, a MyEVReport helps you compare different cars and negotiate with confidence:
-          </p>
+          <p>A MyEVReport helps buyers compare EVs and negotiate with confidence:</p>
           <ul>
-            <li>Understand how the battery has aged vs. similar models.</li>
-            <li>See whether the asking price fits the battery health.</li>
-            <li>Use the report as part of your records for finance or insurance.</li>
+            <li>Understand battery health vs similar models</li>
+            <li>Spot good-value vehicles</li>
+            <li>Share the report with finance or insurance providers</li>
           </ul>
         </div>
+
         <div>
           <h2>For sellers &amp; dealers</h2>
-          <p>
-            If you’re selling or stocking EVs, the report gives buyers a reason to trust your advert:
-          </p>
+          <p>Use the report to enhance your adverts and increase buyer trust:</p>
           <ul>
-            <li>Include SoH % and grade in listings to stand out.</li>
-            <li>Show you’ve proactively checked the health of the battery.</li>
-            <li>Support your valuation with independent data.</li>
+            <li>Include SoH % and grade in online listings</li>
+            <li>Show you’ve proactively checked battery health</li>
+            <li>Support your valuation with independent evidence</li>
           </ul>
         </div>
       </div>
@@ -156,38 +172,37 @@
   </main>
 
   <footer class="site-footer">
-  <div class="footer-inner">
+    <div class="footer-inner">
 
-    <div class="footer-left">
-      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
-      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      <div class="footer-left">
+        <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+        <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      </div>
+
+      <div class="footer-centre">
+        <p>Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025</p>
+      </div>
+
+      <div class="footer-right">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
+
     </div>
-
-    <div class="footer-centre">
-      <p>
-        Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025</p>
-      </p>
-    </div>
-
-    <div class="footer-right">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="terms.html">Terms &amp; conditions</a>
-    </div>
-
-  </div>
-</footer>
+  </footer>
 
   <!-- WhatsApp Floating Button -->
-  <a class="whatsapp-button" 
-     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
-     target="_blank" 
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank" rel="noopener"
      style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" 
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp icon"
          style="width: 90px; height: 90px;">
   </a>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="js/main.js" defer></script>
+
 </body>
 </html>

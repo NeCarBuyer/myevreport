@@ -1,27 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <link rel="canonical" href="https://myevreport.com/coverage.html">
   <meta charset="UTF-8">
-  <title>Coverage Area – MyEVReport EV Battery Health Tests</title>
+  <link rel="canonical" href="https://myevreport.com/coverage.html">
+  <title>Coverage Area – EV Battery Health Tests in the North of England | MyEVReport</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="Check if MyEVReport covers your area. We currently test electric vehicles across the North East of England including Newcastle, Sunderland, Durham, Teesside and Northumberland.">
+        content="Check if MyEVReport covers your area. We currently test electric vehicles across the North of England including Newcastle, Sunderland, Durham, Teesside, Carlisle and Northumberland.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myevreport.com/coverage.html">
+  <meta property="og:title" content="Coverage Area – EV Battery Health Tests in the North of England | MyEVReport">
+  <meta property="og:description"
+        content="See where MyEVReport offers mobile EV battery health tests. We currently cover most NE, SR, DH, DL, TS and CA postcodes across the North of England.">
+  <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Coverage Area – EV Battery Health Tests in the North of England | MyEVReport">
+  <meta name="twitter:description"
+        content="Check if your postcode is within the MyEVReport coverage area for mobile EV battery health checks across the North of England.">
+  <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
   <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="images/logo-myevreport.png" as="image">
+
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
   <!-- Launch banner -->
   <div class="launch-banner">
-     🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+        <img src="images/logo-myevreport.png"
+             alt="MyEVReport logo – independent EV battery health reports"
+             width="180" height="42">
       </a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
@@ -32,7 +57,7 @@
         <a href="news.html">EV News</a>
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -40,24 +65,41 @@
 
   <main>
 
-        <!-- Coverage area (interactive) -->
+    <!-- Coverage intro -->
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <h1>Coverage area for EV battery health tests</h1>
+          <p>
+            MyEVReport currently offers mobile EV battery health checks across the North of England, including
+            Newcastle, Sunderland, Durham, Teesside, Carlisle and Northumberland. Use the postcode checker below
+            to see if we usually cover your area.
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <!-- Coverage area (interactive) -->
     <section class="section section--tight" id="coverage">
       <div class="container">
-        <h2 class="section-title">Coverage area</h2>
+        <h2 class="section-title">Check if we cover your postcode</h2>
         <p class="section-subtitle">
-          MyEVReport is currently focused on the North of England. Check your postcode below and we’ll tell you if we
-          usually cover your area.
+          We typically cover most NE, SR, DH, DL, TS and CA postcodes. Enter the first part or full postcode below to check.
         </p>
 
         <!-- Postcode checker + action -->
         <div class="coverage-checker">
           <div class="coverage-checker-label">Check your postcode</div>
           <div class="coverage-checker-row">
-            <input id="coverage-postcode" type="text" placeholder="e.g. NE1 4LP" autocomplete="postal-code">
+            <input id="coverage-postcode"
+                   name="coverage-postcode"
+                   type="text"
+                   placeholder="e.g. NE1 4LP"
+                   autocomplete="postal-code">
             <button type="button" id="coverage-check-button" class="btn btn-primary">Check coverage</button>
           </div>
           <p class="coverage-help">
-            We typically cover most NE, SR, DH, DL, TS and CA postcodes. Enter the first part or full postcode to check.
+            We typically cover most NE, SR, DH, DL, TS and CA postcodes. If you’re just outside these areas, we may still be able to help.
           </p>
           <div id="coverage-result" class="coverage-result" aria-live="polite"></div>
 
@@ -68,7 +110,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              onclick="document.getElementById('book').scrollIntoView({ behavior: 'smooth' });"
+              onclick="window.location.href='book.html';"
             >
               Book a report
             </button>
@@ -76,7 +118,7 @@
         </div>
 
         <p class="coverage-intro" style="margin-bottom:1.6rem;">
-          You can also browse by region below to see typical towns and cities we cover.
+          You can also browse by region below to see typical towns and cities we cover for EV battery testing.
         </p>
 
         <!-- Coverage bubbles -->
@@ -169,44 +211,42 @@
         </div>
 
         <p class="coverage-intro" style="margin-top:1.8rem;">
-          If you’re unsure whether your area is covered, just include your postcode when you get in touch and we’ll confirm.
+          If you’re unsure whether your area is covered, just include your postcode when you contact us or
+          <a href="book.html">request a booking</a> and we’ll confirm.
         </p>
       </div>
     </section>
 
-
   </main>
 
   <footer class="site-footer">
-  <div class="footer-inner">
+    <div class="footer-inner">
 
-    <div class="footer-left">
-      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
-      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      <div class="footer-left">
+        <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+        <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      </div>
+
+      <div class="footer-centre">
+        <p>
+          Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
+
     </div>
-
-    <div class="footer-centre">
-      <p>
-        Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025</p>
-      </p>
-    </div>
-
-    <div class="footer-right">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="terms.html">Terms &amp; conditions</a>
-    </div>
-
-  </div>
-</footer>
-
+  </footer>
 
   <!-- WhatsApp Floating Button -->
-  <a class="whatsapp-button" 
-     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
-     target="_blank" 
-     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" 
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp"
          style="width: 90px; height: 90px;">
   </a>
 

@@ -1,38 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <link rel="canonical" href="https://myevreport.com/faqs.html">
   <meta charset="UTF-8">
-  <title>Frequently Asked Questions – MyEVReport</title>
+  <link rel="canonical" href="https://myevreport.com/faqs.html">
+  <title>Frequently Asked Questions – EV Battery Health Reports | MyEVReport</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="Frequently asked questions about MyEVReport EV battery health reports, pricing, coverage area, what we test and how the process works for buyers, sellers and dealers.">
+        content="Frequently asked questions about MyEVReport EV battery health reports, pricing, coverage area, what we test, and how the process works for buyers, sellers and dealers.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myevreport.com/faqs.html">
+  <meta property="og:title" content="Frequently Asked Questions – EV Battery Health Reports | MyEVReport">
+  <meta property="og:description"
+        content="Answers to common questions about MyEVReport: EV battery testing, pricing, coverage areas, what we measure, and how our mobile test service works.">
+  <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Frequently Asked Questions – EV Battery Health Reports | MyEVReport">
+  <meta name="twitter:description"
+        content="Learn more about our EV battery health testing service, coverage areas and what’s included in your MyEVReport.">
+  <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
   <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="images/logo-myevreport.png" as="image">
+
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- FAQ Schema (BIG SEO benefit) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is MyEVReport?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MyEVReport is an independent EV battery health reporting service. We carry out on-site tests and provide a clear report showing battery State of Health (SoH %), real-world range estimates and a simple battery grade."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do you operate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We operate across the North of England, with a focus on the North East. You can check your postcode on our Coverage Area page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I book a report?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can request a booking online via our Book a Report page. We confirm availability and send a secure payment link before your appointment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does the EV battery test take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The battery health test usually takes 10–20 minutes depending on the vehicle. No workshop or charger is required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to receive the report?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We aim to deliver your report within 72 hours of the test. If we miss the 72-hour window, your fee is refunded."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- Launch banner -->
   <div class="launch-banner">
-     🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+        <img src="images/logo-myevreport.png"
+             alt="MyEVReport logo – independent EV battery health reports"
+             width="180" height="42">
       </a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
         <a href="whats-in-the-report.html">What’s in the report</a>
         <a href="pricing.html">Pricing</a>
         <a href="coverage.html">Coverage area</a>
-        <a href="faqs.html">FAQs</a>
+        <a href="faqs.html" class="active">FAQs</a>
         <a href="news.html">EV News</a>
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -40,20 +115,17 @@
 
   <main>
 
-    <!-- Intro -->
+    <!-- FAQ Intro -->
     <section class="section">
       <div class="container">
         <header class="section-header">
-          <h2>Frequently asked questions</h2>
-          <p>
-            If you’re new to EVs or to battery health testing, it’s completely normal to have questions.
-            We’ve answered the most common ones below.
-          </p>
+          <h1>Frequently asked questions</h1>
+          <p>Everything you need to know about EV battery testing, the MyEVReport process, and what’s included.</p>
         </header>
       </div>
     </section>
 
-    <!-- General questions -->
+    <!-- Section 1 -->
     <section class="section section-alt">
       <div class="container">
         <header class="section-header">
@@ -63,34 +135,28 @@
         <ul class="faq-list">
           <li>
             <strong>What is MyEVReport?</strong><br>
-            MyEVReport is an independent EV battery health reporting service. We visit the vehicle, carry out a battery
-            health test and provide a clear report showing State of Health (SoH %), real-world range estimates and a
-            simple battery grade.
+            MyEVReport is an independent EV battery health reporting service...
           </li>
 
           <li>
             <strong>Are you a car dealer?</strong><br>
-            No. We don’t buy or sell vehicles and we don’t offer finance or warranties. Our role is purely to provide
-            independent information about the battery’s condition so that buyers, sellers and dealers can make better
-            decisions.
+            No. We don’t buy or sell vehicles and we don’t offer finance or warranties...
           </li>
 
           <li>
             <strong>Where do you operate?</strong><br>
-            We currently operate across the North of England, with a focus on the North East. You can
-            <a href="coverage.html">check your postcode and browse typical areas we cover here</a>.
+            We currently operate across the North of England...
           </li>
 
           <li>
             <strong>Who is the service for?</strong><br>
-            Private buyers, private sellers, dealers and fleet operators. The process is the same, but how you use the
-            report may be different – for example, in adverts, negotiations or stocking decisions.
+            Private buyers, sellers, dealers and fleet operators...
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- Process questions -->
+    <!-- Section 2 -->
     <section class="section">
       <div class="container">
         <header class="section-header">
@@ -100,114 +166,95 @@
         <ul class="faq-list">
           <li>
             <strong>How do I book a report?</strong><br>
-            You can request a booking online via the <a href="book.html">Book a report</a> page. We’ll confirm coverage,
-            compatibility and availability before sending a secure payment link.
+            You can request a booking via the <a href="book.html">Book a report</a> page...
           </li>
 
           <li>
             <strong>What happens on the day of the test?</strong><br>
-            An EV-trained technician visits your chosen location, confirms the vehicle details and connects specialist
-            diagnostic equipment to the vehicle. The test usually takes 10–20 minutes. We do not need to plug into your
-            home charger.
+            A technician visits your chosen location...
           </li>
 
           <li>
             <strong>Do I need to prepare the vehicle?</strong><br>
-            Ideally, the vehicle should have a reasonable state of charge (not almost empty) and be accessible so we can
-            connect to the diagnostic port. You don’t need to clean the car or take it to a workshop – driveway or
-            forecourt is fine.
+            Ideally, the vehicle should have a reasonable state of charge…
           </li>
 
           <li>
             <strong>How long does it take to receive the report?</strong><br>
-            We aim to deliver your report within 72 hours of the test. If we miss that window for any reason, your fee
-            will be refunded.
+            Within 72 hours or your fee is refunded.
           </li>
 
           <li>
             <strong>Can I be there during the test?</strong><br>
-            Yes. You’re welcome to be present while the test is carried out. If you can’t be there, we simply need safe
-            access to the vehicle and keys.
+            Yes. You’re welcome to be present.
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- Report content questions -->
+    <!-- Section 3 -->
     <section class="section section-alt">
       <div class="container">
         <header class="section-header">
-          <h2>About the report itself</h2>
+          <h2>About the report</h2>
         </header>
 
         <ul class="faq-list">
           <li>
-            <strong>What exactly do you measure?</strong><br>
-            We look at battery State of Health (SoH %), derived from manufacturer and battery-management data, and use
-            this to estimate realistic range in everyday driving. We also apply our own grading system (A–E) and provide
-            notes and advisories in plain English.
+            <strong>What do you measure?</strong><br>
+            We record battery State of Health (SoH %), range estimates, warranty information...
           </li>
 
           <li>
             <strong>Is the report easy to understand?</strong><br>
-            Yes. The first page is designed to be read in under a minute, with clear labels and explanations.
-            More technical values are included further into the report for those who want the detail.
-            You can preview the layout on the <a href="whats-in-the-report.html">What’s in the report</a> page.
+            Yes. The first page is simple and readable...
           </li>
 
           <li>
-            <strong>Can I share the report with buyers or dealers?</strong><br>
-            Absolutely. The report is yours to share with potential buyers, dealers, finance providers or anyone else
-            involved in the sale. Many sellers use it directly in their online listings.
+            <strong>Can I share the report?</strong><br>
+            Absolutely. It’s yours to use in listings and negotiations.
           </li>
 
           <li>
-            <strong>Is the report a guarantee or warranty?</strong><br>
-            No. The report is a snapshot of the battery’s condition at the time of testing. It is not a warranty or a
-            guarantee of future performance. It also does not replace the manufacturer’s own diagnostics or warranty
-            process.
+            <strong>Is this a guarantee?</strong><br>
+            No – the report is a snapshot, not a warranty.
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- Pricing & trade questions -->
+    <!-- Section 4 -->
     <section class="section">
       <div class="container">
         <header class="section-header">
-          <h2>Pricing and trade questions</h2>
+          <h2>Pricing & trade</h2>
         </header>
 
         <ul class="faq-list">
           <li>
-            <strong>How much does a report cost?</strong><br>
-            For private buyers and sellers, the standard price is £99 per vehicle.
-            You can see a full breakdown on the <a href="pricing.html">Pricing</a> page.
+            <strong>How much does it cost?</strong><br>
+            £99 per vehicle...
           </li>
 
           <li>
-            <strong>Is there a discount for multiple vehicles?</strong><br>
-            Yes. If you’re a dealer or fleet operator with regular EV volume, we can structure pricing around your
-            monthly needs. Email <a href="mailto:hello@myevreport.com">hello@myevreport.com</a> with your typical
-            volumes and locations.
+            <strong>Do you offer trade pricing?</strong><br>
+            Yes. Dealers and fleets can email us...
           </li>
 
           <li>
             <strong>Do you charge a call-out fee?</strong><br>
-            Within our standard coverage area, there is no additional call-out fee beyond the agreed report price.
-            For locations on the edge of, or outside, our usual patch, we’ll confirm any extra cost before you book.
+            No within standard coverage areas...
           </li>
 
           <li>
             <strong>What if you can’t complete the test?</strong><br>
-            If for any reason we are unable to complete the test (for example, incompatible vehicle, access issues or
-            equipment problems), your fee will be refunded.
+            Your fee is refunded.
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- Limitations & misc -->
+    <!-- Section 5 -->
     <section class="section section-alt">
       <div class="container">
         <header class="section-header">
@@ -217,74 +264,62 @@
         <ul class="faq-list">
           <li>
             <strong>Is this a full vehicle inspection?</strong><br>
-            No. We focus solely on the EV’s traction battery. We do not inspect brakes, tyres, bodywork or other
-            mechanical components. We recommend combining our report with a trusted mechanical inspection if you
-            want a complete view of the vehicle.
+            No – we focus solely on the EV’s battery...
           </li>
 
           <li>
-            <strong>Can you test plug-in hybrids (PHEVs)?</strong><br>
-            In many cases yes, but compatibility can vary.
-            When you submit a booking request, include the full vehicle details and we’ll confirm whether we can test it.
+            <strong>Can you test PHEVs?</strong><br>
+            In many cases yes…
           </li>
 
           <li>
             <strong>Do you need to drive the vehicle?</strong><br>
-            Typically, no. Most tests are performed with the vehicle stationary. In some cases we may recommend a short
-            drive as part of the assessment, but this will always be agreed with you first.
+            Usually no.
           </li>
 
           <li>
-            <strong>What if I still have questions after I receive the report?</strong><br>
-            You’re always welcome to reply to the report email with questions. We’ll do our best to explain anything
-            that isn’t clear.
+            <strong>What if I still have questions?</strong><br>
+            You can reply to the report email anytime.
           </li>
         </ul>
 
         <div class="section-cta">
-          <p>
-            Still unsure about something? Email
-            <a href="mailto:hello@myevreport.com">hello@myevreport.com</a> and we’ll be happy to help.
-          </p>
+          <p>Still unsure? Email <a href="mailto:hello@myevreport.com">hello@myevreport.com</a>.</p>
         </div>
       </div>
     </section>
 
   </main>
 
-   <footer class="site-footer">
-  <div class="footer-inner">
+  <footer class="site-footer">
+    <div class="footer-inner">
 
-    <div class="footer-left">
-      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
-      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      <div class="footer-left">
+        <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+        <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      </div>
+
+      <div class="footer-centre">
+        <p>Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025</p>
+      </div>
+
+      <div class="footer-right">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
+
     </div>
-
-    <div class="footer-centre">
-      <p>
-        Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025</p>
-      </p>
-    </div>
-
-    <div class="footer-right">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="terms.html">Terms &amp; conditions</a>
-    </div>
-
-  </div>
-</footer>
+  </footer>
 
   <!-- WhatsApp Floating Button -->
-<a class="whatsapp-button" 
-   href="https://wa.me/447853434243?text=I%27d%20like%20to%20sell%20my%20car%20to%20NE%20CarBuyer%20today!" 
-   target="_blank" 
-   style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-       alt="WhatsApp" 
-       style="width: 90px; height: 90px;">
-</a>
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp"
+         style="width: 90px; height: 90px;">
+  </a>
 
-  <!-- Main JS -->
   <script src="js/main.js" defer></script>
 </body>
 </html>

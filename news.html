@@ -1,27 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <link rel="canonical" href="https://myevreport.com/news.html">
   <meta charset="UTF-8">
-  <title>EV Blog & UK Battery Health News – MyEVReport</title>
+  <link rel="canonical" href="https://myevreport.com/news.html">
+  <title>EV News, Grants & UK Battery Health Guides – MyEVReport</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="UK EV news and guides from MyEVReport. Understand the new 3p-per-mile EV road tax, the £3,750 Electric Car Grant and what they mean for drivers.">
+        content="UK EV news and plain-English guides from MyEVReport. Understand the new 3p-per-mile EV road tax, the £3,750 Electric Car Grant and what they mean for drivers and running costs.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myevreport.com/news.html">
+  <meta property="og:title" content="EV News, Grants & UK Battery Health Guides – MyEVReport">
+  <meta property="og:description"
+        content="Short, practical explainers on UK EV news – including the new 3p-per-mile EV road tax and the £3,750 Electric Car Grant – written for everyday drivers.">
+  <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EV News, Grants & UK Battery Health Guides – MyEVReport">
+  <meta name="twitter:description"
+        content="Clear EV news and guides from MyEVReport on tax, grants and running costs for UK drivers.">
+  <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
   <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Performance -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="images/logo-myevreport.png" as="image">
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- News collection schema with newest-first articles -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "EV News & Guides – MyEVReport",
+    "description": "UK EV news and guides from MyEVReport, explaining grants, road tax and battery health in plain English.",
+    "hasPart": [
+      {
+        "@type": "NewsArticle",
+        "headline": "Which cars now qualify for the £3,750 Electric Car Grant?",
+        "url": "https://myevreport.com/news-ev-grant-3750-eligible-cars.html",
+        "datePublished": "2025-12-03",
+        "dateModified": "2025-12-03"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "The new 3p-per-mile EV road tax — what it could mean for your running costs",
+        "url": "https://myevreport.com/news-ev-road-tax-3p-mile.html",
+        "datePublished": "2025-11-28",
+        "dateModified": "2025-11-28"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- Launch banner -->
   <div class="launch-banner">
-     🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+        <img src="images/logo-myevreport.png"
+             alt="MyEVReport logo – independent EV battery health reports"
+             width="180" height="42">
       </a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
@@ -29,10 +79,10 @@
         <a href="pricing.html">Pricing</a>
         <a href="coverage.html">Coverage area</a>
         <a href="faqs.html">FAQs</a>
-        <a href="news.html">EV News</a>
+        <a href="news.html" class="active">EV News</a>
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -44,7 +94,7 @@
     <section class="section">
       <div class="container">
         <header class="section-header">
-          <h1>EV Blog &amp; UK battery health news</h1>
+          <h1>EV blog &amp; UK battery health news</h1>
           <p>
             Short, practical explainers on the UK EV news that actually affects drivers – from the new
             3p-per-mile EV road tax to the Electric Car Grant worth up to £3,750.
@@ -53,7 +103,7 @@
       </div>
     </section>
 
-        <!-- News cards -->
+    <!-- News cards -->
     <section class="section section-alt">
       <div class="container">
         <header class="section-header">
@@ -66,98 +116,119 @@
 
         <div class="news-grid">
 
-          <!-- Article 1: 3p-per-mile tax -->
+          <!-- NEWEST FIRST: Article 1 – £3,750 grant (03 Dec 2025) -->
           <article class="news-card">
-            <a href="news-ev-road-tax-3p-mile.html" class="news-card-image" aria-label="Read the new 3p-per-mile EV road tax article">
-              <img
-                src="images/news-ev-road-tax-3p-mile-hero-1200x600.png"
-                alt="Chancellor holding red budget box in front of electric vehicle charger"
-              >
-            </a>
-
-            <div class="news-card-body">
-              <p class="news-card-category">Policy &amp; running costs</p>
-
-              <h2 class="news-card-title">
-                <a href="news-ev-road-tax-3p-mile.html">
-                  The new 3p-per-mile EV road tax — what it could mean for your running costs
-                </a>
-              </h2>
-
-              <p class="news-card-excerpt">
-                A simple breakdown of what a 3p-per-mile charge would mean for real-world journeys and annual EV running costs.
-              </p>
-
-              <p class="news-card-meta">Updated December 2025</p>
-
-              <a href="news-ev-road-tax-3p-mile.html" class="link-arrow">Read more</a>
-            </div>
-          </article>
-
-          <!-- Article 2: £3,750 grant -->
-          <article class="news-card">
-            <a href="news-ev-grant-3750-eligible-cars.html" class="news-card-image" aria-label="Read the £3,750 Electric Car Grant article">
+            <a href="news-ev-grant-3750-eligible-cars.html"
+               class="news-card-image"
+               aria-label="Read which cars now qualify for the £3,750 Electric Car Grant">
               <img
                 src="images/news-ev-grant-3750-hero-1200x600.png"
-                alt="Electric car grant headline graphic with EV in UK street"
+                alt="Electric car parked on a UK street with grant announcement graphic"
+                width="1200" height="600"
+                loading="lazy"
               >
             </a>
 
             <div class="news-card-body">
               <p class="news-card-category">Buying new • Upfront costs</p>
 
-              <h2 class="news-card-title">
+              <h3 class="news-card-title">
                 <a href="news-ev-grant-3750-eligible-cars.html">
                   Which cars now qualify for the £3,750 Electric Car Grant?
                 </a>
-              </h2>
+              </h3>
 
               <p class="news-card-excerpt">
                 The UK Electric Car Grant has been expanded, with four new models now qualifying for the full £3,750
                 discount under the £35,000 price cap.
               </p>
 
-              <p class="news-card-meta">Updated December 2025</p>
+              <p class="news-card-meta">
+                Published 3 December 2025 • Updated 3 December 2025
+              </p>
 
               <a href="news-ev-grant-3750-eligible-cars.html" class="link-arrow">Read more</a>
             </div>
           </article>
 
+          <!-- Article 2 – 3p-per-mile road tax (28 Nov 2025) -->
+          <article class="news-card">
+            <a href="news-ev-road-tax-3p-mile.html"
+               class="news-card-image"
+               aria-label="Read the new 3p-per-mile EV road tax article">
+              <img
+                src="images/news-ev-road-tax-3p-mile-hero-1200x600.png"
+                alt="Chancellor holding the red budget box next to an electric vehicle charger"
+                width="1200" height="600"
+                loading="lazy"
+              >
+            </a>
+
+            <div class="news-card-body">
+              <p class="news-card-category">Policy &amp; running costs</p>
+
+              <h3 class="news-card-title">
+                <a href="news-ev-road-tax-3p-mile.html">
+                  The new 3p-per-mile EV road tax — what it could mean for your running costs
+                </a>
+              </h3>
+
+              <p class="news-card-excerpt">
+                A simple breakdown of what a 3p-per-mile charge would mean for real-world journeys and annual EV running costs.
+              </p>
+
+              <p class="news-card-meta">
+                Published 28 November 2025 • Updated 28 November 2025
+              </p>
+
+              <a href="news-ev-road-tax-3p-mile.html" class="link-arrow">Read more</a>
+            </div>
+          </article>
+
           <!-- Future cards:
-               Just duplicate the <article class="news-card"> block above
-               and change the image, links, category, title and copy. -->
+               When you add a new article:
+               1. Create a new <article class="news-card"> block.
+               2. Paste it ABOVE the others to keep newest-first order.
+               3. Add its entry to the hasPart list in the JSON-LD above.
+          -->
 
         </div>
       </div>
     </section>
 
-        </div> <!-- end .content-grid -->
-      </div>   <!-- end .container -->
-    </section> <!-- end .section-alt -->
-
   </main>
 
   <footer class="site-footer">
-  <div class="footer-inner">
+    <div class="footer-inner">
 
-    <div class="footer-left">
-      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
-      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      <div class="footer-left">
+        <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+        <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      </div>
+
+      <div class="footer-centre">
+        <p>
+          Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
+
     </div>
+  </footer>
 
-    <div class="footer-centre">
-      <p>
-        Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025</p>
-      </p>
-    </div>
-
-    <div class="footer-right">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="terms.html">Terms &amp; conditions</a>
-    </div>
-
-  </div>
-</footer>
+  <!-- WhatsApp Floating Button -->
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank" rel="noopener"
+     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp icon"
+         style="width: 90px; height: 90px;">
+  </a>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="js/main.js" defer></script>

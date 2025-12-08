@@ -1,27 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <link rel="canonical" href="https://myevreport.com/">
   <meta charset="UTF-8">
-  <title>MyEVReport – Independent EV Battery Health Reports</title>
+  <link rel="canonical" href="https://myevreport.com/">
+  <title>MyEVReport – EV Battery Health Reports in the North of England</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="Independent mobile EV battery testing and battery health reports for used electric cars. State of Health %, real-world range and condition rating. Serving the North of England.">
+        content="Independent mobile EV battery testing and health reports for used electric cars. State of Health (SoH) %, real-world range and condition rating. Serving the North of England.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myevreport.com/">
+  <meta property="og:title" content="MyEVReport – EV Battery Health Reports in the North of England">
+  <meta property="og:description"
+        content="Independent mobile EV battery testing and clear EV battery health reports for buyers, sellers and dealers. SoH %, real-world range and condition rating.">
+  <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MyEVReport – EV Battery Health Reports in the North of England">
+  <meta name="twitter:description"
+        content="Independent mobile EV battery testing and battery health reports for used electric cars across the North of England.">
+  <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Favicon -->
   <link rel="icon" href="images/favicon.png">
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="images/logo-myevreport.png" as="image">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "MyEVReport",
+    "url": "https://myevreport.com/",
+    "description": "Independent mobile EV battery testing and battery health reports for used electric cars. State of Health (SoH) %, real-world range and condition rating. Serving the North of England.",
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "North East England"
+    },
+    "email": "hello@myevreport.com"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MyEVReport",
+    "url": "https://myevreport.com/"
+  }
+  </script>
 </head>
 <body>
 
   <!-- Launch banner -->
   <div class="launch-banner">
-    🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+    🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+        <img src="images/logo-myevreport.png"
+             alt="MyEVReport logo – independent EV battery health reports"
+             width="180" height="42">
       </a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
@@ -32,7 +83,7 @@
         <a href="news.html">EV News</a>
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -45,10 +96,11 @@
       <div class="container hero-inner">
         <div class="hero-text">
           <p class="eyebrow">Independent mobile EV battery testing</p>
-          <h1>Buy or sell your next EV with confidence.</h1>
+          <h1>EV battery health reports for used electric cars in the North of England.</h1>
+          <p class="hero-tagline">Buy or sell your next EV with confidence.</p>
           <p class="hero-lead">
             MyEVReport provides an independent battery health report for your electric vehicle — including State of
-            Health %, real-world range estimates and an easy-to-understand condition rating. We come to you and deliver
+            Health (SoH) %, real-world range estimates and an easy-to-understand condition rating. We come to you and deliver
             your report within 72 hours.
           </p>
           <ul class="hero-bullets">
@@ -97,7 +149,8 @@
           </p>
           <figure class="example-image">
             <img src="images/hero-ev-phone.jpg"
-                 alt="EV battery State of Health shown on a smartphone in front of an electric vehicle">
+                 alt="EV battery State of Health shown on a smartphone in front of an electric vehicle"
+                 loading="lazy" width="640" height="400">
           </figure>
         </div>
       </div>
@@ -108,7 +161,7 @@
       <div class="container">
         <header class="section-header">
           <h2>How MyEVReport works</h2>
-          <p>A straightforward, mobile service designed for EV buyers, sellers and dealers. We keep things simple and transparent.</p>
+          <p>A straightforward, mobile EV battery health check designed for buyers, sellers and dealers. We keep things simple and transparent.</p>
         </header>
 
         <div class="steps-grid">
@@ -214,7 +267,7 @@
       </div>
     </section>
 
-    <!-- Pricing overview (matches pricing page layout) -->
+    <!-- Pricing overview -->
     <section class="section section-alt" id="pricing-overview">
       <div class="container">
         <header class="section-header">
@@ -255,7 +308,7 @@
           </div>
         </div>
 
-     <!-- Three testimonial bubbles underneath -->
+        <!-- Three testimonial bubbles underneath -->
         <div class="testimonial-row">
           <blockquote class="testimonial testimonial-compact">
             <p>
@@ -293,7 +346,7 @@
       </div>
     </section>
 
-   <!-- Coverage area (interactive) -->
+    <!-- Coverage area (interactive) -->
     <section class="section section--tight" id="coverage">
       <div class="container">
         <h2 class="section-title">Coverage area</h2>
@@ -427,8 +480,6 @@
       </div>
     </section>
 
-  </main>
-
     <!-- FAQ teaser -->
     <section class="section" id="faqs-overview">
       <div class="container">
@@ -450,141 +501,140 @@
     </section>
 
     <!-- Booking form -->
-<section class="section section-booking" id="book">
-  <div class="container">
-    <header class="section-header">
-      <h2>Book your EV battery health report</h2>
-      <p>
-        Complete the form below and we’ll confirm your booking by email.
-        Once confirmed, you’ll receive a secure payment link to finalise your appointment.
-      </p>
-    </header>
+    <section class="section section-booking" id="book">
+      <div class="container">
+        <header class="section-header">
+          <h2>Book your EV battery health report</h2>
+          <p>
+            Complete the form below and we’ll confirm your booking by email.
+            Once confirmed, you’ll receive a secure payment link to finalise your appointment.
+          </p>
+        </header>
 
-    <form
-      class="booking-form"
-      method="post"
-      action="https://submit-form.com/6bLuHmQIB"
-    >
-      <!-- Redirect to thank-you page after successful submission -->
-      <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
+        <form
+          class="booking-form"
+          method="post"
+          action="https://submit-form.com/6bLuHmQIB"
+        >
+          <!-- Redirect to thank-you page after successful submission -->
+          <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="name">Your name *</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            placeholder="John Smith"
-          >
-        </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Your name *</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="John Smith"
+              >
+            </div>
 
-        <div class="form-group">
-          <label for="email">Email address *</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="you@example.com"
-          >
-        </div>
+            <div class="form-group">
+              <label for="email">Email address *</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="you@example.com"
+              >
+            </div>
 
-        <div class="form-group">
-          <label for="phone">Telephone number *</label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            required
-            placeholder="07123 456789"
-          >
-        </div>
+            <div class="form-group">
+              <label for="phone">Telephone number *</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                placeholder="07123 456789"
+              >
+            </div>
 
-        <div class="form-group">
-          <label for="postcode">Postcode where vehicle is located *</label>
-          <input
-            id="postcode"
-            name="postcode"
-            type="text"
-            required
-            placeholder="NE1 4LP"
-          >
-          <small>Currently serving the North East of England and surrounding areas.</small>
-        </div>
+            <div class="form-group">
+              <label for="postcode">Postcode where vehicle is located *</label>
+              <input
+                id="postcode"
+                name="postcode"
+                type="text"
+                required
+                placeholder="NE1 4LP"
+              >
+              <small>Currently serving the North East of England and surrounding areas.</small>
+            </div>
 
-        <div class="form-group">
-          <label for="reg">Vehicle registration *</label>
-          <input
-            id="reg"
-            name="reg"
-            type="text"
-            required
-            placeholder="AB12 CDE"
-          >
-        </div>
+            <div class="form-group">
+              <label for="reg">Vehicle registration *</label>
+              <input
+                id="reg"
+                name="reg"
+                type="text"
+                required
+                placeholder="AB12 CDE"
+              >
+            </div>
 
-        <div class="form-group">
-          <label for="make-model">Vehicle make &amp; model *</label>
-          <input
-            id="make-model"
-            name="make-model"
-            type="text"
-            required
-            placeholder="Tesla Model 3"
-          >
-        </div>
+            <div class="form-group">
+              <label for="make-model">Vehicle make &amp; model *</label>
+              <input
+                id="make-model"
+                name="make-model"
+                type="text"
+                required
+                placeholder="Tesla Model 3"
+              >
+            </div>
 
-        <div class="form-group">
-          <label for="date">Preferred date *</label>
-          <input
-            id="date"
-            name="date"
-            type="date"
-            required
-            placeholder="dd/mm/yyyy"
-          >
-        </div>
+            <div class="form-group">
+              <label for="date">Preferred date *</label>
+              <input
+                id="date"
+                name="date"
+                type="date"
+                required
+              >
+            </div>
 
-        <div class="form-group">
-          <label for="time">Preferred time of day *</label>
-          <select id="time" name="time" required>
-            <option value="">Select...</option>
-            <option value="morning">Morning (9am–12pm)</option>
-            <option value="afternoon">Afternoon (12pm–4pm)</option>
-            <option value="evening">Evening (4pm–7pm)</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="time">Preferred time of day *</label>
+              <select id="time" name="time" required>
+                <option value="">Select...</option>
+                <option value="morning">Morning (9am–12pm)</option>
+                <option value="afternoon">Afternoon (12pm–4pm)</option>
+                <option value="evening">Evening (4pm–7pm)</option>
+              </select>
+            </div>
 
-        <div class="form-group form-group-full">
-          <label for="notes">Anything else we should know?</label>
-          <textarea
-            id="notes"
-            name="notes"
-            rows="4"
-            placeholder="Access notes, parking details or EV-specific questions"
-          ></textarea>
-        </div>
-      </div> <!-- end .form-grid -->
-</p>
-      <!-- Actions / footnotes / Turnstile all full-width below the grid -->
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Request a booking</button>
+            <div class="form-group form-group-full">
+              <label for="notes">Anything else we should know?</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="4"
+                placeholder="Access notes, parking details or EV-specific questions"
+              ></textarea>
+            </div>
+          </div>
 
-        <p class="form-footnote">* Required fields.</p>
+          <!-- Actions / footnotes / Turnstile all full-width below the grid -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Request a booking</button>
 
-        <p class="form-footnote">
-          We’ll review your request and confirm availability by email before taking payment.
-        </p>
+            <p class="form-footnote">* Required fields.</p>
 
-        <div class="cf-turnstile"
-             data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
-        </div>
+            <p class="form-footnote">
+              We’ll review your request and confirm availability by email before taking payment.
+            </p>
+
+            <div class="cf-turnstile"
+                 data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-</section>
+    </section>
 
   </main>
 
@@ -610,12 +660,11 @@
   </footer>
 
   <!-- WhatsApp Floating Button -->
-  <a class="whatsapp-button" 
-     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
-     target="_blank" 
-     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" 
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp"
          style="width: 90px; height: 90px;">
   </a>
 

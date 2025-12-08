@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <link rel="canonical" href="https://myevreport.com/pricing.html">
   <meta charset="UTF-8">
-  <title>Pricing – MyEVReport EV Battery Health Reports</title>
+  <link rel="canonical" href="https://myevreport.com/pricing.html">
+  <title>Pricing – EV Battery Health Reports | MyEVReport</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="Simple, transparent pricing for independent EV battery health reports. £99 per vehicle for private customers, with trade and fleet options available.">
+        content="Simple, transparent pricing for independent EV battery health reports. £99 per vehicle for private customers, with trade and fleet options available across the North of England.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myevreport.com/pricing.html">
+  <meta property="og:title" content="Pricing – EV Battery Health Reports | MyEVReport">
+  <meta property="og:description"
+        content="See the cost of an independent EV battery health report with MyEVReport. £99 per vehicle for private buyers and sellers, with trade and fleet pricing available.">
+  <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pricing – EV Battery Health Reports | MyEVReport">
+  <meta name="twitter:description"
+        content="Clear pricing for EV battery health checks with MyEVReport, including trade and fleet options for dealers and operators.">
+  <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
   <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="images/logo-myevreport.png" as="image">
+
   <link rel="stylesheet" href="css/main.css">
 
   <!-- Page-specific tweaks to keep both pricing cards the same height -->
@@ -30,30 +53,55 @@
       }
     }
   </style>
+
+  <!-- Optional: basic Offer schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "EV Battery Health Report",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "MyEVReport"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "North East England"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "GBP",
+      "price": "99",
+      "description": "Standard EV battery health report including on-site test, State of Health %, real-world range estimate and condition rating."
+    }
+  }
+  </script>
 </head>
 <body>
 
   <!-- Launch banner -->
   <div class="launch-banner">
-     🔋 Launching in 2026 - Independent Battery Health Reports for Every EV Buyer
+     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo-myevreport.png" alt="MyEVReport logo">
+        <img src="images/logo-myevreport.png"
+             alt="MyEVReport logo – independent EV battery health reports"
+             width="180" height="42">
       </a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
         <a href="whats-in-the-report.html">What’s in the report</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="pricing.html" class="active">Pricing</a>
         <a href="coverage.html">Coverage area</a>
         <a href="faqs.html">FAQs</a>
         <a href="news.html">EV News</a>
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -80,7 +128,7 @@
             <p class="price">£99 <span>/ vehicle</span></p>
             <p>
               Mobile visit to your location in the North East of England and surrounding areas.
-              Payment taken securely online once your booking is confirmed.
+              Payment is taken securely online once your booking is confirmed.
             </p>
             <ul>
               <li>✅ On-site EV battery health test at your home, workplace or dealership</li>
@@ -96,13 +144,13 @@
 
           <!-- Dealer & fleet card -->
           <div class="pricing-card pricing-card-alt">
-            <h3>Dealer &amp; fleet pricing</h3>
+            <h2>Dealer &amp; fleet pricing</h2>
             <p>
               For dealerships, car supermarkets and fleet operators looking to test multiple vehicles each month,
               we offer flexible trade pricing.
             </p>
             <ul>
-              <li>Flexible volume-based pricing for multiple tests</li>
+              <li>Volume-based pricing for regular EV tests</li>
               <li>Ideal for stocking decisions and online listings</li>
               <li>Options for white-label or co-branded reporting</li>
             </ul>
@@ -165,35 +213,35 @@
 
   </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
+  <footer class="site-footer">
+    <div class="footer-inner">
 
-    <div class="footer-left">
-      <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
-      <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      <div class="footer-left">
+        <p>© MyEVReport <span id="year"></span>. All rights reserved.</p>
+        <p><a href="mailto:hello@myevreport.com">hello@myevreport.com</a></p>
+      </div>
+
+      <div class="footer-centre">
+        <p>
+          Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms &amp; conditions</a>
+      </div>
+
     </div>
-
-    <div class="footer-centre">
-      <p>
-        Designed &amp; hosted by <span style="font-weight:600;">Bluestone Design</span> 2025</p>
-      </p>
-    </div>
-
-    <div class="footer-right">
-      <a href="privacy.html">Privacy policy</a>
-      <a href="terms.html">Terms &amp; conditions</a>
-    </div>
-
-  </div>
-</footer>
+  </footer>
 
   <!-- WhatsApp Floating Button -->
-  <a class="whatsapp-button" 
-     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
-     target="_blank" 
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank" rel="noopener"
      style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" 
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp"
          style="width: 90px; height: 90px;">
   </a>
 
