@@ -18,6 +18,9 @@
   --radius-card: 14px;
   --radius-pill: 999px;
   --max-width: 1120px;
+
+  --primary: #0f4c81;               /* primary brand colour */
+  --transition-fast: 0.16s ease-out; /* shared transition speed */
 }
 
 /* =========================
@@ -89,9 +92,24 @@ main {
 }
 
 /* =========================
-   Banner
+   Launch Banner
    ========================= */
 
+.launch-banner {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--brand-green, #22b473);
+  color: #ffffff;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  z-index: 9999;
+}
+
+/* (Unused but kept for future if needed) */
 .site-banner {
   background: #e6f5ff;
   color: var(--brand-navy);
@@ -139,6 +157,12 @@ main {
   font-weight: 500;
 }
 
+/* Active nav link (current page) */
+.main-nav a.active {
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
 .main-nav a:hover {
   color: var(--brand-navy);
   text-decoration: none;
@@ -181,8 +205,12 @@ main {
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: transform 0.08s ease, box-shadow 0.08s ease,
-    background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease,
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    color 0.12s ease;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -191,7 +219,7 @@ main {
 .btn-primary {
   background: #0A4D8C;
   border-color: #0A4D8C;
-  color: #ffffff;
+  color: #ffffff !important;
   box-shadow: 0 8px 20px rgba(10, 77, 140, 0.25);
 }
 
@@ -201,6 +229,7 @@ main {
   transform: translateY(-2px);
   box-shadow: 0 12px 26px rgba(10, 77, 140, 0.35);
   text-decoration: none;
+  color: #ffffff !important;
 }
 
 .btn-secondary {
@@ -386,6 +415,7 @@ main {
   margin-bottom: 1.8rem;
 }
 
+.section-header h1,
 .section-header h2 {
   font-size: 1.5rem;
   margin: 0 0 0.35rem;
@@ -398,7 +428,20 @@ main {
   font-size: 0.95rem;
 }
 
-/* Service strip */
+/* Standalone titles in sections (e.g. Coverage) */
+.section-title {
+  font-size: 1.5rem;
+  margin: 0 0 0.35rem;
+  color: var(--brand-navy);
+}
+
+.section-subtitle {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Service strip (if used) */
 
 .service-strip {
   background: #0b3a61;
@@ -430,6 +473,12 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.content-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Steps */
+
 .step {
   background: #ffffff;
   border-radius: var(--radius-card);
@@ -456,9 +505,7 @@ main {
   color: var(--text);
 }
 
-.content-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
+/* Content grid text */
 
 .content-grid h3 {
   font-size: 1rem;
@@ -489,7 +536,7 @@ main {
 
 .pricing-grid {
   grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-  align-items: flex-start;
+  align-items: stretch; /* ensure equal height cards */
 }
 
 /* Base card (used elsewhere too) */
@@ -501,6 +548,7 @@ main {
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
 }
 
+.pricing-card h2,
 .pricing-card h3 {
   margin: 0 0 0.4rem;
   font-size: 1.05rem;
@@ -579,6 +627,20 @@ main {
   font-weight: 600;
 }
 
+/* Testimonial bubbles under pricing */
+
+.testimonial-row {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .testimonial-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 /* Compact yellow testimonial bubble */
 .testimonial-compact {
   background: #fefce8;
@@ -588,10 +650,18 @@ main {
   font-size: 0.9rem;
   color: #7c2d12;
   padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .testimonial-compact p {
   margin-bottom: 0.7rem;
+  flex-grow: 1;
+}
+
+.testimonial-compact footer {
+  margin-top: 1rem;
 }
 
 .testimonial-compact .testimonial-name {
@@ -603,16 +673,7 @@ main {
   color: #b45309;
 }
 
-/* Stack pricing on mobile */
-@media (max-width: 960px) {
-  .pricing-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* =========================
-   Full-width testimonial block (later on page)
-   ========================= */
+/* Full-width testimonial block (elsewhere) */
 
 .testimonial {
   margin: 0;
@@ -661,7 +722,7 @@ main {
 }
 
 /* =========================
-   Booking form
+   Booking section & form
    ========================= */
 
 .section-booking {
@@ -677,268 +738,114 @@ main {
   color: #cbd5f5;
 }
 
-./* Booking form */
+.booking-form {
+  margin-top: 1.5rem;
+}
 
-    .form-card {
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 1.5rem 1.4rem;
-      background: #fff;
-      box-shadow: var(--shadow-soft);
-    }
+/* Booking form */
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
+.form-card {
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.4rem;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      font-size: 0.9rem;
-    }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
 
-    .form-group label {
-      font-weight: 500;
-      color: var(--muted);
-    }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
 
-    .form-group small {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+.form-group-full {
+  grid-column: 1 / -1;
+}
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      padding: 0.55rem 0.6rem;
-      font-size: 0.9rem;
-      font-family: inherit;
-      outline: none;
-      transition: border var(--transition-fast), box-shadow var(--transition-fast),
-                  background var(--transition-fast);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(15, 76, 129, 0.18);
-      background: #f9fafb;
-    }
-
-    .form-footer {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.8rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .required-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-/* =========================
-   Footer
-   ========================= */
-
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 1.25rem;
-  background: #f9fafb;
-  font-size: 0.85rem;
+.form-group label {
+  font-weight: 500;
   color: var(--muted);
 }
 
-.footer-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  flex-wrap: wrap;
+.form-group small {
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
-.footer-left p,
-.footer-centre p {
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.6rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition:
+    border var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px rgba(15, 76, 129, 0.18);
+  background: #f9fafb;
+}
+
+/* Actions under the grid */
+
+.form-actions {
+  margin-top: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #cbd5f5;
+}
+
+.form-footnote {
+  font-size: 0.8rem;
+  color: #cbd5f5;
   margin: 0;
 }
 
-.footer-left a,
-.footer-centre a,
-.footer-right a {
-  color: var(--brand-navy);
-  text-decoration: none;
+/* Final overrides – booking form field colours to match live site */
+.section-booking .form-group input,
+.section-booking .form-group select,
+.section-booking .form-group textarea {
+  background: #ffffff !important;   /* white fields */
+  color: #111827 !important;        /* dark text */
+  border: 1px solid #d1d5db !important;
 }
 
-.footer-left a:hover,
-.footer-centre a:hover,
-.footer-right a:hover {
-  text-decoration: underline;
+/* Placeholder text */
+.section-booking .form-group input::placeholder,
+.section-booking .form-group textarea::placeholder {
+  color: #6b7280 !important;        /* mid-grey */
 }
 
-.footer-right {
-  display: flex;
-  gap: 1.25rem;
-  white-space: nowrap;
-}
-
-/* Mobile footer layout */
-@media (max-width: 640px) {
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-right {
-    gap: 0.75rem;
-  }
-}
-
-/* Footer email link should always match the EV green */
-.footer-left a {
-  color: var(--brand-green) !important;
-  font-weight: 600;
+/* Make sure the select text is dark too */
+.section-booking .form-group select {
+  color: #111827 !important;
 }
 
 /* =========================
-   WhatsApp button
-   ========================= */
-
-.whatsapp-button {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-}
-
-.whatsapp-button:hover {
-  transform: scale(1.1);
-}
-
-.whatsapp-button img {
-  width: 60px;
-  height: 60px;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
-}
-
-/* =========================
-   Responsive
-   ========================= */
-
-@media (max-width: 960px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-example {
-    order: -1;
-  }
-
-  .steps-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .content-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pricing-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .form-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .service-strip .service-points {
-    margin-top: 0.4rem;
-  }
-}
-
-@media (max-width: 768px) {
-  main {
-    padding-top: 3.75rem;
-  }
-
-  .header-inner {
-    padding: 0.6rem 0;
-  }
-
-  .main-nav {
-    position: absolute;
-    inset-inline: 0;
-    top: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid rgba(224, 228, 236, 0.9);
-    flex-direction: column;
-    padding: 0.75rem 1.25rem 1rem;
-    transform-origin: top;
-    transform: scaleY(0);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.12s ease-out, opacity 0.12s ease-out;
-  }
-
-  .main-nav a {
-    width: 100%;
-  }
-
-  .site-header.nav-open .main-nav {
-    transform: scaleY(1);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .nav-toggle {
-    display: inline-block;
-  }
-
-  .hero {
-    padding-top: 2rem;
-  }
-
-  .section {
-    padding: 2.2rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .pricing-card,
-  .booking-form,
-  .hero-example,
-  .testimonial {
-    padding: 1.1rem 1.1rem 1rem;
-  }
-}
-
-/* =========================
-   Coverage section (homepage)
+   Coverage section
    ========================= */
 
 .coverage-intro {
@@ -1022,51 +929,6 @@ main {
   font-style: italic;
 }
 
-.coverage-lead {
-  margin-top: 0.6rem;
-  padding-top: 0.65rem;
-  border-top: 1px dashed #e2e7ea;
-}
-
-.coverage-lead-row {
-  display: grid;
-  gap: 0.5rem;
-  margin-bottom: 0.6rem;
-}
-
-@media (min-width: 600px) {
-  .coverage-lead-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.coverage-lead label {
-  display: block;
-  font-size: 0.78rem;
-  font-weight: 500;
-  margin-bottom: 0.2rem;
-}
-
-.coverage-lead input {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid #c6ced3;
-  font-family: inherit;
-  font-size: 0.88rem;
-}
-
-.coverage-lead input:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(34, 180, 115, 0.2);
-}
-
-.coverage-lead button {
-  width: 100%;
-  margin-top: 0.25rem;
-}
-
 /* Coverage bubbles grid */
 
 .coverage-grid {
@@ -1099,7 +961,10 @@ main {
   padding: 0.52rem 1rem;
   text-align: left;
   box-shadow: 0 4px 14px rgba(33, 40, 47, 0.04);
-  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
 }
 
 .coverage-title {
@@ -1121,7 +986,11 @@ main {
   font-weight: 600;
   color: var(--text);
   background: #f7f9fa;
-  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .coverage-item.open .coverage-header {
@@ -1174,144 +1043,81 @@ main {
   margin-top: 1.8rem;
 }
 
-.launch-banner {
-  position: sticky;
-  top: 0;
+/* =========================
+   Articles & News pages
+   ========================= */
+
+/* News listing hero image strips */
+.news-hero img {
   width: 100%;
-  background: var(--brand-green, #22b473);
-  color: #ffffff;
-  text-align: center;
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  z-index: 9999;
-}
-
-/* Force white text on all primary buttons */
-.btn-primary {
-  color: #ffffff !important;
-}
-
-.btn-primary:hover {
-  color: #ffffff !important;
-}
-
-/* Final overrides – booking form field colours to match live site */
-.section-booking .form-group input,
-.section-booking .form-group select,
-.section-booking .form-group textarea {
-  background: #ffffff !important;   /* white fields */
-  color: #111827 !important;        /* dark text */
-  border: 1px solid #d1d5db !important;
-}
-
-/* Placeholder text */
-.section-booking .form-group input::placeholder,
-.section-booking .form-group textarea::placeholder {
-  color: #6b7280 !important;        /* mid-grey like live site */
-}
-
-/* Make sure the select text is dark too */
-.section-booking .form-group select {
-  color: #111827 !important;
-}
-/* Keep pricing cards equal height + testimonial row */
-.pricing-grid {
-  align-items: stretch;
-}
-
-.pricing-card-main,
-.pricing-card-alt {
-  height: 100%;
-}
-
-.testimonial-row {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
-
-@media (min-width: 900px) {
-  .testimonial-row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-/* Force testimonial cards to align footers */
-.testimonial-compact {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.testimonial-compact p {
-  flex-grow: 1;
-}
-.testimonial-compact footer {
-  margin-top: 1rem;
-}
-.news-card-body-link {
-  text-decoration: none;
-  color: inherit;
   display: block;
+  border-radius: 0 0 12px 12px;
 }
 
-.news-card-body-link:hover .news-card-title {
-  text-decoration: underline;
-}
-
-.news-card-body-link:hover .news-card-link {
-  text-decoration: underline;
-}
-.news-card-body-link {
-  text-decoration: none;
-  color: inherit;
+/* Article hero (road tax page) */
+.article-hero img {
+  width: 100%;
   display: block;
+  border-radius: 0 0 12px 12px;
 }
 
-.news-card-body-link:hover .news-card-title {
-  text-decoration: underline;
-}
-
-.news-card-body-link:hover .news-card-link {
-  text-decoration: underline;
-}
-.testimonials-row {
+/* Shared article container */
+.article-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+  gap: 2.5rem;
+  align-items: flex-start;
 }
 
-.testimonial-card {
-  height: 100%;
-}
-/* Article two-column layout */
-.article-layout {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 2rem;
-  align-items: start;
+.article-content {
+  font-size: 0.95rem;
+  color: var(--text);
 }
 
-.article-image img {
+.article-content h1 {
+  font-size: 1.6rem;
+  margin-top: 0;
+  color: var(--brand-navy);
+}
+
+.article-content h2 {
+  font-size: 1.25rem;
+  margin-top: 1.6rem;
+  color: var(--brand-navy);
+}
+
+.article-content h3 {
+  font-size: 1.05rem;
+  margin-top: 1.2rem;
+  color: var(--brand-navy);
+}
+
+.article-content p {
+  margin: 0 0 0.9rem;
+}
+
+.article-content ul {
+  margin: 0.4rem 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.article-meta {
+  font-size: 0.85rem;
+  color: #6b7380;
+  margin: 0.4rem 0 1.2rem;
+}
+
+/* Right-side tall graphic (grant article) */
+.article-aside img {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 22px rgba(15, 76, 129, 0.18);
 }
 
-/* Mobile behaviour */
-@media (max-width: 840px) {
-  .article-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .article-image {
-    margin-bottom: 1.5rem;
-  }
-}
+/* Road tax article layout */
 .article-wrapper {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
   gap: 3rem;
   align-items: start;
 }
@@ -1323,32 +1129,49 @@ main {
   top: 120px;
 }
 
-.article-hero img {
+/* Article tables */
+.article-table {
   width: 100%;
-  display: block;
-  border-radius: 0 0 12px 12px;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.9rem;
 }
 
-@media (max-width: 900px) {
-  .article-wrapper {
-    grid-template-columns: 1fr;
-  }
-  .article-sidebar img {
-    position: static;
-    margin-top: 1.5rem;
-  }
+.article-table th,
+.article-table td {
+  border: 1px solid #dde2e5;
+  padding: 0.55rem 0.75rem;
+  text-align: left;
 }
+
+.article-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.article-breadcrumb {
+  font-size: 0.85rem;
+  color: #6b7380;
+  margin-bottom: 1rem;
+}
+
+.article-back-link {
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+}
+
 /* Blog grid */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;
 }
 
 .news-card {
   background: #ffffff;
   border-radius: 18px;
-  box-shadow: 0 18px 45px rgba(15, 76, 129, 0.08);
+  box-shadow: 0 12px 35px rgba(15, 76, 129, 0.07);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1358,10 +1181,16 @@ main {
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;              /* keep full Canva artwork */
+  background-color: #f5f7fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .news-card-body {
-  padding: 1.5rem 1.75rem 1.75rem;
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .news-card-category {
@@ -1394,125 +1223,260 @@ main {
   color: #9aa2b1;
   margin: 0 0 0.75rem;
 }
-/* News blog grid layout */
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 2.5rem;
-  align-items: start;
-}
-
-/* Each card styled the same size and height alignment */
-.news-card {
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 12px 35px rgba(15,76,129,0.07);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.news-card-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.news-card-body {
-  padding: 1.75rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.news-card-title a {
-  text-decoration: none;
-  color: #1f2933;
-}
-
-.news-card-title a:hover {
-  text-decoration: underline;
-}
-
-/* Ensures the “Read more” link stays at the bottom */
-.news-card-body .link-arrow {
-  margin-top: auto;
-}
-/* Make all news cards equal height in the grid */
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 2.5rem;
-  align-items: stretch;       /* stretch all cards to same row height */
-}
-
-.news-card {
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 12px 35px rgba(15,76,129,0.07);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;     /* stack image + body */
-}
-
-/* === KEY PART: force same image height/ratio === */
-.news-card-image {
-  width: 100%;
-}
-
-.news-card-image img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;       /* or 2 / 1 if you prefer */
-  object-fit: cover;          /* crop to fit, no stretching */
-}
-
-/* Body fills remaining space so "Read more" lines up */
-.news-card-body {
-  padding: 1.75rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.news-card-body .link-arrow {
-  margin-top: auto;           /* pushes Read more to bottom */
-}
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 2.5rem;
-  align-items: stretch;
-}
-
-.news-card {
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 12px 35px rgba(15,76,129,0.07);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Images: show full artwork, no cropping */
-.news-card-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  background-color: #f5f7fa;     /* subtle backdrop for any letterboxing */
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.news-card-body {
-  padding: 1.75rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
 
 /* Keep “Read more →” aligned at the bottom */
 .news-card-body .link-arrow,
 .news-card-link {
   margin-top: auto;
+}
+
+/* =========================
+   Footer
+   ========================= */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  background: #f9fafb;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-left p,
+.footer-centre p {
+  margin: 0;
+}
+
+.footer-left a,
+.footer-centre a,
+.footer-right a {
+  color: var(--brand-navy);
+  text-decoration: none;
+}
+
+.footer-left a:hover,
+.footer-centre a:hover,
+.footer-right a:hover {
+  text-decoration: underline;
+}
+
+.footer-right {
+  display: flex;
+  gap: 1.25rem;
+  white-space: nowrap;
+}
+
+/* Footer email link should always match the EV green */
+.footer-left a {
+  color: var(--brand-green) !important;
+  font-weight: 600;
+}
+
+/* =========================
+   WhatsApp button
+   ========================= */
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-button img {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-example {
+    order: -1;
+  }
+
+  .steps-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pricing-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-strip .service-points {
+    margin-top: 0.4rem;
+  }
+
+  .article-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .article-wrapper {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .article-sidebar img,
+  .article-aside img {
+    position: static;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-top: 3.75rem;
+  }
+
+  .header-inner {
+    padding: 0.6rem 0;
+  }
+
+  .main-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(224, 228, 236, 0.9);
+    flex-direction: column;
+    padding: 0.75rem 1.25rem 1rem;
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.12s ease-out, opacity 0.12s ease-out;
+  }
+
+  .main-nav a {
+    width: 100%;
+  }
+
+  .site-header.nav-open .main-nav {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .hero {
+    padding-top: 2rem;
+  }
+
+  .section {
+    padding: 2.2rem 0;
+  }
+
+  .news-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-right {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pricing-card,
+  .booking-form,
+  .hero-example,
+  .testimonial {
+    padding: 1.1rem 1.1rem 1rem;
+  }
+}
+/* ======================================
+   FORCE NEWS CARD STRUCTURE & ALIGNMENT
+   ====================================== */
+
+/* Make news card body a vertical flex container */
+.news-card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Push meta + Read more to the bottom */
+.news-card-meta {
+  margin-top: auto;            /* pushes it down */
+  padding-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #9aa2b1;
+  white-space: nowrap;         /* keep date on one line */
+}
+
+/* Ensure Read more stays under the meta date */
+.news-card-body .link-arrow {
+  margin-top: 0.4rem;
+}
+/* =====================================================
+   Anchor the news-card date + Read more block at bottom
+   ===================================================== */
+
+.news-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.news-card-meta {
+  font-size: 0.82rem;
+  color: #9aa2b1;
+  white-space: nowrap;
+}
+
+.news-card-footer .link-arrow {
+  margin-top: 0;
 }
