@@ -3,43 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <link rel="canonical" href="https://myevreport.com/whats-in-the-report.html">
-
   <title>What’s in an EV Battery Health Report – MyEVReport</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="See exactly what's included in a MyEVReport battery health report: State of Health (SoH) %, real-world range estimates, warranty information, advisories and an easy-to-understand summary of battery condition.">
+        content="See exactly what's included in a MyEVReport battery health report: State of Health %, real-world range estimates, warranty information, advisories and an easy-to-understand battery grade.">
   <meta name="robots" content="index,follow">
 
   <!-- Open Graph -->
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:url" content="https://myevreport.com/whats-in-the-report.html">
   <meta property="og:title" content="What’s in an EV Battery Health Report – MyEVReport">
   <meta property="og:description"
-        content="Explore what’s included in our independent EV battery health reports, including SoH %, range estimates, battery condition summary and warranty details.">
+        content="Explore what’s included in our independent EV battery health reports, including SoH %, range estimates, grades and warranty details.">
   <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="What’s in an EV Battery Health Report – MyEVReport">
   <meta name="twitter:description"
-        content="Learn what our EV battery report includes: State of Health (SoH) %, technical breakdown, range estimates, warranty info and more.">
+        content="Clear, jargon-free EV battery health reports with SoH %, real-world range and battery warranty information.">
   <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
 
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <!-- Performance -->
+  <!-- Preload -->
   <link rel="preload" href="css/main.css" as="style">
   <link rel="preload" href="images/logo-myevreport.png" as="image">
-  <link rel="stylesheet" href="css/main.css">
-</head>
+  <link rel="preload" href="images/soh-phone-car.png" as="image">
 
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Simple schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "What’s in an EV Battery Health Report",
+    "description": "Details of what’s included in a MyEVReport battery health report for used EVs: State of Health %, real-world range estimates, warranty info and advisories.",
+    "url": "https://myevreport.com/whats-in-the-report.html"
+  }
+  </script>
+</head>
 <body>
 
-  <!-- Launch banner -->
-  <div class="launch-banner">
-     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
-  </div>
+<!-- Credibility banner -->
+<div class="launch-banner">
+  🔋 The North East’s No.1 EV Battery Health Check Supplier – Independent, Accurate & Trusted
+</div>
 
   <!-- Header -->
   <header class="site-header">
@@ -49,7 +62,6 @@
              alt="MyEVReport logo – independent EV battery health reports"
              width="180" height="42">
       </a>
-
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
         <a href="whats-in-the-report.html" class="active">What’s in the report</a>
@@ -59,7 +71,6 @@
         <a href="news.html">EV News</a>
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
-
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -68,104 +79,91 @@
 
   <main>
 
-    <!-- Report hero -->
-    <section class="section section-alt">
-      <div class="container content-grid">
-        <div>
-          <header class="section-header">
-            <h1>What’s in your MyEVReport</h1>
-            <p>
-              Our reports are designed to be clear and easy to understand. We take technical EV battery data and turn
-              it into a simple summary of health, real-world range and suitability for sale or long-term ownership.
-            </p>
-          </header>
-
-          <h2>At-a-glance overview</h2>
-          <p>The first page of your report includes:</p>
-          <ul>
-            <li>Headline Battery State of Health (SoH %)</li>
-            <li>Summary of overall battery condition</li>
-            <li>Key observations and advisories</li>
-          </ul>
-
-          <h2>Real-world range estimates</h2>
-          <p>
-            We provide realistic range figures based on real-world UK usage rather than optimistic WLTP estimates.
-          </p>
-          <ul>
-            <li>Estimated mixed-driving range</li>
-            <li>Seasonal range expectations</li>
-            <li>Notes on range-impacting issues</li>
-          </ul>
-        </div>
-
-        <div>
-          <figure class="report-hero-image">
-            <img src="images/soh-phone-car.png"
-                 alt="Example of a MyEVReport State of Health and range summary displayed on a smartphone"
-                 width="500" height="500">
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical breakdown -->
+    <!-- Main content -->
     <section class="section">
-      <div class="container content-grid">
-        <div>
-          <h2>Technical detail (without the jargon)</h2>
+      <div class="container">
+
+        <header class="section-header">
+          <h1>What’s in your MyEVReport</h1>
           <p>
-            For those who want more depth, we provide a breakdown of the technical data captured from the vehicle.
+            Our reports are designed to be clear and easy to understand. We take technical EV battery data and turn it
+            into a simple summary of health, real-world range and suitability for sale or long-term ownership.
           </p>
-          <ul>
-            <li>Measured battery capacity and State of Health (SoH %)</li>
-            <li>Charge cycles and usage (where available)</li>
-            <li>Battery temperature and balance indicators</li>
-          </ul>
-          <p>We also include easy-to-read explanations for every technical value.</p>
+        </header>
+
+        <div class="content-grid">
+          <!-- Text column -->
+          <div>
+
+            <h2>At-a-glance overview</h2>
+            <p>
+              The first page of your report gives you a simple summary of the battery’s condition and how that translates
+              into day-to-day use.
+            </p>
+            <ul>
+              <li>Headline battery State of Health (SoH %)</li>
+              <li>Overall battery health grade (A–E)</li>
+              <li>Summary of overall battery condition</li>
+              <li>Key observations and advisories</li>
+            </ul>
+
+            <h2>Real-world range estimates</h2>
+            <p>
+              We provide realistic range figures based on real-world UK usage rather than optimistic WLTP estimates.
+            </p>
+            <ul>
+              <li>Estimated mixed-driving range</li>
+              <li>Indicative motorway range</li>
+              <li>Seasonal range expectations</li>
+              <li>Notes on range-impacting issues</li>
+            </ul>
+
+            <h2>Battery warranty &amp; history context</h2>
+            <p>
+              Your report also explains how the battery’s current health sits within the manufacturer’s warranty and
+              typical age-and-mileage expectations.
+            </p>
+            <ul>
+              <li>Battery warranty length and remaining years / mileage (where available)</li>
+              <li>How the tested SoH compares with typical examples of the same model</li>
+              <li>Any recommendations for monitoring or further investigation</li>
+            </ul>
+
+            <h2>Clear grading for buyers, sellers &amp; dealers</h2>
+            <p>
+              Every MyEVReport includes a simple letter grade so anyone can quickly understand the battery condition:
+            </p>
+            <ul>
+              <li><strong>Grade A–B:</strong> Strong battery health, ideal for retail sale or long-term ownership.</li>
+              <li><strong>Grade C:</strong> Acceptable but with some age-related degradation to be aware of.</li>
+              <li><strong>Grade D–E:</strong> Heavily degraded or unusual results – may warrant a lower price or further checks.</li>
+            </ul>
+
+            <p>
+              The full PDF is designed to be shared alongside adverts, part-exchange appraisals or finance applications
+              to give everyone confidence in the battery’s condition.
+            </p>
+
+          </div>
+
+          <!-- Illustration column -->
+          <div style="display:flex; justify-content:center; align-items:flex-start;">
+            <picture>
+              <img
+                src="images/soh-phone-car.png"
+                alt="Example EV battery State of Health shown on a smartphone in front of an electric vehicle"
+                class="report-illustration">
+            </picture>
+          </div>
         </div>
 
-        <div>
-          <h2>Warranty & advisory information</h2>
-          <p>
-            Many EVs have extended battery warranties. We help you understand how protected you are.
-          </p>
-          <ul>
-            <li>Summary of manufacturer battery warranty terms</li>
-            <li>Estimated warranty remaining</li>
-            <li>Relevant advisories or concerns</li>
-          </ul>
-          <p>This gives you a sense of both current health and long-term confidence.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Usage examples -->
-    <section class="section section-alt">
-      <div class="container content-grid">
-        <div>
-          <h2>For buyers</h2>
-          <p>A MyEVReport helps buyers compare EVs and negotiate with confidence:</p>
-          <ul>
-            <li>Understand battery health vs similar models</li>
-            <li>Spot good-value vehicles</li>
-            <li>Share the report with finance or insurance providers</li>
-          </ul>
+        <div class="section-cta" style="margin-top:2rem;">
+          <a href="book.html" class="btn btn-primary">Book an EV battery health report</a>
+          <span style="display:inline-block; margin-left:0.75rem; font-size:0.9rem; color:#6b7380;">
+            £99 per vehicle in our current coverage area.
+          </span>
         </div>
 
-        <div>
-          <h2>For sellers &amp; dealers</h2>
-          <p>Use the report to enhance your adverts and increase buyer trust:</p>
-          <ul>
-            <li>Include SoH % and summary of battery condition in online listings</li>
-            <li>Show you’ve proactively checked battery health</li>
-            <li>Support your valuation with independent evidence</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="container section-cta">
-        <a href="book.html" class="btn btn-primary">Book an EV battery health report</a>
       </div>
     </section>
 
@@ -194,15 +192,12 @@
   <!-- WhatsApp Floating Button -->
   <a class="whatsapp-button"
      href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
-     target="_blank" rel="noopener"
-     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+     target="_blank" rel="noopener">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-         alt="WhatsApp icon"
+         alt="WhatsApp"
          style="width: 90px; height: 90px;">
   </a>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="js/main.js" defer></script>
-
 </body>
 </html>
