@@ -401,6 +401,13 @@ main {
   padding: 2.75rem 0;
 }
 
+.section-intro-booking {
+  background: #ffffff;
+  color: var(--text);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .section--tight {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -1479,4 +1486,11 @@ main {
 
 .news-card-footer .link-arrow {
   margin-top: 0;
+}
+.report-illustration {
+  width: auto;
+  max-width: 420px; /* tweak if you want it bigger/smaller */
+  height: auto;
+  display: block;
+  margin-left: auto;
 }
