@@ -1054,18 +1054,32 @@ main {
    Articles & News pages
    ========================= */
 
-/* News listing hero image strips */
-.news-hero img {
-  width: 100%;
-  display: block;
-  border-radius: 0 0 12px 12px;
+/* News & article hero images – keep within site width and stop stretching */
+
+/* Wrapper sections */
+.news-hero,
+.article-hero,
+.section-article-hero {
+  padding: 0;
 }
 
-/* Article hero (road tax page) */
-.article-hero img {
-  width: 100%;
+/* Centre the hero content and clamp width */
+.news-hero > picture,
+.article-hero > picture,
+.section-article-hero .article-hero-image {
+  max-width: var(--max-width);   /* matches main content width (1120px) */
+  margin: 0 auto;
   display: block;
-  border-radius: 0 0 12px 12px;
+}
+
+/* Actual hero images */
+.news-hero img,
+.article-hero img,
+.article-hero-image img {
+  width: 100%;
+  height: auto;                  /* keeps the 1200×600 aspect ratio */
+  display: block;
+  border-radius: 12px;           /* tidy rounded corners */
 }
 
 /* Shared article container */
