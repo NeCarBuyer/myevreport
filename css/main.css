@@ -1508,3 +1508,28 @@ main {
   display: block;
   margin-left: auto;
 }
+/* =========================
+   Fix hero width on news/articles
+   ========================= */
+
+.news-hero,
+.article-hero {
+  max-width: var(--max-width);   /* same as main content (1120px) */
+  margin: 0 auto;                /* centre on the page */
+  padding: 0 1.25rem;            /* match container side-gutters */
+}
+
+.news-hero picture,
+.article-hero picture {
+  display: block;
+}
+
+/* Make sure the images themselves scale correctly */
+.news-hero img,
+.article-hero img,
+.article-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;           /* consistent rounded corners */
+}
