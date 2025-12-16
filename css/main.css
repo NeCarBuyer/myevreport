@@ -1533,3 +1533,39 @@ main {
   display: block;
   border-radius: 12px;           /* consistent rounded corners */
 }
+..footer-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-inline p {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.footer-inline a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-inline a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+  font-size: 0.875rem;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .footer-inline {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
