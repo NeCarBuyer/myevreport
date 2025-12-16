@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <link rel="canonical" href="https://myevreport.com/supported-models.html">
+  <title>Supported vehicles – MyEVReport</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Check if your electric vehicle is supported for a MyEVReport battery health check. Select your EV make and model to confirm compatibility before booking.">
+  <meta name="robots" content="index,follow">
+
+  <link rel="icon" href="images/favicon.png">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+  <div class="launch-banner">
+    🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo-myevreport.png"
+             alt="MyEVReport logo – independent EV battery health reports"
+             width="120" height="28">
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="how-it-works.html">How it works</a>
+        <a href="whats-in-the-report.html">What’s in the report</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="coverage.html">Coverage area</a>
+        <a href="supported-models.html">Supported vehicles</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="news.html">EV News</a>
+        <a href="book.html" class="btn btn-primary">Book a report</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section section-intro-booking">
+      <div class="container support-page-wrap">
+        <header class="section-header">
+          <h1>Is my vehicle supported?</h1>
+          <p>
+            MyEVReport supports most modern fully electric vehicles (EVs) currently on sale in the UK.
+            Use the checker below to confirm whether your make and model is supported for an EV battery health report.
+          </p>
+        </header>
+
+        <div class="support-copy">
+          <p>
+            Our testing equipment connects directly to the vehicle’s battery management system to assess battery health,
+            State of Health (SoH) and real-world range. Because different manufacturers use different systems,
+            not every vehicle can be tested in the same way.
+          </p>
+        </div>
+
+        <div class="support-info">
+          <h2>What does “supported” mean?</h2>
+          <p>
+            A supported vehicle is one that we can reliably test using our diagnostic equipment to produce a full
+            MyEVReport battery health assessment.
+          </p>
+          <p>
+            If your vehicle is supported, we can:
+          </p>
+          <ul>
+            <li>Read the battery’s State of Health (SoH)</li>
+            <li>Assess real-world range estimates</li>
+            <li>Produce a clear, shareable battery health report</li>
+          </ul>
+        </div>
+
+        <!-- Supported vehicle checker -->
+        <div class="mini-card" aria-label="Supported vehicle checker">
+          <div class="mini-grid">
+            <div>
+              <label for="smMake">Make</label>
+              <select id="smMake">
+                <option value="">Loading makes…</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="smModel">Model</label>
+              <select id="smModel" disabled>
+                <option value="">Select a make first</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="smResult" class="mini-result" aria-live="polite">
+            Choose a make and model to check support.
+          </div>
+
+          <div class="mini-actions" id="smActions">
+            <a href="book.html" class="btn btn-primary">Book a report</a>
+            <a href="index.html#compatibility" class="btn btn-secondary">Check compatibility</a>
+          </div>
+
+          <p class="support-footnote">
+            Don’t see your vehicle listed? You can still request a booking and we’ll confirm compatibility by email
+            before taking payment.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner footer-inline">
+      <p>
+        © 2026 MyEVReport ·
+        <a href="https://www.thod.co.uk/" target="_blank" rel="noopener noreferrer">Site by THOD</a>
+      </p>
+      <nav class="footer-links">
+        <a href="privacy.html">Privacy policy</a> ·
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+  <!-- Same CSV dropdown logic as index / booking -->
+  <script>
+    (async function(){
+      const CSV_URL = "/data/supported-vehicles.csv";
+
+      const makeSel = document.getElementById("smMake");
+      const modelSel = document.getElementById("smModel");
+      const result = document.getElementById("smResult");
+      const actions = document.getElementById("smActions");
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      function parseCSV(text){
+        const rows=[]; let row=[],cur="",inQuotes=false;
+        for(let i=0;i<text.length;i++){
+          const c=text[i],n=text[i+1];
+          if(c==='"'&&inQuotes&&n==='"'){cur+='"';i++;continue;}
+          if(c==='"'){inQuotes=!inQuotes;continue;}
+          if(!inQuotes&&c===','){row.push(cur);cur="";continue;}
+          if(!inQuotes&&(c==='\n'||c==='\r')){
+            if(cur||row.length){row.push(cur);rows.push(row);}
+            row=[];cur=""; if(c==='\r'&&n==='\n')i++; continue;
+          }
+          cur+=c;
+        }
+        if(cur||row.length){row.push(cur);rows.push(row);}
+        return rows;
+      }
+
+      try{
+        const res=await fetch(CSV_URL,{cache:"no-cache"});
+        if(!res.ok) throw new Error();
+        const raw=parseCSV(await res.text());
+
+        const h=raw[0].map(v=>v.trim());
+        const mi=h.indexOf("Make"), mdi=h.indexOf("Model"), fi=h.indexOf("Fuel Type");
+
+        const byMake=new Map();
+        for(let i=1;i<raw.length;i++){
+          const r=raw[i];
+          const m=(r[mi]||"").trim(), md=(r[mdi]||"").trim();
+          const f=fi>-1?(r[fi]||"").trim():"";
+          if(f && f.toUpperCase()!=="BEV") continue;
+          if(!m||!md) continue;
+          if(!byMake.has(m)) byMake.set(m,new Set());
+          byMake.get(m).add(md);
+        }
+
+        const makes=[...byMake.keys()].sort();
+        makeSel.innerHTML=`<option value="">Select make</option>`+
+          makes.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+
+        makeSel.addEventListener("change",()=>{
+          actions.style.display="none";
+          result.className="mini-result";
+          result.textContent="Choose a make and model to check support.";
+          const mk=makeSel.value;
+          modelSel.disabled=true;
+          modelSel.innerHTML=`<option value="">Select a make first</option>`;
+          if(!mk) return;
+          const models=[...byMake.get(mk)].sort();
+          modelSel.innerHTML=`<option value="">Select model</option>`+
+            models.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+          modelSel.disabled=false;
+        });
+
+        modelSel.addEventListener("change",()=>{
+          const mk=makeSel.value, md=modelSel.value;
+          if(mk&&md&&byMake.has(mk)&&byMake.get(mk).has(md)){
+            result.className="mini-result success";
+            result.innerHTML="<strong>Great news — your vehicle is supported.</strong>You can book your report in under a minute.";
+          }else{
+            result.className="mini-result warn";
+            result.innerHTML="<strong>We need to confirm this one.</strong>Your model isn’t listed here yet.";
+          }
+          actions.style.display="flex";
+        });
+
+      }catch(e){
+        makeSel.innerHTML="<option value=''>Unavailable</option>";
+        makeSel.disabled=true;
+        modelSel.innerHTML="<option value=''>Unavailable</option>";
+        modelSel.disabled=true;
+        result.className="mini-result warn";
+        result.innerHTML="<strong>We couldn’t load the supported models list.</strong>Please book and we’ll confirm compatibility by email.";
+        actions.style.display="flex";
+      }
+    })();
+  </script>
+
+</body>
+</html>

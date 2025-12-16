@@ -136,25 +136,29 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0;
-  gap: 1.25rem;
+  padding: 0.72rem 0;
+  gap: 1rem;
 }
 
+/* Logo: keep balanced against nav */
 .logo img {
-  height: 100px;
+  height: 56px;
   width: auto;
 }
 
+/* Desktop nav: keep single line */
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   font-size: 0.95rem;
+  flex-wrap: nowrap;
 }
 
 .main-nav a {
   color: var(--muted);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 /* Active nav link (current page) */
@@ -168,12 +172,13 @@ main {
   text-decoration: none;
 }
 
-.main-nav .btn {
-  font-size: 0.95rem;
+/* Header CTA: slightly slimmer so it doesn't force wrapping */
+.site-header .btn {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.93rem;
 }
 
 /* Mobile nav toggle */
-
 .nav-toggle {
   display: none;
   border: none;
@@ -326,7 +331,6 @@ main {
 }
 
 /* Hero example card */
-
 .hero-example {
   background: #ffffff;
   border-radius: var(--radius-card);
@@ -449,7 +453,6 @@ main {
 }
 
 /* Service strip (if used) */
-
 .service-strip {
   background: #0b3a61;
   color: #eaf4ff;
@@ -468,7 +471,6 @@ main {
 }
 
 /* Grids */
-
 .steps-grid,
 .content-grid,
 .pricing-grid {
@@ -485,7 +487,6 @@ main {
 }
 
 /* Steps */
-
 .step {
   background: #ffffff;
   border-radius: var(--radius-card);
@@ -513,7 +514,6 @@ main {
 }
 
 /* Content grid text */
-
 .content-grid h3 {
   font-size: 1rem;
   margin: 0 0 0.35rem;
@@ -532,7 +532,6 @@ main {
 }
 
 /* Section CTAs */
-
 .section-cta {
   margin-top: 1.4rem;
 }
@@ -543,10 +542,9 @@ main {
 
 .pricing-grid {
   grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-  align-items: stretch; /* ensure equal height cards */
+  align-items: stretch;
 }
 
-/* Base card (used elsewhere too) */
 .pricing-card {
   background: #ffffff;
   border-radius: var(--radius-card);
@@ -593,7 +591,6 @@ main {
   margin-top: 0.7rem;
 }
 
-/* Main dark pricing bubble – matches live site */
 .pricing-card-main {
   background: #020617;
   color: #e5edf7;
@@ -615,7 +612,6 @@ main {
   color: #e2e8f0;
 }
 
-/* Dealer & fleet card – clean white card */
 .pricing-card-alt {
   background: #ffffff;
   color: #0b1726;
@@ -634,8 +630,7 @@ main {
   font-weight: 600;
 }
 
-/* Testimonial bubbles under pricing */
-
+/* Testimonials */
 .testimonial-row {
   display: grid;
   gap: 1.5rem;
@@ -648,7 +643,6 @@ main {
   }
 }
 
-/* Compact yellow testimonial bubble */
 .testimonial-compact {
   background: #fefce8;
   border-radius: 18px;
@@ -679,8 +673,6 @@ main {
 .testimonial-compact .testimonial-meta {
   color: #b45309;
 }
-
-/* Full-width testimonial block (elsewhere) */
 
 .testimonial {
   margin: 0;
@@ -749,8 +741,6 @@ main {
   margin-top: 1.5rem;
 }
 
-/* Booking form */
-
 .form-card {
   border-radius: 18px;
   border: 1px solid var(--border);
@@ -814,8 +804,6 @@ main {
   background: #f9fafb;
 }
 
-/* Actions under the grid */
-
 .form-actions {
   margin-top: 1.3rem;
   display: flex;
@@ -831,22 +819,19 @@ main {
   margin: 0;
 }
 
-/* Final overrides – booking form field colours to match live site */
 .section-booking .form-group input,
 .section-booking .form-group select,
 .section-booking .form-group textarea {
-  background: #ffffff !important;   /* white fields */
-  color: #111827 !important;        /* dark text */
+  background: #ffffff !important;
+  color: #111827 !important;
   border: 1px solid #d1d5db !important;
 }
 
-/* Placeholder text */
 .section-booking .form-group input::placeholder,
 .section-booking .form-group textarea::placeholder {
-  color: #6b7280 !important;        /* mid-grey */
+  color: #6b7280 !important;
 }
 
-/* Make sure the select text is dark too */
 .section-booking .form-group select {
   color: #111827 !important;
 }
@@ -936,8 +921,6 @@ main {
   font-style: italic;
 }
 
-/* Coverage bubbles grid */
-
 .coverage-grid {
   display: grid;
   gap: 0.9rem;
@@ -1010,7 +993,7 @@ main {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
-  transform: rotate(45deg); /* + becomes x */
+  transform: rotate(45deg);
 }
 
 .coverage-body {
@@ -1054,35 +1037,29 @@ main {
    Articles & News pages
    ========================= */
 
-/* News & article hero images – keep within site width and stop stretching */
-
-/* Wrapper sections */
 .news-hero,
 .article-hero,
 .section-article-hero {
   padding: 0;
 }
 
-/* Centre the hero content and clamp width */
 .news-hero > picture,
 .article-hero > picture,
 .section-article-hero .article-hero-image {
-  max-width: var(--max-width);   /* matches main content width (1120px) */
+  max-width: var(--max-width);
   margin: 0 auto;
   display: block;
 }
 
-/* Actual hero images */
 .news-hero img,
 .article-hero img,
 .article-hero-image img {
   width: 100%;
-  height: auto;                  /* keeps the 1200×600 aspect ratio */
+  height: auto;
   display: block;
-  border-radius: 12px;           /* tidy rounded corners */
+  border-radius: 12px;
 }
 
-/* Shared article container */
 .article-container {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
@@ -1128,14 +1105,12 @@ main {
   margin: 0.4rem 0 1.2rem;
 }
 
-/* Right-side tall graphic (grant article) */
 .article-aside img {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 6px 22px rgba(15, 76, 129, 0.18);
 }
 
-/* Road tax article layout */
 .article-wrapper {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
@@ -1150,7 +1125,6 @@ main {
   top: 120px;
 }
 
-/* Article tables */
 .article-table {
   width: 100%;
   border-collapse: collapse;
@@ -1202,7 +1176,7 @@ main {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: contain;              /* keep full Canva artwork */
+  object-fit: contain;
   background-color: #f5f7fa;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -1212,6 +1186,7 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .news-card-category {
@@ -1239,16 +1214,51 @@ main {
   margin: 0 0 0.75rem;
 }
 
-.news-card-meta {
-  font-size: 0.8rem;
-  color: #9aa2b1;
-  margin: 0 0 0.75rem;
+.news-card-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-/* Keep “Read more →” aligned at the bottom */
-.news-card-body .link-arrow,
-.news-card-link {
-  margin-top: auto;
+.news-card-meta {
+  font-size: 0.82rem;
+  color: #9aa2b1;
+  white-space: nowrap;
+}
+
+.news-card-footer .link-arrow {
+  margin-top: 0;
+}
+
+.report-illustration {
+  width: auto;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+}
+
+/* Fix hero width on news/articles */
+.news-hero,
+.article-hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.news-hero picture,
+.article-hero picture {
+  display: block;
+}
+
+.news-hero img,
+.article-hero img,
+.article-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
 }
 
 /* =========================
@@ -1271,6 +1281,35 @@ main {
   justify-content: space-between;
   gap: 1.25rem;
   flex-wrap: wrap;
+}
+
+.footer-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-inline p {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.footer-inline a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-inline a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+  font-size: 0.875rem;
 }
 
 .footer-left p,
@@ -1297,10 +1336,17 @@ main {
   white-space: nowrap;
 }
 
-/* Footer email link should always match the EV green */
 .footer-left a {
   color: var(--brand-green) !important;
   font-weight: 600;
+}
+
+/* Mobile footer */
+@media (max-width: 600px) {
+  .footer-inline {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* =========================
@@ -1323,6 +1369,161 @@ main {
   width: 60px;
   height: 60px;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* =========================
+   Supported vehicles & Compatibility checker (shared)
+   ========================= */
+
+.support-page-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.support-copy {
+  margin-top: 0.5rem;
+}
+
+.support-copy p {
+  margin: 0.6rem 0;
+}
+
+.support-info {
+  margin-top: 1rem;
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(0,0,0,0.03);
+}
+
+.support-info h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.support-info ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.support-info li {
+  margin: 0.35rem 0;
+}
+
+/* Cards */
+.compat-card,
+.mini-card{
+  max-width: 520px;
+  margin: 1.25rem auto 0;
+  border-radius: 16px;
+  padding: 1.25rem;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: #fff;
+}
+
+.compat-grid,
+.mini-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  margin-top: 0.75rem;
+}
+
+.compat-grid label,
+.mini-grid label{
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.compat-grid select,
+.compat-grid input,
+.mini-grid select{
+  width: 100%;
+  padding: 0.85rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #fff;
+  font-size: 1rem;
+}
+
+.compat-actions{
+  margin-top: 0.9rem;
+}
+
+.compat-actions .btn{
+  width: 100%;
+}
+
+.compat-result,
+.mini-result{
+  margin-top: 0.9rem;
+  padding: 0.95rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(0,0,0,0.03);
+}
+
+.compat-result.success,
+.mini-result.success{
+  border-color: rgba(34,179,115,0.45);
+  background: rgba(34,179,115,0.10);
+}
+
+.compat-result.warn,
+.mini-result.warn{
+  border-color: rgba(255, 181, 71, 0.60);
+  background: rgba(255, 181, 71, 0.14);
+}
+
+.compat-result strong,
+.mini-result strong{
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.compat-book,
+.mini-actions{
+  margin-top: 0.75rem;
+  display: none;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.compat-book .btn,
+.mini-actions .btn{
+  flex: 1 1 220px;
+}
+
+.compat-help{
+  margin-top: 0.75rem;
+  opacity: 0.85;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Two-column layout for checker + coverage on index */
+.compat-coverage-grid{
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 960px){
+  .compat-coverage-grid{
+    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+  }
+}
+
+.coverage-panel .coverage-intro{
+  margin-top: 0;
+}
+
+.support-footnote{
+  margin-top: 0.75rem;
+  opacity: 0.9;
+  font-size: 0.95rem;
+  text-align: center;
 }
 
 /* =========================
@@ -1373,13 +1574,18 @@ main {
   }
 }
 
-@media (max-width: 768px) {
+/* IMPORTANT: Burger menu kicks in at 1024px to prevent header wrapping */
+@media (max-width: 1024px) {
   main {
     padding-top: 3.75rem;
   }
 
   .header-inner {
     padding: 0.6rem 0;
+  }
+
+  .logo img {
+    height: 54px;
   }
 
   .main-nav {
@@ -1399,6 +1605,7 @@ main {
 
   .main-nav a {
     width: 100%;
+    padding: 0.35rem 0;
   }
 
   .site-header.nav-open .main-nav {
@@ -1452,120 +1659,205 @@ main {
     padding: 1.1rem 1.1rem 1rem;
   }
 }
-/* ======================================
-   FORCE NEWS CARD STRUCTURE & ALIGNMENT
-   ====================================== */
+/* ============================
+   Index: tighten compatibility + coverage columns
+   ============================ */
 
-/* Make news card body a vertical flex container */
-.news-card-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+#compatibility .content-grid{
+  gap: 1.25rem;           /* tighter than the default */
+  align-items: start;
 }
 
-/* Push meta + Read more to the bottom */
-.news-card-meta {
-  margin-top: auto;            /* pushes it down */
-  padding-top: 0.5rem;
-  font-size: 0.8rem;
-  color: #9aa2b1;
-  white-space: nowrap;         /* keep date on one line */
+@media (min-width: 1025px){
+  #compatibility .content-grid{
+    grid-template-columns: minmax(0,1.15fr) minmax(0,0.85fr); /* give checker more space */
+  }
+}
+/* Full-width header above compat + coverage */
+.section-header-wide {
+  max-width: none;
 }
 
-/* Ensure Read more stays under the meta date */
-.news-card-body .link-arrow {
-  margin-top: 0.4rem;
+.section-header-wide p {
+  max-width: 920px; /* readable line length */
 }
+/* Align coverage section with compatibility checker */
+.coverage-block {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.coverage-intro {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.coverage-grid {
+  gap: 1.1rem;
+}
+.form-group small {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+@media (min-width: 900px){
+  #vehicleManualWrap{ grid-column: 2; }
+}
+
 /* =====================================================
-   Anchor the news-card date + Read more block at bottom
+   FINAL OVERRIDES (single source of truth)
+   - Header: keep on one line until mobile
+   - Coverage bubbles: consistent width + centered + tidy 2-col layout
+   - Booking cards: reduce dark-on-dark (lighter surfaces)
    ===================================================== */
 
-.news-card-body {
+/* Header one-line */
+.site-header .header-inner{ flex-wrap:nowrap !important; }
+.site-header .logo{ flex:0 0 auto !important; }
+.site-header .main-nav{
+  flex:1 1 auto !important;
+  flex-wrap:nowrap !important;
+  white-space:nowrap !important;
+  justify-content:flex-end !important;
+}
+.site-header .main-nav a{ white-space:nowrap !important; }
+
+/* Bring burger in earlier if your layout wraps */
+@media (max-width:1100px){
+  .nav-toggle{ display:inline-block !important; }
+}
+
+/* Coverage bubbles */
+.coverage-grid{
+  display:grid !important;
+  justify-content:center !important;
+  gap:18px !important;
+  grid-template-columns:repeat(2, minmax(0, 520px)) !important;
+}
+@media (max-width:980px){
+  .coverage-grid{ grid-template-columns:minmax(0, 520px) !important; }
+}
+@media (max-width:560px){
+  .coverage-grid{ grid-template-columns:minmax(0, 1fr) !important; }
+}
+.coverage-item{
+  width:100% !important;
+  display:flex !important;
+  justify-content:center !important;
+}
+.coverage-header{
+  width:100% !important;
+  max-width:520px !important;
+  margin:0 auto !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  text-align:center !important;
+}
+.coverage-title{
+  flex:1 !important;
+  text-align:center !important;
+}
+
+/* Booking area: lighten surfaces (only within booking section) */
+.section-booking .form-card{
+  background:#f7f9fc !important;
+  border:1px solid #e1e6ef !important;
+  color:#0f172a !important;
+}
+.section-booking .booking-form input,
+.section-booking .booking-form select,
+.section-booking .booking-form textarea{
+  background:#fff !important;
+  border:1px solid #cfd6e3 !important;
+  color:#0f172a !important;
+}
+.section-booking .booking-form input::placeholder,
+.section-booking .booking-form textarea::placeholder{
+  color:#6b7280 !important;
+}
+.section-booking .form-trust{
+  background:#eef2f7 !important;
+  border:1px solid #dbe2ec !important;
+  color:#1e293b !important;
+}
+/* --- More dropdown (header nav) --- */
+.site-nav { 
   display: flex;
-  flex-direction: column;
-}
-
-.news-card-footer {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.news-card-meta {
-  font-size: 0.82rem;
-  color: #9aa2b1;
-  white-space: nowrap;
-}
-
-.news-card-footer .link-arrow {
-  margin-top: 0;
-}
-.report-illustration {
-  width: auto;
-  max-width: 420px; /* tweak if you want it bigger/smaller */
-  height: auto;
-  display: block;
-  margin-left: auto;
-}
-/* =========================
-   Fix hero width on news/articles
-   ========================= */
-
-.news-hero,
-.article-hero {
-  max-width: var(--max-width);   /* same as main content (1120px) */
-  margin: 0 auto;                /* centre on the page */
-  padding: 0 1.25rem;            /* match container side-gutters */
-}
-
-.news-hero picture,
-.article-hero picture {
-  display: block;
-}
-
-/* Make sure the images themselves scale correctly */
-.news-hero img,
-.article-hero img,
-.article-hero-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;           /* consistent rounded corners */
-}
-..footer-inline {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 18px; /* tweak if you want tighter/looser */
 }
 
-.footer-inline p {
-  margin: 0;
-  font-size: 0.875rem;
-  opacity: 0.8;
+.site-nav a,
+.site-nav button {
+  white-space: nowrap; /* stops two-line nav */
 }
 
-.footer-inline a {
+/* =========================================
+   Header "More" dropdown (desktop)
+   ========================================= */
+.nav-more {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-more__btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
   color: inherit;
-  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.footer-inline a:hover {
+.nav-more__btn:hover {
   text-decoration: underline;
 }
 
-.footer-links {
-  display: flex;
-  gap: 16px;
-  font-size: 0.875rem;
+.nav-more__menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 12px;
+  box-shadow: 0 16px 38px rgba(0,0,0,0.14);
+  padding: 8px;
+  z-index: 9999;
 }
 
-/* Mobile */
-@media (max-width: 600px) {
-  .footer-inline {
-    flex-direction: column;
-    align-items: flex-start;
+/* Your JS toggles [hidden] */
+.nav-more__menu[hidden] {
+  display: none !important;
+}
+
+.nav-more__item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-more__item:hover {
+  background: rgba(0,0,0,0.06_toggle
+------------------------ */
+@media (max-width: 1024px) {
+  .nav-more { width: 100%; }
+  .nav-more__btn { width: 100%; justify-content: space-between; padding: 10px 0; }
+  .nav-more__menu {
+    position: static;
+    min-width: 0;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 6px;
   }
+  .nav-more__item { padding: 8px 0; border-radius: 0; }
+  .nav-more__item:hover { background: transparent; text-decoration: underline; }
 }

@@ -28,12 +28,221 @@
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.png">
 
-  <!-- Preload critical assets -->
+  <!-- Preload -->
   <link rel="preload" href="css/main.css" as="style">
   <link rel="preload" href="images/logo-myevreport.png" as="image">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=999">
+<script src="js/main.js?v=999" defer></script>
+
+  <!-- Page-only styles for the combined checker -->
+  <style>
+    .compat-card{
+      max-width: 520px;
+      margin: 0 auto;
+      border-radius: 16px;
+      padding: 1.25rem;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: #fff;
+    }
+    .compat-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      margin-top: 0.75rem;
+    }
+    .compat-grid label{ font-weight: 600; display:block; margin-bottom:0.35rem; }
+    .compat-grid select,
+    .compat-grid input{
+      width:100%;
+      padding: 0.85rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.18);
+      background: #fff;
+      font-size: 1rem;
+    }
+    .compat-actions{ margin-top: 0.9rem; }
+    .compat-actions .btn{ width:100%; }
+    .compat-result{
+      margin-top: 0.9rem;
+      padding: 0.95rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.03);
+    }
+    .compat-result.success{
+      border-color: rgba(34,179,115,0.45);
+      background: rgba(34,179,115,0.10);
+    }
+    .compat-result.warn{
+      border-color: rgba(255, 181, 71, 0.60);
+      background: rgba(255, 181, 71, 0.14);
+    }
+    .compat-result strong{ display:block; margin-bottom: 0.25rem; }
+    .compat-book{
+      margin-top: 0.75rem;
+      display:none;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .compat-book .btn{ flex: 1 1 220px; }
+    .compat-help{
+      margin-top:0.75rem;
+      opacity:0.85;
+      font-size: 0.95rem;
+      text-align:center;
+    }
+  </style>
+
+  <!-- ✅ Page-only styles for the stepped booking form -->
+  <style>
+    .booking-shell{ max-width: 980px; margin: 0 auto; }
+
+    .form-progress{
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin: 1.25rem 0 1rem;
+    }
+    .form-step-pill{
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      font-size: .92rem;
+      line-height: 1;
+      opacity: .75;
+      user-select: none;
+    }
+    .form-step-pill strong{ font-weight: 700; opacity: .95; }
+    .form-step-pill.is-active{
+      opacity: 1;
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+    }
+    .form-step-pill.is-done{ opacity: .92; }
+    .form-step-pill .dot{
+      width: .55rem;
+      height: .55rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,.28);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.06);
+      flex: 0 0 auto;
+    }
+    .form-step-pill.is-active .dot{ background: rgba(255,255,255,.7); }
+    .form-step-pill.is-done .dot{ background: rgba(255,255,255,.7); }
+
+    .form-card{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 1.15rem;
+      margin: 0 0 1rem;
+    }
+    .form-card-header{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .85rem;
+      padding-bottom: .85rem;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .form-card-header h3{
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+    .form-card-header p{
+      margin: .35rem 0 0;
+      opacity: .9;
+      font-size: .95rem;
+      max-width: 62ch;
+    }
+    .form-card-badge{
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .35rem .65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.02);
+      font-size: .85rem;
+      opacity: .85;
+      white-space: nowrap;
+    }
+
+    .step-panel{ display:none; }
+    .step-panel.is-active{ display:block; }
+
+    .step-actions{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .step-actions .left,
+    .step-actions .right{
+      display: flex;
+      gap: .65rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn.btn-secondary{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      color: inherit;
+    }
+    .btn.btn-secondary:hover{ background: rgba(255,255,255,.09); }
+
+    .form-trust{
+      margin: .85rem 0 0;
+      padding: .85rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      text-align: center;
+      font-size: .92rem;
+      opacity: .92;
+    }
+    .form-footnotes{ margin-top: .75rem; text-align: center; }
+    .form-footnotes p{
+      margin: .35rem 0 0;
+      opacity: .85;
+      font-size: .9rem;
+    }
+
+    .step-error{
+      display:none;
+      margin-top:.75rem;
+      padding:.75rem .9rem;
+      border-radius:12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      opacity:.95;
+      font-size:.92rem;
+    }
+    .step-error.is-visible{ display:block; }
+
+    .booking-form .form-group small{
+      display:block;
+      margin-top:.35rem;
+      font-size:.85rem;
+      opacity:.75;
+    }
+
+    @media (min-width: 900px){
+      #vehicleManualWrap{ grid-column: 2; }
+    }
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -50,18 +259,10 @@
     "email": "hello@myevreport.com"
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "MyEVReport",
-    "url": "https://myevreport.com/"
-  }
-  </script>
 </head>
 <body>
 
-   <!-- Launch banner -->
+  <!-- Launch banner -->
   <div class="launch-banner">
     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
@@ -72,17 +273,30 @@
       <a href="index.html" class="logo">
         <img src="images/logo-myevreport.png"
              alt="MyEVReport logo – independent EV battery health reports"
-             width="180" height="42">
+             width="120" height="28">
       </a>
+
+      <!-- ✅ CLEAN NAV: 4 core + More dropdown + CTA -->
       <nav class="main-nav" aria-label="Main navigation">
         <a href="how-it-works.html">How it works</a>
         <a href="whats-in-the-report.html">What’s in the report</a>
         <a href="pricing.html">Pricing</a>
-        <a href="coverage.html">Coverage area</a>
-        <a href="faqs.html">FAQs</a>
-        <a href="news.html">EV News</a>
+        <a href="supported-models.html">Supported vehicles</a>
+
+        <div class="nav-more" data-nav-more>
+          <button class="nav-more__btn" type="button" aria-haspopup="true" aria-expanded="false">
+            More <span class="nav-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="nav-more__menu" role="menu" hidden>
+            <a role="menuitem" class="nav-more__item" href="coverage.html">Coverage Area</a>
+            <a role="menuitem" class="nav-more__item" href="faqs.html">FAQs</a>
+            <a role="menuitem" class="nav-more__item" href="news.html">EV News</a>
+          </div>
+        </div>
+
         <a href="book.html" class="btn btn-primary">Book a report</a>
       </nav>
+
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -100,8 +314,7 @@
           <p class="hero-tagline">Buy or sell your next EV with confidence.</p>
           <p class="hero-lead">
             MyEVReport provides an independent battery health report for your electric vehicle — including State of
-            Health (SoH) %, real-world range estimates and an easy-to-understand condition overview. We come to you and deliver
-            your report within 24 hours.
+            Health (SoH) %, real-world range estimates and an easy-to-understand condition overview.
           </p>
           <ul class="hero-bullets">
             <li>✅ On-site test at your home or dealership</li>
@@ -109,7 +322,7 @@
             <li>📄 Clear PDF report to use in adverts or negotiations</li>
           </ul>
           <div class="hero-cta">
-            <a href="book.html" class="btn btn-primary">Book your EV battery report</a>
+            <a href="#compatibility" class="btn btn-primary">Check compatibility</a>
             <a href="whats-in-the-report.html" class="btn btn-secondary">See what’s included</a>
           </div>
           <p class="hero-price">
@@ -148,7 +361,6 @@
             Use your MyEVReport in adverts, negotiations and for peace of mind.
           </p>
           <figure class="example-image">
-            <!-- IMPORTANT: no fixed height, so the image keeps its correct proportions -->
             <img src="images/soh-phone-car.png"
                  alt="EV battery State of Health shown on a smartphone in front of an electric vehicle"
                  loading="lazy">
@@ -347,139 +559,157 @@
       </div>
     </section>
 
-    <!-- Coverage area (interactive) -->
-    <section class="section section--tight" id="coverage">
+    <!-- Compatibility checker -->
+    <section class="section" id="compatibility">
       <div class="container">
-        <h2 class="section-title">Coverage area</h2>
-        <p class="section-subtitle">
-          MyEVReport is currently focused on the North of England. Check your postcode below and we’ll tell you if we
-          usually cover your area.
-        </p>
+        <header class="section-header">
+          <h2>Check coverage area and compatibility</h2>
+          <p>Select your vehicle and postcode to confirm we can test the car and cover your area. MyEVReport is currently focused on the North of England - Check your postcode below and we’ll tell you if we usually cover your area.</p>
+        </header>
 
-        <!-- Postcode checker + action -->
-        <div class="coverage-checker">
-          <div class="coverage-checker-label">Check your postcode</div>
-          <div class="coverage-checker-row">
-            <input id="coverage-postcode" type="text" placeholder="e.g. NE1 4LP" autocomplete="postal-code">
-            <button type="button" id="coverage-check-button" class="btn btn-primary">Check coverage</button>
+        <div class="compat-card">
+          <div class="compat-grid">
+
+            <div>
+              <div class="coverage-checker-label">Check your compatibility</div>
+              <label for="compatMake">Make</label>
+              <select id="compatMake">
+                <option value="">Select make</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="compatModel">Model</label>
+              <select id="compatModel" disabled>
+                <option value="">Select a make first</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="compatPostcode">Postcode</label>
+              <input id="compatPostcode" type="text" placeholder="e.g. NE1 1BC" autocomplete="postal-code">
+            </div>
+
           </div>
-          <p class="coverage-help">
-            We typically cover most NE, SR, DH, DL, TS and CA postcodes. Enter the first part or full postcode to check.
-          </p>
-          <div id="coverage-result" class="coverage-result" aria-live="polite"></div>
 
-          <!-- Shown ONLY when postcode is covered -->
-          <div id="coverage-success-actions"
-               class="coverage-success-actions"
-               style="display:none; margin-top:0.75rem;">
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="document.getElementById('book').scrollIntoView({ behavior: 'smooth' });"
-            >
+          <div class="compat-actions">
+            <button type="button" id="compatCheckBtn" class="btn btn-primary" disabled>Check compatibility</button>
+            <p class="coverage-help">
+              We typically cover most NE, SR, DH, DL, TS and CA postcodes. Enter the first part or full postcode to check.
+            </p>
+          </div>
+
+          <div id="compatResult" class="compat-result">
+            Choose a make, model and postcode to check compatibility.
+          </div>
+
+          <div class="compat-book" id="compatBookRow">
+            <button type="button" class="btn btn-primary" id="compatBookBtn">
               Book a report
             </button>
+            <a href="supported-models.html" class="btn btn-secondary">
+              Supported models
+            </a>
+          </div>
+
+          <div class="compat-help">
+            If your vehicle isn’t listed, you can still request a booking and we’ll confirm by email.
           </div>
         </div>
-
-        <p class="coverage-intro" style="margin-bottom:1.6rem;">
-          You can also browse by region below to see typical towns and cities we cover.
-        </p>
-
-        <!-- Coverage bubbles -->
-        <div class="coverage-grid" aria-label="Coverage areas">
-          <!-- Tyneside -->
-          <div class="coverage-item">
-            <button class="coverage-header" type="button" aria-expanded="false">
-              <span class="coverage-title">Tyneside</span>
-              <span class="coverage-toggle">+</span>
-            </button>
-            <div class="coverage-body">
-              <p><strong>Typical locations:</strong></p>
-              <p>
-                Newcastle upon Tyne, Gateshead, North Shields, South Shields, Whitley Bay, Wallsend, Tynemouth,
-                Jarrow, Hebburn.
-              </p>
-            </div>
-          </div>
-
-          <!-- Wearside -->
-          <div class="coverage-item">
-            <button class="coverage-header" type="button" aria-expanded="false">
-              <span class="coverage-title">Wearside</span>
-              <span class="coverage-toggle">+</span>
-            </button>
-            <div class="coverage-body">
-              <p><strong>Typical locations:</strong></p>
-              <p>
-                Sunderland, Washington, Seaham, Houghton-le-Spring and surrounding areas along the River Wear.
-              </p>
-            </div>
-          </div>
-
-          <!-- Northumberland -->
-          <div class="coverage-item">
-            <button class="coverage-header" type="button" aria-expanded="false">
-              <span class="coverage-title">Northumberland</span>
-              <span class="coverage-toggle">+</span>
-            </button>
-            <div class="coverage-body">
-              <p><strong>Typical locations:</strong></p>
-              <p>
-                Hexham, Alnwick, Morpeth, Ashington, Cramlington, Blyth, Berwick-upon-Tweed and nearby rural areas.
-              </p>
-            </div>
-          </div>
-
-          <!-- Durham -->
-          <div class="coverage-item">
-            <button class="coverage-header" type="button" aria-expanded="false">
-              <span class="coverage-title">Durham</span>
-              <span class="coverage-toggle">+</span>
-            </button>
-            <div class="coverage-body">
-              <p><strong>Typical locations:</strong></p>
-              <p>
-                Durham City, Chester-le-Street, Consett, Bishop Auckland, Stanley, Peterlee and surrounding County Durham
-                postcodes.
-              </p>
-            </div>
-          </div>
-
-          <!-- Teesside -->
-          <div class="coverage-item">
-            <button class="coverage-header" type="button" aria-expanded="false">
-              <span class="coverage-title">Teesside</span>
-              <span class="coverage-toggle">+</span>
-            </button>
-            <div class="coverage-body">
-              <p><strong>Typical locations:</strong></p>
-              <p>
-                Middlesbrough, Stockton-on-Tees, Hartlepool, Redcar, Billingham, Yarm and nearby towns.
-              </p>
-            </div>
-          </div>
-
-          <!-- Carlisle -->
-          <div class="coverage-item">
-            <button class="coverage-header" type="button" aria-expanded="false">
-              <span class="coverage-title">Carlisle &amp; surrounding</span>
-              <span class="coverage-toggle">+</span>
-            </button>
-            <div class="coverage-body">
-              <p><strong>Typical locations:</strong></p>
-              <p>
-                Carlisle, Brampton and surrounding areas on the edge of Cumbria and the Scottish Borders.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <p class="coverage-intro" style="margin-top:1.8rem;">
-          If you’re unsure whether your area is covered, just include your postcode when you get in touch and we’ll confirm.
-        </p>
       </div>
     </section>
+
+    <p class="coverage-intro" style="margin-bottom:1.6rem;">
+      You can also browse by region below to see typical towns and cities we cover for EV battery testing.
+    </p>
+
+    <!-- Coverage bubbles -->
+    <div class="coverage-grid" aria-label="Coverage areas">
+      <div class="coverage-item">
+        <button class="coverage-header" type="button" aria-expanded="false">
+          <span class="coverage-title">Tyneside</span>
+          <span class="coverage-toggle">+</span>
+        </button>
+        <div class="coverage-body">
+          <p><strong>Typical locations:</strong></p>
+          <p>
+            Newcastle upon Tyne, Gateshead, North Shields, South Shields, Whitley Bay, Wallsend, Tynemouth,
+            Jarrow, Hebburn.
+          </p>
+        </div>
+      </div>
+
+      <div class="coverage-item">
+        <button class="coverage-header" type="button" aria-expanded="false">
+          <span class="coverage-title">Wearside</span>
+          <span class="coverage-toggle">+</span>
+        </button>
+        <div class="coverage-body">
+          <p><strong>Typical locations:</strong></p>
+          <p>
+            Sunderland, Washington, Seaham, Houghton-le-Spring and surrounding areas along the River Wear.
+          </p>
+        </div>
+      </div>
+
+      <div class="coverage-item">
+        <button class="coverage-header" type="button" aria-expanded="false">
+          <span class="coverage-title">Northumberland</span>
+          <span class="coverage-toggle">+</span>
+        </button>
+        <div class="coverage-body">
+          <p><strong>Typical locations:</strong></p>
+          <p>
+            Hexham, Alnwick, Morpeth, Ashington, Cramlington, Blyth, Berwick-upon-Tweed and nearby rural areas.
+          </p>
+        </div>
+      </div>
+
+      <div class="coverage-item">
+        <button class="coverage-header" type="button" aria-expanded="false">
+          <span class="coverage-title">Durham</span>
+          <span class="coverage-toggle">+</span>
+        </button>
+        <div class="coverage-body">
+          <p><strong>Typical locations:</strong></p>
+          <p>
+            Durham City, Chester-le-Street, Consett, Bishop Auckland, Stanley, Peterlee and surrounding County Durham
+            postcodes.
+          </p>
+        </div>
+      </div>
+
+      <div class="coverage-item">
+        <button class="coverage-header" type="button" aria-expanded="false">
+          <span class="coverage-title">Teesside</span>
+          <span class="coverage-toggle">+</span>
+        </button>
+        <div class="coverage-body">
+          <p><strong>Typical locations:</strong></p>
+          <p>
+            Middlesbrough, Stockton-on-Tees, Hartlepool, Redcar, Billingham, Yarm and nearby towns.
+          </p>
+        </div>
+      </div>
+
+      <div class="coverage-item">
+        <button class="coverage-header" type="button" aria-expanded="false">
+          <span class="coverage-title">Carlisle &amp; surrounding</span>
+          <span class="coverage-toggle">+</span>
+        </button>
+        <div class="coverage-body">
+          <p><strong>Typical locations:</strong></p>
+          <p>
+            Carlisle, Brampton and surrounding areas on the edge of Cumbria and the Scottish Borders.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="coverage-intro" style="margin-top:1.8rem;">
+      If you’re unsure whether your area is covered, just include your postcode when you contact us or
+      <a href="book.html">request a booking</a> and we’ll confirm.
+    </p>
 
     <!-- FAQ teaser -->
     <section class="section" id="faqs-overview">
@@ -490,7 +720,7 @@
         </header>
 
         <ul class="faq-list">
-          <li><strong>Which vehicles can you test?</strong> We test most modern fully electric vehicles (EVs) and plug-in hybrids (PHEVs) sold in the UK. When you book, simply enter your registration and we’ll confirm compatibility.</li>
+          <li><strong>Which vehicles can you test?</strong> We test most modern fully electric vehicles (EVs) and plug-in hybrids (PHEVs) sold in the UK. Use the compatibility checker above to confirm instantly.</li>
           <li><strong>Do you need access to my home charger?</strong> No. We connect directly to the vehicle to run the battery health test. We do not need to plug into your home charger.</li>
           <li><strong>How long does the appointment take?</strong> Most appointments take around 10–20 minutes, depending on the vehicle.</li>
         </ul>
@@ -503,132 +733,211 @@
 
     <!-- Booking form -->
     <section class="section section-booking" id="book">
-      <div class="container">
+      <div class="container booking-shell">
         <header class="section-header">
-          <h2>Book your EV battery health report</h2>
-          <p>
-            Complete the form below and we’ll confirm your booking by email.
-            Once confirmed, you’ll receive a secure payment link to finalise your appointment.
-          </p>
+          <h2>Request an appointment</h2>
+          <p>Three quick steps. We’ll confirm availability by email before taking payment.</p>
         </header>
 
-        <form
-          class="booking-form"
-          method="post"
-          action="https://submit-form.com/6bLuHmQIB"
-        >
-          <!-- Redirect to thank-you page after successful submission -->
-          <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
+        <div class="form-progress" aria-label="Booking form steps">
+          <div class="form-step-pill is-active" data-step-pill="1">
+            <span class="dot" aria-hidden="true"></span>
+            <strong>Step 1</strong> Your details
+          </div>
+          <div class="form-step-pill" data-step-pill="2">
+            <span class="dot" aria-hidden="true"></span>
+            <strong>Step 2</strong> Vehicle
+          </div>
+          <div class="form-step-pill" data-step-pill="3">
+            <span class="dot" aria-hidden="true"></span>
+            <strong>Step 3</strong> Appointment
+          </div>
+        </div>
 
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="name">Your name *</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder="John Smith"
-              >
-            </div>
+        <form class="booking-form" method="post" action="https://submit-form.com/6bLuHmQIB" novalidate>
+          <input type="hidden" name="reference" id="reference">
+          <input type="hidden" name="_redirect" id="redirectField" value="https://myevreport.com/thank-you.html">
 
-            <div class="form-group">
-              <label for="email">Email address *</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="you@example.com"
-              >
-            </div>
+          <!-- STEP 1 -->
+          <div class="step-panel is-active" data-step="1">
+            <div class="form-card">
+              <div class="form-card-header">
+                <div>
+                  <h3>Your details</h3>
+                  <p>So we can confirm your appointment and send your secure payment link.</p>
+                </div>
+                <div class="form-card-badge" aria-label="Step 1 of 3">1 / 3</div>
+              </div>
 
-            <div class="form-group">
-              <label for="phone">Telephone number *</label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                required
-                placeholder="07123 456789"
-              >
-            </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="name">Your name *</label>
+                  <input id="name" name="name" type="text" required autocomplete="name" placeholder="John Smith">
+                </div>
 
-            <div class="form-group">
-              <label for="postcode">Postcode where vehicle is located *</label>
-              <input
-                id="postcode"
-                name="postcode"
-                type="text"
-                required
-                placeholder="NE1 4LP"
-              >
-              <small>Currently serving the North East of England and surrounding areas.</small>
-            </div>
+                <div class="form-group">
+                  <label for="email">Email address *</label>
+                  <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+                </div>
 
-            <div class="form-group">
-              <label for="reg">Vehicle registration *</label>
-              <input
-                id="reg"
-                name="reg"
-                type="text"
-                required
-                placeholder="AB12 CDE"
-              >
-            </div>
+                <div class="form-group">
+                  <label for="phone">Telephone number *</label>
+                  <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="07123 456789">
+                </div>
 
-            <div class="form-group">
-              <label for="make-model">Vehicle make &amp; model *</label>
-              <input
-                id="make-model"
-                name="make-model"
-                type="text"
-                required
-                placeholder="Tesla Model 3"
-              >
-            </div>
+                <div class="form-group">
+                  <label for="bookingFor">I’m booking this report for… *</label>
+                  <select id="bookingFor" name="booking_for" required>
+                    <option value="">Select...</option>
+                    <option value="own_vehicle">My own vehicle</option>
+                    <option value="looking_to_purchase">A vehicle I’m looking to purchase</option>
+                    <option value="selling_vehicle">A vehicle I’m selling</option>
+                    <option value="dealer_stock">Dealer stock / trade</option>
+                  </select>
+                  <small>This helps us tailor the report and advice.</small>
+                </div>
+              </div>
 
-            <div class="form-group">
-              <label for="date">Preferred date *</label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                required
-              >
-            </div>
+              <div class="step-error" data-step-error="1" role="alert">
+                Please complete the required fields above to continue.
+              </div>
 
-            <div class="form-group">
-              <label for="time">Preferred time of day *</label>
-              <select id="time" name="time" required>
-                <option value="">Select...</option>
-                <option value="morning">Morning (9am–12pm)</option>
-                <option value="afternoon">Afternoon (12pm–4pm)</option>
-                <option value="evening">Evening (4pm–7pm)</option>
-              </select>
-            </div>
-
-            <div class="form-group form-group-full">
-              <label for="notes">Anything else we should know?</label>
-              <textarea
-                id="notes"
-                name="notes"
-                rows="4"
-                placeholder="Access notes, parking details or EV-specific questions"
-              ></textarea>
+              <div class="step-actions">
+                <div class="left"></div>
+                <div class="right">
+                  <button type="button" class="btn btn-primary" data-next>Continue</button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Actions / footnotes / Turnstile all full-width below the grid -->
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Request a booking</button>
-            <p class="form-footnote">* Required fields.</p>
-            <p class="form-footnote">
-              We’ll review your request and confirm availability by email before taking payment.
-            </p>
+          <!-- STEP 2 -->
+          <div class="step-panel" data-step="2">
+            <div class="form-card">
+              <div class="form-card-header">
+                <div>
+                  <h3>Vehicle details</h3>
+                  <p>We use this to confirm compatibility and complete your report correctly.</p>
+                </div>
+                <div class="form-card-badge" aria-label="Step 2 of 3">2 / 3</div>
+              </div>
 
-            <div class="cf-turnstile"
-                 data-sitekey="0x4AAAAAACBbB7U0D7OePjH6">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="reg">Vehicle registration *</label>
+                  <input id="reg" name="reg" type="text" required placeholder="AB12 CDE">
+                </div>
+
+                <div class="form-group">
+                  <label for="vehicleMake">Vehicle make *</label>
+                  <select id="vehicleMake" name="vehicle_make" required>
+                    <option value="">Loading makes…</option>
+                  </select>
+                  <small id="vehicleSupportNote">If your make/model isn’t listed, you can enter it manually below.</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="vehicleModel">Vehicle model *</label>
+                  <select id="vehicleModel" name="vehicle_model" required disabled>
+                    <option value="">Select a make first</option>
+                  </select>
+                </div>
+
+                <div class="form-group" id="vehicleManualWrap" style="display:none;">
+                  <label for="vehicleManual">Vehicle (manual entry) *</label>
+                  <input id="vehicleManual" name="vehicle_manual" type="text" placeholder="e.g. Nissan Leaf">
+                  <small>Dropdowns didn’t load — please type your make and model here.</small>
+                </div>
+              </div>
+
+              <div class="step-error" data-step-error="2" role="alert">
+                Please complete the required fields above to continue.
+              </div>
+
+              <div class="step-actions">
+                <div class="left">
+                  <button type="button" class="btn btn-secondary" data-back>Back</button>
+                </div>
+                <div class="right">
+                  <button type="button" class="btn btn-primary" data-next>Continue</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="step-panel" data-step="3">
+            <div class="form-card">
+              <div class="form-card-header">
+                <div>
+                  <h3>Appointment details</h3>
+                  <p>Where the vehicle is located and when you’d like us to visit.</p>
+                </div>
+                <div class="form-card-badge" aria-label="Step 3 of 3">3 / 3</div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="postcode">Postcode where vehicle is located *</label>
+                  <input id="postcode" name="postcode" type="text" required autocomplete="postal-code" placeholder="NE1 4LP">
+                  <small>Currently serving the North East of England and surrounding areas.</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="locationType">Vehicle location type *</label>
+                  <select id="locationType" name="location_type" required>
+                    <option value="">Select...</option>
+                    <option value="home">Home</option>
+                    <option value="work">Workplace</option>
+                    <option value="dealership">Dealership</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="date">Preferred date *</label>
+                  <input id="date" name="date" type="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="time">Preferred time of day *</label>
+                  <select id="time" name="time" required>
+                    <option value="">Select...</option>
+                    <option value="morning">Morning (9am–12pm)</option>
+                    <option value="afternoon">Afternoon (12pm–4pm)</option>
+                    <option value="evening">Evening (4pm–7pm)</option>
+                  </select>
+                </div>
+
+                <div class="form-group form-group-full">
+                  <label for="notes">Anything else we should know?</label>
+                  <textarea id="notes" name="notes" rows="4" placeholder="Access notes, parking details or EV-specific questions"></textarea>
+                </div>
+              </div>
+
+              <div class="form-trust">
+                🔋 Independent mobile testing · Clear written report · No payment taken until we confirm by email
+              </div>
+
+              <div class="step-error" data-step-error="3" role="alert">
+                Please complete the required fields above before submitting.
+              </div>
+
+              <div class="step-actions">
+                <div class="left">
+                  <button type="button" class="btn btn-secondary" data-back>Back</button>
+                </div>
+                <div class="right">
+                  <button type="submit" class="btn btn-primary">Check availability &amp; continue</button>
+                </div>
+              </div>
+
+              <div class="form-footnotes">
+                <p>* Required fields.</p>
+                <p>We’ll review your request and confirm availability by email before taking payment.</p>
+              </div>
+
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAACBbB7U0D7OePjH6"></div>
             </div>
           </div>
         </form>
@@ -638,18 +947,18 @@
   </main>
 
   <footer class="site-footer">
-  <div class="footer-inner footer-inline">
-    <p>
-      © 2026 MyEVReport ·
-      <a href="https://www.thod.co.uk/" target="_blank" rel="noopener noreferrer">Site by THOD</a>
-    </p>
+    <div class="footer-inner footer-inline">
+      <p>
+        © 2026 MyEVReport ·
+        <a href="https://www.thod.co.uk/" target="_blank" rel="noopener noreferrer">Site by THOD</a>
+      </p>
 
-    <nav class="footer-links">
-      <a href="privacy.html">Privacy policy</a> ·
-      <a href="terms.html">Terms &amp; conditions</a>
-    </nav>
-  </div>
-</footer>
+      <nav class="footer-links">
+        <a href="privacy.html">Privacy policy</a> ·
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+  </footer>
 
   <!-- WhatsApp Floating Button -->
   <a class="whatsapp-button"
@@ -662,5 +971,322 @@
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="js/main.js" defer></script>
+
+  <!-- ✅ Step logic + validation -->
+  <script>
+    (function () {
+      const form = document.querySelector(".booking-form");
+      if (!form) return;
+
+      const panels = Array.from(document.querySelectorAll(".step-panel"));
+      const pills = Array.from(document.querySelectorAll("[data-step-pill]"));
+
+      let currentStep = 1;
+
+      function setPills(step) {
+        pills.forEach(p => {
+          const n = parseInt(p.getAttribute("data-step-pill"), 10);
+          p.classList.toggle("is-active", n === step);
+          p.classList.toggle("is-done", n < step);
+        });
+      }
+
+      function showStep(step) {
+        currentStep = step;
+        panels.forEach(p => {
+          const n = parseInt(p.getAttribute("data-step"), 10);
+          p.classList.toggle("is-active", n === step);
+        });
+        setPills(step);
+        window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 120, behavior: "smooth" });
+      }
+
+      function setErrorVisible(step, visible) {
+        const el = document.querySelector('[data-step-error="' + step + '"]');
+        if (!el) return;
+        el.classList.toggle("is-visible", !!visible);
+      }
+
+      function validateStep(step) {
+        setErrorVisible(step, false);
+
+        const panel = document.querySelector('.step-panel[data-step="' + step + '"]');
+        if (!panel) return true;
+
+        const required = Array.from(panel.querySelectorAll("input, select, textarea"))
+          .filter(el => el.required && !el.disabled && el.offsetParent !== null);
+
+        for (const el of required) {
+          if (!el.checkValidity()) {
+            el.reportValidity();
+            setErrorVisible(step, true);
+            return false;
+          }
+        }
+        return true;
+      }
+
+      form.addEventListener("click", (e) => {
+        const nextBtn = e.target.closest("[data-next]");
+        const backBtn = e.target.closest("[data-back]");
+
+        if (nextBtn) {
+          e.preventDefault();
+          if (validateStep(currentStep)) showStep(Math.min(currentStep + 1, 3));
+        }
+
+        if (backBtn) {
+          e.preventDefault();
+          setErrorVisible(currentStep, false);
+          showStep(Math.max(currentStep - 1, 1));
+        }
+      });
+
+      form.addEventListener("submit", (e) => {
+        if (currentStep !== 3) {
+          e.preventDefault();
+          if (validateStep(currentStep)) showStep(Math.min(currentStep + 1, 3));
+          return;
+        }
+        if (!validateStep(3)) e.preventDefault();
+      });
+
+      showStep(1);
+    })();
+  </script>
+
+  <!-- ✅ MYEV reference generator -->
+  <script>
+    (function () {
+      const form = document.querySelector(".booking-form");
+      if (!form) return;
+
+      const refInput = document.getElementById("reference");
+      const redirectInput = document.getElementById("redirectField");
+      if (!refInput || !redirectInput) return;
+
+      function generateRef() {
+        const d = new Date();
+        const yy = String(d.getFullYear()).slice(-2);
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        const rand = Math.random().toString(36).toUpperCase().slice(2, 6);
+        return `MYEV-${yy}${mm}${dd}-${rand}`;
+      }
+
+      form.addEventListener("submit", function () {
+        const ref = generateRef();
+        refInput.value = ref;
+
+        const base = redirectInput.value.split("?")[0];
+        redirectInput.value = `${base}?ref=${encodeURIComponent(ref)}`;
+      });
+    })();
+  </script>
+
+  <!-- CSV loader (used by BOTH: compatibility checker + booking form dropdowns) -->
+  <script>
+    (async function () {
+      const CSV_URL = "/data/supported-vehicles.csv";
+
+      const compatMake = document.getElementById("compatMake");
+      const compatModel = document.getElementById("compatModel");
+      const compatPostcode = document.getElementById("compatPostcode");
+      const compatBtn = document.getElementById("compatCheckBtn");
+      const compatResult = document.getElementById("compatResult");
+      const compatBookRow = document.getElementById("compatBookRow");
+      const compatBookBtn = document.getElementById("compatBookBtn");
+
+      const makeSelect = document.getElementById("vehicleMake");
+      const modelSelect = document.getElementById("vehicleModel");
+      const manualWrap = document.getElementById("vehicleManualWrap");
+      const manualInput = document.getElementById("vehicleManual");
+
+      function escapeHtml(str) {
+        return String(str)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function parseCSV(text) {
+        const rows = [];
+        let row = [];
+        let cur = "";
+        let inQuotes = false;
+
+        for (let i = 0; i < text.length; i++) {
+          const c = text[i];
+          const next = text[i + 1];
+
+          if (c === '"' && inQuotes && next === '"') { cur += '"'; i++; continue; }
+          if (c === '"') { inQuotes = !inQuotes; continue; }
+
+          if (!inQuotes && c === ",") { row.push(cur); cur = ""; continue; }
+          if (!inQuotes && (c === "\n" || c === "\r")) {
+            if (cur.length || row.length) { row.push(cur); rows.push(row); }
+            row = []; cur = "";
+            if (c === "\r" && next === "\n") i++;
+            continue;
+          }
+          cur += c;
+        }
+        if (cur.length || row.length) { row.push(cur); rows.push(row); }
+        return rows;
+      }
+
+      function outwardCode(postcodeRaw){
+        const s = (postcodeRaw || "").toUpperCase().trim();
+        if (!s) return "";
+        return s.split(/\s+/)[0];
+      }
+
+      function isCovered(postcodeRaw){
+        const out = outwardCode(postcodeRaw);
+        if (!out) return false;
+        const prefixes = ["NE","SR","DH","DL","TS","CA"];
+        return prefixes.some(p => out.startsWith(p));
+      }
+
+      function setBtnState(){
+        const ready = !!compatMake.value && !!compatModel.value && !!outwardCode(compatPostcode.value);
+        compatBtn.disabled = !ready;
+      }
+
+      function enableManualFallback(){
+        makeSelect.innerHTML = `<option value="">Dropdowns unavailable</option>`;
+        makeSelect.disabled = true; makeSelect.required = false;
+        modelSelect.innerHTML = `<option value="">Dropdowns unavailable</option>`;
+        modelSelect.disabled = true; modelSelect.required = false;
+        manualWrap.style.display = "block";
+        manualInput.required = true;
+
+        compatMake.innerHTML = `<option value="">Dropdowns unavailable</option>`;
+        compatMake.disabled = true;
+        compatModel.innerHTML = `<option value="">Dropdowns unavailable</option>`;
+        compatModel.disabled = true;
+        compatBtn.disabled = true;
+
+        compatResult.className = "compat-result warn";
+        compatResult.innerHTML = `<strong>We couldn’t load the supported models list.</strong>Please request a booking and we’ll confirm compatibility by email.`;
+        compatBookRow.style.display = "flex";
+      }
+
+      try {
+        const res = await fetch(CSV_URL, { cache: "no-cache" });
+        if (!res.ok) throw new Error("CSV fetch failed");
+        const csvText = await res.text();
+
+        const raw = parseCSV(csvText);
+        if (!raw.length) throw new Error("CSV empty");
+
+        const header = raw[0].map(h => (h || "").trim());
+        const makeIdx = header.indexOf("Make");
+        const modelIdx = header.indexOf("Model");
+        const fuelIdx = header.indexOf("Fuel Type"); // optional
+
+        if (makeIdx === -1 || modelIdx === -1) throw new Error("Missing Make/Model headers");
+
+        const byMake = new Map();
+
+        for (let i = 1; i < raw.length; i++){
+          const cols = raw[i];
+          const make = (cols[makeIdx] || "").trim();
+          const model = (cols[modelIdx] || "").trim();
+          const fuel = fuelIdx !== -1 ? (cols[fuelIdx] || "").trim() : "";
+
+          if (fuel && fuel.toUpperCase() !== "BEV") continue;
+          if (!make || !model) continue;
+
+          if (!byMake.has(make)) byMake.set(make, new Set());
+          byMake.get(make).add(model);
+        }
+
+        const makes = Array.from(byMake.keys()).sort((a,b)=>a.localeCompare(b));
+
+        compatMake.innerHTML = `<option value="">Select make</option>` + makes.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+        makeSelect.innerHTML = `<option value="">Select make</option>` + makes.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+
+        function fillModelsFor(selectMake, targetSelect){
+          const models = Array.from(byMake.get(selectMake) || []).sort((a,b)=>a.localeCompare(b));
+          targetSelect.innerHTML = `<option value="">Select model</option>` + models.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+          targetSelect.disabled = false;
+        }
+
+        compatMake.addEventListener("change", () => {
+          compatBookRow.style.display = "none";
+          compatResult.className = "compat-result";
+          compatResult.textContent = "Choose a make, model and postcode to check compatibility.";
+
+          const mk = compatMake.value;
+          compatModel.disabled = true;
+          compatModel.innerHTML = `<option value="">Select a make first</option>`;
+          if (mk) fillModelsFor(mk, compatModel);
+          setBtnState();
+        });
+
+        compatModel.addEventListener("change", setBtnState);
+        compatPostcode.addEventListener("input", setBtnState);
+
+        makeSelect.addEventListener("change", () => {
+          const mk = makeSelect.value;
+          modelSelect.disabled = true;
+          modelSelect.innerHTML = `<option value="">Select a make first</option>`;
+          if (mk) fillModelsFor(mk, modelSelect);
+        });
+
+        compatBtn.addEventListener("click", () => {
+          const mk = compatMake.value;
+          const md = compatModel.value;
+          const pc = outwardCode(compatPostcode.value);
+
+          const vehicleSupported = !!(mk && md && byMake.has(mk) && byMake.get(mk).has(md));
+          const areaCovered = isCovered(pc);
+
+          if (vehicleSupported && areaCovered){
+            compatResult.className = "compat-result success";
+            compatResult.innerHTML = `<strong>Great news — your vehicle is supported and we cover your area.</strong>Next step: request your booking and we’ll confirm your time slot by email.`;
+            compatBookRow.style.display = "flex";
+
+            try {
+              const bfPost = document.getElementById("postcode");
+              if (bfPost) bfPost.value = pc;
+
+              makeSelect.value = mk;
+              modelSelect.disabled = false;
+              fillModelsFor(mk, modelSelect);
+              modelSelect.value = md;
+
+              if (manualWrap) manualWrap.style.display = "none";
+              if (manualInput) manualInput.required = false;
+            } catch(e){}
+
+          } else if (!vehicleSupported && areaCovered){
+            compatResult.className = "compat-result warn";
+            compatResult.innerHTML = `<strong>Good news — we cover your area.</strong>Your model isn’t listed here yet. Request a booking and we’ll confirm compatibility by email.`;
+            compatBookRow.style.display = "flex";
+          } else if (vehicleSupported && !areaCovered){
+            compatResult.className = "compat-result warn";
+            compatResult.innerHTML = `<strong>Your vehicle is supported.</strong>However, we may not currently cover <b>${escapeHtml(pc)}</b>. Request a booking and we’ll confirm if we can travel to you.`;
+            compatBookRow.style.display = "flex";
+          } else {
+            compatResult.className = "compat-result warn";
+            compatResult.innerHTML = `<strong>We need to confirm this one.</strong>Your model isn’t listed and your postcode may be outside our usual area. Request a booking and we’ll confirm by email.`;
+            compatBookRow.style.display = "flex";
+          }
+        });
+
+        compatBookBtn.addEventListener("click", () => {
+          document.getElementById("book").scrollIntoView({ behavior: "smooth" });
+        });
+
+      } catch (e) {
+        enableManualFallback();
+      }
+    })();
+  </script>
+
 </body>
 </html>

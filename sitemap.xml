@@ -1,75 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- HOME -->
   <url>
     <loc>https://myevreport.com/</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- CORE PAGES -->
   <url>
     <loc>https://myevreport.com/how-it-works.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://myevreport.com/pricing.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://myevreport.com/whats-in-the-report.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- NEW PAGES -->
   <url>
-    <loc>https://myevreport.com/book.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://myevreport.com/pricing.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://myevreport.com/coverage.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://myevreport.com/supported-models.html</loc>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://myevreport.com/coverage.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://myevreport.com/faqs.html</loc>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://myevreport.com/faqs.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://myevreport.com/book.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- NEWS INDEX -->
   <url>
     <loc>https://myevreport.com/news.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- NEWS ARTICLES -->
+  <!-- NEWS ARTICLES (NEWEST FIRST) -->
+  <url>
+    <loc>https://myevreport.com/news-nissan-leaf-sunderland-production.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://myevreport.com/news-xpeng-g6-uk-launch.html</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://myevreport.com/news-ford-fiesta-renault-5-ev.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://myevreport.com/news-ev-grant-3750-eligible-cars.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://myevreport.com/news-ev-road-tax-3p-mile.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -77,21 +106,21 @@
   <!-- OTHER ESSENTIAL PAGES -->
   <url>
     <loc>https://myevreport.com/thank-you.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://myevreport.com/privacy.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://myevreport.com/terms.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
