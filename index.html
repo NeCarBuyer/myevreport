@@ -33,9 +33,7 @@
   <link rel="preload" href="images/logo-myevreport.png" as="image">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/main.css?v=999">
-<script src="js/main.js?v=999" defer></script>
 
   <!-- Page-only styles for the combined checker -->
   <style>
@@ -273,7 +271,7 @@
       <a href="index.html" class="logo">
         <img src="images/logo-myevreport.png"
              alt="MyEVReport logo – independent EV battery health reports"
-             width="120" height="28">
+             width="180" height="42">
       </a>
 
       <!-- ✅ CLEAN NAV: 4 core + More dropdown + CTA -->
@@ -619,6 +617,7 @@
       </div>
     </section>
 
+    <div class="container">
     <p class="coverage-intro" style="margin-bottom:1.6rem;">
       You can also browse by region below to see typical towns and cities we cover for EV battery testing.
     </p>
@@ -710,6 +709,8 @@
       If you’re unsure whether your area is covered, just include your postcode when you contact us or
       <a href="book.html">request a booking</a> and we’ll confirm.
     </p>
+  </div>
+
 
     <!-- FAQ teaser -->
     <section class="section" id="faqs-overview">
@@ -970,7 +971,7 @@
   </a>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=999" defer></script>
 
   <!-- ✅ Step logic + validation -->
   <script>
@@ -1077,6 +1078,7 @@
       form.addEventListener("submit", function () {
         const ref = generateRef();
         refInput.value = ref;
+        try { localStorage.setItem('myev_last_ref', ref); } catch(e) {}
 
         const base = redirectInput.value.split("?")[0];
         redirectInput.value = `${base}?ref=${encodeURIComponent(ref)}`;

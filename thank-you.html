@@ -63,6 +63,8 @@
       color: #0f4c81; /* brand navy */
     }
 
+    .thank-you-ref{margin:0.25rem 0 1.25rem;color:#0f4c81;font-weight:600;}
+
     .thank-you-box p {
       font-size: 1rem;
       color: #6b7380;
@@ -127,6 +129,7 @@
     <section class="thank-you-wrapper">
       <div class="thank-you-box">
         <h1>Thank you!</h1>
+        <p class="thank-you-ref">Reference: <strong id="thankYouRef">—</strong></p>
         <p>
           We’ve received your EV battery health report request and our team will now review your details.
           You’ll receive a confirmation email once we’ve checked coverage and availability for your chosen date and location.
@@ -175,5 +178,13 @@
   </a>
 
   <script src="js/main.js" defer></script>
+  <script>
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get("ref") || (function(){ try { return localStorage.getItem("myev_last_ref"); } catch(e){ return null; } })();
+      const el = document.getElementById("thankYouRef");
+      if (el && ref) el.textContent = ref;
+    })();
+  </script>
 </body>
 </html>

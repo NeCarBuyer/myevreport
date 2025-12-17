@@ -142,7 +142,7 @@ main {
 
 /* Logo: keep balanced against nav */
 .logo img {
-  height: 56px;
+  height: 60px;
   width: auto;
 }
 
@@ -1585,7 +1585,7 @@ main {
   }
 
   .logo img {
-    height: 54px;
+    height: 58px;
   }
 
   .main-nav {
@@ -1845,8 +1845,12 @@ main {
 }
 
 .nav-more__item:hover {
-  background: rgba(0,0,0,0.06_toggle
------------------------- */
+  background: rgba(0,0,0,0.06);
+}
+
+/* =========================================
+   Header "More" dropdown (mobile)
+   ========================================= */
 @media (max-width: 1024px) {
   .nav-more { width: 100%; }
   .nav-more__btn { width: 100%; justify-content: space-between; padding: 10px 0; }

@@ -1,24 +1,113 @@
 // js/main.js
 
 document.addEventListener('DOMContentLoaded', () => {
+  // =========================
+  // Header / mobile nav
+  // =========================
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav-toggle');
+  const mainNav = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.main-nav a');
 
-  // Mobile nav toggle
-  if (header && toggle) {
-    toggle.addEventListener('click', () => {
-      header.classList.toggle('nav-open');
+  // ✅ More dropdown (Option B) — FIXED to toggle [hidden] properly
+  const moreWrap = document.querySelector('[data-nav-more]');
+  const moreBtn = moreWrap ? moreWrap.querySelector('.nav-more__btn') : null;
+  const moreMenu = moreWrap ? moreWrap.querySelector('.nav-more__menu') : null;
+
+  function closeMore() {
+    if (!moreWrap || !moreBtn || !moreMenu) return;
+    moreWrap.classList.remove('is-open');
+    moreBtn.setAttribute('aria-expanded', 'false');
+    moreMenu.setAttribute('hidden', '');
+  }
+
+  function openMore() {
+    if (!moreWrap || !moreBtn || !moreMenu) return;
+    moreWrap.classList.add('is-open');
+    moreBtn.setAttribute('aria-expanded', 'true');
+    moreMenu.removeAttribute('hidden');
+  }
+
+  function toggleMore() {
+    if (!moreWrap || !moreMenu) return;
+    const isOpen = moreWrap.classList.contains('is-open') || !moreMenu.hasAttribute('hidden');
+    isOpen ? closeMore() : openMore();
+  }
+
+  if (moreWrap && moreBtn && moreMenu) {
+    // Ensure consistent initial state
+    moreBtn.setAttribute('aria-expanded', 'false');
+    if (!moreMenu.hasAttribute('hidden')) moreMenu.setAttribute('hidden', '');
+
+    moreBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMore();
     });
 
-    navLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        header.classList.remove('nav-open');
-      });
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!moreWrap.classList.contains('is-open')) return;
+      if (!moreWrap.contains(e.target)) closeMore();
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMore();
+    });
+
+    // Close after selecting a menu item
+    moreWrap.querySelectorAll('.nav-more__item').forEach((a) => {
+      a.addEventListener('click', closeMore);
     });
   }
 
-  // --- Coverage bubbles toggle ---
+  function closeNav() {
+    if (!header) return;
+    header.classList.remove('nav-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    // ✅ ensure More menu closes when burger closes
+    closeMore();
+  }
+
+  function openNav() {
+    if (!header) return;
+    header.classList.add('nav-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  function toggleNav() {
+    if (!header) return;
+    header.classList.contains('nav-open') ? closeNav() : openNav();
+  }
+
+  if (header && toggle) {
+    toggle.setAttribute('aria-expanded', 'false');
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleNav();
+    });
+
+    navLinks.forEach((link) => link.addEventListener('click', closeNav));
+
+    document.addEventListener('click', (e) => {
+      if (!header.classList.contains('nav-open')) return;
+      if (!header.contains(e.target)) closeNav();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeNav();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) closeNav();
+    });
+  }
+
+  // =========================
+  // Coverage bubbles toggle
+  // =========================
   document.querySelectorAll('.coverage-item').forEach((item) => {
     const btn = item.querySelector('.coverage-header');
     if (!btn) return;
@@ -26,14 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
 
-      // Close all items
       document.querySelectorAll('.coverage-item').forEach((other) => {
         other.classList.remove('open');
         const otherBtn = other.querySelector('.coverage-header');
         if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
       });
 
-      // Open this one if it was closed
       if (!isOpen) {
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
@@ -41,102 +128,436 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Postcode coverage logic ---
-  (function () {
-    const input = document.getElementById('coverage-postcode');
-    const button = document.getElementById('coverage-check-button');
-    const result = document.getElementById('coverage-result');
-    const successActions = document.getElementById('coverage-success-actions');
-    const bookingSection = document.getElementById('book'); // present on index.html
-
-    // If coverage section not on this page, bail
-    if (!input || !button || !result || !successActions) return;
-
-    function resetResult() {
-      result.textContent = '';
-      result.className = 'coverage-result';
-      successActions.style.display = 'none';
-      successActions.innerHTML = '';
-    }
-
-    function doCheck() {
-      const raw = (input.value || '').toUpperCase().trim();
-
-      if (!raw) {
-        result.textContent = 'Please enter a postcode to check.';
-        result.className = 'coverage-result negative';
-        successActions.style.display = 'none';
-        successActions.innerHTML = '';
-        return;
-      }
-
-      result.textContent = 'Checking coverage…';
-      result.className = 'coverage-result loading';
-      successActions.style.display = 'none';
-      successActions.innerHTML = '';
-
-      setTimeout(() => {
-        // Remove spaces, take first 1–2 letters
-        const cleaned = raw.replace(/\s+/g, '');
-        const match = cleaned.match(/^[A-Z]{1,2}/);
-        const area = match ? match[0] : '';
-        const coveredAreas = ['NE', 'SR', 'DH', 'DL', 'TS', 'CA'];
-
-        // Reset base class
-        result.className = 'coverage-result';
-
-        if (coveredAreas.includes(area)) {
-          // POSITIVE RESULT
-          result.textContent = 'Great! – We cover this postcode area.';
-          result.classList.add('positive');
-        } else {
-          // NEGATIVE RESULT – your orange message
-          result.textContent =
-            'Unfortunately, we don’t currently cover this area. However, we may still be able to help. Please send us your details and we’ll confirm whether we can arrange coverage for this postcode.';
-          result.classList.add('maybe'); // style this as orange in CSS
-        }
-
-        // In both cases, show a Book a report button
-        if (bookingSection) {
-          // On index.html – scroll to booking form
-          successActions.innerHTML = `
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="document.getElementById('book').scrollIntoView({ behavior: 'smooth' });"
-            >
-              Book a report
-            </button>
-          `;
-        } else {
-          // On coverage.html – go to book page
-          successActions.innerHTML = `
-            <a href="book.html" class="btn btn-primary">
-              Book a report
-            </a>
-          `;
-        }
-
-        successActions.style.display = 'block';
-      }, 300);
-    }
-
-    button.addEventListener('click', doCheck);
-
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        doCheck();
-      } else {
-        // Clear message as they change the text
-        resetResult();
-      }
-    });
-  })();
-
+  // =========================
   // Footer year
+  // =========================
   const yearSpan = document.getElementById('year');
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear().toString();
+  if (yearSpan) yearSpan.textContent = String(new Date().getFullYear());
+
+  // ==========================================================
+  // Supported vehicles CSV: shared loader + make/model dropdowns
+  // ==========================================================
+  const CSV_URL = "/data/supported-vehicles.csv";
+
+  function escapeHtml(str) {
+    return String(str ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
+
+  function parseCSV(text) {
+    const rows = [];
+    let row = [];
+    let cur = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      const n = text[i + 1];
+
+      if (c === '"' && inQuotes && n === '"') {
+        cur += '"';
+        i++;
+        continue;
+      }
+      if (c === '"') {
+        inQuotes = !inQuotes;
+        continue;
+      }
+      if (!inQuotes && c === ",") {
+        row.push(cur);
+        cur = "";
+        continue;
+      }
+      if (!inQuotes && (c === "\n" || c === "\r")) {
+        if (cur || row.length) {
+          row.push(cur);
+          rows.push(row);
+        }
+        row = [];
+        cur = "";
+        if (c === "\r" && n === "\n") i++;
+        continue;
+      }
+      cur += c;
+    }
+
+    if (cur || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows;
+  }
+
+  function normaliseHeader(h) {
+    return String(h || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, " ");
+  }
+
+  async function loadSupportedData() {
+    const res = await fetch(CSV_URL, { cache: "no-cache" });
+    if (!res.ok) throw new Error("Failed to fetch supported vehicles CSV");
+    const raw = parseCSV(await res.text());
+    if (!raw.length) throw new Error("CSV empty");
+
+    const headers = raw[0].map(normaliseHeader);
+
+    const makeIdx = headers.indexOf("make");
+    const modelIdx = headers.indexOf("model");
+
+    const fuelIdx =
+      headers.indexOf("fuel type") !== -1 ? headers.indexOf("fuel type") :
+      headers.indexOf("fueltype") !== -1 ? headers.indexOf("fueltype") :
+      headers.indexOf("fuel") !== -1 ? headers.indexOf("fuel") : -1;
+
+    if (makeIdx === -1 || modelIdx === -1) {
+      throw new Error("CSV must contain Make and Model columns");
+    }
+
+    const byMake = new Map();
+
+    for (let i = 1; i < raw.length; i++) {
+      const r = raw[i];
+      const make = (r[makeIdx] || "").trim();
+      const model = (r[modelIdx] || "").trim();
+      const fuel = fuelIdx > -1 ? (r[fuelIdx] || "").trim().toUpperCase() : "";
+
+      if (fuel && fuel !== "BEV") continue;
+
+      if (!make || !model) continue;
+      if (!byMake.has(make)) byMake.set(make, new Set());
+      byMake.get(make).add(model);
+    }
+
+    const makes = [...byMake.keys()].sort((a, b) => a.localeCompare(b));
+
+    return { byMake, makes };
+  }
+
+  let supportedDataPromise = null;
+  function getSupportedData() {
+    if (!supportedDataPromise) supportedDataPromise = loadSupportedData();
+    return supportedDataPromise;
+  }
+
+  function populateMakeSelect(makeSel, makes) {
+    makeSel.innerHTML =
+      `<option value="">Select make</option>` +
+      makes.map(m => `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+  }
+
+  function populateModelSelect(modelSel, models) {
+    modelSel.innerHTML =
+      `<option value="">Select model</option>` +
+      models.map(m => `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+  }
+
+  function setSelectValue(select, value) {
+    if (!select || !value) return;
+    const v = String(value);
+    const option = [...select.options].find(o => o.value === v);
+    if (option) select.value = v;
+  }
+
+  const LS_KEY = "myevreport_vehicle_selection_v1";
+
+  function saveVehicleSelection(make, model) {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify({ make, model, ts: Date.now() }));
+    } catch (_) {}
+  }
+
+  function readVehicleSelection() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return null;
+      const obj = JSON.parse(raw);
+      if (!obj?.make || !obj?.model) return null;
+      return obj;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function readQueryParamsSelection() {
+    const params = new URLSearchParams(window.location.search);
+    const make = params.get("make");
+    const model = params.get("model");
+    if (make && model) return { make, model };
+    return null;
+  }
+
+  async function initBookingMakeModel() {
+    const bookMake = document.getElementById("vehicleMake") || document.getElementById("bookMake");
+    const bookModel = document.getElementById("vehicleModel") || document.getElementById("bookModel");
+    if (!bookMake || !bookModel) return;
+
+    try {
+      const { byMake, makes } = await getSupportedData();
+      populateMakeSelect(bookMake, makes);
+
+      const fromQuery = readQueryParamsSelection();
+      const fromLS = readVehicleSelection();
+      const prefill = fromQuery || fromLS;
+
+      bookMake.addEventListener("change", () => {
+        const mk = bookMake.value;
+        bookModel.disabled = true;
+        bookModel.innerHTML = `<option value="">Select a make first</option>`;
+        if (!mk) return;
+
+        const models = [...(byMake.get(mk) || [])].sort((a, b) => a.localeCompare(b));
+        populateModelSelect(bookModel, models);
+        bookModel.disabled = false;
+
+        bookModel.value = "";
+      });
+
+      bookModel.addEventListener("change", () => {
+        if (bookMake.value && bookModel.value) {
+          saveVehicleSelection(bookMake.value, bookModel.value);
+        }
+      });
+
+      if (prefill) {
+        setSelectValue(bookMake, prefill.make);
+        bookMake.dispatchEvent(new Event("change"));
+        setSelectValue(bookModel, prefill.model);
+      }
+    } catch (e) {
+      bookMake.innerHTML = `<option value="">Unavailable</option>`;
+      bookMake.disabled = true;
+      bookModel.innerHTML = `<option value="">Unavailable</option>`;
+      bookModel.disabled = true;
+    }
+  }
+
+  async function initSupportedModelsPage() {
+    const smMake = document.getElementById("smMake");
+    const smModel = document.getElementById("smModel");
+    const smResult = document.getElementById("smResult");
+    const smActions = document.getElementById("smActions");
+    const bookLink = document.getElementById("smBookLink");
+
+    if (!smMake || !smModel || !smResult) return;
+
+    try {
+      const { byMake, makes } = await getSupportedData();
+      populateMakeSelect(smMake, makes);
+
+      smModel.disabled = true;
+      smModel.innerHTML = `<option value="">Select a make first</option>`;
+
+      smMake.addEventListener("change", () => {
+        smActions && (smActions.style.display = "none");
+        smResult.className = "mini-result";
+        smResult.textContent = "Choose a make and model to check support.";
+
+        const mk = smMake.value;
+        smModel.disabled = true;
+        smModel.innerHTML = `<option value="">Select a make first</option>`;
+        if (!mk) return;
+
+        const models = [...(byMake.get(mk) || [])].sort((a, b) => a.localeCompare(b));
+        populateModelSelect(smModel, models);
+        smModel.disabled = false;
+      });
+
+      smModel.addEventListener("change", () => {
+        const mk = smMake.value;
+        const md = smModel.value;
+
+        if (mk && md && byMake.has(mk) && byMake.get(mk).has(md)) {
+          smResult.className = "mini-result success";
+          smResult.innerHTML = "<strong>Great news — your vehicle is supported.</strong>You can book your report in under a minute.";
+          saveVehicleSelection(mk, md);
+
+          if (bookLink) {
+            const url = new URL(bookLink.getAttribute("href") || "book.html", window.location.origin);
+            url.searchParams.set("make", mk);
+            url.searchParams.set("model", md);
+            bookLink.setAttribute("href", url.pathname + url.search);
+          }
+        } else {
+          smResult.className = "mini-result warn";
+          smResult.innerHTML = "<strong>We need to confirm this one.</strong>Your model isn’t listed here yet.";
+        }
+
+        smActions && (smActions.style.display = "flex");
+      });
+
+      const prefill = readQueryParamsSelection() || readVehicleSelection();
+      if (prefill) {
+        setSelectValue(smMake, prefill.make);
+        smMake.dispatchEvent(new Event("change"));
+        setSelectValue(smModel, prefill.model);
+        smModel.dispatchEvent(new Event("change"));
+      }
+    } catch (e) {
+      smMake.innerHTML = `<option value="">Unavailable</option>`;
+      smMake.disabled = true;
+      smModel.innerHTML = `<option value="">Unavailable</option>`;
+      smModel.disabled = true;
+
+      smResult.className = "mini-result warn";
+      smResult.innerHTML = "<strong>We couldn’t load the supported models list.</strong>Please book and we’ll confirm compatibility by email.";
+      smActions && (smActions.style.display = "flex");
+    }
+  }
+
+  async function initIndexCompatibilityChecker() {
+    const compatMake = document.getElementById("compatMake");
+    const compatModel = document.getElementById("compatModel");
+
+    const postcodeInput = document.getElementById("coverage-postcode");
+    const checkBtn = document.getElementById("coverage-check-button");
+    const resultEl = document.getElementById("coverage-result");
+    const actionsEl = document.getElementById("coverage-success-actions");
+
+    if (!compatMake || !compatModel || !postcodeInput || !checkBtn || !resultEl || !actionsEl) return;
+
+    const bookingSection = document.getElementById("book");
+    const bookMake = document.getElementById("bookMake");
+    const bookModel = document.getElementById("bookModel");
+
+    const coveredAreas = new Set(["NE", "SR", "DH", "DL", "TS", "CA"]);
+
+    function setResult(type, html) {
+      resultEl.className = "compat-result" + (type ? ` ${type}` : "");
+      resultEl.innerHTML = html;
+    }
+
+    function showActions(make, model) {
+      actionsEl.style.display = "flex";
+      actionsEl.innerHTML = `
+        <button type="button" class="btn btn-primary" id="compatBookBtn">
+          Book a report
+        </button>
+        <a class="btn btn-secondary" href="supported-models.html">See supported vehicles</a>
+      `;
+
+      const btn = document.getElementById("compatBookBtn");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          if (bookMake && bookModel && make && model) {
+            setSelectValue(bookMake, make);
+            bookMake.dispatchEvent(new Event("change"));
+            setSelectValue(bookModel, model);
+            bookModel.dispatchEvent(new Event("change"));
+          }
+
+          if (make && model) saveVehicleSelection(make, model);
+
+          if (bookingSection) bookingSection.scrollIntoView({ behavior: "smooth" });
+          else window.location.href = `book.html?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`;
+        });
+      }
+    }
+
+    try {
+      const { byMake, makes } = await getSupportedData();
+      populateMakeSelect(compatMake, makes);
+
+      compatModel.disabled = true;
+      compatModel.innerHTML = `<option value="">Select a make first</option>`;
+
+      compatMake.addEventListener("change", () => {
+        actionsEl.style.display = "none";
+        actionsEl.innerHTML = "";
+        setResult("", "");
+
+        const mk = compatMake.value;
+        compatModel.disabled = true;
+        compatModel.innerHTML = `<option value="">Select a make first</option>`;
+        if (!mk) return;
+
+        const models = [...(byMake.get(mk) || [])].sort((a, b) => a.localeCompare(b));
+        populateModelSelect(compatModel, models);
+        compatModel.disabled = false;
+      });
+
+      compatModel.addEventListener("change", () => {
+        const mk = compatMake.value;
+        const md = compatModel.value;
+        if (bookMake && bookModel && mk && md) {
+          setSelectValue(bookMake, mk);
+          bookMake.dispatchEvent(new Event("change"));
+          setSelectValue(bookModel, md);
+          bookModel.dispatchEvent(new Event("change"));
+        }
+        if (mk && md) saveVehicleSelection(mk, md);
+      });
+
+      const prefill = readQueryParamsSelection() || readVehicleSelection();
+      if (prefill) {
+        setSelectValue(compatMake, prefill.make);
+        compatMake.dispatchEvent(new Event("change"));
+        setSelectValue(compatModel, prefill.model);
+      }
+
+      checkBtn.addEventListener("click", () => {
+        const mk = compatMake.value;
+        const md = compatModel.value;
+        const pcRaw = (postcodeInput.value || "").toUpperCase().trim();
+
+        actionsEl.style.display = "none";
+        actionsEl.innerHTML = "";
+
+        if (!mk || !md) {
+          setResult("warn", "<strong>Please select your make and model.</strong>Then check compatibility.");
+          return;
+        }
+
+        if (!pcRaw) {
+          setResult("warn", "<strong>Please enter a postcode.</strong>We’ll confirm coverage and compatibility.");
+          return;
+        }
+
+        const cleaned = pcRaw.replace(/\s+/g, "");
+        const match = cleaned.match(/^[A-Z]{1,2}/);
+        const area = match ? match[0] : "";
+
+        const supported = byMake.has(mk) && byMake.get(mk).has(md);
+        const covered = area && coveredAreas.has(area);
+
+        saveVehicleSelection(mk, md);
+
+        if (supported && covered) {
+          setResult("success",
+            "<strong>Great news — your vehicle is supported and you’re within our coverage area.</strong>Click below to request a booking."
+          );
+          showActions(mk, md);
+          return;
+        }
+
+        if (supported && !covered) {
+          setResult("warn",
+            "<strong>Good news — your vehicle is supported.</strong>We don’t currently list that postcode area as standard coverage, but we may still be able to help. Click below to request a booking and we’ll confirm availability by email."
+          );
+          showActions(mk, md);
+          return;
+        }
+
+        setResult("warn",
+          "<strong>We need to confirm this one.</strong>Your model isn’t listed in our supported checker yet. You can still request a booking and we’ll confirm compatibility before taking payment."
+        );
+        showActions(mk, md);
+      });
+    } catch (e) {
+      setResult("warn",
+        "<strong>We couldn’t load the supported vehicles list.</strong>Please request a booking and we’ll confirm compatibility by email."
+      );
+      actionsEl.style.display = "flex";
+      actionsEl.innerHTML = `<a href="book.html" class="btn btn-primary">Book a report</a>`;
+    }
+  }
+
+  initBookingMakeModel();
+  initSupportedModelsPage();
+  initIndexCompatibilityChecker();
 });

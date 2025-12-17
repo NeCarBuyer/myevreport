@@ -293,8 +293,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function initBookingMakeModel() {
-    const bookMake = document.getElementById("bookMake");
-    const bookModel = document.getElementById("bookModel");
+    const bookMake = document.getElementById("vehicleMake") || document.getElementById("bookMake");
+    const bookModel = document.getElementById("vehicleModel") || document.getElementById("bookModel");
     if (!bookMake || !bookModel) return;
 
     try {

@@ -283,7 +283,8 @@
         </div>
 
         <form class="booking-form" method="post" action="https://submit-form.com/6bLuHmQIB" novalidate>
-          <input type="hidden" name="_redirect" value="https://myevreport.com/thank-you.html">
+          <input type="hidden" name="reference" id="reference">
+          <input type="hidden" name="_redirect"  value="https://myevreport.com/thank-you.html" id="redirectField">
 
           <!-- STEP 1 -->
           <div class="step-panel is-active" data-step="1">
@@ -742,6 +743,37 @@
       } catch (err) {
         enableManualFallback(err.message || "Unable to load CSV");
       }
+    })();
+  </script>
+
+
+  <!-- ✅ MYEV reference generator -->
+  <script>
+    (function () {
+      const form = document.querySelector(".booking-form");
+      if (!form) return;
+
+      const refInput = document.getElementById("reference");
+      const redirectInput = document.getElementById("redirectField");
+      if (!refInput || !redirectInput) return;
+
+      function generateRef() {
+        const d = new Date();
+        const yy = String(d.getFullYear()).slice(-2);
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        const rand = Math.random().toString(36).toUpperCase().slice(2, 6);
+        return `MYEV-${yy}${mm}${dd}-${rand}`;
+      }
+
+      form.addEventListener("submit", function () {
+        const ref = generateRef();
+        refInput.value = ref;
+        try { localStorage.setItem('myev_last_ref', ref); } catch(e) {}
+
+        const base = redirectInput.value.split("?")[0];
+        redirectInput.value = `${base}?ref=${encodeURIComponent(ref)}`;
+      }, { capture: true });
     })();
   </script>
 
