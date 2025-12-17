@@ -30,6 +30,8 @@
   <!-- Preload critical assets -->
   <link rel="preload" href="css/main.css" as="style">
   <link rel="preload" href="images/logo-myevreport.png" as="image">
+  <!-- ✅ Preload new pricing image -->
+  <link rel="preload" href="images/pricing/pricing-side.webp" as="image">
 
   <link rel="stylesheet" href="css/main.css">
 
@@ -52,6 +54,33 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
+
+    /* ✅ NEW: pricing header + image layout (minimal, page-only) */
+    .pricing-header-grid{
+      display: grid;
+      gap: 1.4rem;
+      align-items: start;
+    }
+    @media (min-width: 900px){
+      .pricing-header-grid{
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 2rem;
+        align-items: center;
+      }
+    }
+    .pricing-side-image{
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.10);
+      box-shadow: 0 16px 44px rgba(0,0,0,0.18);
+    }
+    /* Add breathing room between header image and pricing cards */
+.pricing-header-grid{
+  margin-bottom: 2.5rem;
+}
+
   </style>
 
   <!-- Optional: basic Offer schema -->
@@ -143,13 +172,27 @@
     <!-- Pricing + testimonial layout -->
     <section class="section section-alt" id="pricing-overview">
       <div class="container">
-        <header class="section-header">
-          <h1>Simple, transparent pricing</h1>
-          <p>
-            One clear price for private buyers and sellers. Discounted pricing is available for dealers and fleets
-            testing multiple EVs each month.
-          </p>
-        </header>
+
+        <!-- ✅ Header now includes image on the right (desktop) -->
+        <div class="pricing-header-grid">
+          <header class="section-header">
+            <h1>Simple, transparent pricing</h1>
+            <p>
+              One clear price for private buyers and sellers. Discounted pricing is available for dealers and fleets
+              testing multiple EVs each month.
+            </p>
+          </header>
+
+          <div>
+            <img
+              src="images/pricing/pricing-side.webp"
+              alt="Electric vehicle charging on a UK street"
+              class="pricing-side-image"
+              loading="lazy"
+              width="1200"
+              height="800">
+          </div>
+        </div>
 
         <!-- Two equal-height pricing bubbles -->
         <div class="pricing-grid">

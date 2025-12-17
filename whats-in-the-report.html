@@ -36,6 +36,37 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/main.css">
 
+  <!-- ✅ Page-only styles: certificate in right column -->
+  <style>
+    .report-cert{
+      width: 100%;
+      max-width: 460px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.18);
+      border: 1px solid rgba(0,0,0,.08);
+      background: #fff;
+    }
+    .report-cert-wrap{
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      text-align: center;
+    }
+    .report-cert-note{
+      max-width: 48ch;
+      font-size: .95rem;
+      opacity: .9;
+    }
+    .report-cert-actions .btn{
+      display:inline-flex;
+      justify-content:center;
+      width: 100%;
+      max-width: 320px;
+    }
+  </style>
+
   <!-- Simple schema -->
   <script type="application/ld+json">
   {
@@ -177,14 +208,31 @@
 
           </div>
 
-          <!-- Illustration column -->
+          <!-- ✅ Certificate column (RIGHT) -->
           <div style="display:flex; justify-content:center; align-items:flex-start;">
-            <picture>
+            <div class="report-cert-wrap">
               <img
-                src="images/soh-phone-car.png"
-                alt="Example EV battery State of Health shown on a smartphone in front of an electric vehicle"
-                class="report-illustration">
-            </picture>
+                src="images/certificates/tested-by-myevreport-certificate.webp"
+                alt="Example certificate showing the vehicle has been battery-health tested by MyEVReport"
+                loading="lazy"
+                width="900"
+                height="1275"
+                class="report-cert"
+              >
+
+              <p class="report-cert-note">
+                Each completed test includes a clear certificate-style confirmation that the vehicle has been battery-health tested by MyEVReport —
+                ideal for adverts, buyer confidence and dealer files.
+              </p>
+
+              <div class="report-cert-actions">
+                <a class="btn btn-primary"
+                   href="images/certificates/tested-by-myevreport-certificate.pdf"
+                   target="_blank" rel="noopener">
+                  View the certificate (PDF)
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 

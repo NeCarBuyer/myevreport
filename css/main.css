@@ -637,6 +637,58 @@ main {
   margin-top: 2.5rem;
 }
 
+/* =========================
+   Latest EV News – 3-card thumbnail carousel (no cropping)
+   ========================= */
+
+.news-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 32px) / 3); /* 3 cards across */
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.news-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.news-slide {
+  scroll-snap-align: start;
+}
+
+.news-thumb {
+  display: block;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-decoration: none;
+  height: 100%;
+}
+
+.news-thumb img {
+  width: 100%;
+  height: 160px;          /* sets consistent card height */
+  object-fit: contain;     /* IMPORTANT: show 100% of thumbnail */
+  background: #f3f5f7;     /* letterbox area */
+  display: block;
+}
+
+.news-thumb__overlay {
+  padding: 12px;
+}
+
+.news-thumb__title {
+  color: #0a2540;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
 @media (min-width: 900px) {
   .testimonial-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2396,81 +2448,137 @@ main {
 .section-cta-link:hover {
   text-decoration: underline;
 }
-/* News thumbnail carousel */
+/* =========================
+   Latest EV News – card carousel
+   ========================= */
+
 .news-carousel {
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 32px) / 3);
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
 }
 
-.news-slide {
+.news-carousel::-webkit-scrollbar {
   display: none;
 }
 
-.news-slide.is-active {
-  display: block;
+.news-slide {
+  scroll-snap-align: start;
 }
 
 .news-thumb {
-  position: relative;
   display: block;
-  border-radius: 8px;
+  background: #fff;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-decoration: none;
+  height: 100%;
+}
+/* =========================
+   Latest EV News – 3-card carousel base
+   ========================= */
+
+.news-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 32px) / 3); /* 3 across on desktop */
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
 }
 
+.news-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.news-slide {
+  scroll-snap-align: start;
+}
+
+.news-thumb {
+  display: block;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-decoration: none;
+  height: 100%;
+}
+
+/* Your existing rules below can stay as-is */
 .news-thumb img {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
+  height: 160px;
+  object-fit: contain; /* IMPORTANT: no cropping */
+  background: #f3f5f7;
   display: block;
 }
 
 .news-thumb__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.6),
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0)
-  );
-  display: flex;
-  align-items: flex-end;
-  padding: 16px;
+  position: static;
+  background: none;
+  padding: 12px;
 }
 
 .news-thumb__title {
-  color: #fff;
-  font-size: 1.1rem;
+  color: #0a2540;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.3;
 }
 
-.news-thumb:hover img {
-  transform: scale(1.02);
-  transition: transform 0.3s ease;
+.news-thumb img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain; /* IMPORTANT: no cropping */
+  background: #f3f5f7;
 }
-/* Make the news carousel thumbnail fit better on mobile */
+
+.news-thumb__overlay {
+  position: static;
+  background: none;
+  padding: 12px;
+}
+
+.news-thumb__title {
+  color: #0a2540;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Controls – subtle, optional */
+.news-carousel__controls {
+  margin-top: 12px;
+}
+
+/* =========================
+   Responsive behaviour
+   ========================= */
+
+@media (max-width: 900px) {
+  .news-carousel {
+    grid-auto-columns: calc((100% - 16px) / 2);
+  }
+}
+
 @media (max-width: 600px) {
-  .latest-news.section {
-    padding: 28px 0; /* tighter vertical spacing */
+  .news-carousel {
+    grid-auto-columns: 80%;
   }
 
   .news-thumb img {
-    height: 180px;   /* was ~260px — shrink */
-  }
-
-  .news-thumb__overlay {
-    padding: 12px;
-  }
-
-  .news-thumb__title {
-    font-size: 1rem; /* slightly smaller title */
-  }
-
-  .news-carousel__controls {
-    margin-top: 10px;
+    height: 140px;
   }
 }
+
 /* 🎄 Christmas Seasonal Styling */
 .seasonal-popup__card {
   background: linear-gradient(

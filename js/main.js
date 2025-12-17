@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================
-  // Auto-updating Latest News carousel (thumbnails)
+  // Latest News "bubble" carousel (3 visible cards, fully visible thumbnails)
   // =========================
   function initNewsCarouselThumbnails() {
     const wrap = document.querySelector('[data-news-carousel]');
@@ -587,46 +587,83 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.querySelector('.news-prev');
     const nextBtn = document.querySelector('.news-next');
 
+    function scrollByOneCard(dir) {
+      // card width = first child's width + gap
+      const first = wrap.querySelector('.news-slide');
+      if (!first) return;
+      const firstRect = first.getBoundingClientRect();
+      const wrapRect = wrap.getBoundingClientRect();
+      const gap = Math.max(0, firstRect.left - wrapRect.left); // best-effort gap measure
+      const step = firstRect.width + gap;
+      wrap.scrollBy({ left: dir * step, behavior: 'smooth' });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); scrollByOneCard(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); scrollByOneCard(1); });
+
     fetch('/data/news.json', { cache: 'no-store' })
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(items => {
-        const latest = (items || []).slice(0, 3);
+        const latest = (items || []).slice(0, 9); // a few more for scrolling
         if (!latest.length) return;
 
-        wrap.innerHTML = latest.map((a, i) => `
-          <article class="news-slide ${i === 0 ? 'is-active' : ''}">
-            <a class="news-thumb" href="${a.url}" aria-label="${escapeHtml(a.title)}">
+        wrap.innerHTML = latest.map(a => `
+          <article class="news-slide">
+            <a class="news-thumb" href="${a.url}">
               <img src="${a.image || ''}" alt="${escapeHtml(a.title)}" loading="lazy">
-              <span class="news-thumb__overlay">
-                <span class="news-thumb__title">${escapeHtml(a.title)}</span>
-              </span>
+              <div class="news-thumb__overlay">
+                <div class="news-thumb__title">${escapeHtml(a.title)}</div>
+              </div>
             </a>
           </article>
         `).join('');
-
-        const slides = wrap.querySelectorAll('.news-slide');
-        if (!slides.length) return;
-
-        let current = 0;
-
-        const show = (idx) => {
-          slides.forEach(s => s.classList.remove('is-active'));
-          slides[idx].classList.add('is-active');
-        };
-
-        nextBtn?.addEventListener('click', () => {
-          current = (current + 1) % slides.length;
-          show(current);
-        });
-
-        prevBtn?.addEventListener('click', () => {
-          current = (current - 1 + slides.length) % slides.length;
-          show(current);
-        });
       })
       .catch(() => {
-        // Fail quietly (keeps the "View all EV news" link visible)
+        // Fail quietly – the section link still works
       });
+  }
+
+  // =========================
+  // 🎄 Seasonal Popup (only runs where the HTML exists)
+  // =========================
+  function initSeasonalPopup() {
+    const popup = document.getElementById('seasonalPopup');
+    if (!popup) return;
+
+    const KEY = 'seasonalPopupLastSeen';
+    const SNOOZE_DAYS = 14;
+
+    function daysSince(ts) {
+      return (Date.now() - ts) / (1000 * 60 * 60 * 24);
+    }
+
+    function openPopup() {
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closePopup() {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (_) {}
+    }
+
+    popup.querySelectorAll('[data-popup-close]').forEach(el => {
+      el.addEventListener('click', closePopup);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
+    });
+
+    const lastSeen = Number(localStorage.getItem(KEY) || 0);
+    const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
+
+    if (shouldShow) openPopup();
   }
 
   // =========================
@@ -636,86 +673,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initSupportedModelsPage();
   initIndexCompatibilityChecker();
   initNewsCarouselThumbnails();
-});
-// 🎄 Seasonal Popup (only runs where the HTML exists)
-document.addEventListener('DOMContentLoaded', () => {
-  const popup = document.getElementById('seasonalPopup');
-  if (!popup) return; // ✅ means it will only work on index.html + news.html where you added it
-
-  const KEY = 'seasonalPopupLastSeen';
-  const SNOOZE_DAYS = 14;
-
-  function daysSince(ts) {
-    const diff = Date.now() - ts;
-    return diff / (1000 * 60 * 60 * 24);
-  }
-
-  function openPopup() {
-    popup.classList.add('is-open');
-    popup.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add('no-scroll');
-  }
-
-  function closePopup() {
-    popup.classList.remove('is-open');
-    popup.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove('no-scroll');
-    localStorage.setItem(KEY, String(Date.now()));
-  }
-
-  popup.querySelectorAll('[data-popup-close]').forEach(el => {
-    el.addEventListener('click', closePopup);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
-  });
-
-  const lastSeen = Number(localStorage.getItem(KEY) || 0);
-  const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
-
-  if (shouldShow) openPopup();
-  document.addEventListener('DOMContentLoaded', () => {
-  const popup = document.getElementById('seasonalPopup');
-  if (!popup) return;
-
-  const KEY = 'seasonalPopupLastSeen';
-  const SNOOZE_DAYS = 14;
-
-  function daysSince(ts) {
-    return (Date.now() - ts) / (1000 * 60 * 60 * 24);
-  }
-
-  function openPopup() {
-    popup.classList.add('is-open');
-    popup.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add('no-scroll');
-    document.body.classList.add('no-scroll');
-  }
-
-  function closePopup() {
-    popup.classList.remove('is-open');
-    popup.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove('no-scroll');
-    document.body.classList.remove('no-scroll');
-    localStorage.setItem(KEY, String(Date.now()));
-  }
-
-  popup.querySelectorAll('[data-popup-close]').forEach(el => {
-    el.addEventListener('click', closePopup);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
-  });
-
-  const lastSeen = Number(localStorage.getItem(KEY) || 0);
-  const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
-
-  if (shouldShow) openPopup();
+  initSeasonalPopup();
 });
 
-});
 // ❄️ Subtle seasonal snow (visible on light backgrounds)
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const snow = document.createElement('div');

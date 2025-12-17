@@ -35,7 +35,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/main.css?v=999">
 
-  <!-- Page-only styles for the combined checker -->
+  <!-- Page-only styles for the combined checker + ✅ hero text fix -->
   <style>
     .compat-card{
       max-width: 520px;
@@ -91,6 +91,43 @@
       opacity:0.85;
       font-size: 0.95rem;
       text-align:center;
+    }
+
+    /* ✅ Homepage hero text readability (FIXED: no nested <style> tags) */
+    .hero .hero-text,
+    .hero .hero-text h1,
+    .hero .hero-text h2,
+    .hero .hero-text p,
+    .hero .hero-text li{
+      color: #fff !important;
+    }
+
+    /* Keep headline in brand green */
+.hero .hero-text h1{
+  color: #22b373 !important;           /* matches your green styling used elsewhere */
+  text-shadow: 0 2px 18px rgba(0,0,0,.70);
+}
+
+/* Optional: if the green is a touch dark on the image, brighten it slightly */
+@supports (color: color-mix(in srgb, #000, #fff)) {
+  .hero .hero-text h1{
+    color: color-mix(in srgb, #22b373 85%, white 15%) !important;
+  }
+}
+
+    .hero .hero-text h1,
+    .hero .hero-text .hero-tagline,
+    .hero .hero-text .hero-lead{
+      text-shadow: 0 2px 14px rgba(0,0,0,.55);
+    }
+
+    .hero .hero-text .eyebrow{
+      color: rgba(255,255,255,.85) !important;
+      letter-spacing: .08em;
+    }
+
+    .hero .hero-text .hero-price{
+      color: rgba(255,255,255,.85) !important;
     }
   </style>
 
@@ -323,7 +360,13 @@
   <main>
 
     <!-- Hero section -->
-    <section class="hero">
+    <section class="hero" style="
+      background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('images/hero/hero-north-east-ev.webp');
+      background-size: cover;
+      background-position: center;
+    ">
       <div class="container hero-inner">
         <div class="hero-text">
           <p class="eyebrow">Independent mobile EV battery testing</p>
@@ -729,7 +772,6 @@
       <a href="book.html">request a booking</a> and we’ll confirm.
     </p>
   </div>
-
 
     <!-- FAQ teaser -->
     <section class="section" id="faqs-overview">
@@ -1335,35 +1377,35 @@
       &times;
     </button>
 
-   <div class="seasonal-popup__content">
-  <div class="seasonal-popup__badge">Seasonal Message 🎄</div>
+    <div class="seasonal-popup__content">
+      <div class="seasonal-popup__badge">Seasonal Message 🎄</div>
 
-  <h2 id="seasonalPopupTitle">
-    Merry Christmas &amp; Happy New Year
-  </h2>
+      <h2 id="seasonalPopupTitle">
+        Merry Christmas &amp; Happy New Year
+      </h2>
 
-  <p>
-    As we close out 2025 and look ahead to 2026, everyone at
-    <strong>MyEVReport</strong> would like to wish you a very Merry Christmas
-    and a Happy New Year.
-  </p>
+      <p>
+        As we close out 2025 and look ahead to 2026, everyone at
+        <strong>MyEVReport</strong> would like to wish you a very Merry Christmas
+        and a Happy New Year.
+      </p>
 
-  <p>
-    We’re proud of what we’ve built so far — and excited for what’s coming next
-    as we continue to improve and expand our EV battery health services.
-  </p>
+      <p>
+        We’re proud of what we’ve built so far — and excited for what’s coming next
+        as we continue to improve and expand our EV battery health services.
+      </p>
 
-  <div class="seasonal-popup__actions">
-    <button class="btn btn-primary" type="button" data-popup-close>
-      Continue
-    </button>
+      <div class="seasonal-popup__actions">
+        <button class="btn btn-primary" type="button" data-popup-close>
+          Continue
+        </button>
+      </div>
+
+      <p class="seasonal-popup__fineprint">
+        Thank you for your support 🎅
+      </p>
+    </div>
   </div>
-
-  <p class="seasonal-popup__fineprint">
-    Thank you for your support 🎅
-  </p>
-</div>
-   </div>
 </div>
 
 </body>

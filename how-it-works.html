@@ -32,6 +32,50 @@
   <link rel="preload" href="images/logo-myevreport.png" as="image">
 
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- ✅ Page-only hero image styles (How it works) -->
+  <style>
+    .page-hero{
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)),
+        url("images/hero/hero-how-it-works.webp") center/cover no-repeat;
+      z-index:0;
+    }
+    .page-hero > .container{
+      position: relative;
+      z-index:1;
+    }
+    .page-hero .section-header,
+    .page-hero .section-header h1,
+    .page-hero .section-header p{
+      color:#fff !important;
+      text-shadow: 0 2px 14px rgba(0,0,0,.55);
+    }
+    /* Keep the content below readable on top of the hero background */
+    .page-hero .content-grid{
+      background: rgba(255,255,255,.94);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: 0 12px 34px rgba(0,0,0,.14);
+    }
+    .page-hero .content-grid h2,
+    .page-hero .content-grid p,
+    .page-hero .content-grid li{
+      color: inherit;
+      text-shadow: none;
+    }
+    @media (min-width: 900px){
+      .page-hero .content-grid{ padding: 1.5rem; }
+    }
+  </style>
+
 </head>
 <body>
 
@@ -96,7 +140,7 @@
   <main>
 
     <!-- Page hero -->
-    <section class="section">
+    <section class="section page-hero">
       <div class="container">
         <header class="section-header">
           <h1>How MyEVReport works</h1>

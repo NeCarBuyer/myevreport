@@ -6,141 +6,190 @@
   <title>Supported vehicles – MyEVReport</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-        content="Check if your electric vehicle is supported for a MyEVReport battery health check. Select your EV make and model to confirm compatibility before booking.">
+  <meta name="description" content="Check whether your EV is supported for a MyEVReport battery health check. Select make and model from our supported vehicles list.">
   <meta name="robots" content="index,follow">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myevreport.com/supported-models.html">
+  <meta property="og:title" content="Supported vehicles – MyEVReport">
+  <meta property="og:description" content="See which EV makes and models are supported for a MyEVReport battery health check.">
+  <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Supported vehicles – MyEVReport">
+  <meta name="twitter:description" content="Check whether your EV is supported for a MyEVReport battery health check.">
+  <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
+
+  <!-- Favicon -->
   <link rel="icon" href="images/favicon.png">
-  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Preload -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="images/logo-myevreport.png" as="image">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css?v=999">
+
+  <!-- Page-only styles: brand logos + video -->
+  <style>
+    .brand-strip{ margin: 1.25rem 0; padding: 1rem; border-radius: 16px; border: 1px solid rgba(0,0,0,0.10); background: rgba(255,255,255,0.85); }
+    .brand-strip h2{ margin: 0 0 .65rem; font-size: 1.05rem; }
+    .brand-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; align-items: center; }
+    @media (min-width: 700px){ .brand-grid{ grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+    .brand-logo{ display:flex; align-items:center; justify-content:center; padding: .7rem .8rem; border-radius: 14px; border: 1px solid rgba(0,0,0,0.08); background: #fff; min-height: 58px; }
+    .brand-logo img{ width: 100%; max-width: 140px; height: 34px; object-fit: contain; filter: grayscale(1); opacity: .92; }
+    .brand-note{ margin: .7rem 0 0; font-size: .92rem; opacity: .85; }
+
+    .video-card{ margin: 1.25rem 0; padding: 1rem; border-radius: 16px; border: 1px solid rgba(0,0,0,0.10); background: #fff; }
+    .video-card h2{ margin: 0 0 .5rem; }
+    .video-card p{ margin: 0 0 .9rem; opacity: .9; }
+    .video-embed{ position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #000; }
+    .video-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  </style>
 </head>
 
 <body>
 
+  <!-- Launch banner -->
   <div class="launch-banner">
     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
 
   <!-- Header -->
   <header class="site-header">
-  <div class="container header-inner">
-    <!-- Logo -->
-    <a href="index.html#top" class="logo">
-      <img
-        src="images/logo-myevreport.png"
-        alt="MyEVReport logo – independent EV battery health reports"
-        width="180"
-        height="42">
-    </a>
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="index.html#top" class="logo">
+        <img
+          src="images/logo-myevreport.png"
+          alt="MyEVReport logo – independent EV battery health reports"
+          width="180"
+          height="42">
+      </a>
 
-    <!-- Main navigation -->
-    <nav id="site-nav" class="main-nav" aria-label="Main navigation">
-      <a href="how-it-works.html">How it works</a>
-      <a href="whats-in-the-report.html">What’s in the report</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="supported-models.html">Supported vehicles</a>
+      <!-- Main navigation -->
+      <nav id="site-nav" class="main-nav" aria-label="Main navigation">
+        <a href="how-it-works.html">How it works</a>
+        <a href="whats-in-the-report.html">What’s in the report</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="supported-models.html" aria-current="page">Supported vehicles</a>
 
-      <!-- More dropdown -->
-      <div class="nav-more" data-nav-more>
-        <button
-          class="nav-more__btn"
-          type="button"
-          aria-haspopup="true"
-          aria-expanded="false">
-          More <span class="nav-caret" aria-hidden="true">▾</span>
-        </button>
+        <!-- More dropdown -->
+        <div class="nav-more" data-nav-more>
+          <button
+            class="nav-more__btn"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+            More <span class="nav-caret" aria-hidden="true">▾</span>
+          </button>
 
-        <div class="nav-more__menu" role="menu" hidden>
-          <a role="menuitem" class="nav-more__item" href="coverage.html">Coverage Area</a>
-          <a role="menuitem" class="nav-more__item" href="faqs.html">FAQs</a>
-          <a role="menuitem" class="nav-more__item" href="news.html">EV News</a>
+          <div class="nav-more__menu" role="menu" hidden>
+            <a role="menuitem" class="nav-more__item" href="coverage.html">Coverage Area</a>
+            <a role="menuitem" class="nav-more__item" href="faqs.html">FAQs</a>
+            <a role="menuitem" class="nav-more__item" href="news.html">EV News</a>
+          </div>
         </div>
-      </div>
 
-      <!-- CTA -->
-      <a href="book.html" class="btn btn-primary">Book a report</a>
-    </nav>
+        <!-- CTA -->
+        <a href="book.html" class="btn btn-primary">Book a report</a>
+      </nav>
 
-    <!-- Mobile burger -->
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-label="Toggle navigation"
-      aria-expanded="false"
-      aria-controls="site-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
+      <!-- Mobile burger -->
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
 
   <main>
 
-    <section class="section section-intro-booking">
-      <div class="container support-page-wrap">
+    <section class="section">
+      <div class="container">
         <header class="section-header">
-          <h1>Is my vehicle supported?</h1>
+          <h1>Supported vehicles</h1>
           <p>
-            MyEVReport supports most modern fully electric vehicles (EVs) currently on sale in the UK.
-            Use the checker below to confirm whether your make and model is supported for an EV battery health report.
+            Use the tool below to confirm whether your vehicle is currently supported for a MyEVReport battery health check.
+            If your model isn’t listed, you can still request a booking and we’ll confirm compatibility by email.
           </p>
         </header>
 
-        <div class="support-copy">
-          <p>
-            Our testing equipment connects directly to the vehicle’s battery management system to assess battery health,
-            State of Health (SoH) and real-world range. Because different manufacturers use different systems,
-            not every vehicle can be tested in the same way.
+        <!-- Brand logos (placeholders for local SVGs) -->
+        <div class="brand-strip" aria-label="Popular supported manufacturers">
+          <h2>Popular supported manufacturers</h2>
+
+          <div class="brand-grid">
+            <div class="brand-logo"><img src="images/brands/tesla.svg" alt="Tesla logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/volkswagen.svg" alt="Volkswagen logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/bmw.svg" alt="BMW logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/audi.svg" alt="Audi logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/mercedes-benz.svg" alt="Mercedes-Benz logo" loading="lazy"></div>
+
+            <div class="brand-logo"><img src="images/brands/hyundai.svg" alt="Hyundai logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/nissan.svg" alt="Nissan logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/volvo.svg" alt="Volvo logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/polestar.svg" alt="Polestar logo" loading="lazy"></div>
+            <div class="brand-logo"><img src="images/brands/byd.svg" alt="BYD logo" loading="lazy"></div>
+          </div>
+
+          <p class="brand-note">
+            Logos are loaded from <code>/images/brands/</code>. If you don’t see your manufacturer here, use the checker below — the list is longer than the top 10.
           </p>
         </div>
 
-        <div class="support-info">
-          <h2>What does “supported” mean?</h2>
-          <p>
-            A supported vehicle is one that we can reliably test using our diagnostic equipment to produce a full
-            MyEVReport battery health assessment.
-          </p>
-          <p>
-            If your vehicle is supported, we can:
-          </p>
-          <ul>
-            <li>Read the battery’s State of Health (SoH)</li>
-            <li>Assess real-world range estimates</li>
-            <li>Produce a clear, shareable battery health report</li>
-          </ul>
+        <!-- Video -->
+        <div class="video-card" aria-label="How the test works video">
+          <h2>See the process</h2>
+          <p>A quick walkthrough of how the on-site battery health test works.</p>
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/WrvduQ05JM8"
+              title="MyEVReport battery health check process"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </div>
 
-        <!-- Supported vehicle checker -->
-        <div class="mini-card" aria-label="Supported vehicle checker">
-          <div class="mini-grid">
+        <!-- Existing checker UI (unchanged) -->
+        <div class="compat-card" style="max-width: 780px; margin: 0 auto;">
+          <div class="compat-grid" style="grid-template-columns: 1fr; gap: 0.9rem;">
             <div>
-              <label for="smMake">Make</label>
-              <select id="smMake">
+              <label for="makeSelect">Make</label>
+              <select id="makeSelect">
                 <option value="">Loading makes…</option>
               </select>
             </div>
 
             <div>
-              <label for="smModel">Model</label>
-              <select id="smModel" disabled>
+              <label for="modelSelect">Model</label>
+              <select id="modelSelect" disabled>
                 <option value="">Select a make first</option>
               </select>
             </div>
           </div>
 
-          <div id="smResult" class="mini-result" aria-live="polite">
+          <div class="compat-actions" style="margin-top: 1rem;">
+            <button type="button" id="checkBtn" class="btn btn-primary" disabled>Check support</button>
+          </div>
+
+          <div id="result" class="compat-result" style="margin-top: 1rem;">
             Choose a make and model to check support.
           </div>
 
-          <div class="mini-actions" id="smActions">
-            <a href="book.html" class="btn btn-primary">Book a report</a>
-            <a href="index.html#compatibility" class="btn btn-secondary">Check compatibility</a>
+          <div class="compat-help" style="margin-top: 0.85rem;">
+            If your vehicle isn’t listed, you can still request a booking and we’ll confirm by email.
           </div>
-
-          <p class="support-footnote">
-            Don’t see your vehicle listed? You can still request a booking and we’ll confirm compatibility by email
-            before taking payment.
-          </p>
         </div>
 
       </div>
@@ -154,6 +203,7 @@
         © 2026 MyEVReport ·
         <a href="https://www.thod.co.uk/" target="_blank" rel="noopener noreferrer">Site by THOD</a>
       </p>
+
       <nav class="footer-links">
         <a href="privacy.html">Privacy policy</a> ·
         <a href="terms.html">Terms &amp; conditions</a>
@@ -161,101 +211,140 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <!-- WhatsApp Floating Button -->
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport"
+     target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp"
+         style="width: 90px; height: 90px;">
+  </a>
 
-  <!-- Same CSV dropdown logic as index / booking -->
+  <script src="js/main.js?v=999" defer></script>
+
+  <!-- Supported vehicles loader (unchanged logic pattern) -->
   <script>
-    (async function(){
+    (async function () {
       const CSV_URL = "/data/supported-vehicles.csv";
+      const makeSelect = document.getElementById("makeSelect");
+      const modelSelect = document.getElementById("modelSelect");
+      const checkBtn = document.getElementById("checkBtn");
+      const result = document.getElementById("result");
 
-      const makeSel = document.getElementById("smMake");
-      const modelSel = document.getElementById("smModel");
-      const result = document.getElementById("smResult");
-      const actions = document.getElementById("smActions");
-
-      function escapeHtml(str){
+      function escapeHtml(str) {
         return String(str)
-          .replaceAll("&","&amp;")
-          .replaceAll("<","&lt;")
-          .replaceAll(">","&gt;")
-          .replaceAll('"',"&quot;")
-          .replaceAll("'","&#039;");
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
       }
 
-      function parseCSV(text){
-        const rows=[]; let row=[],cur="",inQuotes=false;
-        for(let i=0;i<text.length;i++){
-          const c=text[i],n=text[i+1];
-          if(c==='"'&&inQuotes&&n==='"'){cur+='"';i++;continue;}
-          if(c==='"'){inQuotes=!inQuotes;continue;}
-          if(!inQuotes&&c===','){row.push(cur);cur="";continue;}
-          if(!inQuotes&&(c==='\n'||c==='\r')){
-            if(cur||row.length){row.push(cur);rows.push(row);}
-            row=[];cur=""; if(c==='\r'&&n==='\n')i++; continue;
+      function parseCSV(text) {
+        const rows = [];
+        let row = [];
+        let cur = "";
+        let inQuotes = false;
+
+        for (let i = 0; i < text.length; i++) {
+          const c = text[i];
+          const next = text[i + 1];
+
+          if (c === '"' && inQuotes && next === '"') { cur += '"'; i++; continue; }
+          if (c === '"') { inQuotes = !inQuotes; continue; }
+
+          if (!inQuotes && c === ",") { row.push(cur); cur = ""; continue; }
+          if (!inQuotes && (c === "\n" || c === "\r")) {
+            if (cur.length || row.length) { row.push(cur); rows.push(row); }
+            row = []; cur = "";
+            if (c === "\r" && next === "\n") i++;
+            continue;
           }
-          cur+=c;
+          cur += c;
         }
-        if(cur||row.length){row.push(cur);rows.push(row);}
+        if (cur.length || row.length) { row.push(cur); rows.push(row); }
         return rows;
       }
 
-      try{
-        const res=await fetch(CSV_URL,{cache:"no-cache"});
-        if(!res.ok) throw new Error();
-        const raw=parseCSV(await res.text());
+      try {
+        const res = await fetch(CSV_URL, { cache: "no-cache" });
+        if (!res.ok) throw new Error("CSV fetch failed");
+        const csvText = await res.text();
 
-        const h=raw[0].map(v=>v.trim());
-        const mi=h.indexOf("Make"), mdi=h.indexOf("Model"), fi=h.indexOf("Fuel Type");
+        const raw = parseCSV(csvText);
+        if (!raw.length) throw new Error("CSV empty");
 
-        const byMake=new Map();
-        for(let i=1;i<raw.length;i++){
-          const r=raw[i];
-          const m=(r[mi]||"").trim(), md=(r[mdi]||"").trim();
-          const f=fi>-1?(r[fi]||"").trim():"";
-          if(f && f.toUpperCase()!=="BEV") continue;
-          if(!m||!md) continue;
-          if(!byMake.has(m)) byMake.set(m,new Set());
-          byMake.get(m).add(md);
+        const header = raw[0].map(h => (h || "").trim());
+        const makeIdx = header.indexOf("Make");
+        const modelIdx = header.indexOf("Model");
+        const fuelIdx = header.indexOf("Fuel Type"); // optional
+
+        if (makeIdx === -1 || modelIdx === -1) throw new Error("Missing Make/Model headers");
+
+        const byMake = new Map();
+
+        for (let i = 1; i < raw.length; i++){
+          const cols = raw[i];
+          const make = (cols[makeIdx] || "").trim();
+          const model = (cols[modelIdx] || "").trim();
+          const fuel = fuelIdx !== -1 ? (cols[fuelIdx] || "").trim() : "";
+
+          if (fuel && fuel.toUpperCase() !== "BEV") continue;
+          if (!make || !model) continue;
+
+          if (!byMake.has(make)) byMake.set(make, new Set());
+          byMake.get(make).add(model);
         }
 
-        const makes=[...byMake.keys()].sort();
-        makeSel.innerHTML=`<option value="">Select make</option>`+
-          makes.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+        const makes = Array.from(byMake.keys()).sort((a,b)=>a.localeCompare(b));
+        makeSelect.innerHTML = `<option value="">Select make</option>` + makes.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
 
-        makeSel.addEventListener("change",()=>{
-          actions.style.display="none";
-          result.className="mini-result";
-          result.textContent="Choose a make and model to check support.";
-          const mk=makeSel.value;
-          modelSel.disabled=true;
-          modelSel.innerHTML=`<option value="">Select a make first</option>`;
-          if(!mk) return;
-          const models=[...byMake.get(mk)].sort();
-          modelSel.innerHTML=`<option value="">Select model</option>`+
-            models.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
-          modelSel.disabled=false;
+        function fillModelsFor(selectMake){
+          const models = Array.from(byMake.get(selectMake) || []).sort((a,b)=>a.localeCompare(b));
+          modelSelect.innerHTML = `<option value="">Select model</option>` + models.map(m=>`<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+          modelSelect.disabled = false;
+        }
+
+        function setBtnState(){
+          checkBtn.disabled = !(makeSelect.value && modelSelect.value);
+        }
+
+        makeSelect.addEventListener("change", () => {
+          result.className = "compat-result";
+          result.textContent = "Choose a make and model to check support.";
+
+          const mk = makeSelect.value;
+          modelSelect.disabled = true;
+          modelSelect.innerHTML = `<option value="">Select a make first</option>`;
+          if (mk) fillModelsFor(mk);
+          setBtnState();
         });
 
-        modelSel.addEventListener("change",()=>{
-          const mk=makeSel.value, md=modelSel.value;
-          if(mk&&md&&byMake.has(mk)&&byMake.get(mk).has(md)){
-            result.className="mini-result success";
-            result.innerHTML="<strong>Great news — your vehicle is supported.</strong>You can book your report in under a minute.";
-          }else{
-            result.className="mini-result warn";
-            result.innerHTML="<strong>We need to confirm this one.</strong>Your model isn’t listed here yet.";
+        modelSelect.addEventListener("change", setBtnState);
+
+        checkBtn.addEventListener("click", () => {
+          const mk = makeSelect.value;
+          const md = modelSelect.value;
+
+          const supported = !!(mk && md && byMake.has(mk) && byMake.get(mk).has(md));
+
+          if (supported){
+            result.className = "compat-result success";
+            result.innerHTML = `<strong>Supported ✅</strong>${escapeHtml(mk)} ${escapeHtml(md)} is currently supported for a MyEVReport battery health check.`;
+          } else {
+            result.className = "compat-result warn";
+            result.innerHTML = `<strong>We need to confirm this one.</strong>${escapeHtml(mk)} ${escapeHtml(md)} isn’t on the list yet — request a booking and we’ll confirm by email.`;
           }
-          actions.style.display="flex";
         });
 
-      }catch(e){
-        makeSel.innerHTML="<option value=''>Unavailable</option>";
-        makeSel.disabled=true;
-        modelSel.innerHTML="<option value=''>Unavailable</option>";
-        modelSel.disabled=true;
-        result.className="mini-result warn";
-        result.innerHTML="<strong>We couldn’t load the supported models list.</strong>Please book and we’ll confirm compatibility by email.";
-        actions.style.display="flex";
+      } catch (e) {
+        result.className = "compat-result warn";
+        result.innerHTML = `<strong>We couldn’t load the supported models list.</strong>Please try again shortly, or request a booking and we’ll confirm compatibility by email.`;
+        makeSelect.innerHTML = `<option value="">Unavailable</option>`;
+        makeSelect.disabled = true;
+        modelSelect.innerHTML = `<option value="">Unavailable</option>`;
+        modelSelect.disabled = true;
+        checkBtn.disabled = true;
       }
     })();
   </script>
