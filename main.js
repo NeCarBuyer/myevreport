@@ -637,3 +637,105 @@ document.addEventListener('DOMContentLoaded', () => {
   initIndexCompatibilityChecker();
   initNewsCarouselThumbnails();
 });
+// 🎄 Seasonal Popup (only runs where the HTML exists)
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('seasonalPopup');
+  if (!popup) return; // ✅ means it will only work on index.html + news.html where you added it
+
+  const KEY = 'seasonalPopupLastSeen';
+  const SNOOZE_DAYS = 14;
+
+  function daysSince(ts) {
+    const diff = Date.now() - ts;
+    return diff / (1000 * 60 * 60 * 24);
+  }
+
+  function openPopup() {
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('no-scroll');
+  }
+
+  function closePopup() {
+    popup.classList.remove('is-open');
+    popup.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('no-scroll');
+    localStorage.setItem(KEY, String(Date.now()));
+  }
+
+  popup.querySelectorAll('[data-popup-close]').forEach(el => {
+    el.addEventListener('click', closePopup);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
+  });
+
+  const lastSeen = Number(localStorage.getItem(KEY) || 0);
+  const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
+
+  if (shouldShow) openPopup();
+  document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('seasonalPopup');
+  if (!popup) return;
+
+  const KEY = 'seasonalPopupLastSeen';
+  const SNOOZE_DAYS = 14;
+
+  function daysSince(ts) {
+    return (Date.now() - ts) / (1000 * 60 * 60 * 24);
+  }
+
+  function openPopup() {
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('no-scroll');
+    document.body.classList.add('no-scroll');
+  }
+
+  function closePopup() {
+    popup.classList.remove('is-open');
+    popup.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('no-scroll');
+    document.body.classList.remove('no-scroll');
+    localStorage.setItem(KEY, String(Date.now()));
+  }
+
+  popup.querySelectorAll('[data-popup-close]').forEach(el => {
+    el.addEventListener('click', closePopup);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
+  });
+
+  const lastSeen = Number(localStorage.getItem(KEY) || 0);
+  const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
+
+  if (shouldShow) openPopup();
+});
+
+});
+// ❄️ Subtle seasonal snow (visible on light backgrounds)
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const snow = document.createElement('div');
+  snow.className = 'seasonal-snow';
+  document.body.appendChild(snow);
+
+  const FLAKES = 30;
+
+  for (let i = 0; i < FLAKES; i++) {
+    const flake = document.createElement('span');
+
+    const size = 6 + Math.random() * 6;
+    flake.style.width = size + 'px';
+    flake.style.height = size + 'px';
+
+    flake.style.left = Math.random() * 100 + 'vw';
+    flake.style.animationDuration = 12 + Math.random() * 12 + 's';
+    flake.style.animationDelay = Math.random() * 10 + 's';
+    flake.style.opacity = 0.7 + Math.random() * 0.3;
+
+    snow.appendChild(flake);
+  }
+}

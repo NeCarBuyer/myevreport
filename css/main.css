@@ -2449,3 +2449,153 @@ main {
   transform: scale(1.02);
   transition: transform 0.3s ease;
 }
+/* Make the news carousel thumbnail fit better on mobile */
+@media (max-width: 600px) {
+  .latest-news.section {
+    padding: 28px 0; /* tighter vertical spacing */
+  }
+
+  .news-thumb img {
+    height: 180px;   /* was ~260px — shrink */
+  }
+
+  .news-thumb__overlay {
+    padding: 12px;
+  }
+
+  .news-thumb__title {
+    font-size: 1rem; /* slightly smaller title */
+  }
+
+  .news-carousel__controls {
+    margin-top: 10px;
+  }
+}
+/* 🎄 Christmas Seasonal Styling */
+.seasonal-popup__card {
+  background: linear-gradient(
+    180deg,
+    #f7f9f8 0%,
+    #ffffff 55%
+  );
+  border: 1px solid #e6ebe9;
+}
+
+/* 🎄 FORCE Seasonal Popup to behave like a modal */
+.seasonal-popup{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: none !important;
+}
+
+.seasonal-popup.is-open{
+  display: block !important;
+}
+
+.seasonal-popup__backdrop{
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,0.6) !important;
+}
+
+.seasonal-popup__card{
+  position: relative !important;
+  max-width: 640px !important;
+  width: calc(100% - 28px) !important;
+  margin: 0 auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: #fff !important;
+  border-radius: 18px !important;
+  box-shadow: 0 20px 70px rgba(0,0,0,0.35) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+}
+
+/* Christmasy header strip */
+.seasonal-popup__content{
+  padding: 22px 22px 18px !important;
+}
+
+.seasonal-popup__badge{
+  display: inline-block !important;
+  padding: 7px 12px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  background: linear-gradient(135deg,#0f3d2e,#1b5e46) !important;
+  margin-bottom: 10px !important;
+}
+
+.seasonal-popup__content h2{
+  margin: 6px 0 10px !important;
+  color: #0f3d2e !important;
+  line-height: 1.15 !important;
+}
+
+.seasonal-popup__content p{
+  margin: 0 0 12px !important;
+  color: #2f3a36 !important;
+}
+
+.seasonal-popup__fineprint{
+  margin-top: 14px !important;
+  font-size: 12px !important;
+  opacity: 0.75 !important;
+}
+
+/* Close button */
+.seasonal-popup__close{
+  position: absolute !important;
+  top: 10px !important;
+  right: 12px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border: 0 !important;
+  background: transparent !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  color: #0f3d2e !important;
+}
+
+.seasonal-popup__close:hover{
+  color: #8b1e2d !important;
+}
+
+/* Stop scroll behind modal */
+html.no-scroll, body.no-scroll{
+  overflow: hidden !important;
+}
+
+/* stops scrolling behind popup */
+.no-scroll { overflow: hidden; }
+/* ❄️ Visible but subtle snow */
+.seasonal-snow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5; /* above page, below modals */
+}
+
+.seasonal-snow span {
+  position: absolute;
+  top: -12px;
+  width: 8px;
+  height: 8px;
+  background: rgba(240, 248, 255, 0.9); /* icy white */
+  border-radius: 50%;
+  box-shadow:
+    0 0 6px rgba(255,255,255,0.9),
+    0 0 12px rgba(200,220,255,0.6);
+  filter: blur(0.3px);
+  animation: snowFall linear infinite;
+}
+
+@keyframes snowFall {
+  to {
+    transform: translateY(115vh);
+  }
+}
