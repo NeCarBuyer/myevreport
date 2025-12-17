@@ -264,42 +264,61 @@
   <div class="launch-banner">
     🔋 Launching in 2026 – Independent EV Battery Health Reports for Every EV Buyer
   </div>
+<div id="top"></div>
 
   <!-- Header -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <img src="images/logo-myevreport.png"
-             alt="MyEVReport logo – independent EV battery health reports"
-             width="180" height="42">
-      </a>
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href="index.html#top" class="logo">
+      <img
+        src="images/logo-myevreport.png"
+        alt="MyEVReport logo – independent EV battery health reports"
+        width="180"
+        height="42">
+    </a>
 
-      <!-- ✅ CLEAN NAV: 4 core + More dropdown + CTA -->
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="how-it-works.html">How it works</a>
-        <a href="whats-in-the-report.html">What’s in the report</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="supported-models.html">Supported vehicles</a>
+    <!-- Main navigation -->
+    <nav id="site-nav" class="main-nav" aria-label="Main navigation">
+      <a href="how-it-works.html">How it works</a>
+      <a href="whats-in-the-report.html">What’s in the report</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="supported-models.html">Supported vehicles</a>
 
-        <div class="nav-more" data-nav-more>
-          <button class="nav-more__btn" type="button" aria-haspopup="true" aria-expanded="false">
-            More <span class="nav-caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="nav-more__menu" role="menu" hidden>
-            <a role="menuitem" class="nav-more__item" href="coverage.html">Coverage Area</a>
-            <a role="menuitem" class="nav-more__item" href="faqs.html">FAQs</a>
-            <a role="menuitem" class="nav-more__item" href="news.html">EV News</a>
-          </div>
+      <!-- More dropdown -->
+      <div class="nav-more" data-nav-more>
+        <button
+          class="nav-more__btn"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false">
+          More <span class="nav-caret" aria-hidden="true">▾</span>
+        </button>
+
+        <div class="nav-more__menu" role="menu" hidden>
+          <a role="menuitem" class="nav-more__item" href="coverage.html">Coverage Area</a>
+          <a role="menuitem" class="nav-more__item" href="faqs.html">FAQs</a>
+          <a role="menuitem" class="nav-more__item" href="news.html">EV News</a>
         </div>
+      </div>
 
-        <a href="book.html" class="btn btn-primary">Book a report</a>
-      </nav>
+      <!-- CTA -->
+      <a href="book.html" class="btn btn-primary">Book a report</a>
+    </nav>
 
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+    <!-- Mobile burger -->
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="site-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
 
   <main>
 
@@ -727,10 +746,27 @@
         </ul>
 
         <div class="section-cta">
-          <a href="faqs.html" class="link-arrow">Read all FAQs</a>
+          <a href="/faqs.html" class="section-cta-link">Read all FAQs →</a>
         </div>
       </div>
     </section>
+
+   <section class="latest-news section">
+  <div class="container">
+    <h2 class="section-title">Latest EV News</h2>
+
+    <div class="news-carousel" data-news-carousel aria-live="polite"></div>
+
+    <div class="news-carousel__controls">
+      <button class="news-prev" aria-label="Previous news">‹</button>
+      <button class="news-next" aria-label="Next news">›</button>
+    </div>
+
+    <p class="latest-news__link">
+      <a href="/news.html" class="section-cta-link">View all EV news →</a>
+    </p>
+  </div>
+</section>
 
     <!-- Booking form -->
     <section class="section section-booking" id="book">

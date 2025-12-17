@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav-toggle');
-  const mainNav = document.querySelector('.main-nav');
+  const mainNav = document.querySelector('#site-nav') || document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.main-nav a');
 
   // ✅ More dropdown (Option B) — FIXED to toggle [hidden] properly
@@ -62,17 +62,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ✅ Ensure aria-controls points at the nav
+  if (toggle && mainNav) {
+    if (!mainNav.id) mainNav.id = 'site-nav';
+    if (!toggle.getAttribute('aria-controls')) toggle.setAttribute('aria-controls', mainNav.id);
+  }
+
   function closeNav() {
     if (!header) return;
+
     header.classList.remove('nav-open');
+    if (mainNav) mainNav.classList.remove('is-open');
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
-    // ✅ ensure More menu closes when burger closes
+
+    // ensure More menu closes when burger closes
     closeMore();
   }
 
   function openNav() {
     if (!header) return;
+
     header.classList.add('nav-open');
+    if (mainNav) mainNav.classList.add('is-open');
     if (toggle) toggle.setAttribute('aria-expanded', 'true');
   }
 
@@ -85,23 +96,28 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.setAttribute('aria-expanded', 'false');
 
     toggle.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       toggleNav();
     });
 
+    // Close when a link is tapped (mobile)
     navLinks.forEach((link) => link.addEventListener('click', closeNav));
 
+    // Close when clicking outside the header/nav
     document.addEventListener('click', (e) => {
       if (!header.classList.contains('nav-open')) return;
       if (!header.contains(e.target)) closeNav();
     });
 
+    // Close on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeNav();
     });
 
+    // If you rotate / resize into desktop, close the mobile panel
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 1024) closeNav();
+      if (window.innerWidth > 980) closeNav();
     });
   }
 
@@ -528,7 +544,8 @@ document.addEventListener('DOMContentLoaded', () => {
         saveVehicleSelection(mk, md);
 
         if (supported && covered) {
-          setResult("success",
+          setResult(
+            "success",
             "<strong>Great news — your vehicle is supported and you’re within our coverage area.</strong>Click below to request a booking."
           );
           showActions(mk, md);
@@ -536,20 +553,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (supported && !covered) {
-          setResult("warn",
+          setResult(
+            "warn",
             "<strong>Good news — your vehicle is supported.</strong>We don’t currently list that postcode area as standard coverage, but we may still be able to help. Click below to request a booking and we’ll confirm availability by email."
           );
           showActions(mk, md);
           return;
         }
 
-        setResult("warn",
+        setResult(
+          "warn",
           "<strong>We need to confirm this one.</strong>Your model isn’t listed in our supported checker yet. You can still request a booking and we’ll confirm compatibility before taking payment."
         );
         showActions(mk, md);
       });
     } catch (e) {
-      setResult("warn",
+      setResult(
+        "warn",
         "<strong>We couldn’t load the supported vehicles list.</strong>Please request a booking and we’ll confirm compatibility by email."
       );
       actionsEl.style.display = "flex";
@@ -561,3 +581,47 @@ document.addEventListener('DOMContentLoaded', () => {
   initSupportedModelsPage();
   initIndexCompatibilityChecker();
 });
+// Auto-updating Latest News carousel (loads /data/news.json)
+(() => {
+  const wrap = document.querySelector('[data-news-carousel]');
+  if (!wrap) return;
+
+  const prevBtn = document.querySelector('.news-prev');
+  const nextBtn = document.querySelector('.news-next');
+
+  fetch('/data/news.json', { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(items => {
+      const latest = (items || []).slice(0, 3);
+      if (!latest.length) return;
+
+      wrap.innerHTML = latest.map((a, i) => `
+        <article class="news-slide ${i === 0 ? 'is-active' : ''}">
+          <span class="news-date">${a.dateLabel || ''}</span>
+          <h3><a href="${a.url}">${a.title}</a></h3>
+          ${a.excerpt ? `<p>${a.excerpt}</p>` : ''}
+        </article>
+      `).join('');
+
+      const slides = wrap.querySelectorAll('.news-slide');
+      let current = 0;
+
+      const show = idx => {
+        slides.forEach(s => s.classList.remove('is-active'));
+        slides[idx].classList.add('is-active');
+      };
+
+      nextBtn?.addEventListener('click', () => {
+        current = (current + 1) % slides.length;
+        show(current);
+      });
+
+      prevBtn?.addEventListener('click', () => {
+        current = (current - 1 + slides.length) % slides.length;
+        show(current);
+      });
+    })
+    .catch(() => {
+      // Fail quietly – keep the "View all news" link visible
+    });
+})();
