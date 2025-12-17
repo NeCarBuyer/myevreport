@@ -2449,3 +2449,25 @@ main {
   transform: scale(1.02);
   transition: transform 0.3s ease;
 }
+/* Make the news carousel thumbnail fit better on mobile */
+@media (max-width: 600px) {
+  .latest-news.section {
+    padding: 28px 0; /* tighter vertical spacing */
+  }
+
+  .news-thumb img {
+    height: 180px;   /* was ~260px — shrink */
+  }
+
+  .news-thumb__overlay {
+    padding: 12px;
+  }
+
+  .news-thumb__title {
+    font-size: 1rem; /* slightly smaller title */
+  }
+
+  .news-carousel__controls {
+    margin-top: 10px;
+  }
+}
