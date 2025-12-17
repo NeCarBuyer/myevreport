@@ -2707,3 +2707,62 @@ html.no-scroll, body.no-scroll{
     transform: translateY(115vh);
   }
 }
+/* ===== FORCE Latest EV News into 3-card strip (override old slider rules) ===== */
+.news-carousel{
+  display:grid !important;
+  grid-auto-flow:column !important;
+  grid-auto-columns:calc((100% - 32px)/3) !important;
+  gap:16px !important;
+  overflow-x:auto !important;
+  scroll-snap-type:x mandatory !important;
+  padding-bottom:8px !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+
+.news-carousel::-webkit-scrollbar{ display:none !important; }
+
+/* IMPORTANT: prevent old "only .is-active shows" behaviour */
+.news-slide{ 
+  display:block !important;
+  scroll-snap-align:start !important;
+}
+.news-slide.is-active{ display:block !important; }
+
+.news-thumb{
+  display:block !important;
+  background:#fff !important;
+  border-radius:10px !important;
+  overflow:hidden !important;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08) !important;
+  text-decoration:none !important;
+}
+
+.news-thumb img{
+  width:100% !important;
+  height:160px !important;
+  object-fit:contain !important;   /* 100% visible thumbnail */
+  background:#f3f5f7 !important;
+  display:block !important;
+}
+
+.news-thumb__overlay{
+  position:static !important;
+  background:none !important;
+  padding:12px !important;
+}
+
+.news-thumb__title{
+  color:#0a2540 !important;
+  font-size:0.95rem !important;
+  font-weight:600 !important;
+  line-height:1.3 !important;
+}
+
+/* responsive */
+@media (max-width:900px){
+  .news-carousel{ grid-auto-columns:calc((100% - 16px)/2) !important; }
+}
+@media (max-width:600px){
+  .news-carousel{ grid-auto-columns:80% !important; }
+  .news-thumb img{ height:140px !important; }
+}
