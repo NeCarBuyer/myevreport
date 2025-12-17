@@ -123,7 +123,7 @@
           </p>
         </header>
 
-        <!-- Brand logos (placeholders for local SVGs) -->
+        <!-- Brand logos -->
         <div class="brand-strip" aria-label="Popular supported manufacturers">
           <h2>Popular supported manufacturers</h2>
 
@@ -146,27 +146,28 @@
           </p>
         </div>
 
-        <!-- Video -->
+        <!-- ✅ Video (fixed + correctly closed) -->
         <div class="video-card" aria-label="How the test works video">
           <h2>See the process</h2>
           <p>A quick walkthrough of how the on-site battery health test works.</p>
+
           <div class="video-embed">
-            <div class="video-embed">
-  <iframe
-    src="https://www.youtube.com/embed/WrvduQ05JM8"
-    title="MyEVReport battery health check process"
-    loading="lazy"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen></iframe>
-</div>
+            <iframe
+              src="https://www.youtube.com/embed/WrvduQ05JM8"
+              title="MyEVReport battery health check process"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
 
-<p style="margin:.85rem 0 0; font-size:.95rem; opacity:.9;">
-  If the video doesn’t load on your device, you can watch it here:
-  <a href="https://youtu.be/WrvduQ05JM8" target="_blank" rel="noopener">Watch on YouTube</a>.
-</p>
+          <p style="margin:.85rem 0 0; font-size:.95rem; opacity:.9;">
+            If the video doesn’t load on your device, you can watch it here:
+            <a href="https://youtu.be/WrvduQ05JM8" target="_blank" rel="noopener">Watch on YouTube</a>.
+          </p>
+        </div>
 
-        <!-- Existing checker UI (unchanged) -->
+        <!-- Supported vehicles checker -->
         <div class="compat-card" style="max-width: 780px; margin: 0 auto;">
           <div class="compat-grid" style="grid-template-columns: 1fr; gap: 0.9rem;">
             <div>
@@ -193,7 +194,7 @@
           </div>
 
           <div class="compat-help" style="margin-top: 0.85rem;">
-            If your vehicle isn’t listed, you can still request a booking and we’ll confirm by email.
+            If your vehicle isn’t listed, you can still request a booking and we’ll confirm compatibility by email.
           </div>
         </div>
 
@@ -227,7 +228,7 @@
 
   <script src="js/main.js?v=999" defer></script>
 
-  <!-- Supported vehicles loader (unchanged logic pattern) -->
+  <!-- Supported vehicles loader -->
   <script>
     (async function () {
       const CSV_URL = "/data/supported-vehicles.csv";
