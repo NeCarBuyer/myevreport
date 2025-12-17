@@ -186,11 +186,18 @@
           </div>
 
           <div class="compat-actions" style="margin-top: 1rem;">
-            <button type="button" id="checkBtn" class="btn btn-primary" disabled>Check support</button>
+            <button type="button" id="checkBtn" class="btn btn-primary" disabled>Confirm vehicle</button>
           </div>
 
           <div id="result" class="compat-result" style="margin-top: 1rem;">
             Choose a make and model to check support.
+          </div>
+
+          <!-- ✅ NEW: Book button (hidden until Make + Model chosen) -->
+          <div id="bookRow" style="margin-top: .9rem; display:none;">
+            <a id="bookBtn" href="book.html" class="btn btn-primary" style="width:100%; text-align:center;">
+              Book a report
+            </a>
           </div>
 
           <div class="compat-help" style="margin-top: 0.85rem;">
@@ -237,6 +244,10 @@
       const checkBtn = document.getElementById("checkBtn");
       const result = document.getElementById("result");
 
+      // ✅ NEW: book button elements
+      const bookRow = document.getElementById("bookRow");
+      const bookBtn = document.getElementById("bookBtn");
+
       function escapeHtml(str) {
         return String(str)
           .replaceAll("&", "&amp;")
@@ -270,6 +281,28 @@
         }
         if (cur.length || row.length) { row.push(cur); rows.push(row); }
         return rows;
+      }
+
+      // ✅ NEW: keep book CTA synced
+      function updateBookCTA(){
+        if (!bookRow || !bookBtn) return;
+        const mk = makeSelect.value;
+        const md = modelSelect.value;
+
+        const ready = !!(mk && md);
+        bookRow.style.display = ready ? "block" : "none";
+
+        if (!ready) return;
+
+        // store as backup for the booking page
+        try {
+          localStorage.setItem("myev_prefill_make", mk);
+          localStorage.setItem("myev_prefill_model", md);
+        } catch(e){}
+
+        // pass as URL params too
+        const url = `book.html?make=${encodeURIComponent(mk)}&model=${encodeURIComponent(md)}#book`;
+        bookBtn.setAttribute("href", url);
       }
 
       try {
@@ -324,9 +357,16 @@
           modelSelect.innerHTML = `<option value="">Select a make first</option>`;
           if (mk) fillModelsFor(mk);
           setBtnState();
+
+          // ✅ NEW
+          updateBookCTA();
         });
 
-        modelSelect.addEventListener("change", setBtnState);
+        modelSelect.addEventListener("change", () => {
+          setBtnState();
+          // ✅ NEW
+          updateBookCTA();
+        });
 
         checkBtn.addEventListener("click", () => {
           const mk = makeSelect.value;
@@ -339,9 +379,15 @@
             result.innerHTML = `<strong>Supported ✅</strong>${escapeHtml(mk)} ${escapeHtml(md)} is currently supported for a MyEVReport battery health check.`;
           } else {
             result.className = "compat-result warn";
-            result.innerHTML = `<strong>We need to confirm this one.</strong>${escapeHtml(mk)} ${escapeHtml(md)} isn’t on the list yet — request a booking and we’ll confirm by email.`;
+            result.innerHTML = `<strong>We need to confirm this one.</strong>${escapeHtml(mk)} ${escapeHtml(md)} isn’t on the list yet — request a booking and we’ll confirm compatibility by email.`;
           }
+
+          // ✅ NEW: ensure CTA shows after checking too
+          updateBookCTA();
         });
+
+        // ✅ NEW: init state
+        updateBookCTA();
 
       } catch (e) {
         result.className = "compat-result warn";
@@ -351,6 +397,9 @@
         modelSelect.innerHTML = `<option value="">Unavailable</option>`;
         modelSelect.disabled = true;
         checkBtn.disabled = true;
+
+        // ✅ NEW
+        if (bookRow) bookRow.style.display = "none";
       }
     })();
   </script>

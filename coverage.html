@@ -32,6 +32,28 @@
   <link rel="preload" href="images/logo-myevreport.png" as="image">
 
   <link rel="stylesheet" href="css/main.css?v=999">
+
+  <!-- Page-only: hero background for Coverage -->
+  <style>
+    .hero-cover{
+      padding: 4.5rem 0 3.25rem;
+      background-image:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url('images/hero/hero-coverage-newcastle.webp');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-cover .section-header h1,
+    .hero-cover .section-header p{
+      color: #fff;
+      text-shadow: 0 2px 14px rgba(0,0,0,.45);
+    }
+    .hero-cover .section-header p{
+      max-width: 72ch;
+      opacity: .95;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -96,7 +118,7 @@
   <main>
 
     <!-- Coverage intro -->
-    <section class="section">
+    <section class="hero-cover">
       <div class="container">
         <header class="section-header">
           <h1>Coverage area for EV battery health tests</h1>
