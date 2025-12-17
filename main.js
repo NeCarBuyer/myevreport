@@ -577,51 +577,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // =========================
+  // Auto-updating Latest News carousel (thumbnails)
+  // =========================
+  function initNewsCarouselThumbnails() {
+    const wrap = document.querySelector('[data-news-carousel]');
+    if (!wrap) return;
+
+    const prevBtn = document.querySelector('.news-prev');
+    const nextBtn = document.querySelector('.news-next');
+
+    fetch('/data/news.json', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(items => {
+        const latest = (items || []).slice(0, 3);
+        if (!latest.length) return;
+
+        wrap.innerHTML = latest.map((a, i) => `
+          <article class="news-slide ${i === 0 ? 'is-active' : ''}">
+            <a class="news-thumb" href="${a.url}" aria-label="${escapeHtml(a.title)}">
+              <img src="${a.image || ''}" alt="${escapeHtml(a.title)}" loading="lazy">
+              <span class="news-thumb__overlay">
+                <span class="news-thumb__title">${escapeHtml(a.title)}</span>
+              </span>
+            </a>
+          </article>
+        `).join('');
+
+        const slides = wrap.querySelectorAll('.news-slide');
+        if (!slides.length) return;
+
+        let current = 0;
+
+        const show = (idx) => {
+          slides.forEach(s => s.classList.remove('is-active'));
+          slides[idx].classList.add('is-active');
+        };
+
+        nextBtn?.addEventListener('click', () => {
+          current = (current + 1) % slides.length;
+          show(current);
+        });
+
+        prevBtn?.addEventListener('click', () => {
+          current = (current - 1 + slides.length) % slides.length;
+          show(current);
+        });
+      })
+      .catch(() => {
+        // Fail quietly (keeps the "View all EV news" link visible)
+      });
+  }
+
+  // =========================
+  // Init
+  // =========================
   initBookingMakeModel();
   initSupportedModelsPage();
   initIndexCompatibilityChecker();
+  initNewsCarouselThumbnails();
 });
-// Auto-updating Latest News carousel (loads /data/news.json)
-(() => {
-  const wrap = document.querySelector('[data-news-carousel]');
-  if (!wrap) return;
-
-  const prevBtn = document.querySelector('.news-prev');
-  const nextBtn = document.querySelector('.news-next');
-
-  fetch('/data/news.json', { cache: 'no-store' })
-    .then(r => r.ok ? r.json() : Promise.reject(r.status))
-    .then(items => {
-      const latest = (items || []).slice(0, 3);
-      if (!latest.length) return;
-
-      wrap.innerHTML = latest.map((a, i) => `
-        <article class="news-slide ${i === 0 ? 'is-active' : ''}">
-          <span class="news-date">${a.dateLabel || ''}</span>
-          <h3><a href="${a.url}">${a.title}</a></h3>
-          ${a.excerpt ? `<p>${a.excerpt}</p>` : ''}
-        </article>
-      `).join('');
-
-      const slides = wrap.querySelectorAll('.news-slide');
-      let current = 0;
-
-      const show = idx => {
-        slides.forEach(s => s.classList.remove('is-active'));
-        slides[idx].classList.add('is-active');
-      };
-
-      nextBtn?.addEventListener('click', () => {
-        current = (current + 1) % slides.length;
-        show(current);
-      });
-
-      prevBtn?.addEventListener('click', () => {
-        current = (current - 1 + slides.length) % slides.length;
-        show(current);
-      });
-    })
-    .catch(() => {
-      // Fail quietly – keep the "View all news" link visible
-    });
-})();
