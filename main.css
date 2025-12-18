@@ -637,6 +637,58 @@ main {
   margin-top: 2.5rem;
 }
 
+/* =========================
+   Latest EV News – 3-card thumbnail carousel (no cropping)
+   ========================= */
+
+.news-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 32px) / 3); /* 3 cards across */
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.news-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.news-slide {
+  scroll-snap-align: start;
+}
+
+.news-thumb {
+  display: block;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-decoration: none;
+  height: 100%;
+}
+
+.news-thumb img {
+  width: 100%;
+  height: 160px;          /* sets consistent card height */
+  object-fit: contain;     /* IMPORTANT: show 100% of thumbnail */
+  background: #f3f5f7;     /* letterbox area */
+  display: block;
+}
+
+.news-thumb__overlay {
+  padding: 12px;
+}
+
+.news-thumb__title {
+  color: #0a2540;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
 @media (min-width: 900px) {
   .testimonial-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2396,81 +2448,137 @@ main {
 .section-cta-link:hover {
   text-decoration: underline;
 }
-/* News thumbnail carousel */
+/* =========================
+   Latest EV News – card carousel
+   ========================= */
+
 .news-carousel {
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 32px) / 3);
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
 }
 
-.news-slide {
+.news-carousel::-webkit-scrollbar {
   display: none;
 }
 
-.news-slide.is-active {
-  display: block;
+.news-slide {
+  scroll-snap-align: start;
 }
 
 .news-thumb {
-  position: relative;
   display: block;
-  border-radius: 8px;
+  background: #fff;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-decoration: none;
+  height: 100%;
+}
+/* =========================
+   Latest EV News – 3-card carousel base
+   ========================= */
+
+.news-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 32px) / 3); /* 3 across on desktop */
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
 }
 
+.news-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.news-slide {
+  scroll-snap-align: start;
+}
+
+.news-thumb {
+  display: block;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-decoration: none;
+  height: 100%;
+}
+
+/* Your existing rules below can stay as-is */
 .news-thumb img {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
+  height: 160px;
+  object-fit: contain; /* IMPORTANT: no cropping */
+  background: #f3f5f7;
   display: block;
 }
 
 .news-thumb__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.6),
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0)
-  );
-  display: flex;
-  align-items: flex-end;
-  padding: 16px;
+  position: static;
+  background: none;
+  padding: 12px;
 }
 
 .news-thumb__title {
-  color: #fff;
-  font-size: 1.1rem;
+  color: #0a2540;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.3;
 }
 
-.news-thumb:hover img {
-  transform: scale(1.02);
-  transition: transform 0.3s ease;
+.news-thumb img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain; /* IMPORTANT: no cropping */
+  background: #f3f5f7;
 }
-/* Make the news carousel thumbnail fit better on mobile */
+
+.news-thumb__overlay {
+  position: static;
+  background: none;
+  padding: 12px;
+}
+
+.news-thumb__title {
+  color: #0a2540;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Controls – subtle, optional */
+.news-carousel__controls {
+  margin-top: 12px;
+}
+
+/* =========================
+   Responsive behaviour
+   ========================= */
+
+@media (max-width: 900px) {
+  .news-carousel {
+    grid-auto-columns: calc((100% - 16px) / 2);
+  }
+}
+
 @media (max-width: 600px) {
-  .latest-news.section {
-    padding: 28px 0; /* tighter vertical spacing */
+  .news-carousel {
+    grid-auto-columns: 80%;
   }
 
   .news-thumb img {
-    height: 180px;   /* was ~260px — shrink */
-  }
-
-  .news-thumb__overlay {
-    padding: 12px;
-  }
-
-  .news-thumb__title {
-    font-size: 1rem; /* slightly smaller title */
-  }
-
-  .news-carousel__controls {
-    margin-top: 10px;
+    height: 140px;
   }
 }
+
 /* 🎄 Christmas Seasonal Styling */
 .seasonal-popup__card {
   background: linear-gradient(
@@ -2597,5 +2705,285 @@ html.no-scroll, body.no-scroll{
 @keyframes snowFall {
   to {
     transform: translateY(115vh);
+  }
+}
+/* ===== FORCE Latest EV News into 3-card strip (override old slider rules) ===== */
+.news-carousel{
+  display:grid !important;
+  grid-auto-flow:column !important;
+  grid-auto-columns:calc((100% - 32px)/3) !important;
+  gap:16px !important;
+  overflow-x:auto !important;
+  scroll-snap-type:x mandatory !important;
+  padding-bottom:8px !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+
+.news-carousel::-webkit-scrollbar{ display:none !important; }
+
+/* IMPORTANT: prevent old "only .is-active shows" behaviour */
+.news-slide{ 
+  display:block !important;
+  scroll-snap-align:start !important;
+}
+.news-slide.is-active{ display:block !important; }
+
+.news-thumb{
+  display:block !important;
+  background:#fff !important;
+  border-radius:10px !important;
+  overflow:hidden !important;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08) !important;
+  text-decoration:none !important;
+}
+
+.news-thumb img{
+  width:100% !important;
+  height:160px !important;
+  object-fit:contain !important;   /* 100% visible thumbnail */
+  background:#f3f5f7 !important;
+  display:block !important;
+}
+
+.news-thumb__overlay{
+  position:static !important;
+  background:none !important;
+  padding:12px !important;
+}
+
+.news-thumb__title{
+  color:#0a2540 !important;
+  font-size:0.95rem !important;
+  font-weight:600 !important;
+  line-height:1.3 !important;
+}
+
+/* responsive */
+@media (max-width:900px){
+  .news-carousel{ grid-auto-columns:calc((100% - 16px)/2) !important; }
+}
+@media (max-width:600px){
+  .news-carousel{ grid-auto-columns:80% !important; }
+  .news-thumb img{ height:140px !important; }
+}
+
+
+/* =====================================================
+   HERO EXAMPLE – Simple certificate preview (MyEVReport)
+   ===================================================== */
+
+.hero-example{
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(10,37,64,.10);
+  border-radius: 22px;
+  box-shadow: 0 22px 60px rgba(0,0,0,.22);
+  overflow: hidden;
+}
+
+/* Ensure dark text within example panel even if hero uses white text */
+.hero-example, .hero-example *{
+  color: #0a2540;
+  text-shadow: none;
+}
+
+.hero-example h2{
+  margin: 1.05rem 1.05rem .35rem;
+  font-size: 1.45rem;
+}
+
+.hero-example .example-meta{
+  margin: 0 1.05rem .95rem;
+  opacity: .82;
+  font-size: .95rem;
+}
+
+.cert-simple{
+  margin: 0 1.05rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(10,37,64,.10);
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(0,0,0,.10);
+  overflow: hidden;
+}
+
+.cert-simple__figure{
+  margin: 0;
+  background: #fff;
+}
+
+.cert-simple__figure img{
+  display:block;
+  width: 100%;
+  height: auto;
+}
+
+.cert-simple__copy{
+  padding: .85rem 1rem 1rem;
+  background: linear-gradient(180deg, #ffffff, #f7f9fb);
+  border-top: 1px solid rgba(10,37,64,.08);
+}
+
+.cert-simple__copy p{
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cert-simple__note{
+  margin: 0;
+  font-size: .9rem;
+  opacity: .75;
+}
+
+
+/* =====================================================
+   HOMEPAGE HERO – Certificate example (final)
+   Added at end so it wins over earlier rules.
+   ===================================================== */
+
+section.hero[data-hero="home"] .hero-example{
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(10,37,64,.10);
+  border-radius: 22px;
+  box-shadow: 0 22px 60px rgba(0,0,0,.22);
+  overflow: hidden;
+}
+
+/* Ensure dark text inside example panel even if hero text is white */
+section.hero[data-hero="home"] .hero-example,
+section.hero[data-hero="home"] .hero-example *{
+  color: #0a2540;
+  text-shadow: none;
+}
+
+section.hero[data-hero="home"] .hero-example h2{
+  margin: 1.05rem 1.05rem .35rem;
+  font-size: 1.45rem;
+}
+
+section.hero[data-hero="home"] .hero-example .example-meta{
+  margin: 0 1.05rem .9rem;
+  opacity: .82;
+  font-size: .95rem;
+}
+
+section.hero[data-hero="home"] .cert-simple{
+  margin: 0 1.05rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(10,37,64,.10);
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(0,0,0,.10);
+  overflow: hidden;
+}
+
+section.hero[data-hero="home"] .cert-simple__top{
+  padding: .85rem 1rem;
+  background: linear-gradient(180deg, #ffffff, #f7f9fb);
+  border-bottom: 1px solid rgba(10,37,64,.08);
+}
+
+section.hero[data-hero="home"] .cert-simple__title{
+  display:flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+
+section.hero[data-hero="home"] .cert-simple__sub{
+  font-size: .92rem;
+  opacity: .78;
+}
+
+section.hero[data-hero="home"] .cert-simple__figure{
+  margin: 0;
+  background: #fff;
+}
+
+section.hero[data-hero="home"] .cert-simple__figure img{
+  display:block;
+  width: 100%;
+  height: auto;
+}
+
+section.hero[data-hero="home"] .cert-simple__copy{
+  padding: .9rem 1rem 1rem;
+  background: linear-gradient(180deg, #ffffff, #f7f9fb);
+  border-top: 1px solid rgba(10,37,64,.08);
+}
+
+section.hero[data-hero="home"] .cert-simple__blurb{
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+section.hero[data-hero="home"] .cert-simple__note{
+  margin: 0;
+  font-size: .9rem;
+  opacity: .75;
+}
+
+/* Hide legacy example UI blocks inside hero if they still exist (do not delete markup) */
+section.hero[data-hero="home"] .example-grid,
+section.hero[data-hero="home"] .example-item,
+section.hero[data-hero="home"] .example-topbar,
+section.hero[data-hero="home"] .example-badges,
+section.hero[data-hero="home"] .example-phone,
+section.hero[data-hero="home"] .example-footnote{
+  display: none !important;
+}
+
+/* =========================
+   Booking page hero (book.html)
+   ========================= */
+.hero.hero--booking{
+  /* background-image is set inline in book.html */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+/* Make sure booking hero text is readable */
+.hero.hero--booking .hero-text,
+.hero.hero--booking .hero-text h1,
+.hero.hero--booking .hero-text h2,
+.hero.hero--booking .hero-text p,
+.hero.hero--booking .hero-text li{
+  color: #fff;
+}
+
+.hero.hero--booking .hero-text h1,
+.hero.hero--booking .hero-text h2{
+  text-shadow: 0 2px 16px rgba(0,0,0,.55);
+}
+
+.hero.hero--booking .hero-text .eyebrow{
+  color: rgba(255,255,255,.82);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* Right-hand info card */
+.hero.hero--booking .hero-card{
+  color: #fff;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 16px;
+  padding: 1rem 1.05rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.hero.hero--booking .hero-card ul{
+  margin: .5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+@media (max-width: 900px){
+  .hero.hero--booking{
+    min-height: 360px;
+  }
+  .hero.hero--booking .hero-card{
+    margin-top: 1rem;
   }
 }
