@@ -1,42 +1,17 @@
 [
   {
-    "url": "/news-nissan-leaf-sunderland-production.html",
+    "url": "/news-nissan-leaf-sunderland.html",
     "title": "New Nissan Leaf begins production in Sunderland",
-    "image": "https://myevreport.com/images/news-nissan-leaf-sunderland-hero-1200x600.webp",
-    "excerpt": "Nissan has begun production of the new Leaf at its Sunderland factory. Here’s why it matters for UK EV manufacturing, jobs, supply chains and future EV availability.",
-    "date": "2025-12-16",
-    "dateLabel": "16 December 2025"
+    "image": "/images/news/nissan-leaf-sunderland.webp"
   },
   {
-    "url": "/news-xpeng-g6-uk-launch.html",
-    "title": "XPeng G6 launches in the UK — cheaper than a Tesla Model Y",
-    "image": "https://myevreport.com/images/news-xpeng-g6-hero-1200x600.webp",
-    "excerpt": "XPeng launches the G6 electric SUV in the UK, aiming to undercut the Tesla Model Y with fast charging and strong spec. Here’s what UK drivers should know.",
-    "date": "2025-12-14",
-    "dateLabel": "14 December 2025"
-  },
-  {
-    "url": "/news-ford-fiesta-renault-5-ev.html",
-    "title": "New electric Ford Fiesta to share Renault 5 platform – what UK drivers should know",
-    "image": "https://myevreport.com/images/news-ford-fiesta-renault-5-hero-1200x600.png",
-    "excerpt": "Ford will revive the Fiesta as a small electric hatchback based on Renault’s Ampere platform – the same hardware as the Renault 5. Here’s what it could mean for UK drivers, range, ",
-    "date": "2025-12-09",
-    "dateLabel": "9 December 2025"
+    "url": "/news-xpeng-uk-expansion.html",
+    "title": "XPeng accelerates UK expansion plans",
+    "image": "/images/news/xpeng-uk.webp"
   },
   {
     "url": "/news-ev-grant-3750-eligible-cars.html",
-    "title": "Which cars now qualify for the £3,750 Electric Car Grant? – MyEVReport",
-    "image": "https://myevreport.com/images/news-ev-grant-3750-hero-1200x600.png",
-    "excerpt": "The Electric Car Grant has expanded again with four new EVs now qualifying for the full £3,750 discount. Here’s what it means for buyers and the used EV market in the UK.",
-    "date": "2025-12-03",
-    "dateLabel": "3 December 2025"
-  },
-  {
-    "url": "/news-ev-road-tax-3p-mile.html",
-    "title": "The new 3p-per-mile EV road tax — what it could mean for your running costs",
-    "image": "https://myevreport.com/images/news-ev-road-tax-3p-mile-hero-1200x600.png",
-    "excerpt": "EV News · Policy &amp; running costs",
-    "date": "2025-11-28",
-    "dateLabel": "28 November 2025"
+    "title": "£3,750 EV grant: which cars qualify?",
+    "image": "/images/news/ev-grant.webp"
   }
 ]

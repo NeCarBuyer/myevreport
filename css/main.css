@@ -2930,3 +2930,60 @@ section.hero[data-hero="home"] .example-footnote{
   display: none !important;
 }
 
+/* =========================
+   Booking page hero (book.html)
+   ========================= */
+.hero.hero--booking{
+  /* background-image is set inline in book.html */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+/* Make sure booking hero text is readable */
+.hero.hero--booking .hero-text,
+.hero.hero--booking .hero-text h1,
+.hero.hero--booking .hero-text h2,
+.hero.hero--booking .hero-text p,
+.hero.hero--booking .hero-text li{
+  color: #fff;
+}
+
+.hero.hero--booking .hero-text h1,
+.hero.hero--booking .hero-text h2{
+  text-shadow: 0 2px 16px rgba(0,0,0,.55);
+}
+
+.hero.hero--booking .hero-text .eyebrow{
+  color: rgba(255,255,255,.82);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* Right-hand info card */
+.hero.hero--booking .hero-card{
+  color: #fff;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 16px;
+  padding: 1rem 1.05rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.hero.hero--booking .hero-card ul{
+  margin: .5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+@media (max-width: 900px){
+  .hero.hero--booking{
+    min-height: 360px;
+  }
+  .hero.hero--booking .hero-card{
+    margin-top: 1rem;
+  }
+}

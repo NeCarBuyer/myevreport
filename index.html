@@ -1081,15 +1081,21 @@
         });
       }
 
-      function showStep(step) {
-        currentStep = step;
-        panels.forEach(p => {
-          const n = parseInt(p.getAttribute("data-step"), 10);
-          p.classList.toggle("is-active", n === step);
-        });
-        setPills(step);
-        window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 120, behavior: "smooth" });
-      }
+      function showStep(step, doScroll = true) {
+  currentStep = step;
+  panels.forEach(p => {
+    const n = parseInt(p.getAttribute("data-step"), 10);
+    p.classList.toggle("is-active", n === step);
+  });
+  setPills(step);
+
+  if (doScroll) {
+    window.scrollTo({
+      top: form.getBoundingClientRect().top + window.scrollY - 120,
+      behavior: "smooth"
+    });
+  }
+}
 
       function setErrorVisible(step, visible) {
         const el = document.querySelector('[data-step-error="' + step + '"]');
@@ -1141,7 +1147,7 @@
         if (!validateStep(3)) e.preventDefault();
       });
 
-      showStep(1);
+      showStep(1, false);
     })();
   </script>
 
