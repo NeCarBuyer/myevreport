@@ -666,6 +666,145 @@ document.addEventListener('DOMContentLoaded', () => {
     if (shouldShow) openPopup();
   }
 
+    // =========================
+  // Cookie consent (Marketing) — Facebook Pixel gate
+  // =========================
+  function initCookieConsent() {
+    const STORAGE_KEY = "myevreport_cookie_consent_v1";
+
+    // ✅ When you get it, paste your Pixel ID here (numbers only)
+    const META_PIXEL_ID = ""; // e.g. "123456789012345"
+
+    function readConsent() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function writeConsent(marketing) {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ marketing: !!marketing, ts: Date.now() })
+        );
+      } catch (_) {}
+    }
+
+    function hasMarketingConsent() {
+      const c = readConsent();
+      return !!(c && c.marketing === true);
+    }
+
+    // Inject Meta Pixel ONLY after consent
+    function loadMetaPixel() {
+      if (!META_PIXEL_ID) return;                // not configured yet
+      if (window.__myev_meta_loaded) return;     // prevent double-load
+      window.__myev_meta_loaded = true;
+
+      // Standard Meta Pixel loader
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+      window.fbq("init", META_PIXEL_ID);
+      window.fbq("track", "PageView");
+    }
+
+    function removeBanner() {
+      const el = document.getElementById("cookieBanner");
+      if (el) el.remove();
+    }
+
+    function showBanner() {
+      // Don’t show twice
+      if (document.getElementById("cookieBanner")) return;
+
+      const banner = document.createElement("div");
+      banner.id = "cookieBanner";
+      banner.className = "cookie-banner";
+      banner.setAttribute("role", "dialog");
+      banner.setAttribute("aria-live", "polite");
+      banner.setAttribute("aria-label", "Cookie preferences");
+
+      // Update the policy link if your page is named differently
+      const policyHref = "privacy.html";
+
+      banner.innerHTML = `
+        <div class="cookie-banner__inner">
+          <div class="cookie-banner__copy">
+            <strong>Cookies</strong>
+            <p>
+              We use cookies for essential site functions and, with your permission, marketing cookies to help measure and improve our ads.
+              <a href="${policyHref}">Read our cookie policy</a>.
+            </p>
+          </div>
+          <div class="cookie-banner__actions">
+            <button type="button" class="btn btn-secondary cookie-btn" data-cookie-reject>
+              Reject non-essential
+            </button>
+            <button type="button" class="btn btn-primary cookie-btn" data-cookie-accept>
+              Accept marketing
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(banner);
+
+      const acceptBtn = banner.querySelector("[data-cookie-accept]");
+      const rejectBtn = banner.querySelector("[data-cookie-reject]");
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", () => {
+          writeConsent(true);
+          removeBanner();
+          loadMetaPixel();
+        });
+      }
+
+      if (rejectBtn) {
+        rejectBtn.addEventListener("click", () => {
+          writeConsent(false);
+          removeBanner();
+        });
+      }
+    }
+
+    // Public helper so you can add a footer "Cookie settings" link later if you want
+    window.MyEVReportCookie = {
+      open: showBanner,
+      reset: () => {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+        showBanner();
+      },
+      consent: readConsent
+    };
+
+    // On load: if consent exists, act on it; otherwise show banner
+    const consent = readConsent();
+    if (!consent) {
+      showBanner();
+      return;
+    }
+    if (hasMarketingConsent()) loadMetaPixel();
+  }
+
   // =========================
   // Init
   // =========================
