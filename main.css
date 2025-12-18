@@ -1587,9 +1587,9 @@ main {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .hero-example {
-    order: -1;
-  }
+  /* Mobile stacking: keep copy first, example certificate second */
+  .hero-text { order: 1; }
+  .hero-example { order: 2; }
 
   .steps-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -2985,5 +2985,74 @@ section.hero[data-hero="home"] .example-footnote{
   }
   .hero.hero--booking .hero-card{
     margin-top: 1rem;
+  }
+}
+
+/* =========================
+   Cookie banner (Marketing consent)
+   ========================= */
+.cookie-banner{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20000; /* above site UI, below seasonal modal */
+  background: rgba(255,255,255,0.98);
+  border-top: 1px solid rgba(0,0,0,0.10);
+  box-shadow: 0 -18px 40px rgba(0,0,0,0.12);
+}
+
+.cookie-banner__inner{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cookie-banner__copy{
+  max-width: 720px;
+}
+
+.cookie-banner__copy strong{
+  display: block;
+  color: var(--brand-navy);
+  margin-bottom: 2px;
+}
+
+.cookie-banner__copy p{
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.cookie-banner__copy a{
+  font-weight: 600;
+}
+
+.cookie-banner__actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.cookie-banner .cookie-btn{
+  padding: 0.55rem 1rem;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 820px){
+  .cookie-banner__inner{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cookie-banner__actions{
+    justify-content: stretch;
+  }
+  .cookie-banner__actions .cookie-btn{
+    width: 100%;
   }
 }
