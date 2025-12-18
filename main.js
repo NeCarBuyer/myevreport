@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================
-  // Auto-updating Latest News carousel (thumbnails)
+  // Latest News "bubble" carousel (3 visible cards, fully visible thumbnails)
   // =========================
   function initNewsCarouselThumbnails() {
     const wrap = document.querySelector('[data-news-carousel]');
@@ -587,135 +587,242 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.querySelector('.news-prev');
     const nextBtn = document.querySelector('.news-next');
 
+    function scrollByOneCard(dir) {
+      // card width = first child's width + gap
+      const first = wrap.querySelector('.news-slide');
+      if (!first) return;
+      const firstRect = first.getBoundingClientRect();
+      const wrapRect = wrap.getBoundingClientRect();
+      const gap = Math.max(0, firstRect.left - wrapRect.left); // best-effort gap measure
+      const step = firstRect.width + gap;
+      wrap.scrollBy({ left: dir * step, behavior: 'smooth' });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); scrollByOneCard(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); scrollByOneCard(1); });
+
     fetch('/data/news.json', { cache: 'no-store' })
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(items => {
-        const latest = (items || []).slice(0, 3);
+        const latest = (items || []).slice(0, 9); // a few more for scrolling
         if (!latest.length) return;
 
-        wrap.innerHTML = latest.map((a, i) => `
-          <article class="news-slide ${i === 0 ? 'is-active' : ''}">
-            <a class="news-thumb" href="${a.url}" aria-label="${escapeHtml(a.title)}">
+        wrap.innerHTML = latest.map(a => `
+          <article class="news-slide">
+            <a class="news-thumb" href="${a.url}">
               <img src="${a.image || ''}" alt="${escapeHtml(a.title)}" loading="lazy">
-              <span class="news-thumb__overlay">
-                <span class="news-thumb__title">${escapeHtml(a.title)}</span>
-              </span>
+              <div class="news-thumb__overlay">
+                <div class="news-thumb__title">${escapeHtml(a.title)}</div>
+              </div>
             </a>
           </article>
         `).join('');
-
-        const slides = wrap.querySelectorAll('.news-slide');
-        if (!slides.length) return;
-
-        let current = 0;
-
-        const show = (idx) => {
-          slides.forEach(s => s.classList.remove('is-active'));
-          slides[idx].classList.add('is-active');
-        };
-
-        nextBtn?.addEventListener('click', () => {
-          current = (current + 1) % slides.length;
-          show(current);
-        });
-
-        prevBtn?.addEventListener('click', () => {
-          current = (current - 1 + slides.length) % slides.length;
-          show(current);
-        });
       })
       .catch(() => {
-        // Fail quietly (keeps the "View all EV news" link visible)
+        // Fail quietly – the section link still works
       });
+  }
+
+  // =========================
+  // Cookie consent (Marketing) — Facebook Pixel gate
+  // =========================
+  function initCookieConsent() {
+    const STORAGE_KEY = "myevreport_cookie_consent_v1";
+
+    // ✅ When you get it, paste your Pixel ID here (numbers only)
+    const META_PIXEL_ID = ""; // e.g. "123456789012345"
+
+    function readConsent() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function writeConsent(marketing) {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ marketing: !!marketing, ts: Date.now() })
+        );
+      } catch (_) {}
+    }
+
+    function hasMarketingConsent() {
+      const c = readConsent();
+      return !!(c && c.marketing === true);
+    }
+
+    // Inject Meta Pixel ONLY after consent
+    function loadMetaPixel() {
+      if (!META_PIXEL_ID) return;                // not configured yet
+      if (window.__myev_meta_loaded) return;     // prevent double-load
+      window.__myev_meta_loaded = true;
+
+      // Standard Meta Pixel loader
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+      window.fbq("init", META_PIXEL_ID);
+      window.fbq("track", "PageView");
+    }
+
+    function removeBanner() {
+      const el = document.getElementById("cookieBanner");
+      if (el) el.remove();
+    }
+
+    function showBanner() {
+      // Don’t show twice
+      if (document.getElementById("cookieBanner")) return;
+
+      const banner = document.createElement("div");
+      banner.id = "cookieBanner";
+      banner.className = "cookie-banner";
+      banner.setAttribute("role", "dialog");
+      banner.setAttribute("aria-live", "polite");
+      banner.setAttribute("aria-label", "Cookie preferences");
+
+      const policyHref = "privacy.html";
+
+      banner.innerHTML = `
+        <div class="cookie-banner__inner">
+          <div class="cookie-banner__copy">
+            <strong>Cookies</strong>
+            <p>
+              We use cookies for essential site functions and, with your permission, marketing cookies to help measure and improve our ads.
+              <a href="${policyHref}">Read our cookie policy</a>.
+            </p>
+          </div>
+          <div class="cookie-banner__actions">
+            <button type="button" class="btn btn-secondary cookie-btn" data-cookie-reject>
+              Reject non-essential
+            </button>
+            <button type="button" class="btn btn-primary cookie-btn" data-cookie-accept>
+              Accept marketing
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(banner);
+
+      const acceptBtn = banner.querySelector("[data-cookie-accept]");
+      const rejectBtn = banner.querySelector("[data-cookie-reject]");
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", () => {
+          writeConsent(true);
+          removeBanner();
+          loadMetaPixel();
+        });
+      }
+
+      if (rejectBtn) {
+        rejectBtn.addEventListener("click", () => {
+          writeConsent(false);
+          removeBanner();
+        });
+      }
+    }
+
+    // Public helper so you can add a footer "Cookie settings" link later if you want
+    window.MyEVReportCookie = {
+      open: showBanner,
+      reset: () => {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+        showBanner();
+      },
+      consent: readConsent
+    };
+
+    // Don’t show banner immediately if the Christmas modal is open
+    const consent = readConsent();
+    if (!consent) {
+      const seasonalOpen = document.getElementById('seasonalPopup')?.classList.contains('is-open');
+      if (!seasonalOpen) showBanner();
+      return;
+    }
+
+    if (hasMarketingConsent()) loadMetaPixel();
+  }
+
+  // =========================
+  // 🎄 Seasonal Popup (only runs where the HTML exists)
+  // =========================
+  function initSeasonalPopup() {
+    const popup = document.getElementById('seasonalPopup');
+    if (!popup) return;
+
+    const KEY = 'seasonalPopupLastSeen';
+    const SNOOZE_DAYS = 14;
+
+    function daysSince(ts) {
+      return (Date.now() - ts) / (1000 * 60 * 60 * 24);
+    }
+
+    function openPopup() {
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closePopup() {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (_) {}
+
+      // ✅ After closing seasonal modal, show cookie banner if needed
+      if (window.MyEVReportCookie && typeof window.MyEVReportCookie.open === "function") {
+        const consent = window.MyEVReportCookie.consent && window.MyEVReportCookie.consent();
+        if (!consent) window.MyEVReportCookie.open();
+      }
+    }
+
+    popup.querySelectorAll('[data-popup-close]').forEach(el => {
+      el.addEventListener('click', closePopup);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
+    });
+
+    const lastSeen = Number(localStorage.getItem(KEY) || 0);
+    const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
+
+    if (shouldShow) openPopup();
   }
 
   // =========================
   // Init
   // =========================
+  initCookieConsent();
   initBookingMakeModel();
   initSupportedModelsPage();
   initIndexCompatibilityChecker();
   initNewsCarouselThumbnails();
-});
-// 🎄 Seasonal Popup (only runs where the HTML exists)
-document.addEventListener('DOMContentLoaded', () => {
-  const popup = document.getElementById('seasonalPopup');
-  if (!popup) return; // ✅ means it will only work on index.html + news.html where you added it
-
-  const KEY = 'seasonalPopupLastSeen';
-  const SNOOZE_DAYS = 14;
-
-  function daysSince(ts) {
-    const diff = Date.now() - ts;
-    return diff / (1000 * 60 * 60 * 24);
-  }
-
-  function openPopup() {
-    popup.classList.add('is-open');
-    popup.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add('no-scroll');
-  }
-
-  function closePopup() {
-    popup.classList.remove('is-open');
-    popup.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove('no-scroll');
-    localStorage.setItem(KEY, String(Date.now()));
-  }
-
-  popup.querySelectorAll('[data-popup-close]').forEach(el => {
-    el.addEventListener('click', closePopup);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
-  });
-
-  const lastSeen = Number(localStorage.getItem(KEY) || 0);
-  const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
-
-  if (shouldShow) openPopup();
-  document.addEventListener('DOMContentLoaded', () => {
-  const popup = document.getElementById('seasonalPopup');
-  if (!popup) return;
-
-  const KEY = 'seasonalPopupLastSeen';
-  const SNOOZE_DAYS = 14;
-
-  function daysSince(ts) {
-    return (Date.now() - ts) / (1000 * 60 * 60 * 24);
-  }
-
-  function openPopup() {
-    popup.classList.add('is-open');
-    popup.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add('no-scroll');
-    document.body.classList.add('no-scroll');
-  }
-
-  function closePopup() {
-    popup.classList.remove('is-open');
-    popup.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove('no-scroll');
-    document.body.classList.remove('no-scroll');
-    localStorage.setItem(KEY, String(Date.now()));
-  }
-
-  popup.querySelectorAll('[data-popup-close]').forEach(el => {
-    el.addEventListener('click', closePopup);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
-  });
-
-  const lastSeen = Number(localStorage.getItem(KEY) || 0);
-  const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
-
-  if (shouldShow) openPopup();
+  initSeasonalPopup();
 });
 
-});
 // ❄️ Subtle seasonal snow (visible on light backgrounds)
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const snow = document.createElement('div');
