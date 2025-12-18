@@ -31,11 +31,57 @@
   <link rel="preload" href="css/main.css" as="style">
   <link rel="preload" href="images/logo-myevreport.png" as="image">
 
+  <!-- ✅ Preload NEW booking hero image -->
+  <link rel="preload" href="images/hero/myevreport_blue_ev_hero.webp" as="image">
+
   <link rel="stylesheet" href="css/main.css">
 
   <!-- Stepped booking UI styles (safe to keep inline) -->
   <style>
-    /* Layout helpers */
+    /* Booking hero (safe, page-only) */
+    .hero.hero--booking{
+      background-size: cover;
+      background-position: center;
+      padding: 4.25rem 0 3.25rem;
+    }
+    .hero.hero--booking .hero-inner{ display:grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 920px){
+      .hero.hero--booking .hero-inner{ grid-template-columns: 1.15fr .85fr; align-items: center; }
+    }
+    .hero.hero--booking .hero-text h2{
+      margin-top: .35rem;
+      max-width: 22ch;
+    }
+    .hero.hero--booking .hero-text p{
+      max-width: 62ch;
+    }
+    .hero.hero--booking .hero-card{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.30);
+      padding: 1rem 1.05rem;
+      backdrop-filter: blur(4px);
+    }
+    .hero.hero--booking .hero-card ul{ margin: .65rem 0 0; padding-left: 1.1rem; }
+    .hero.hero--booking .hero-card li{ margin: .25rem 0; }
+
+    /* ✅ Ensure hero text stays readable on photo backgrounds */
+    .hero.hero--booking .hero-text,
+    .hero.hero--booking .hero-text h1,
+    .hero.hero--booking .hero-text h2,
+    .hero.hero--booking .hero-text p,
+    .hero.hero--booking .hero-text li{
+      color: #fff;
+    }
+    .hero.hero--booking .hero-text h2,
+    .hero.hero--booking .hero-text .hero-lead{
+      text-shadow: 0 2px 14px rgba(0,0,0,.55);
+    }
+    .hero.hero--booking .hero-text .eyebrow{
+      color: rgba(255,255,255,.85);
+      letter-spacing: .08em;
+    }
+
     .booking-shell{
       max-width: 980px;
       margin: 0 auto;
@@ -197,7 +243,7 @@
       opacity: 0.75;
     }
 
-    /* ✅ Your requested change: manual entry sits in right column on desktop */
+    /* ✅ Manual entry sits in right column on desktop */
     @media (min-width: 900px){
       #vehicleManualWrap{
         grid-column: 2;
@@ -213,61 +259,92 @@
     🔋 The North East’s No.1 EV Battery Health Check Supplier – Independent, Accurate &amp; Trusted
   </div>
 
- <!-- Header -->
+  <!-- Header -->
   <header class="site-header">
-  <div class="container header-inner">
-    <!-- Logo -->
-    <a href="index.html#top" class="logo">
-      <img
-        src="images/logo-myevreport.png"
-        alt="MyEVReport logo – independent EV battery health reports"
-        width="180"
-        height="42">
-    </a>
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="index.html#top" class="logo">
+        <img
+          src="images/logo-myevreport.png"
+          alt="MyEVReport logo – independent EV battery health reports"
+          width="180"
+          height="42">
+      </a>
 
-    <!-- Main navigation -->
-    <nav id="site-nav" class="main-nav" aria-label="Main navigation">
-      <a href="how-it-works.html">How it works</a>
-      <a href="whats-in-the-report.html">What’s in the report</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="supported-models.html">Supported vehicles</a>
+      <!-- Main navigation -->
+      <nav id="site-nav" class="main-nav" aria-label="Main navigation">
+        <a href="how-it-works.html">How it works</a>
+        <a href="whats-in-the-report.html">What’s in the report</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="supported-models.html">Supported vehicles</a>
 
-      <!-- More dropdown -->
-      <div class="nav-more" data-nav-more>
-        <button
-          class="nav-more__btn"
-          type="button"
-          aria-haspopup="true"
-          aria-expanded="false">
-          More <span class="nav-caret" aria-hidden="true">▾</span>
-        </button>
+        <!-- More dropdown -->
+        <div class="nav-more" data-nav-more>
+          <button
+            class="nav-more__btn"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+            More <span class="nav-caret" aria-hidden="true">▾</span>
+          </button>
 
-        <div class="nav-more__menu" role="menu" hidden>
-          <a role="menuitem" class="nav-more__item" href="coverage.html">Coverage Area</a>
-          <a role="menuitem" class="nav-more__item" href="faqs.html">FAQs</a>
-          <a role="menuitem" class="nav-more__item" href="news.html">EV News</a>
+          <div class="nav-more__menu" role="menu" hidden>
+            <a role="menuitem" class="nav-more__item" href="coverage.html">Coverage Area</a>
+            <a role="menuitem" class="nav-more__item" href="faqs.html">FAQs</a>
+            <a role="menuitem" class="nav-more__item" href="news.html">EV News</a>
+          </div>
         </div>
-      </div>
 
-      <!-- CTA -->
-      <a href="book.html" class="btn btn-primary">Book a report</a>
-    </nav>
+        <!-- CTA -->
+        <a href="book.html" class="btn btn-primary">Book a report</a>
+      </nav>
 
-    <!-- Mobile burger -->
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-label="Toggle navigation"
-      aria-expanded="false"
-      aria-controls="site-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
+      <!-- Mobile burger -->
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
 
   <main>
+
+    <!-- Hero -->
+    <section class="hero hero--booking" style="
+      background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('images/hero/myevreport_blue_ev_hero.webp');
+    ">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Request an appointment</p>
+          <h2>Book your EV battery health check with confidence.</h2>
+          <p class="hero-lead">
+            Complete the form below and we’ll confirm availability by email before taking payment.
+            The on-site test is typically completed in 10–20 minutes.
+          </p>
+          <div class="hero-cta">
+            <a href="#book" class="btn btn-primary">Start booking</a>
+            <a href="whats-in-the-report.html" class="btn btn-secondary">What you’ll receive</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Booking highlights">
+          <strong style="display:block; font-size:1.05rem; margin:0 0 .35rem;">What happens next</strong>
+          <ul>
+            <li>We confirm your time slot by email.</li>
+            <li>You receive a secure payment link.</li>
+            <li>Your PDF report is delivered within 24 hours of the test.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
     <!-- Booking page intro -->
     <section class="section section-intro-booking">
@@ -312,6 +389,7 @@
           </div>
         </div>
 
+        <!-- ✅ FORM UNCHANGED -->
         <form class="booking-form" method="post" action="https://submit-form.com/6bLuHmQIB" novalidate>
           <input type="hidden" name="reference" id="reference">
           <input type="hidden" name="_redirect"  value="https://myevreport.com/thank-you.html" id="redirectField">
@@ -408,7 +486,6 @@
                 </div>
 
                 <!-- Manual fallback -->
-                <!-- ✅ Change: remove form-group-full so it can sit in the right column -->
                 <div class="form-group" id="vehicleManualWrap" style="display:none;">
                   <label for="vehicleManual">Vehicle (manual entry) *</label>
                   <input id="vehicleManual" name="vehicle_manual" type="text" placeholder="e.g. Nissan Leaf">
@@ -775,7 +852,6 @@
       }
     })();
   </script>
-
 
   <!-- ✅ MYEV reference generator -->
   <script>

@@ -2766,3 +2766,167 @@ html.no-scroll, body.no-scroll{
   .news-carousel{ grid-auto-columns:80% !important; }
   .news-thumb img{ height:140px !important; }
 }
+
+
+/* =====================================================
+   HERO EXAMPLE – Simple certificate preview (MyEVReport)
+   ===================================================== */
+
+.hero-example{
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(10,37,64,.10);
+  border-radius: 22px;
+  box-shadow: 0 22px 60px rgba(0,0,0,.22);
+  overflow: hidden;
+}
+
+/* Ensure dark text within example panel even if hero uses white text */
+.hero-example, .hero-example *{
+  color: #0a2540;
+  text-shadow: none;
+}
+
+.hero-example h2{
+  margin: 1.05rem 1.05rem .35rem;
+  font-size: 1.45rem;
+}
+
+.hero-example .example-meta{
+  margin: 0 1.05rem .95rem;
+  opacity: .82;
+  font-size: .95rem;
+}
+
+.cert-simple{
+  margin: 0 1.05rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(10,37,64,.10);
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(0,0,0,.10);
+  overflow: hidden;
+}
+
+.cert-simple__figure{
+  margin: 0;
+  background: #fff;
+}
+
+.cert-simple__figure img{
+  display:block;
+  width: 100%;
+  height: auto;
+}
+
+.cert-simple__copy{
+  padding: .85rem 1rem 1rem;
+  background: linear-gradient(180deg, #ffffff, #f7f9fb);
+  border-top: 1px solid rgba(10,37,64,.08);
+}
+
+.cert-simple__copy p{
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cert-simple__note{
+  margin: 0;
+  font-size: .9rem;
+  opacity: .75;
+}
+
+
+/* =====================================================
+   HOMEPAGE HERO – Certificate example (final)
+   Added at end so it wins over earlier rules.
+   ===================================================== */
+
+section.hero[data-hero="home"] .hero-example{
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(10,37,64,.10);
+  border-radius: 22px;
+  box-shadow: 0 22px 60px rgba(0,0,0,.22);
+  overflow: hidden;
+}
+
+/* Ensure dark text inside example panel even if hero text is white */
+section.hero[data-hero="home"] .hero-example,
+section.hero[data-hero="home"] .hero-example *{
+  color: #0a2540;
+  text-shadow: none;
+}
+
+section.hero[data-hero="home"] .hero-example h2{
+  margin: 1.05rem 1.05rem .35rem;
+  font-size: 1.45rem;
+}
+
+section.hero[data-hero="home"] .hero-example .example-meta{
+  margin: 0 1.05rem .9rem;
+  opacity: .82;
+  font-size: .95rem;
+}
+
+section.hero[data-hero="home"] .cert-simple{
+  margin: 0 1.05rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(10,37,64,.10);
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(0,0,0,.10);
+  overflow: hidden;
+}
+
+section.hero[data-hero="home"] .cert-simple__top{
+  padding: .85rem 1rem;
+  background: linear-gradient(180deg, #ffffff, #f7f9fb);
+  border-bottom: 1px solid rgba(10,37,64,.08);
+}
+
+section.hero[data-hero="home"] .cert-simple__title{
+  display:flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+
+section.hero[data-hero="home"] .cert-simple__sub{
+  font-size: .92rem;
+  opacity: .78;
+}
+
+section.hero[data-hero="home"] .cert-simple__figure{
+  margin: 0;
+  background: #fff;
+}
+
+section.hero[data-hero="home"] .cert-simple__figure img{
+  display:block;
+  width: 100%;
+  height: auto;
+}
+
+section.hero[data-hero="home"] .cert-simple__copy{
+  padding: .9rem 1rem 1rem;
+  background: linear-gradient(180deg, #ffffff, #f7f9fb);
+  border-top: 1px solid rgba(10,37,64,.08);
+}
+
+section.hero[data-hero="home"] .cert-simple__blurb{
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+section.hero[data-hero="home"] .cert-simple__note{
+  margin: 0;
+  font-size: .9rem;
+  opacity: .75;
+}
+
+/* Hide legacy example UI blocks inside hero if they still exist (do not delete markup) */
+section.hero[data-hero="home"] .example-grid,
+section.hero[data-hero="home"] .example-item,
+section.hero[data-hero="home"] .example-topbar,
+section.hero[data-hero="home"] .example-badges,
+section.hero[data-hero="home"] .example-phone,
+section.hero[data-hero="home"] .example-footnote{
+  display: none !important;
+}
+
