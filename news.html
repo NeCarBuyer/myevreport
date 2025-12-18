@@ -78,6 +78,74 @@
     ]
   }
   </script>
+
+  <!-- Page hero (image + overlay text) -->
+  <style>
+    .page-hero{ padding: 18px 0 6px; }
+    .page-hero__wrap{
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0a2540;
+      box-shadow: 0 12px 30px rgba(0,0,0,.12);
+    }
+    .page-hero__img{
+      width: 100%;
+      height: clamp(260px, 34vw, 360px);
+      object-fit: cover;
+      display:block;
+      transform: translateZ(0);
+    }
+    .page-hero__overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg,
+        rgba(10,37,64,.82) 0%,
+        rgba(10,37,64,.55) 45%,
+        rgba(10,37,64,.18) 72%,
+        rgba(10,37,64,0) 100%);
+      display:flex;
+      align-items:flex-end;
+    }
+    .page-hero__content{
+      padding: 22px;
+      max-width: 740px;
+      color: #fff;
+    }
+    .page-hero__kicker{
+      display:inline-block;
+      font-size: .9rem;
+      opacity: .9;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(4px);
+    }
+    .page-hero__content h1{
+      color:#fff;
+      margin: 0 0 8px;
+      line-height: 1.15;
+    }
+    .page-hero__content p{
+      margin: 0;
+      font-size: 1.05rem;
+      opacity: .95;
+    }
+    @media (max-width: 700px){
+      .page-hero__img{ height: 300px; }
+      .page-hero__overlay{
+        background: linear-gradient(180deg,
+          rgba(10,37,64,.15) 0%,
+          rgba(10,37,64,.62) 55%,
+          rgba(10,37,64,.86) 100%);
+        align-items:flex-end;
+      }
+      .page-hero__content{ padding: 18px; max-width: 100%; }
+    }
+  </style>
+
 </head>
 <body>
 
@@ -142,11 +210,32 @@
 
   <main>
 
+    <!-- Hero -->
+    <section class="section">
+      <div class="container">
+        <div class="page-hero">
+          <div class="page-hero__wrap">
+            <picture>
+              <source srcset="images/news-hero-ev-road.webp" type="image/webp">
+              <img class="page-hero__img" src="images/news-hero-ev-road.webp" alt="Electric vehicle on a UK road representing real-world EV ownership" loading="eager" width="2000" height="1200">
+            </picture>
+            <div class="page-hero__overlay">
+              <div class="page-hero__content">
+                <h1>EV news, guides &amp; updates</h1>
+                <p>Clear UK EV news and guides — written for everyday drivers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
     <!-- Intro -->
     <section class="section">
       <div class="container">
         <header class="section-header">
-          <h1>Latest EV releases, UK news &amp; new electric cars</h1>
+          <h2>Latest EV releases, UK news &amp; new electric cars</h2>
           <p>
             Your hub for the latest electric car news in the UK — from brand-new EV launches and upcoming models,
             to new car brands entering the UK market, technology updates, charging developments and wider EV policy changes.

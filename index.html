@@ -31,6 +31,7 @@
   <!-- Preload -->
   <link rel="preload" href="css/main.css" as="style">
   <link rel="preload" href="images/logo-myevreport.png" as="image">
+  <link rel="preload" href="images/hero/hero-north-east-ev.webp" as="image" type="image/webp">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/main.css?v=999">
@@ -364,13 +365,12 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero" style="
-      background-image:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url('images/hero/hero-north-east-ev.webp');
-      background-size: cover;
-      background-position: center;
-    " data-hero="home">
+    <section class="hero" data-hero="home">
+      <picture class="hero-bg" aria-hidden="true">
+        <source srcset="images/hero/hero-north-east-ev.webp" type="image/webp">
+        <img src="images/hero/hero-north-east-ev.webp" alt="" loading="eager" width="2000" height="1200">
+      </picture>
+      <div class="hero-shade" aria-hidden="true"></div>
       <div class="container hero-inner">
 
         <div class="hero-text">
@@ -399,14 +399,9 @@
         </div>
 
         <aside class="hero-example" aria-label="Example certificate preview">
-          <h2>Example: 2020 MG ZS Exclusive</h2>
-          <p class="example-meta">33,517 miles · Newcastle Upon Tyne · Tested fully in under 10 minutes · Certificate received same day</p>
-
           <div class="cert-simple">
             <div class="cert-simple__top">
               <div class="cert-simple__title">
-                <strong>Battery Health Check Certificate</strong>
-                <span class="cert-simple__sub">An example of the detailed PDF report issued following an EV battery assessment</span>
               </div>
             </div>
 
@@ -419,10 +414,10 @@
 
             <div class="cert-simple__copy">
               <p class="cert-simple__blurb">
-                <strong>This is the PDF certificate customers receive after testing</strong> — showing State of Health (SoH) %,
+                <strong><strong>Certificate received same day</strong></strong> — showing State of Health (SoH) %,
                 real-world range estimates and remaining battery warranty.
               </p>
-              <p class="cert-simple__note">Independent, point-in-time diagnostic snapshot.</p>
+               <a href="book.html" class="btn btn-primary btn-full-width">Book a battery health report</a>
             </div>
           </div>
         </aside>

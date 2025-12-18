@@ -624,49 +624,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================
-  // 🎄 Seasonal Popup (only runs where the HTML exists)
-  // =========================
-  function initSeasonalPopup() {
-    const popup = document.getElementById('seasonalPopup');
-    if (!popup) return;
-
-    const KEY = 'seasonalPopupLastSeen';
-    const SNOOZE_DAYS = 14;
-
-    function daysSince(ts) {
-      return (Date.now() - ts) / (1000 * 60 * 60 * 24);
-    }
-
-    function openPopup() {
-      popup.classList.add('is-open');
-      popup.setAttribute('aria-hidden', 'false');
-      document.documentElement.classList.add('no-scroll');
-      document.body.classList.add('no-scroll');
-    }
-
-    function closePopup() {
-      popup.classList.remove('is-open');
-      popup.setAttribute('aria-hidden', 'true');
-      document.documentElement.classList.remove('no-scroll');
-      document.body.classList.remove('no-scroll');
-      try { localStorage.setItem(KEY, String(Date.now())); } catch (_) {}
-    }
-
-    popup.querySelectorAll('[data-popup-close]').forEach(el => {
-      el.addEventListener('click', closePopup);
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
-    });
-
-    const lastSeen = Number(localStorage.getItem(KEY) || 0);
-    const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
-
-    if (shouldShow) openPopup();
-  }
-
-    // =========================
   // Cookie consent (Marketing) — Facebook Pixel gate
   // =========================
   function initCookieConsent() {
@@ -742,7 +699,6 @@ document.addEventListener('DOMContentLoaded', () => {
       banner.setAttribute("aria-live", "polite");
       banner.setAttribute("aria-label", "Cookie preferences");
 
-      // Update the policy link if your page is named differently
       const policyHref = "privacy.html";
 
       banner.innerHTML = `
@@ -796,18 +752,70 @@ document.addEventListener('DOMContentLoaded', () => {
       consent: readConsent
     };
 
-    // On load: if consent exists, act on it; otherwise show banner
+    // Don’t show banner immediately if the Christmas modal is open
     const consent = readConsent();
     if (!consent) {
-      showBanner();
+      const seasonalOpen = document.getElementById('seasonalPopup')?.classList.contains('is-open');
+      if (!seasonalOpen) showBanner();
       return;
     }
+
     if (hasMarketingConsent()) loadMetaPixel();
+  }
+
+  // =========================
+  // 🎄 Seasonal Popup (only runs where the HTML exists)
+  // =========================
+  function initSeasonalPopup() {
+    const popup = document.getElementById('seasonalPopup');
+    if (!popup) return;
+
+    const KEY = 'seasonalPopupLastSeen';
+    const SNOOZE_DAYS = 14;
+
+    function daysSince(ts) {
+      return (Date.now() - ts) / (1000 * 60 * 60 * 24);
+    }
+
+    function openPopup() {
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closePopup() {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (_) {}
+
+      // ✅ After closing seasonal modal, show cookie banner if needed
+      if (window.MyEVReportCookie && typeof window.MyEVReportCookie.open === "function") {
+        const consent = window.MyEVReportCookie.consent && window.MyEVReportCookie.consent();
+        if (!consent) window.MyEVReportCookie.open();
+      }
+    }
+
+    popup.querySelectorAll('[data-popup-close]').forEach(el => {
+      el.addEventListener('click', closePopup);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
+    });
+
+    const lastSeen = Number(localStorage.getItem(KEY) || 0);
+    const shouldShow = !lastSeen || daysSince(lastSeen) >= SNOOZE_DAYS;
+
+    if (shouldShow) openPopup();
   }
 
   // =========================
   // Init
   // =========================
+  initCookieConsent();
   initBookingMakeModel();
   initSupportedModelsPage();
   initIndexCompatibilityChecker();

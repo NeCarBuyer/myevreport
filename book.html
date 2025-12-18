@@ -250,6 +250,75 @@
       }
     }
   </style>
+
+  <!-- Page hero (image + overlay text) -->
+  <style>
+    .page-hero{ padding: 18px 0 6px; }
+    .page-hero__wrap{
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0a2540;
+      box-shadow: 0 12px 30px rgba(0,0,0,.12);
+    }
+    .page-hero__img{
+      width: 100%;
+      height: clamp(260px, 34vw, 360px);
+      object-fit: cover;
+      display:block;
+      transform: translateZ(0);
+    }
+    .page-hero__overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg,
+        rgba(10,37,64,.82) 0%,
+        rgba(10,37,64,.55) 45%,
+        rgba(10,37,64,.18) 72%,
+        rgba(10,37,64,0) 100%);
+      display:flex;
+      align-items:flex-end;
+    }
+    .page-hero__content{
+      padding: 22px;
+      max-width: 740px;
+      color: #fff;
+    }
+    .page-hero__kicker{
+      display:inline-block;
+      font-size: .9rem;
+      opacity: .9;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(4px);
+    }
+    .page-hero__content h1{
+      color:#fff;
+      margin: 0 0 8px;
+      line-height: 1.15;
+    }
+    .page-hero__content p{
+      margin: 0;
+      font-size: 1.05rem;
+      opacity: .95;
+    }
+    @media (max-width: 700px){
+      .page-hero__img{ height: 300px; }
+      .page-hero__overlay{
+        background: linear-gradient(180deg,
+          rgba(10,37,64,.15) 0%,
+          rgba(10,37,64,.62) 55%,
+          rgba(10,37,64,.86) 100%);
+        align-items:flex-end;
+      }
+      .page-hero__content{ padding: 18px; max-width: 100%; }
+    }
+  
+  </style>
+
 </head>
 
 <body>
@@ -316,41 +385,33 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero hero--booking" style="
-      background-image:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url('images/hero/myevreport_blue_ev_hero.webp');
-    ">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="eyebrow">Request an appointment</p>
-          <h2>Book your EV battery health check with confidence.</h2>
-          <p class="hero-lead">
-            Complete the form below and we’ll confirm availability by email before taking payment.
-            The on-site test is typically completed in 10–20 minutes.
-          </p>
-          <div class="hero-cta">
-            <a href="#book" class="btn btn-primary">Start booking</a>
-            <a href="whats-in-the-report.html" class="btn btn-secondary">What you’ll receive</a>
+    
+    <section class="section">
+      <div class="container">
+        <div class="page-hero">
+          <div class="page-hero__wrap">
+            <picture>
+              <source srcset="images/hero/myevreport_blue_ev_hero.webp" type="image/webp">
+              <img class="page-hero__img" src="images/hero/myevreport_blue_ev_hero.webp" alt="Book an EV battery health check" loading="eager" width="2000" height="1200">
+            </picture>
+            <div class="page-hero__overlay">
+              <div class="page-hero__content">
+                <h1>Book an EV battery health check</h1>
+                <p>We operate a mobile service across the North of England. Request an appointment in minutes — we’ll confirm availability and send a secure payment link.</p>
+                <div class="page-hero__actions"><a class="btn btn-primary" href="#book">Request an appointment</a></div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <aside class="hero-card" aria-label="Booking highlights">
-          <strong style="display:block; font-size:1.05rem; margin:0 0 .35rem;">What happens next</strong>
-          <ul>
-            <li>We confirm your time slot by email.</li>
-            <li>You receive a secure payment link.</li>
-            <li>Your PDF report is delivered within 24 hours of the test.</li>
-          </ul>
-        </aside>
       </div>
     </section>
+
 
     <!-- Booking page intro -->
     <section class="section section-intro-booking">
       <div class="container">
         <header class="section-header">
-          <h1>Book your EV battery health report</h1>
+          <h2>Book your EV battery health report</h2>
           <p>
             Request an appointment in under 2 minutes. We’ll confirm availability by email and send a secure payment link
             before the visit is finalised.

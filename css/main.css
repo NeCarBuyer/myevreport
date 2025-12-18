@@ -1587,9 +1587,9 @@ main {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .hero-example {
-    order: -1;
-  }
+  /* Mobile stacking: keep copy first, example certificate second */
+  .hero-text { order: 1; }
+  .hero-example { order: 2; }
 
   .steps-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -3055,4 +3055,41 @@ section.hero[data-hero="home"] .example-footnote{
   .cookie-banner__actions .cookie-btn{
     width: 100%;
   }
+}
+
+/* =====================================================
+   HOMEPAGE HERO BACKGROUND (image element, no overlap)
+   ===================================================== */
+section.hero[data-hero="home"]{
+  position: relative;
+  overflow: hidden;
+  background: #0a2540; /* safe fallback while image loads */
+}
+
+section.hero[data-hero="home"] .hero-bg{
+  position: absolute;
+  inset: 0;
+  display: block;
+  z-index: 0;
+}
+
+section.hero[data-hero="home"] .hero-bg img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+section.hero[data-hero="home"] .hero-shade{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55));
+}
+
+section.hero[data-hero="home"] .hero-inner{
+  position: relative;
+  z-index: 2;
 }
