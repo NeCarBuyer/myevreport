@@ -1,6 +1,6 @@
 /* =========================
    MyEVReport – Global Styles
-   ========================= *
+   ========================= */
 
 /* Brand palette */
 :root {
@@ -21,6 +21,10 @@
 
   --primary: #0f4c81;               /* primary brand colour */
   --transition-fast: 0.16s ease-out; /* shared transition speed */
+
+  /* Banner height is set by JS in main.js */
+  --launch-banner-h: 0px;
+  --sticky-top: var(--launch-banner-h);
 }
 
 /* =========================
@@ -37,6 +41,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ensure in-page anchors don't hide under sticky UI */
+html{
+  scroll-padding-top: 110px;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
@@ -45,6 +54,9 @@ body {
   background-color: var(--bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+
+  /* Allow fixed launch banner space when JS sets --launch-banner-h */
+  padding-top: var(--launch-banner-h, 0px);
 }
 
 img {
@@ -95,18 +107,50 @@ main {
    Launch Banner
    ========================= */
 
-.launch-banner {
-  position: sticky;
-  top: 0;
+/* ===== Launch banner (fixed) ===== */
+.launch-banner{
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  z-index: 9999 !important;
+  background: var(--brand-green, #22b473) !important;
+  color: #ffffff !important;
+  transform: translateY(0);
+  transition: transform 220ms ease;
   width: 100%;
-  background: var(--brand-green, #22b473);
-  color: #ffffff;
   text-align: center;
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  z-index: 9999;
+
+  /* ✅ FIX: allow full text on mobile */
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  line-height: 1.25 !important;
+}
+
+/* ✅ FIX: banner inner padding + notch support + readable sizing */
+.launch-banner__inner{
+  padding-top: calc(10px + env(safe-area-inset-top)) !important;
+  padding-right: 14px !important;
+  padding-bottom: 10px !important;
+  padding-left: 14px !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.2px !important;
+}
+
+@media (max-width: 380px){
+  .launch-banner__inner{ font-size: 0.9rem !important; }
+}
+
+/* Hide banner on scroll (JS adds .banner-hidden to body) */
+body.banner-hidden .launch-banner{
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .launch-banner{ transition: none !important; }
 }
 
 /* (Unused but kept for future if needed) */
@@ -125,11 +169,20 @@ main {
 
 .site-header {
   position: sticky;
-  top: 0;
-  z-index: 20;
+  top: var(--sticky-top);
+  z-index: 9998 !important;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(224, 228, 236, 0.9);
+}
+
+body.banner-hidden{
+  --sticky-top: 0px;
+  padding-top: 0px !important;
+}
+
+body.banner-hidden .site-header{
+  top: 0px !important;
 }
 
 .header-inner {
@@ -637,6 +690,12 @@ main {
   margin-top: 2.5rem;
 }
 
+@media (min-width: 900px) {
+  .testimonial-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 /* =========================
    Latest EV News – 3-card thumbnail carousel (no cropping)
    ========================= */
@@ -658,6 +717,7 @@ main {
 
 .news-slide {
   scroll-snap-align: start;
+  display: block !important;
 }
 
 .news-thumb {
@@ -680,6 +740,8 @@ main {
 
 .news-thumb__overlay {
   padding: 12px;
+  position: static;
+  background: none;
 }
 
 .news-thumb__title {
@@ -689,71 +751,26 @@ main {
   line-height: 1.3;
 }
 
-@media (min-width: 900px) {
-  .testimonial-row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+/* Controls – subtle, optional */
+.news-carousel__controls {
+  margin-top: 12px;
+}
+
+/* Responsive behaviour */
+@media (max-width: 900px) {
+  .news-carousel {
+    grid-auto-columns: calc((100% - 16px) / 2);
   }
 }
 
-.testimonial-compact {
-  background: #fefce8;
-  border-radius: 18px;
-  border: 1px solid #fed7aa;
-  box-shadow: 0 18px 40px rgba(248, 148, 48, 0.18);
-  font-size: 0.9rem;
-  color: #7c2d12;
-  padding: 1.4rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+@media (max-width: 600px) {
+  .news-carousel {
+    grid-auto-columns: 80%;
+  }
 
-.testimonial-compact p {
-  margin-bottom: 0.7rem;
-  flex-grow: 1;
-}
-
-.testimonial-compact footer {
-  margin-top: 1rem;
-}
-
-.testimonial-compact .testimonial-name {
-  font-weight: 600;
-  color: #7c2d12;
-}
-
-.testimonial-compact .testimonial-meta {
-  color: #b45309;
-}
-
-.testimonial {
-  margin: 0;
-  background: #fefce8;
-  border-radius: var(--radius-card);
-  padding: 1.4rem 1.5rem;
-  border: 1px solid rgba(224, 228, 236, 0.9);
-  box-shadow: var(--shadow-soft);
-  font-size: 0.95rem;
-  color: var(--text);
-}
-
-.testimonial p {
-  margin: 0 0 0.8rem;
-}
-
-.testimonial footer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  font-size: 0.85rem;
-}
-
-.testimonial-name {
-  font-weight: 600;
-}
-
-.testimonial-meta {
-  color: var(--muted);
+  .news-thumb img {
+    height: 140px;
+  }
 }
 
 /* =========================
@@ -1711,6 +1728,7 @@ main {
     padding: 1.1rem 1.1rem 1rem;
   }
 }
+
 /* ============================
    Index: tighten compatibility + coverage columns
    ============================ */
@@ -1725,6 +1743,7 @@ main {
     grid-template-columns: minmax(0,1.15fr) minmax(0,0.85fr); /* give checker more space */
   }
 }
+
 /* Full-width header above compat + coverage */
 .section-header-wide {
   max-width: none;
@@ -1733,6 +1752,7 @@ main {
 .section-header-wide p {
   max-width: 920px; /* readable line length */
 }
+
 /* Align coverage section with compatibility checker */
 .coverage-block {
   max-width: 960px;
@@ -1743,15 +1763,18 @@ main {
   text-align: center;
   margin-bottom: 1.25rem;
 }
+
 .coverage-grid {
   gap: 1.1rem;
 }
+
 .form-group small {
   display: block;
   margin-top: 0.35rem;
   font-size: 0.85rem;
   opacity: 0.75;
 }
+
 @media (min-width: 900px){
   #vehicleManualWrap{ grid-column: 2; }
 }
@@ -1872,1447 +1895,7 @@ main {
   .nav-more__item { padding: 8px 0; border-radius: 0; }
   .nav-more__item:hover { background: transparent; text-decoration: underline; }
 }
-/* =========================
-   Header – mobile polish
-   ========================= */
-
-/* Keep header tidy */
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-/* Logo sizing */
-.site-header .logo img,
-.site-header .site-logo img{
-  height: 100px;
-  width: auto;
-  display:block;
-}
-
-/* Burger button */
-.nav-toggle{
-  appearance:none;
-  border:1px solid rgba(0,0,0,0.12);
-  background:#fff;
-  border-radius: 12px;
-  width: 44px;
-  height: 44px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:0;
-  cursor:pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-}
-
-/* Burger icon bars (assumes 3 spans inside) */
-.nav-toggle span{
-  display:block;
-  width: 18px;
-  height: 2px;
-  background: #111827;
-  border-radius: 2px;
-  transition: transform .18s ease, opacity .18s ease;
-}
-.nav-toggle span + span{ margin-top: 4px; }
-
-/* Animate to X when open */
-.site-header.nav-open .nav-toggle span:nth-child(1){
-  transform: translateY(6px) rotate(45deg);
-}
-.site-header.nav-open .nav-toggle span:nth-child(2){
-  opacity: 0;
-}
-.site-header.nav-open .nav-toggle span:nth-child(3){
-  transform: translateY(-6px) rotate(-45deg);
-}
-
-/* Desktop nav (default) */
-.main-nav{
-  display:flex;
-  align-items:center;
-  gap: 18px;
-}
-
-/* Mobile: convert nav into a dropdown panel */
-@media (max-width: 980px){
-  .main-nav{
-    display:none;
-  }
-  .main-nav.is-open{
-    display:block;
-    position:absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    background:#fff;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    padding: 10px 16px 14px;
-    box-shadow: 0 18px 35px rgba(0,0,0,0.12);
-  }
-
-  .main-nav a{
-    display:block;
-    padding: 12px 10px;
-    border-radius: 12px;
-    text-decoration:none;
-  }
-  .main-nav a:hover{
-    background: rgba(0,0,0,0.05);
-  }
-
-  /* Make dropdown “More” behave nicely in the panel */
-  .nav-more{
-    width:100%;
-    display:block;
-  }
-  .nav-more__btn{
-    width:100%;
-    justify-content:space-between;
-    padding: 12px 10px;
-    border-radius: 12px;
-  }
-  .nav-more__menu{
-    position: static;
-    min-width: 0;
-    border: 0;
-    box-shadow: none;
-    padding: 6px 0 0;
-    margin: 0;
-  }
-  .nav-more__item{
-    padding: 10px 10px;
-    border-radius: 12px;
-  }
-}
-/* =========================
-   Header – mobile layout & menu panel
-   ========================= */
-
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-.site-header .header-inner{
-  position: relative; /* anchors the dropdown panel */
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-}
-
-/* Logo */
-.site-header .logo img{
-  height: 100px;
-  width: auto;
-  display:block;
-}
-
-/* Burger */
-.nav-toggle{
-  appearance:none;
-  border:1px solid rgba(0,0,0,0.12);
-  background:#fff;
-  border-radius: 12px;
-  width: 44px;
-  height: 44px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:0;
-  cursor:pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-}
-
-.nav-toggle span{
-  display:block;
-  width: 18px;
-  height: 2px;
-  background: #111827;
-  border-radius: 2px;
-  transition: transform .18s ease, opacity .18s ease;
-}
-.nav-toggle span + span{ margin-top: 4px; }
-
-.site-header.nav-open .nav-toggle span:nth-child(1){
-  transform: translateY(6px) rotate(45deg);
-}
-.site-header.nav-open .nav-toggle span:nth-child(2){
-  opacity: 0;
-}
-.site-header.nav-open .nav-toggle span:nth-child(3){
-  transform: translateY(-6px) rotate(-45deg);
-}
-
-/* Desktop nav stays as-is */
-.main-nav{
-  display:flex;
-  align-items:center;
-  gap: 18px;
-}
-
-/* Mobile: turn nav into a dropdown panel */
-@media (max-width: 980px){
-  .main-nav{
-    display:none;
-  }
-  .main-nav.is-open{
-    display:block;
-    position:absolute;
-    left: 0;
-    right: 0;
-    top: calc(100% + 10px);
-    background:#fff;
-    border: 1px solid rgba(0,0,0,0.10);
-    border-radius: 16px;
-    padding: 10px;
-    box-shadow: 0 18px 35px rgba(0,0,0,0.12);
-  }
-
-  .main-nav a{
-    display:block;
-    padding: 12px 12px;
-    border-radius: 12px;
-    text-decoration:none;
-  }
-  .main-nav a:hover{
-    background: rgba(0,0,0,0.05);
-  }
-
-  /* Make CTA look like a proper button in the panel */
-  .main-nav .btn{
-    margin-top: 6px;
-    text-align:center;
-  }
-
-  /* More dropdown behaves like a simple section inside the panel */
-  .nav-more{ width:100%; display:block; }
-  .nav-more__btn{
-    width:100%;
-    justify-content:space-between;
-    padding: 12px 12px;
-    border-radius: 12px;
-  }
-  .nav-more__menu{
-    position: static;
-    min-width: 0;
-    border: 0;
-    box-shadow: none;
-    padding: 6px 0 0;
-    margin: 0;
-  }
-  .nav-more__item{
-    padding: 10px 12px;
-    border-radius: 12px;
-  }
-}
-@media (max-width: 980px){
-  .main-nav{ display:none !important; }
-  .main-nav.is-open{ display:block !important; }
-}
-
-/* =========================
-   Header / Nav – final fix
-   ========================= */
-
-/* Burger: OFF on desktop, ON on mobile */
-.nav-toggle{ display:none; }
-@media (max-width: 980px){
-  .nav-toggle{ display:inline-flex; }
-}
-
-/* Desktop nav stays normal */
-@media (min-width: 981px){
-  .main-nav{
-    display:flex;
-    align-items:center;
-    gap:18px;
-  }
-}
-
-/* Mobile: nav is hidden until opened, then becomes a vertical panel */
-@media (max-width: 980px){
-  .main-nav{ display:none !important; }
-
-  .main-nav.is-open{
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap: 6px !important;
-
-    position:absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: calc(100% + 10px) !important;
-
-    background:#fff !important;
-    border: 1px solid rgba(0,0,0,0.10) !important;
-    border-radius: 16px !important;
-    padding: 10px !important;
-    box-shadow: 0 18px 35px rgba(0,0,0,0.12) !important;
-    z-index: 9999 !important;
-  }
-
-  .main-nav a{
-    width:100% !important;
-    display:block !important;
-    padding: 12px 12px !important;
-    border-radius: 12px !important;
-    text-decoration:none !important;
-  }
-
-  .main-nav .btn{
-    width:100% !important;
-    text-align:center !important;
-    margin-top: 4px !important;
-  }
-
-  /* More dropdown behaves like an inline section in the panel */
-  .nav-more{ width:100% !important; }
-  .nav-more__btn{
-    width:100% !important;
-    display:flex !important;
-    justify-content:space-between !important;
-    padding: 12px 12px !important;
-    border-radius: 12px !important;
-  }
-  .nav-more__menu{
-    position: static !important;
-    min-width: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    padding: 6px 0 0 !important;
-    margin: 0 !important;
-  }
-  .nav-more__item{
-    display:block !important;
-    padding: 10px 12px !important;
-    border-radius: 12px !important;
-  }
-}
-/* Burger visibility */
-.nav-toggle{ display:none !important; }
-@media (max-width: 980px){
-  .nav-toggle{ display:inline-flex !important; }
-}
-@media (max-width: 980px){
-  .main-nav{ display:none !important; }
-
-  .main-nav.is-open{
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap: 6px !important;
-
-    position:absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: calc(100% + 10px) !important;
-
-    background:#fff !important;
-    border: 1px solid rgba(0,0,0,0.10) !important;
-    border-radius: 16px !important;
-    padding: 10px !important;
-    box-shadow: 0 18px 35px rgba(0,0,0,0.12) !important;
-    z-index: 9999 !important;
-  }
-
-  .main-nav a,
-  .main-nav .btn{
-    width:100% !important;
-  }
-}
-/* =====================================================
-   MOBILE HEADER RESET (wins over earlier rules)
-   ===================================================== */
-
-@media (max-width: 980px){
-
-  /* Keep the header compact */
-  .site-header .header-inner{
-    position: relative !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:space-between !important;
-    gap: 12px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-  }
-
-  /* Logo: stop it getting tiny or huge */
-  .site-header .logo{
-    flex: 0 0 auto !important;
-    display:flex !important;
-    align-items:center !important;
-  }
-  .site-header .logo img{
-    height: 100px !important;
-    width: auto !important;
-    display:block !important;
-  }
-
-  /* Burger: always visible on mobile, never huge */
-  .nav-toggle{
-    display:inline-flex !important;
-    flex: 0 0 auto !important;
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 12px !important;
-    border: 1px solid rgba(0,0,0,0.14) !important;
-    background:#fff !important;
-    align-items:center !important;
-    justify-content:center !important;
-    padding:0 !important;
-    box-shadow: 0 10px 22px rgba(0,0,0,0.08) !important;
-  }
-
-  .nav-toggle span{
-    display:block !important;
-    width: 18px !important;
-    height: 2px !important;
-    border-radius: 2px !important;
-    background: #111827 !important;
-    margin: 0 !important;
-    transition: transform .18s ease, opacity .18s ease !important;
-  }
-  .nav-toggle span + span{ margin-top: 4px !important; }
-
-  /* X animation when open */
-  .site-header.nav-open .nav-toggle span:nth-child(1){
-    transform: translateY(6px) rotate(45deg) !important;
-  }
-  .site-header.nav-open .nav-toggle span:nth-child(2){
-    opacity: 0 !important;
-  }
-  .site-header.nav-open .nav-toggle span:nth-child(3){
-    transform: translateY(-6px) rotate(-45deg) !important;
-  }
-
-  /* Hide nav until opened */
-  .main-nav{ display:none !important; }
-
-  /* Mobile dropdown panel */
-  .main-nav.is-open{
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap: 6px !important;
-
-    position:absolute !important;
-    left: 12px !important;
-    right: 12px !important;
-    top: calc(100% + 10px) !important;
-
-    background:#fff !important;
-    border: 1px solid rgba(0,0,0,0.10) !important;
-    border-radius: 16px !important;
-    padding: 10px !important;
-    box-shadow: 0 18px 35px rgba(0,0,0,0.14) !important;
-    z-index: 9999 !important;
-  }
-
-  .main-nav a{
-    display:block !important;
-    width:100% !important;
-    padding: 12px 12px !important;
-    border-radius: 12px !important;
-    text-decoration:none !important;
-  }
-
-  .main-nav .btn{
-    width:100% !important;
-    text-align:center !important;
-    margin-top: 4px !important;
-  }
-
-  /* More dropdown inside the panel */
-  .nav-more{ width:100% !important; display:block !important; }
-  .nav-more__btn{
-    width:100% !important;
-    display:flex !important;
-    justify-content:space-between !important;
-    align-items:center !important;
-    padding: 12px 12px !important;
-    border-radius: 12px !important;
-  }
-  .nav-more__menu{
-    position: static !important;
-    min-width: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    padding: 6px 0 0 !important;
-    margin: 0 !important;
-  }
-  .nav-more__item{
-    display:block !important;
-    padding: 10px 12px !important;
-    border-radius: 12px !important;
-  }
-}
-.nav-toggle{ display:none; } /* desktop */
-/* Burger icon – force correct CLOSED state */
-.nav-toggle span{
-  transform: none !important;
-  opacity: 1 !important;
-}
-
-.site-header.nav-open .nav-toggle span:nth-child(1){
-  transform: translateY(6px) rotate(45deg) !important;
-}
-.site-header.nav-open .nav-toggle span:nth-child(2){
-  opacity: 0 !important;
-}
-.site-header.nav-open .nav-toggle span:nth-child(3){
-  transform: translateY(-6px) rotate(-45deg) !important;
-}
-/* Ensure the 3 bars are spaced correctly */
-.nav-toggle span{
-  display:block !important;
-  width:18px !important;
-  height:2px !important;
-  border-radius:2px !important;
-  margin:0 !important;
-}
-.nav-toggle span + span{ margin-top:4px !important; }
-/* === FIX: burger icon bars stacking correctly === */
-@media (max-width: 980px){
-  .nav-toggle{
-    display: flex !important;          /* ensure it shows on mobile */
-    flex-direction: column !important; /* stack bars vertically */
-    align-items: center;
-    justify-content: center;
-    gap: 6px;                          /* spacing between bars */
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-  }
-
-  .nav-toggle span{
-    display: block;
-    width: 22px;
-    height: 2px;
-    margin: 0;                         /* override your earlier margin: 4px 0 */
-    background: var(--brand-navy);
-    border-radius: 999px;
-  }
-}
-/* Burger bars: force vertical stack */
-@media (max-width: 980px){
-  .nav-toggle{
-    display: inline-flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 5px !important;
-  }
-  .nav-toggle span{
-    margin: 0 !important; /* override margin: 4px 0 */
-  }
-}
-.latest-news { background: #f6f7f8; }
-/* Shared section layout */
-.section { padding: 48px 0; }
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.section-title {
-  margin: 0 0 18px;
-  font-size: 1.6rem;
-  font-weight: 700;
-}
-/* Unified section CTA link (FAQs / News etc.) */
-.section-cta-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-}
-
-.section-cta-link:hover {
-  text-decoration: underline;
-}
-/* =========================
-   Latest EV News – card carousel
-   ========================= */
-
-.news-carousel {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 32px) / 3);
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-}
-
-.news-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.news-slide {
-  scroll-snap-align: start;
-}
-
-.news-thumb {
-  display: block;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  text-decoration: none;
-  height: 100%;
-}
-/* =========================
-   Latest EV News – 3-card carousel base
-   ========================= */
-
-.news-carousel {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 32px) / 3); /* 3 across on desktop */
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.news-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.news-slide {
-  scroll-snap-align: start;
-}
-
-.news-thumb {
-  display: block;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  text-decoration: none;
-  height: 100%;
-}
-
-/* Your existing rules below can stay as-is */
-.news-thumb img {
-  width: 100%;
-  height: 160px;
-  object-fit: contain; /* IMPORTANT: no cropping */
-  background: #f3f5f7;
-  display: block;
-}
-
-.news-thumb__overlay {
-  position: static;
-  background: none;
-  padding: 12px;
-}
-
-.news-thumb__title {
-  color: #0a2540;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.news-thumb img {
-  width: 100%;
-  height: 160px;
-  object-fit: contain; /* IMPORTANT: no cropping */
-  background: #f3f5f7;
-}
-
-.news-thumb__overlay {
-  position: static;
-  background: none;
-  padding: 12px;
-}
-
-.news-thumb__title {
-  color: #0a2540;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-/* Controls – subtle, optional */
-.news-carousel__controls {
-  margin-top: 12px;
-}
-
-/* =========================
-   Responsive behaviour
-   ========================= */
-
-@media (max-width: 900px) {
-  .news-carousel {
-    grid-auto-columns: calc((100% - 16px) / 2);
-  }
-}
-
-@media (max-width: 600px) {
-  .news-carousel {
-    grid-auto-columns: 80%;
-  }
-
-  .news-thumb img {
-    height: 140px;
-  }
-}
-
-/* 🎄 Christmas Seasonal Styling */
-.seasonal-popup__card {
-  background: linear-gradient(
-    180deg,
-    #f7f9f8 0%,
-    #ffffff 55%
-  );
-  border: 1px solid #e6ebe9;
-}
-
-/* 🎄 FORCE Seasonal Popup to behave like a modal */
-.seasonal-popup{
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 99999 !important;
-  display: none !important;
-}
-
-.seasonal-popup.is-open{
-  display: block !important;
-}
-
-.seasonal-popup__backdrop{
-  position: absolute !important;
-  inset: 0 !important;
-  background: rgba(0,0,0,0.6) !important;
-}
-
-.seasonal-popup__card{
-  position: relative !important;
-  max-width: 640px !important;
-  width: calc(100% - 28px) !important;
-  margin: 0 auto !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  background: #fff !important;
-  border-radius: 18px !important;
-  box-shadow: 0 20px 70px rgba(0,0,0,0.35) !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(0,0,0,0.08) !important;
-}
-
-/* Christmasy header strip */
-.seasonal-popup__content{
-  padding: 22px 22px 18px !important;
-}
-
-.seasonal-popup__badge{
-  display: inline-block !important;
-  padding: 7px 12px !important;
-  border-radius: 999px !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  color: #fff !important;
-  background: linear-gradient(135deg,#0f3d2e,#1b5e46) !important;
-  margin-bottom: 10px !important;
-}
-
-.seasonal-popup__content h2{
-  margin: 6px 0 10px !important;
-  color: #0f3d2e !important;
-  line-height: 1.15 !important;
-}
-
-.seasonal-popup__content p{
-  margin: 0 0 12px !important;
-  color: #2f3a36 !important;
-}
-
-.seasonal-popup__fineprint{
-  margin-top: 14px !important;
-  font-size: 12px !important;
-  opacity: 0.75 !important;
-}
-
-/* Close button */
-.seasonal-popup__close{
-  position: absolute !important;
-  top: 10px !important;
-  right: 12px !important;
-  width: 40px !important;
-  height: 40px !important;
-  border: 0 !important;
-  background: transparent !important;
-  font-size: 28px !important;
-  line-height: 1 !important;
-  cursor: pointer !important;
-  color: #0f3d2e !important;
-}
-
-.seasonal-popup__close:hover{
-  color: #8b1e2d !important;
-}
-
-/* Stop scroll behind modal */
-html.no-scroll, body.no-scroll{
-  overflow: hidden !important;
-}
-
-/* stops scrolling behind popup */
-.no-scroll { overflow: hidden; }
-/* ❄️ Visible but subtle snow */
-.seasonal-snow {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5; /* above page, below modals */
-}
-
-.seasonal-snow span {
-  position: absolute;
-  top: -12px;
-  width: 8px;
-  height: 8px;
-  background: rgba(240, 248, 255, 0.9); /* icy white */
-  border-radius: 50%;
-  box-shadow:
-    0 0 6px rgba(255,255,255,0.9),
-    0 0 12px rgba(200,220,255,0.6);
-  filter: blur(0.3px);
-  animation: snowFall linear infinite;
-}
-
-@keyframes snowFall {
-  to {
-    transform: translateY(115vh);
-  }
-}
-/* ===== FORCE Latest EV News into 3-card strip (override old slider rules) ===== */
-.news-carousel{
-  display:grid !important;
-  grid-auto-flow:column !important;
-  grid-auto-columns:calc((100% - 32px)/3) !important;
-  gap:16px !important;
-  overflow-x:auto !important;
-  scroll-snap-type:x mandatory !important;
-  padding-bottom:8px !important;
-  -webkit-overflow-scrolling:touch !important;
-}
-
-.news-carousel::-webkit-scrollbar{ display:none !important; }
-
-/* IMPORTANT: prevent old "only .is-active shows" behaviour */
-.news-slide{ 
-  display:block !important;
-  scroll-snap-align:start !important;
-}
-.news-slide.is-active{ display:block !important; }
-
-.news-thumb{
-  display:block !important;
-  background:#fff !important;
-  border-radius:10px !important;
-  overflow:hidden !important;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08) !important;
-  text-decoration:none !important;
-}
-
-.news-thumb img{
-  width:100% !important;
-  height:160px !important;
-  object-fit:contain !important;   /* 100% visible thumbnail */
-  background:#f3f5f7 !important;
-  display:block !important;
-}
-
-.news-thumb__overlay{
-  position:static !important;
-  background:none !important;
-  padding:12px !important;
-}
-
-.news-thumb__title{
-  color:#0a2540 !important;
-  font-size:0.95rem !important;
-  font-weight:600 !important;
-  line-height:1.3 !important;
-}
-
-/* responsive */
-@media (max-width:900px){
-  .news-carousel{ grid-auto-columns:calc((100% - 16px)/2) !important; }
-}
-@media (max-width:600px){
-  .news-carousel{ grid-auto-columns:80% !important; }
-  .news-thumb img{ height:140px !important; }
-}
-
 
 /* =====================================================
-   HERO EXAMPLE – Simple certificate preview (MyEVReport)
+   END
    ===================================================== */
-
-.hero-example{
-  background: rgba(255,255,255,.94);
-  border: 1px solid rgba(10,37,64,.10);
-  border-radius: 22px;
-  box-shadow: 0 22px 60px rgba(0,0,0,.22);
-  overflow: hidden;
-}
-
-/* Ensure dark text within example panel even if hero uses white text */
-.hero-example, .hero-example *{
-  color: #0a2540;
-  text-shadow: none;
-}
-
-.hero-example h2{
-  margin: 1.05rem 1.05rem .35rem;
-  font-size: 1.45rem;
-}
-
-.hero-example .example-meta{
-  margin: 0 1.05rem .95rem;
-  opacity: .82;
-  font-size: .95rem;
-}
-
-.cert-simple{
-  margin: 0 1.05rem 1.05rem;
-  border-radius: 18px;
-  border: 1px solid rgba(10,37,64,.10);
-  background: #fff;
-  box-shadow: 0 16px 34px rgba(0,0,0,.10);
-  overflow: hidden;
-}
-
-.cert-simple__figure{
-  margin: 0;
-  background: #fff;
-}
-
-.cert-simple__figure img{
-  display:block;
-  width: 100%;
-  height: auto;
-}
-
-.cert-simple__copy{
-  padding: .85rem 1rem 1rem;
-  background: linear-gradient(180deg, #ffffff, #f7f9fb);
-  border-top: 1px solid rgba(10,37,64,.08);
-}
-
-.cert-simple__copy p{
-  margin: 0 0 .55rem;
-  line-height: 1.45;
-}
-
-.cert-simple__note{
-  margin: 0;
-  font-size: .9rem;
-  opacity: .75;
-}
-
-
-/* =====================================================
-   HOMEPAGE HERO – Certificate example (final)
-   Added at end so it wins over earlier rules.
-   ===================================================== */
-
-section.hero[data-hero="home"] .hero-example{
-  background: rgba(255,255,255,.94);
-  border: 1px solid rgba(10,37,64,.10);
-  border-radius: 22px;
-  box-shadow: 0 22px 60px rgba(0,0,0,.22);
-  overflow: hidden;
-}
-
-/* Ensure dark text inside example panel even if hero text is white */
-section.hero[data-hero="home"] .hero-example,
-section.hero[data-hero="home"] .hero-example *{
-  color: #0a2540;
-  text-shadow: none;
-}
-
-section.hero[data-hero="home"] .hero-example h2{
-  margin: 1.05rem 1.05rem .35rem;
-  font-size: 1.45rem;
-}
-
-section.hero[data-hero="home"] .hero-example .example-meta{
-  margin: 0 1.05rem .9rem;
-  opacity: .82;
-  font-size: .95rem;
-}
-
-section.hero[data-hero="home"] .cert-simple{
-  margin: 0 1.05rem 1.05rem;
-  border-radius: 18px;
-  border: 1px solid rgba(10,37,64,.10);
-  background: #fff;
-  box-shadow: 0 16px 34px rgba(0,0,0,.10);
-  overflow: hidden;
-}
-
-section.hero[data-hero="home"] .cert-simple__top{
-  padding: .85rem 1rem;
-  background: linear-gradient(180deg, #ffffff, #f7f9fb);
-  border-bottom: 1px solid rgba(10,37,64,.08);
-}
-
-section.hero[data-hero="home"] .cert-simple__title{
-  display:flex;
-  flex-direction: column;
-  gap: .15rem;
-}
-
-section.hero[data-hero="home"] .cert-simple__sub{
-  font-size: .92rem;
-  opacity: .78;
-}
-
-section.hero[data-hero="home"] .cert-simple__figure{
-  margin: 0;
-  background: #fff;
-}
-
-section.hero[data-hero="home"] .cert-simple__figure img{
-  display:block;
-  width: 100%;
-  height: auto;
-}
-
-section.hero[data-hero="home"] .cert-simple__copy{
-  padding: .9rem 1rem 1rem;
-  background: linear-gradient(180deg, #ffffff, #f7f9fb);
-  border-top: 1px solid rgba(10,37,64,.08);
-}
-
-section.hero[data-hero="home"] .cert-simple__blurb{
-  margin: 0 0 .55rem;
-  line-height: 1.45;
-}
-
-section.hero[data-hero="home"] .cert-simple__note{
-  margin: 0;
-  font-size: .9rem;
-  opacity: .75;
-}
-
-/* Hide legacy example UI blocks inside hero if they still exist (do not delete markup) */
-section.hero[data-hero="home"] .example-grid,
-section.hero[data-hero="home"] .example-item,
-section.hero[data-hero="home"] .example-topbar,
-section.hero[data-hero="home"] .example-badges,
-section.hero[data-hero="home"] .example-phone,
-section.hero[data-hero="home"] .example-footnote{
-  display: none !important;
-}
-
-/* =========================
-   Booking page hero (book.html)
-   ========================= */
-.hero.hero--booking{
-  /* background-image is set inline in book.html */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-}
-
-/* Make sure booking hero text is readable */
-.hero.hero--booking .hero-text,
-.hero.hero--booking .hero-text h1,
-.hero.hero--booking .hero-text h2,
-.hero.hero--booking .hero-text p,
-.hero.hero--booking .hero-text li{
-  color: #fff;
-}
-
-.hero.hero--booking .hero-text h1,
-.hero.hero--booking .hero-text h2{
-  text-shadow: 0 2px 16px rgba(0,0,0,.55);
-}
-
-.hero.hero--booking .hero-text .eyebrow{
-  color: rgba(255,255,255,.82);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-
-/* Right-hand info card */
-.hero.hero--booking .hero-card{
-  color: #fff;
-  background: rgba(0,0,0,.35);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 16px;
-  padding: 1rem 1.05rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.hero.hero--booking .hero-card ul{
-  margin: .5rem 0 0;
-  padding-left: 1.1rem;
-}
-
-@media (max-width: 900px){
-  .hero.hero--booking{
-    min-height: 360px;
-  }
-  .hero.hero--booking .hero-card{
-    margin-top: 1rem;
-  }
-}
-
-/* =========================
-   Cookie banner (Marketing consent)
-   ========================= */
-.cookie-banner{
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 20000; /* above site UI, below seasonal modal */
-  background: rgba(255,255,255,0.98);
-  border-top: 1px solid rgba(0,0,0,0.10);
-  box-shadow: 0 -18px 40px rgba(0,0,0,0.12);
-}
-
-.cookie-banner__inner{
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 14px 20px;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cookie-banner__copy{
-  max-width: 720px;
-}
-
-.cookie-banner__copy strong{
-  display: block;
-  color: var(--brand-navy);
-  margin-bottom: 2px;
-}
-
-.cookie-banner__copy p{
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.cookie-banner__copy a{
-  font-weight: 600;
-}
-
-.cookie-banner__actions{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.cookie-banner .cookie-btn{
-  padding: 0.55rem 1rem;
-  font-size: 0.92rem;
-}
-
-@media (max-width: 820px){
-  .cookie-banner__inner{
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .cookie-banner__actions{
-    justify-content: stretch;
-  }
-  .cookie-banner__actions .cookie-btn{
-    width: 100%;
-  }
-}
-
-/* =====================================================
-   HOMEPAGE HERO BACKGROUND (image element, no overlap)
-   ===================================================== */
-section.hero[data-hero="home"]{
-  position: relative;
-  overflow: hidden;
-  background: #0a2540; /* safe fallback while image loads */
-}
-
-section.hero[data-hero="home"] .hero-bg{
-  position: absolute;
-  inset: 0;
-  display: block;
-  z-index: 0;
-}
-
-section.hero[data-hero="home"] .hero-bg img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-section.hero[data-hero="home"] .hero-shade{
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55));
-}
-
-section.hero[data-hero="home"] .hero-inner{
-  position: relative;
-  z-index: 2;
-}
-
-
-/* =========================
-   HOTFIX: banner + header stacking
-   Prevents overlap when both are sticky.
-   ========================= */
-
-/* Launch banner – allow wrapping on mobile */
-.launch-banner{
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-  line-height: 1.25;
-}
-
-.launch-banner__inner{
-  padding-top: calc(10px + env(safe-area-inset-top));
-  padding-right: 14px;
-  padding-bottom: 10px;
-  padding-left: 14px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-@media (max-width: 380px){
-  .launch-banner__inner{ font-size: 0.9rem; }
-}
-
-/* Header sticks BELOW the launch banner */
-.site-header{
-  top: 44px !important; /* matches banner approx height */
-}
-
-/* Ensure in-page anchors don't hide under sticky UI */
-html{
-  scroll-padding-top: 110px;
-}
-
-/* If the banner wraps on very small screens, reduce font a touch */
-@media (max-width: 420px){
-  .launch-banner{ font-size: .92rem; }
-  .site-header{ top: 42px !important; }
-}
-
-/* =========================
-   HOTFIX: homepage hero background containment
-   Ensures the hero image never 'escapes' and overlap occurs.
-   ========================= */
-section.hero[data-hero="home"]{
-  position: relative;
-  overflow: hidden;
-}
-
-/* Keep background behind content */
-section.hero[data-hero="home"] .hero-bg{
-  z-index: 0;
-}
-section.hero[data-hero="home"] .hero-shade{
-  z-index: 1;
-}
-section.hero[data-hero="home"] .hero-inner{
-  position: relative;
-  z-index: 2;
-}
-/* ===== Launch banner (fixed) ===== */
-:root{
-  --launch-banner-h: 0px; /* set by JS */
-  --sticky-top: var(--launch-banner-h);
-}
-
-.launch-banner{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-  background: #18a86b; /* your green */
-  color: #fff;
-  transform: translateY(0);
-  transition: transform 220ms ease;
-}
-
-.launch-banner__inner{
-  padding: 10px 16px;
-  text-align: center;
-  font-weight: 600;
-}
-
-/* ===== Header/menu sticky beneath banner ===== */
-.site-header{
-  position: sticky;
-  top: var(--sticky-top);
-  z-index: 9998;
-  background: #fff;
-}
-
-/* Give the page content room so fixed banner doesn't overlap the top */
-body{
-  padding-top: var(--launch-banner-h);
-}
-
-/* ===== When banner hides on scroll ===== */
-body.banner-hidden{
-  --sticky-top: 0px;
-  padding-top: 0px;
-}
-
-body.banner-hidden .launch-banner{
-  transform: translateY(-100%);
-}
-
-/* Accessibility: reduce motion */
-@media (prefers-reduced-motion: reduce){
-  .launch-banner{ transition: none; }
-}
-
-/* =========================
-   Launch banner behaviour override (prevents scroll gap)
-   ========================= */
-
-/* Make the green banner fixed so it doesn't reserve layout space */
-.launch-banner{
-  position: fixed !important;
-  top: 0 !important;
-  left: 0;
-  right: 0;
-  z-index: 9999 !important;
-  transform: translateY(0);
-  transition: transform 220ms ease;
-}
-
-/* Ensure content + sticky header sit below the fixed banner */
-body{
-  padding-top: var(--launch-banner-h, 0px) !important;
-}
-
-/* Offset the sticky header by banner height */
-.site-header{
-  top: var(--launch-banner-h, 0px) !important;
-  z-index: 9998 !important;
-}
-
-/* When scrolled: slide banner away AND remove the offset so header snaps to top */
-body.banner-hidden{
-  padding-top: 0px !important;
-}
-
-body.banner-hidden .launch-banner{
-  transform: translateY(-100%);
-}
-
-body.banner-hidden .site-header{
-  top: 0px !important;
-}
-
-@media (prefers-reduced-motion: reduce){
-  .launch-banner{ transition: none; }
-}
-/* =========================================================
-   FINAL: Mobile launch banner visible (wrap + safe-area)
-   Paste at VERY END of main.css
-   ========================================================= */
-
-/* Keep the banner fixed and measured by JS */
-.launch-banner{
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 9999 !important;
-  background: var(--brand-green) !important;
-  color: #fff !important;
-  transform: translateY(0);
-  transition: transform 220ms ease;
-}
-
-/* IMPORTANT: allow full text on mobile */
-.launch-banner,
-.launch-banner__inner{
-  white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-}
-
-/* iPhone notch + nicer spacing */
-.launch-banner__inner{
-  padding-top: calc(10px + env(safe-area-inset-top)) !important;
-  padding-right: 14px !important;
-  padding-bottom: 10px !important;
-  padding-left: 14px !important;
-  text-align: center !important;
-  line-height: 1.25 !important;
-  font-weight: 700 !important;
-  font-size: 0.95rem !important;
-}
-
-/* Header + page offset follow the banner height variable */
-body{
-  padding-top: var(--launch-banner-h, 0px) !important;
-}
-
-.site-header{
-  top: var(--launch-banner-h, 0px) !important;
-}
-
-/* When scrolled: banner hides and header snaps to top (no gap) */
-body.banner-hidden{
-  padding-top: 0px !important;
-}
-body.banner-hidden .launch-banner{
-  transform: translateY(-100%);
-}
-body.banner-hidden .site-header{
-  top: 0px !important;
-}
-
-@media (max-width: 380px){
-  .launch-banner__inner{ font-size: 0.9rem !important; }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .launch-banner{ transition: none !important; }
-}
