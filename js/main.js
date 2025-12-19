@@ -715,7 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
               Reject non-essential
             </button>
             <button type="button" class="btn btn-primary cookie-btn" data-cookie-accept>
-              Accept marketing
+              Accept cookies
             </button>
           </div>
         </div>
