@@ -142,7 +142,7 @@ main {
 
 /* Logo: keep balanced against nav */
 .logo img {
-  height: 80px;
+  height: 100px;
   width: auto;
 }
 
@@ -1637,7 +1637,7 @@ main {
   }
 
   .logo img {
-    height: 80px;
+    height: 100px;
   }
 
   .main-nav {
@@ -1888,7 +1888,7 @@ main {
 /* Logo sizing */
 .site-header .logo img,
 .site-header .site-logo img{
-  height: 80px;
+  height: 100px;
   width: auto;
   display:block;
 }
@@ -2011,7 +2011,7 @@ main {
 
 /* Logo */
 .site-header .logo img{
-  height: 80px;
+  height: 100px;
   width: auto;
   display:block;
 }
@@ -2254,7 +2254,7 @@ main {
     align-items:center !important;
   }
   .site-header .logo img{
-    height: 80px !important;
+    height: 100px !important;
     width: auto !important;
     display:block !important;
   }
@@ -3100,14 +3100,25 @@ section.hero[data-hero="home"] .hero-inner{
    Prevents overlap when both are sticky.
    ========================= */
 
-/* Keep banner single-line so header offset stays consistent */
+/* Launch banner – allow wrapping on mobile */
 .launch-banner{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.2;
-  padding: 10px 16px;
-  font-size: 1rem;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.25;
+}
+
+.launch-banner__inner{
+  padding-top: calc(10px + env(safe-area-inset-top));
+  padding-right: 14px;
+  padding-bottom: 10px;
+  padding-left: 14px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+@media (max-width: 380px){
+  .launch-banner__inner{ font-size: 0.9rem; }
 }
 
 /* Header sticks BELOW the launch banner */
@@ -3145,4 +3156,163 @@ section.hero[data-hero="home"] .hero-shade{
 section.hero[data-hero="home"] .hero-inner{
   position: relative;
   z-index: 2;
+}
+/* ===== Launch banner (fixed) ===== */
+:root{
+  --launch-banner-h: 0px; /* set by JS */
+  --sticky-top: var(--launch-banner-h);
+}
+
+.launch-banner{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #18a86b; /* your green */
+  color: #fff;
+  transform: translateY(0);
+  transition: transform 220ms ease;
+}
+
+.launch-banner__inner{
+  padding: 10px 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ===== Header/menu sticky beneath banner ===== */
+.site-header{
+  position: sticky;
+  top: var(--sticky-top);
+  z-index: 9998;
+  background: #fff;
+}
+
+/* Give the page content room so fixed banner doesn't overlap the top */
+body{
+  padding-top: var(--launch-banner-h);
+}
+
+/* ===== When banner hides on scroll ===== */
+body.banner-hidden{
+  --sticky-top: 0px;
+  padding-top: 0px;
+}
+
+body.banner-hidden .launch-banner{
+  transform: translateY(-100%);
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .launch-banner{ transition: none; }
+}
+
+/* =========================
+   Launch banner behaviour override (prevents scroll gap)
+   ========================= */
+
+/* Make the green banner fixed so it doesn't reserve layout space */
+.launch-banner{
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  z-index: 9999 !important;
+  transform: translateY(0);
+  transition: transform 220ms ease;
+}
+
+/* Ensure content + sticky header sit below the fixed banner */
+body{
+  padding-top: var(--launch-banner-h, 0px) !important;
+}
+
+/* Offset the sticky header by banner height */
+.site-header{
+  top: var(--launch-banner-h, 0px) !important;
+  z-index: 9998 !important;
+}
+
+/* When scrolled: slide banner away AND remove the offset so header snaps to top */
+body.banner-hidden{
+  padding-top: 0px !important;
+}
+
+body.banner-hidden .launch-banner{
+  transform: translateY(-100%);
+}
+
+body.banner-hidden .site-header{
+  top: 0px !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .launch-banner{ transition: none; }
+}
+/* =========================================================
+   FINAL: Mobile launch banner visible (wrap + safe-area)
+   Paste at VERY END of main.css
+   ========================================================= */
+
+/* Keep the banner fixed and measured by JS */
+.launch-banner{
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  background: var(--brand-green) !important;
+  color: #fff !important;
+  transform: translateY(0);
+  transition: transform 220ms ease;
+}
+
+/* IMPORTANT: allow full text on mobile */
+.launch-banner,
+.launch-banner__inner{
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* iPhone notch + nicer spacing */
+.launch-banner__inner{
+  padding-top: calc(10px + env(safe-area-inset-top)) !important;
+  padding-right: 14px !important;
+  padding-bottom: 10px !important;
+  padding-left: 14px !important;
+  text-align: center !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Header + page offset follow the banner height variable */
+body{
+  padding-top: var(--launch-banner-h, 0px) !important;
+}
+
+.site-header{
+  top: var(--launch-banner-h, 0px) !important;
+}
+
+/* When scrolled: banner hides and header snaps to top (no gap) */
+body.banner-hidden{
+  padding-top: 0px !important;
+}
+body.banner-hidden .launch-banner{
+  transform: translateY(-100%);
+}
+body.banner-hidden .site-header{
+  top: 0px !important;
+}
+
+@media (max-width: 380px){
+  .launch-banner__inner{ font-size: 0.9rem !important; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .launch-banner{ transition: none !important; }
 }
