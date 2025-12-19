@@ -813,8 +813,49 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================
+  // Launch banner: hide on scroll (banner disappears, header sticks to top)
+  // =========================
+  function initLaunchBannerHide() {
+    const banner = document.getElementById('launchBanner');
+    if (!banner) return;
+
+    const THRESHOLD = 40;
+
+    function setBannerHeightVar() {
+      const h = banner.offsetHeight || 0;
+      document.documentElement.style.setProperty('--launch-banner-h', h + 'px');
+    }
+
+    function hideBanner() {
+      document.body.classList.add('banner-hidden');
+      // Ensure no gap even if other CSS exists
+      document.documentElement.style.setProperty('--launch-banner-h', '0px');
+    }
+
+    function showBanner() {
+      document.body.classList.remove('banner-hidden');
+      setBannerHeightVar();
+    }
+
+    function onScroll() {
+      if (window.scrollY > THRESHOLD) hideBanner();
+      else showBanner();
+    }
+
+    // Initial
+    setBannerHeightVar();
+    onScroll();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      if (!document.body.classList.contains('banner-hidden')) setBannerHeightVar();
+    }, { passive: true });
+  }
+
+  // =========================
   // Init
   // =========================
+  initLaunchBannerHide();
   initCookieConsent();
   initBookingMakeModel();
   initSupportedModelsPage();
