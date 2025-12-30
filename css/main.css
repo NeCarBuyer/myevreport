@@ -1984,3 +1984,26 @@ section.hero[data-hero="home"] .hero-inner{
   border: 1px solid rgba(0,0,0,0.10) !important;
   color: var(--text) !important;
 }
+
+.new-year-fireworks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.firework-burst {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #ffd700, rgba(255,255,255,0.0) 70%);
+  border-radius: 50%;
+  animation: burst 1.2s ease-out forwards;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.35));
+}
+
+@keyframes burst {
+  0% { transform: scale(0); opacity: 1; }
+  60% { transform: scale(4); opacity: 0.95; }
+  100% { transform: scale(6); opacity: 0; }
+}

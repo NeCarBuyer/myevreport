@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="UK EV news and plain-English guides from MyEVReport. New EV launches, brands entering the UK market, charging updates, plus grants, road tax and running-cost explainers.">
+        content="UK EV news and plain-English guides from MyEVReport. Latest electric car releases, charging updates, market trends and UK EV policy changes — written for everyday drivers.">
   <meta name="robots" content="index,follow">
 
   <!-- Open Graph -->
@@ -15,14 +15,14 @@
   <meta property="og:url" content="https://myevreport.com/news.html">
   <meta property="og:title" content="EV News, Grants &amp; UK Battery Health Guides – MyEVReport">
   <meta property="og:description"
-        content="Short, practical explainers on UK EV news – new electric car launches, charging updates, grants and running costs – written for everyday drivers.">
+        content="Clear UK EV news and guides — written for everyday drivers. New electric car launches, charging updates, market trends and policy changes.">
   <meta property="og:image" content="https://myevreport.com/images/og-myevreport.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="EV News, Grants &amp; UK Battery Health Guides – MyEVReport">
   <meta name="twitter:description"
-        content="Clear EV news and guides from MyEVReport on new models, charging, grants and running costs for UK drivers.">
+        content="Clear UK EV news and guides — new EV launches, charging updates and policy changes.">
   <meta name="twitter:image" content="https://myevreport.com/images/og-myevreport.jpg">
 
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -31,25 +31,67 @@
   <link rel="preload" href="css/main.css" as="style">
   <link rel="stylesheet" href="css/main.css">
 
-  <!-- Structured data -->
+  <!-- Structured data for the news collection -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "EV News & Guides – MyEVReport",
-    "description": "UK EV news and guides from MyEVReport, explaining new models, charging, grants, road tax and battery health in plain English.",
+    "description": "UK EV news and guides from MyEVReport, covering new electric car releases, charging updates, market trends and policy changes in plain English.",
     "url": "https://myevreport.com/news.html",
     "hasPart": [
       {
         "@type": "NewsArticle",
-        "headline": "New Nissan Leaf enters production in Sunderland",
+        "headline": "Used EV prices fall as Chinese brands reshape the market",
+        "url": "https://myevreport.com/news-used-ev-prices-fall-chinese-brands.html",
+        "datePublished": "2025-12-28",
+        "dateModified": "2025-12-28"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "UK EV charger rollout slows despite rising electric car sales",
+        "url": "https://myevreport.com/news-uk-ev-charger-rollout-slows.html",
+        "datePublished": "2025-12-27",
+        "dateModified": "2025-12-27"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Fastned expands ultra-rapid EV charging hubs in the North East",
+        "url": "https://myevreport.com/news-fastned-north-east-ev-charging.html",
+        "datePublished": "2025-12-26",
+        "dateModified": "2025-12-26"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "UK car industry on course to meet 2025 EV sales targets",
+        "url": "https://myevreport.com/news-uk-ev-sales-targets-2025.html",
+        "datePublished": "2025-12-22",
+        "dateModified": "2025-12-22"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Transport Committee launches inquiry into accelerating the UK’s EV transition",
+        "url": "https://myevreport.com/news-transport-committee-ev-inquiry.html",
+        "datePublished": "2025-12-18",
+        "dateModified": "2025-12-18"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Octopus EV to cover new pay-per-mile tax for existing customers",
+        "url": "https://myevreport.com/news-octopus-ev-covers-pay-per-mile-tax.html",
+        "datePublished": "2025-12-17",
+        "dateModified": "2025-12-17"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "New Nissan Leaf begins production in Sunderland",
         "url": "https://myevreport.com/news-nissan-leaf-sunderland-production.html",
         "datePublished": "2025-12-16",
         "dateModified": "2025-12-16"
       },
       {
         "@type": "NewsArticle",
-        "headline": "XPeng G6 launches in the UK – cheaper than a Tesla Model Y with 12-minute charging",
+        "headline": "XPeng G6 launches in the UK — cheaper than a Tesla Model Y",
         "url": "https://myevreport.com/news-xpeng-g6-uk-launch.html",
         "datePublished": "2025-12-14",
         "dateModified": "2025-12-14"
@@ -78,85 +120,18 @@
     ]
   }
   </script>
-
-  <!-- Page hero (image + overlay text) -->
-  <style>
-    .page-hero{ padding: 18px 0 6px; }
-    .page-hero__wrap{
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      background: #0a2540;
-      box-shadow: 0 12px 30px rgba(0,0,0,.12);
-    }
-    .page-hero__img{
-      width: 100%;
-      height: clamp(260px, 34vw, 360px);
-      object-fit: cover;
-      display:block;
-      transform: translateZ(0);
-    }
-    .page-hero__overlay{
-      position:absolute;
-      inset:0;
-      background: linear-gradient(90deg,
-        rgba(10,37,64,.82) 0%,
-        rgba(10,37,64,.55) 45%,
-        rgba(10,37,64,.18) 72%,
-        rgba(10,37,64,0) 100%);
-      display:flex;
-      align-items:flex-end;
-    }
-    .page-hero__content{
-      padding: 22px;
-      max-width: 740px;
-      color: #fff;
-    }
-    .page-hero__kicker{
-      display:inline-block;
-      font-size: .9rem;
-      opacity: .9;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.18);
-      padding: 6px 10px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-      backdrop-filter: blur(4px);
-    }
-    .page-hero__content h1{
-      color:#fff;
-      margin: 0 0 8px;
-      line-height: 1.15;
-    }
-    .page-hero__content p{
-      margin: 0;
-      font-size: 1.05rem;
-      opacity: .95;
-    }
-    @media (max-width: 700px){
-      .page-hero__img{ height: 300px; }
-      .page-hero__overlay{
-        background: linear-gradient(180deg,
-          rgba(10,37,64,.15) 0%,
-          rgba(10,37,64,.62) 55%,
-          rgba(10,37,64,.86) 100%);
-        align-items:flex-end;
-      }
-      .page-hero__content{ padding: 18px; max-width: 100%; }
-    }
-  </style>
-
 </head>
+
 <body>
 
-    <!-- Launch banner -->
- <div class="launch-banner" id="launchBanner">
-  <div class="launch-banner__inner">
-    🔋 The North East's No.1 EV Battery Health Check Supplier – Independent, Accurate & Trusted
+  <!-- Launch banner -->
+  <div class="launch-banner" id="launchBanner">
+    <div class="launch-banner__inner">
+      🔋 The North East's No.1 EV Battery Health Check Supplier – Independent, Accurate &amp; Trusted
+    </div>
   </div>
-</div>
 
-<header class="site-header" id="siteHeader">
+  <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a href="index.html#top" class="logo" aria-label="MyEVReport home">
         <img
@@ -206,42 +181,31 @@
 
   <main>
 
-    <!-- Hero -->
-    <section class="section">
+    <!-- Intro / hero -->
+    <section class="news-hero">
       <div class="container">
-        <div class="page-hero">
-          <div class="page-hero__wrap">
-            <picture>
-              <source srcset="images/news-hero-ev-road.webp" type="image/webp">
-              <img class="page-hero__img" src="images/news-hero-ev-road.webp" alt="Electric vehicle on a UK road representing real-world EV ownership" loading="eager" width="2000" height="1200">
-            </picture>
-            <div class="page-hero__overlay">
-              <div class="page-hero__content">
-                <h1>EV news, guides &amp; updates</h1>
-                <p>Clear UK EV news and guides — written for everyday drivers.</p>
-              </div>
-            </div>
+        <div class="news-hero__grid">
+          <div class="news-hero__content">
+            <h1>EV news, guides &amp; updates</h1>
+            <p>Clear UK EV news and guides — written for everyday drivers.</p>
+
+            <h2>Latest EV releases, UK news &amp; new electric cars</h2>
+            <p>
+              Your hub for the latest electric car news in the UK — from brand-new EV launches and upcoming models,
+              to new car brands entering the UK market, technology updates, charging developments and wider EV policy changes.
+            </p>
+            <p>
+              Articles are written in clear, simple English and focus on what matters most to drivers:
+              real-world range, battery health, running costs, availability, pricing and how each new EV stacks up in a fast-changing market.
+            </p>
+          </div>
+
+          <div class="news-hero__image" aria-hidden="true">
+            <img src="images/news-hero-ev-road.webp"
+                 alt=""
+                 loading="lazy">
           </div>
         </div>
-      </div>
-    </section>
-
-
-    <!-- Intro -->
-    <section class="section">
-      <div class="container">
-        <header class="section-header">
-          <h2>Latest EV releases, UK news &amp; new electric cars</h2>
-          <p>
-            Your hub for the latest electric car news in the UK — from brand-new EV launches and upcoming models,
-            to new car brands entering the UK market, technology updates, charging developments and wider EV policy changes.
-          </p>
-          <p>
-            Articles are written in clear, simple English and focus on what matters most to drivers:
-            real-world range, battery health, running costs, availability, pricing and how each new EV
-            stacks up in a fast-changing market.
-          </p>
-        </header>
       </div>
     </section>
 
@@ -255,13 +219,181 @@
 
         <div class="news-grid">
 
-          <!-- ARTICLE 1 – NISSAN LEAF SUNDERLAND -->
+          <!-- NEW: 28 Dec 2025 -->
+          <article class="news-card">
+            <a href="news-used-ev-prices-fall-chinese-brands.html" class="news-card-image">
+              <picture>
+                <source srcset="images/news/news-used-ev-prices-fall-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-used-ev-prices-fall-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-used-ev-prices-fall-hero-1200x600.png"
+                     alt="Used EV prices fall as Chinese brands reshape the market"
+                     loading="lazy" width="1200" height="600">
+              </picture>
+            </a>
+            <div class="news-card-body">
+              <p class="news-card-category">Used EV market</p>
+              <h3 class="news-card-title">
+                <a href="news-used-ev-prices-fall-chinese-brands.html">
+                  Used EV prices fall as Chinese brands reshape the market
+                </a>
+              </h3>
+              <p class="news-card-excerpt">
+                Cheaper new arrivals and heavier discounting are pushing used EV prices down — here’s what to watch (especially battery health).
+              </p>
+              <div class="news-card-footer">
+                <p class="news-card-meta">Published 28 December 2025</p>
+                <a href="news-used-ev-prices-fall-chinese-brands.html" class="link-arrow">Read more</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- NEW: 27 Dec 2025 -->
+          <article class="news-card">
+            <a href="news-uk-ev-charger-rollout-slows.html" class="news-card-image">
+              <picture>
+                <source srcset="images/news/news-uk-ev-charger-rollout-slows-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-uk-ev-charger-rollout-slows-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-uk-ev-charger-rollout-slows-hero-1200x600.png"
+                     alt="UK EV charger rollout slows despite rising electric car sales"
+                     loading="lazy" width="1200" height="600">
+              </picture>
+            </a>
+            <div class="news-card-body">
+              <p class="news-card-category">Charging &amp; infrastructure</p>
+              <h3 class="news-card-title">
+                <a href="news-uk-ev-charger-rollout-slows.html">
+                  UK EV charger rollout slows despite rising electric car sales
+                </a>
+              </h3>
+              <p class="news-card-excerpt">
+                EV adoption is rising, but the pace of public charger growth is easing — why it matters for drivers without home charging.
+              </p>
+              <div class="news-card-footer">
+                <p class="news-card-meta">Published 27 December 2025</p>
+                <a href="news-uk-ev-charger-rollout-slows.html" class="link-arrow">Read more</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- NEW: 26 Dec 2025 -->
+          <article class="news-card">
+            <a href="news-fastned-north-east-ev-charging.html" class="news-card-image">
+              <picture>
+                <source srcset="images/news/news-fastned-north-east-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-fastned-north-east-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-fastned-north-east-hero-1200x600.png"
+                     alt="Fastned expands ultra-rapid EV charging hubs in the North East"
+                     loading="lazy" width="1200" height="600">
+              </picture>
+            </a>
+            <div class="news-card-body">
+              <p class="news-card-category">Charging &amp; infrastructure</p>
+              <h3 class="news-card-title">
+                <a href="news-fastned-north-east-ev-charging.html">
+                  Fastned expands ultra-rapid EV charging hubs in the North East
+                </a>
+              </h3>
+              <p class="news-card-excerpt">
+                More ultra-rapid hubs should mean quicker stops and fewer queues — a practical boost for North East EV drivers.
+              </p>
+              <div class="news-card-footer">
+                <p class="news-card-meta">Published 26 December 2025</p>
+                <a href="news-fastned-north-east-ev-charging.html" class="link-arrow">Read more</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- NEW: 22 Dec 2025 -->
+          <article class="news-card">
+            <a href="news-uk-ev-sales-targets-2025.html" class="news-card-image">
+              <picture>
+                <source srcset="images/news/news-uk-ev-sales-targets-2025-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-uk-ev-sales-targets-2025-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-uk-ev-sales-targets-2025-hero-1200x600.png"
+                     alt="UK car industry on course to meet 2025 EV sales targets"
+                     loading="lazy" width="1200" height="600">
+              </picture>
+            </a>
+            <div class="news-card-body">
+              <p class="news-card-category">EV market trends</p>
+              <h3 class="news-card-title">
+                <a href="news-uk-ev-sales-targets-2025.html">
+                  UK car industry on course to meet 2025 EV sales targets
+                </a>
+              </h3>
+              <p class="news-card-excerpt">
+                Strong registrations suggest targets are within reach — what that could mean for pricing, availability and the used EV market.
+              </p>
+              <div class="news-card-footer">
+                <p class="news-card-meta">Published 22 December 2025</p>
+                <a href="news-uk-ev-sales-targets-2025.html" class="link-arrow">Read more</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- NEW: 18 Dec 2025 -->
+          <article class="news-card">
+            <a href="news-transport-committee-ev-inquiry.html" class="news-card-image">
+              <picture>
+              <source srcset="images/news/news-transport-committee-ev-inquiry-hero-1200x600.webp" type="image/webp">
+              <source srcset="images/news/news-transport-committee-ev-inquiry-hero-1200x600.png" type="image/png">
+              <img src="images/news/news-transport-committee-ev-inquiry-hero-1200x600.png"
+                   alt="Key points: EV transition inquiry – charging, affordability, reliability and access"
+                   loading="lazy">
+            </picture>
+            </a>
+            <div class="news-card-body">
+              <p class="news-card-category">Policy &amp; regulation</p>
+              <h3 class="news-card-title">
+                <a href="news-transport-committee-ev-inquiry.html">
+                  Transport Committee launches inquiry into accelerating the UK’s EV transition
+                </a>
+              </h3>
+              <p class="news-card-excerpt">
+                MPs are scrutinising charging access, affordability and reliability — and the outcomes could shape day-to-day EV ownership.
+              </p>
+              <div class="news-card-footer">
+                <p class="news-card-meta">Published 18 December 2025</p>
+                <a href="news-transport-committee-ev-inquiry.html" class="link-arrow">Read more</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- NEW: 17 Dec 2025 -->
+          <article class="news-card">
+            <a href="news-octopus-ev-covers-pay-per-mile-tax.html" class="news-card-image">
+              <picture>
+                <source srcset="images/news/news-octopus-ev-pay-per-mile-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-octopus-ev-pay-per-mile-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-octopus-ev-pay-per-mile-hero-1200x600.png"
+                     alt="Octopus EV to cover new pay-per-mile tax for existing customers"
+                     loading="lazy" width="1200" height="600">
+              </picture>
+            </a>
+            <div class="news-card-body">
+              <p class="news-card-category">Policy &amp; running costs</p>
+              <h3 class="news-card-title">
+                <a href="news-octopus-ev-covers-pay-per-mile-tax.html">
+                  Octopus EV to cover new pay-per-mile tax for existing customers
+                </a>
+              </h3>
+              <p class="news-card-excerpt">
+                Octopus EV says existing lease customers won’t pay extra if a mileage-based EV road tax is introduced — what it means for costs.
+              </p>
+              <div class="news-card-footer">
+                <p class="news-card-meta">Published 17 December 2025</p>
+                <a href="news-octopus-ev-covers-pay-per-mile-tax.html" class="link-arrow">Read more</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- EXISTING (LIVE): Leaf -->
           <article class="news-card">
             <a href="news-nissan-leaf-sunderland-production.html" class="news-card-image">
               <picture>
-                <source srcset="images/news-nissan-leaf-sunderland-hero-1200x600.webp" type="image/webp">
-                <source srcset="images/news-nissan-leaf-sunderland-hero-1200x600.png" type="image/png">
-                <img src="images/news-nissan-leaf-sunderland-hero-1200x600.webp"
+                <source srcset="images/news/news-nissan-leaf-sunderland-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-nissan-leaf-sunderland-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-nissan-leaf-sunderland-hero-1200x600.png"
                      alt="New Nissan Leaf begins production in Sunderland"
                      loading="lazy" width="1200" height="600">
               </picture>
@@ -287,16 +419,16 @@
             </div>
           </article>
 
-          <!-- ARTICLE 2 – XPENG G6 UK -->
+          <!-- EXISTING (LIVE): XPeng -->
           <article class="news-card">
             <a href="news-xpeng-g6-uk-launch.html" class="news-card-image">
               <picture>
-                <source srcset="images/news-xpeng-g6-hero-1200x600.webp" type="image/webp">
-                <source srcset="images/news-xpeng-g6-hero-1200x600.png" type="image/png">
-                <img src="images/news-xpeng-g6-hero-1200x600.webp"
-                     alt="XPeng G6 launches in the UK"
-                     loading="lazy" width="1200" height="600">
-              </picture>
+            <source srcset="images/news/news-xpeng-g6-hero-1200x600.webp" type="image/webp">
+            <source srcset="images/news/news-xpeng-g6-hero-1200x600.png" type="image/png">
+            <img src="images/news/news-xpeng-g6-hero-1200x600.webp"
+                 alt="XPeng G6 launches in the UK — cheaper than a Tesla Model Y"
+                 loading="lazy" width="1200" height="600">
+          </picture>
             </a>
 
             <div class="news-card-body">
@@ -319,14 +451,14 @@
             </div>
           </article>
 
-          <!-- ARTICLE 3 – FORD / RENAULT PLATFORM STORY -->
+          <!-- EXISTING (LIVE): Fiesta -->
           <article class="news-card">
             <a href="news-ford-fiesta-renault-5-ev.html" class="news-card-image">
               <picture>
-                <source srcset="images/news-ford-fiesta-renault-5-hero-1200x600.webp" type="image/webp">
-                <source srcset="images/news-ford-fiesta-renault-5-hero-1200x600.png" type="image/png">
-                <img src="images/news-ford-fiesta-renault-5-hero-1200x600.webp"
-                     alt="Ford to share Renault EV platform"
+                <source srcset="images/news/news-ford-fiesta-renault-5-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-ford-fiesta-renault-5-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-ford-fiesta-renault-5-hero-1200x600.png"
+                     alt="New electric Ford Fiesta to share Renault 5 platform – what UK drivers should know"
                      loading="lazy" width="1200" height="600">
               </picture>
             </a>
@@ -351,15 +483,15 @@
             </div>
           </article>
 
-          <!-- ARTICLE 4 – GRANT -->
+          <!-- EXISTING (LIVE): Grant -->
           <article class="news-card">
             <a href="news-ev-grant-3750-eligible-cars.html" class="news-card-image">
               <picture>
-                <source srcset="images/news-ev-grant-3750-hero-1200x600.webp" type="image/webp">
-                <source srcset="images/news-ev-grant-3750-hero-1200x600.png" type="image/png">
-                <img src="images/news-ev-grant-3750-hero-1200x600.png"
-                     alt="Electric Car Grant update graphic"
-                     loading="lazy">
+                <source srcset="images/news/news-ev-grant-3750-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-ev-grant-3750-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-ev-grant-3750-hero-1200x600.png"
+                     alt="Which cars now qualify for the £3,750 Electric Car Grant?"
+                     loading="lazy" width="1200" height="600">
               </picture>
             </a>
 
@@ -383,15 +515,15 @@
             </div>
           </article>
 
-          <!-- ARTICLE 5 – ROAD TAX -->
+          <!-- EXISTING (LIVE): Road tax -->
           <article class="news-card">
             <a href="news-ev-road-tax-3p-mile.html" class="news-card-image">
               <picture>
-                <source srcset="images/news-ev-road-tax-3p-mile-hero-1200x600.webp" type="image/webp">
-                <source srcset="images/news-ev-road-tax-3p-mile-hero-1200x600.png" type="image/png">
-                <img src="images/news-ev-road-tax-3p-mile-hero-1200x600.png"
-                     alt="Budget box and EV charger graphic"
-                     loading="lazy">
+                <source srcset="images/news/news-ev-road-tax-3p-mile-hero-1200x600.webp" type="image/webp">
+                <source srcset="images/news/news-ev-road-tax-3p-mile-hero-1200x600.png" type="image/png">
+                <img src="images/news/news-ev-road-tax-3p-mile-hero-1200x600.png"
+                     alt="The new 3p-per-mile EV road tax — what it could mean for your running costs"
+                     loading="lazy" width="1200" height="600">
               </picture>
             </a>
 
@@ -422,31 +554,29 @@
 
   </main>
 
- <footer class="site-footer">
-  <div class="footer-inner footer-inline">
-    <p>
-      © 2026 MyEVReport ·
-      <a href="https://www.thod.co.uk/" target="_blank" rel="noopener noreferrer">Site by THOD</a>
-    </p>
+  <footer class="site-footer">
+    <div class="footer-inner footer-inline">
+      <p>
+        © 2026 MyEVReport ·
+        <a href="https://www.thod.co.uk/" target="_blank" rel="noopener noreferrer">Site by THOD</a>
+      </p>
 
-    <nav class="footer-links">
-      <a href="privacy.html">Privacy policy</a> ·
-      <a href="terms.html">Terms &amp; conditions</a>
-    </nav>
-  </div>
-</footer>
+      <nav class="footer-links">
+        <a href="privacy.html">Privacy policy</a> ·
+        <a href="terms.html">Terms &amp; conditions</a>
+      </nav>
+    </div>
+  </footer>
 
   <!-- WhatsApp Floating Button -->
-  <a class="whatsapp-button" 
-     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report%20with%20MyEVReport" 
-     target="_blank" 
-     style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" 
+  <a class="whatsapp-button"
+     href="https://wa.me/447853434243?text=I%27d%20like%20to%20book%20an%20EV%20battery%20health%20report"
+     target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="Chat via WhatsApp"
          style="width: 90px; height: 90px;">
   </a>
-  
-  <script src="js/main.js" defer></script>
 
+  <script src="js/main.js" defer></script>
 </body>
 </html>

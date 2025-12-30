@@ -864,8 +864,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initSeasonalPopup();
 });
 
-// ❄️ Subtle seasonal snow (visible on light backgrounds)
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+const ENABLE_SEASONAL_SNOW = false;
+
+if (ENABLE_SEASONAL_SNOW && 
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
   const snow = document.createElement('div');
   snow.className = 'seasonal-snow';
   document.body.appendChild(snow);
@@ -887,3 +890,18 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     snow.appendChild(flake);
   }
 }
+/ 🎆 New Year Celebration — midnight trigger + date window /
+(() => {
+  const MANUAL_OVERRIDE = true; // set to true/false to force on/off. Leave null for auto.
+  const ENABLE_IN_WINDOW_ONLY = true; // keep true
+  const BURSTS = 14;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) return;
+
+  function isInNewYearWindow(now) {
+    // Auto-enable between Dec 31 and Jan 1 (inclusive), local time
+    const m = now.getMonth(); // 0=Jan ... 11=Dec
+    const d = now.getDate();
+
+    const isDec30 = (m =
