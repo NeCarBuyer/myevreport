@@ -85,16 +85,9 @@ main { padding-top: 4.25rem; }
    Launch Banner (fixed + hide on scroll)
    ========================= */
 
-/* When the green banner is hidden, keep the white header pinned to the top */
-body.banner-hidden .site-header{
-  top: 0 !important;
-}
-
-.launch-banner{
+.launch-banner {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   width: 100%;
   background: var(--brand-green, #22b473);
   color: #ffffff;
@@ -103,34 +96,37 @@ body.banner-hidden .site-header{
   transition: transform 220ms ease;
 }
 
-.launch-banner__inner{
+.launch-banner__inner {
   padding: 10px 16px;
   text-align: center;
   font-weight: 600;
   letter-spacing: 0.2px;
   line-height: 1.25;
 
-  /* Allow wrapping on mobile so it’s fully readable */
+  /* KEY FIX: allow wrapping on mobile so it’s fully readable */
   white-space: normal;
   overflow: visible;
   text-overflow: clip;
   font-size: 1rem;
 }
 
-body.banner-hidden .launch-banner{
+body.banner-hidden .launch-banner {
+  transform: translateY(-100%);
+}
+
+html.banner-hidden .launch-banner {
   transform: translateY(-100%);
 }
 
 @media (prefers-reduced-motion: reduce){
-  .launch-banner{ transition: none; }
+  .launch-banner { transition: none; }
 }
-
 
 /* =========================
    Header / Navigation (single source of truth)
    ========================= */
 
-.site-header{
+.site-header {
   position: sticky;
   top: var(--launch-banner-h);
   z-index: 9998;
@@ -139,7 +135,7 @@ body.banner-hidden .launch-banner{
   border-bottom: 1px solid rgba(224, 228, 236, 0.9);
 }
 
-.header-inner{
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -149,13 +145,13 @@ body.banner-hidden .launch-banner{
 }
 
 /* Logo */
-.logo img{
+.logo img {
   height: 100px;
   width: auto;
 }
 
 /* Desktop nav */
-.main-nav{
+.main-nav {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -163,30 +159,30 @@ body.banner-hidden .launch-banner{
   flex-wrap: nowrap;
 }
 
-.main-nav a{
+.main-nav a {
   color: var(--muted);
   font-weight: 500;
   white-space: nowrap;
 }
 
-.main-nav a.active{
+.main-nav a.active {
   color: var(--brand-navy);
   font-weight: 600;
 }
 
-.main-nav a:hover{
+.main-nav a:hover {
   color: var(--brand-navy);
   text-decoration: none;
 }
 
 /* Header CTA */
-.site-header .btn{
+.site-header .btn {
   padding: 0.6rem 1.1rem;
   font-size: 0.93rem;
 }
 
 /* Burger toggle (hidden desktop, shown on mobile) */
-.nav-toggle{
+.nav-toggle {
   display: none;
   appearance: none;
   border: 1px solid rgba(0,0,0,0.12);
@@ -201,16 +197,14 @@ body.banner-hidden .launch-banner{
   padding: 0;
 }
 
-.nav-toggle span{
+.nav-toggle span {
   display: block;
   width: 18px;
   height: 2px;
   background: var(--brand-navy);
   border-radius: 999px;
-  transition: transform 160ms ease, opacity 160ms ease;
 }
-
-.nav-toggle span + span{ margin-top: 4px; }
+.nav-toggle span + span { margin-top: 4px; }
 
 /* Animate to X when open */
 .site-header.nav-open .nav-toggle span:nth-child(1){
@@ -224,13 +218,13 @@ body.banner-hidden .launch-banner{
 }
 
 /* More dropdown */
-.nav-more{
+.nav-more {
   position: relative;
   display: inline-flex;
   align-items: center;
 }
 
-.nav-more__btn{
+.nav-more__btn {
   background: transparent;
   border: 0;
   padding: 0;
@@ -242,9 +236,9 @@ body.banner-hidden .launch-banner{
   gap: 6px;
 }
 
-.nav-more__btn:hover{ text-decoration: underline; }
+.nav-more__btn:hover { text-decoration: underline; }
 
-.nav-more__menu{
+.nav-more__menu {
   position: absolute;
   top: calc(100% + 12px);
   right: 0;
@@ -257,38 +251,31 @@ body.banner-hidden .launch-banner{
   z-index: 9999;
 }
 
-.nav-more__menu[hidden]{ display: none !important; }
+.nav-more__menu[hidden] { display: none !important; }
 
-.nav-more__item{
+.nav-more__item {
   display: block;
   padding: 10px 12px;
   border-radius: 10px;
   text-decoration: none;
   color: inherit;
 }
+.nav-more__item:hover { background: rgba(0,0,0,0.06); }
 
-.nav-more__item:hover{ background: rgba(0,0,0,0.06); }
+/* Mobile nav panel */
+@media (max-width: 1024px) {
+  main { padding-top: 3.75rem; }
 
+  .header-inner { padding: 0.6rem 0; }
+  .logo img { height: 100px; }
 
-/* =========================
-   Mobile nav panel
-   ========================= */
+  .nav-toggle { display: inline-flex; }
 
-@media (max-width: 1024px){
-
-  /* IMPORTANT: don’t add hard-coded padding to main (causes “big header” gaps) */
-  main{ padding-top: 0; }
-
-  .header-inner{ padding: 0.6rem 0; }
-  .logo img{ height: 100px; }
-
-  .nav-toggle{ display: inline-flex; }
-
-  .main-nav{
+  .main-nav {
     display: none;
   }
 
-  .site-header.nav-open .main-nav{
+  .site-header.nav-open .main-nav {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -307,25 +294,25 @@ body.banner-hidden .launch-banner{
     z-index: 9999;
   }
 
-  .site-header.nav-open .main-nav a{
+  .site-header.nav-open .main-nav a {
     display: block;
     padding: 12px 12px;
     border-radius: 12px;
   }
 
-  .site-header.nav-open .main-nav a:hover{
+  .site-header.nav-open .main-nav a:hover {
     background: rgba(0,0,0,0.05);
     text-decoration: none;
   }
 
-  .site-header.nav-open .main-nav .btn{
+  .site-header.nav-open .main-nav .btn {
     width: 100%;
     text-align: center;
     margin-top: 4px;
   }
 
   /* More dropdown becomes inline within panel */
-  .nav-more{ width: 100%; display: block; }
+  .nav-more { width: 100%; display: block; }
   .nav-more__btn{
     width: 100%;
     display: flex;
@@ -681,56 +668,32 @@ section.hero[data-hero="home"] .hero-price{
   box-shadow:0 16px 32px rgba(15,23,42,.06);
 }
 
-/* =========================
-   Testimonials
-   ========================= */
-
-.testimonial-row{
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
+/* Testimonials */
+.testimonial-row{ display:grid; gap:1.5rem; margin-top:2.5rem; }
 
 @media (min-width: 900px){
-  .testimonial-row{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  .testimonial-row{ grid-template-columns: repeat(3, minmax(0,1fr)); }
 }
 
 .testimonial{
-  margin: 0;
-  background: #fefce8;
+  margin:0;
+  background:#fefce8;
   border-radius: var(--radius-card);
-  padding: 1.4rem 1.5rem;
-  border: 1px solid rgba(224, 228, 236, 0.9);
+  padding:1.4rem 1.5rem;
+  border:1px solid rgba(224,228,236,.9);
   box-shadow: var(--shadow-soft);
-  font-size: 0.95rem;
-  color: var(--text);
+  font-size:.95rem;
+  color:var(--text);
 }
-
-.testimonial p{
-  margin: 0 0 0.8rem;
-}
-
-/* Author block — consistent two-line layout */
+.testimonial p{ margin:0 0 .8rem; }
 .testimonial footer{
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: 0.75rem;
+  display:flex;
+  flex-direction:column;
+  gap:.1rem;
+  font-size:.85rem;
 }
-
-.testimonial-name{
-  font-weight: 700;
-  color: #0b1420;
-  line-height: 1.2;
-}
-
-.testimonial-meta{
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.2;
-}
+.testimonial-name{ font-weight:600; }
+.testimonial-meta{ color:var(--muted); }
 
 /* =========================
    Latest EV News – 3-card thumbnail carousel (no cropping)
@@ -1138,16 +1101,10 @@ section.hero[data-hero="home"] .hero-price{
 /* Blog grid */
 .news-grid{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap:2.5rem;
   align-items:stretch;
 }
-
-@media (max-width: 700px){
-  .news-grid{ grid-template-columns: 1fr; gap:1.25rem; }
-  .news-card-body{ padding:1.1rem; }
-}
-
 
 .news-card{
   background:#fff;
@@ -2055,8 +2012,81 @@ section.hero[data-hero="home"] .hero-inner{
   100% { transform: scale(6); opacity: 0; }
 }
 
+/* =====================================================
+   FINAL FIXES (30 Dec) — sticky header stack + banner hide + testimonials footer
+   Keep this as the LAST block in main.css
+   ===================================================== */
 
-/* Mobile overflow safety net + snow kill-switch */
-html, body{ max-width:100%; overflow-x:hidden; }
-img, video, svg, iframe{ max-width:100%; height:auto; }
-.seasonal-snow{ display:none !important; }
+/* Ensure banner spacing is handled exactly like the "working" version */
+body{ padding-top: var(--launch-banner-h) !important; }
+main{ padding-top: 4.25rem !important; }
+
+/* Green launch banner: fixed and hides on scroll via body.banner-hidden */
+.launch-banner{
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+  transform: translateY(0);
+  transition: transform 220ms ease;
+}
+
+.launch-banner__inner{
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+body.banner-hidden .launch-banner{
+  transform: translateY(-100%) !important;
+}
+
+/* Sticky white header should ALWAYS remain visible and sit below banner */
+.site-header{
+  position: sticky !important;
+  top: var(--launch-banner-h) !important;
+  z-index: 9998 !important;
+}
+
+/* When banner is hidden, header sticks to very top */
+body.banner-hidden .site-header{
+  top: 0 !important;
+}
+
+/* ---- Testimonials: keep footer (name + meta) aligned at the bottom of each card ---- */
+.testimonial{
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.testimonial p{
+  margin: 0 0 0.8rem !important;
+}
+
+/* Push footer to bottom so all cards align */
+.testimonial footer{
+  margin-top: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  font-size: 0.85rem !important;
+}
+
+/* Ensure the name and meta are two separate lines (as requested) */
+.testimonial-name{
+  display: block !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+}
+
+.testimonial-meta{
+  display: block !important;
+  color: var(--muted) !important;
+  line-height: 1.2 !important;
+}
+
+body.banner-hidden #launchBanner{
+  transform: translateY(-100%) !important;
+}

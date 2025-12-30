@@ -1,9 +1,6 @@
 // js/main.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Cleanup: remove any leftover seasonal overlays (prevents stuck snow)
-  document.querySelectorAll('.seasonal-snow, .seasonal-overlay, .new-year-fireworks').forEach(el => el.remove());
-
   // =========================
   // Header / mobile nav
   // =========================
@@ -825,36 +822,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const THRESHOLD = 40;
 
     function setBannerHeightVar() {
-  // If banner is hidden, header should stick to the very top
-  const isHidden = document.body.classList.contains('banner-hidden');
-  const h = (!banner || isHidden) ? 0 : banner.offsetHeight;
-  document.documentElement.style.setProperty('--launch-banner-h', `${h}px`);
-}
+      const isHidden = document.body.classList.contains('banner-hidden');
+      const h = isHidden ? 0 : (banner.offsetHeight || 0);
+      document.documentElement.style.setProperty('--launch-banner-h', h + 'px');
+    }
 
     function hideBanner() {
+      if (document.body.classList.contains('banner-hidden')) return;
       document.body.classList.add('banner-hidden');
-      // Ensure no gap even if other CSS exists
-      document.documentElement.style.setProperty('--launch-banner-h', '0px');
+      document.documentElement.classList.add('banner-hidden');
+      setBannerHeightVar();
     }
 
     function showBanner() {
+      if (!document.body.classList.contains('banner-hidden')) return;
       document.body.classList.remove('banner-hidden');
+      document.documentElement.classList.remove('banner-hidden');
       setBannerHeightVar();
     }
 
     function onScroll() {
-      if (window.scrollY > THRESHOLD) hideBanner();
+      const y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      if (y > THRESHOLD) hideBanner();
       else showBanner();
     }
 
-    // Initial
+    // Initial (run twice to catch late font/layout shifts)
     setBannerHeightVar();
     onScroll();
-
+    setTimeout(() => { setBannerHeightVar(); onScroll(); }, 50);
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => {
-      if (!document.body.classList.contains('banner-hidden')) setBannerHeightVar();
-    }, { passive: true });
+    window.addEventListener('resize', setBannerHeightVar, { passive: true });
   }
 
   // =========================
@@ -895,25 +893,3 @@ if (ENABLE_SEASONAL_SNOW &&
     snow.appendChild(flake);
   }
 }
-/* 🎆 New Year Celebration — midnight trigger + date window */
-(() => {
-  // Set to true to force ON, false to force OFF, null to use the auto date window
-  const MANUAL_OVERRIDE = false;
-
-  // Auto-enable between Dec 31 – Jan 1 (inclusive)
-  const ENABLE_IN_WINDOW_ONLY = true;
-
-  // Respect reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const now = new Date();
-  const m = now.getMonth(); // 0=Jan ... 11=Dec
-  const d = now.getDate();
-
-  const inWindow = (m === 11 && d === 31) || (m === 0 && d === 1);
-
-  if (MANUAL_OVERRIDE === false) return;
-  if (MANUAL_OVERRIDE === null && ENABLE_IN_WINDOW_ONLY && !inWindow) return;
-
-  // Placeholder: add fireworks effect here later (kept intentionally empty).
-})();
