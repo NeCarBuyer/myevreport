@@ -1,6 +1,9 @@
 // js/main.js
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Cleanup: remove any leftover seasonal overlays (prevents stuck snow)
+  document.querySelectorAll('.seasonal-snow, .seasonal-overlay, .new-year-fireworks').forEach(el => el.remove());
+
   // =========================
   // Header / mobile nav
   // =========================
@@ -822,9 +825,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const THRESHOLD = 40;
 
     function setBannerHeightVar() {
-      const h = banner.offsetHeight || 0;
-      document.documentElement.style.setProperty('--launch-banner-h', h + 'px');
-    }
+  // If banner is hidden, header should stick to the very top
+  const isHidden = document.body.classList.contains('banner-hidden');
+  const h = (!banner || isHidden) ? 0 : banner.offsetHeight;
+  document.documentElement.style.setProperty('--launch-banner-h', `${h}px`);
+}
 
     function hideBanner() {
       document.body.classList.add('banner-hidden');
@@ -890,18 +895,25 @@ if (ENABLE_SEASONAL_SNOW &&
     snow.appendChild(flake);
   }
 }
-/ 🎆 New Year Celebration — midnight trigger + date window /
+/* 🎆 New Year Celebration — midnight trigger + date window */
 (() => {
-  const MANUAL_OVERRIDE = true; // set to true/false to force on/off. Leave null for auto.
-  const ENABLE_IN_WINDOW_ONLY = true; // keep true
-  const BURSTS = 14;
+  // Set to true to force ON, false to force OFF, null to use the auto date window
+  const MANUAL_OVERRIDE = false;
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) return;
+  // Auto-enable between Dec 31 – Jan 1 (inclusive)
+  const ENABLE_IN_WINDOW_ONLY = true;
 
-  function isInNewYearWindow(now) {
-    // Auto-enable between Dec 31 and Jan 1 (inclusive), local time
-    const m = now.getMonth(); // 0=Jan ... 11=Dec
-    const d = now.getDate();
+  // Respect reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const isDec30 = (m =
+  const now = new Date();
+  const m = now.getMonth(); // 0=Jan ... 11=Dec
+  const d = now.getDate();
+
+  const inWindow = (m === 11 && d === 31) || (m === 0 && d === 1);
+
+  if (MANUAL_OVERRIDE === false) return;
+  if (MANUAL_OVERRIDE === null && ENABLE_IN_WINDOW_ONLY && !inWindow) return;
+
+  // Placeholder: add fireworks effect here later (kept intentionally empty).
+})();
